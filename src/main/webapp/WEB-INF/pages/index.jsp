@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="${homeCss}">
     <spring:url value="resources/css/sidebar.css" var="sidebarCss"/>
     <link rel="stylesheet" href="${sidebarCss}">
+    <spring:url value="resources/css/markpoint.css" var="mpCss"/>
+    <link rel="stylesheet" href="${mpCss}">
     <spring:url value="resources/css/user-pages-style.css" var="userCss"/>
     <link rel="stylesheet" href="${userCss}">
 
@@ -67,12 +69,18 @@
     <%--↓custom js--%>
     <spring:url value="resources/js/static.js" var="staticJs"/>
     <script src="${staticJs}"></script>
+    <spring:url value="resources/js/helper.js" var="helperJs"/>
+    <script src="${helperJs}"></script>
+    <spring:url value="resources/js/noData.js" var="noData"/>
+    <script src="${noData}"></script>
     <spring:url value="resources/js/LoadData.js" var="ajax"/>
     <script src="${ajax}"></script>
     <spring:url value="resources/js/Session.js" var="sessionJs"/>
     <script src="${sessionJs}"></script>
     <spring:url value="resources/js/InputSuggest.js" var="suggestJs"/>
     <script src="${suggestJs}"></script>
+    <spring:url value="resources/js/List.js" var="listJs"/>
+    <script src="${listJs}"></script>
     <spring:url value="resources/js/HomeSearch.js" var="hsJs"/>
     <script src="${hsJs}"></script>
     <spring:url value="resources/js/GlobalSearchForm.js" var="gsJs"/>
@@ -85,6 +93,15 @@
     <script src="${userJs}"></script>
     <spring:url value="resources/js/main.js" var="mainJs"/>
     <script src="${mainJs}"></script>
+
+    <spring:url value="resources/plugins/echarts-2.2.7/build/dist/echarts.js" var="echarts"/>
+    <script src="${echarts}"></script>
+    <spring:url value="resources/plugins/echarts-x/build/dist/echarts-x.js" var="echartsX"/>
+    <script src="${echartsX}"></script>
+    <spring:url value="resources/js/MarkPoint.js" var="mpJs"/>
+    <script src="${mpJs}"></script>
+    <spring:url value="resources/js/MarkLine.js" var="mlJs"/>
+    <script data-src="${mlJs}"></script>
 
 </head>
 <body>
@@ -100,7 +117,7 @@
         <h1>地图</h1>
     </div>
     <div class="section" data-anchor="se3" id="point">
-        <h1>设备3D</h1>
+        <%@include file="markpoint.jsp" %>
     </div>
     <div class="section" data-anchor="se4" id="line">
         <h1>数据流3D</h1>

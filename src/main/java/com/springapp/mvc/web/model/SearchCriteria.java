@@ -19,7 +19,7 @@ public class SearchCriteria {
     int lossycompress; // 0 //压缩级别，0为不压缩；1为去除部分无用字段；2为去除更多非必需字段，等等
     int page = 1;   //请求第几页，用于页面分页显示
     int pagesize;
-    int prilevel = -1;   //用户等级，默认值-1，表示游客
+    int prilevel = 5;   //用户等级，默认值-1，表示游客
 
     @JSONField(name = "pagesize")
     public int getPagesize() {

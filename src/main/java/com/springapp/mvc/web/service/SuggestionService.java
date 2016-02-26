@@ -2,15 +2,13 @@ package com.springapp.mvc.web.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.springapp.mvc.web.daoLike.SuggestionDAO;
+import com.springapp.mvc.web.dao.SuggestionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lyp on 2015/12/10.

@@ -53,7 +53,7 @@
 
         <h2 class="green">用户登录</h2>
 
-        <form class="form" action="<%=basePath%>user/api/login" id="login_form">
+        <form class="form" action="<%=basePath%>user/login" id="login_form">
             <ul>
                 <li>
                     <label class="label"><span class="need">*</span> 用户名：</label>

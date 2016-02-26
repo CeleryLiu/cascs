@@ -1,7 +1,7 @@
 package com.springapp.mvc.web.service;
 
 
-import com.springapp.mvc.web.daoLike.NewDeviceDAO;
+import com.springapp.mvc.web.dao.NewDeviceDAO;
 import com.springapp.mvc.web.model.AdvancedSearchCriteria;
 import com.springapp.mvc.web.model.SearchCriteria;
 import net.sf.json.JSONObject;
@@ -76,14 +76,14 @@ public class NewDeviceService {
     }
 
     public String getResponse4ListSearch(SearchCriteria search) {
-        logger.debug("Service ==>> getResponse4ListSearch starts ================");
-//        System.out.println("Service ==>> getResponse4ListSearch starts ================");
+        logger.debug("Service ==>> getRequest4CommonSearch starts ================");
+//        System.out.println("Service ==>> getRequest4CommonSearch starts ================");
         JSONObject result;
         if (isValidSearchCriteria(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();
             criteria.put("wd", search.getWd());
             criteria.put("page", search.getPage());
-//            System.out.println("Service ==>> getResponse4ListSearch starts ================" + criteria);
+//            System.out.println("Service ==>> getRequest4CommonSearch starts ================" + criteria);
             result = dao.getResult4DeviceSearch(uri4List, criteria);
             if ("200".equals(result.getString("statuscode")) && result.getJSONArray("data").size() <= 0) {
                 result.put("statuscode", "204");

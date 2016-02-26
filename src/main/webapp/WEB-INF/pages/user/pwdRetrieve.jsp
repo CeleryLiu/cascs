@@ -45,7 +45,7 @@
 
 <body>--%>
 <div class="wraper">
-    <p class="tr"><a href="#se5/se5_login" class="blue ml10 fz12">返回登录页&raquo;</a></p>
+    <%--<p class="tr"><a href="#se5/se5_login" class="blue ml10 fz12">返回登录页&raquo;</a></p>--%>
 
     <h2 class="green">忘记密码了？别着急，我们帮您找回 ......</h2>
 

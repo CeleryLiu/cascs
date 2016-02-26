@@ -134,8 +134,8 @@ public class DataApiController {
         search.setTypefilter(typefilter);
         search.setLossycompress(lossycompress);
         String result = deviceService.getResponse4Globe(search);
-        System.out.println("globe point");
-        System.out.println(result);
+//        System.out.println("globe point");
+//        System.out.println(result);
         return result;
     }
 
@@ -205,7 +205,7 @@ public class DataApiController {
     * @result String，查询结果
     */
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/api/getSuggestions")
+    @RequestMapping(value = "/getSuggestions")
     public String getSuggestions(@RequestParam(value = "search") String search) {
         logger.debug("DataApiController advancedSearch starts-----------");
         return suggestionService.getResponse4Suggestion(search).toString();

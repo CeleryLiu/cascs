@@ -1,4 +1,4 @@
-package com.springapp.mvc.web.daoLike;
+package com.springapp.mvc.web.dao;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

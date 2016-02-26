@@ -1,4 +1,4 @@
-package com.springapp.mvc.web.daoLike;
+package com.springapp.mvc.web.dao;
 
 import com.springapp.mvc.web.model.NewSuggestions;
 import org.springframework.stereotype.Repository;

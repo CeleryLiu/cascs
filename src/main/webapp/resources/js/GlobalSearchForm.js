@@ -6,14 +6,15 @@ var GlobalSearchForm = {
         return '.global-search-wrapper'
     }()),
     show: function () {
-        //console.log('Inside GlobalSearchForm.show()========');
+        //console.log('Inside GlobalSearchForm.show() ======');
         $(this._WRAPPER_SEL).show(Constant.HIDE_SHOW_SPEED);
     },
     hide: function () {
-        //console.log('Inside GlobalSearchForm.hide()========');
+        //console.log('Inside GlobalSearchForm.hide() ======');
         $(this._WRAPPER_SEL).hide(Constant.HIDE_SHOW_SPEED);
     },
     isHidden: function () {
+        //console.log('Inside GlobalSearchForm.isHidden() ======');
         return $(this._WRAPPER_SEL).is(':hidden');
     }
 };

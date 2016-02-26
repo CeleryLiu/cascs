@@ -96,5 +96,9 @@
     </div>
 </div>
 <div id="pivots_wrapper" class="pivots-wrapper for-sidebar-padding">
-    <ul class="pivots"></ul>
+    <ul class="pivots">
+        <li><a href="#">pivot1</a></li>
+        <li><a href="#">pivot2</a></li>
+        <li><a href="#">pivot3</a></li>
+    </ul>
 </div>

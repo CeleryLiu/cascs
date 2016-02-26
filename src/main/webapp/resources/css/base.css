@@ -79,10 +79,15 @@ abbr, acronym {
 
 /* Custom CSS (General)
  * --------------------------------------- */
+/*
+字体：http://www.xwbetter.com/font-family/。宋体：SimSun
+*/
 body {
-    font-family: arial, helvetica, simsun, sans-serif;
+    font-family: Microsoft YaHei, arial, helvetica, simsun, sans-serif;
     color: #333;
     color: rgba(0, 0, 0, 0.5);
+    background: lightgray;
+    background: no-repeat top center fixed linear-gradient(#3f4657, #452525)
 }
 
 button, input, select, textarea {
@@ -206,7 +211,6 @@ b {
     display: block;
     width: 100%;
     background: #333;
-    background: rgba(51, 51, 51, 0.6);
     text-align: center;
     color: #f2f2f2;
     padding: .3rem 0 0 0;
@@ -216,6 +220,7 @@ b {
 
 .header {
     top: 0px;
+    background: rgba(51, 51, 51, 0.7);
 }
 
 .footer {
@@ -227,7 +232,7 @@ b {
 .header h1 {
     line-height: 4rem;
     font-weight: normal;
-    font-family: "microsoft yahei", Verdana, Tahoma, Helvetica, Arial, sans-serif;
+    font-family: Microsoft YaHei, Verdana, Tahoma, Helvetica, Arial, sans-serif;
     color: #fff;
     border: none;
 }
@@ -271,7 +276,6 @@ b {
 * --------------------------------------- */
 .section {
     text-align: center;
-    background: no-repeat top center fixed linear-gradient(#3f4657, #452525)
 }
 
 .section .intro p {

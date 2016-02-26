@@ -29,19 +29,19 @@ public class RegisterController {
     }
 
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/user/api/uniqueUserNameCheck")
+    @RequestMapping(value = "/user/uniqueUserNameCheck")
     public ValidformResponseBody uniqueUserNameCheck(@RequestParam String param, @RequestParam String name) {
         return registerService.uniqueUserNameCheck(name, param);
     }
 
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/user/api/uniqueEmailCheck")
+    @RequestMapping(value = "/user/uniqueEmailCheck")
     public ValidformResponseBody uniqueEmailCheck(@RequestParam String param, @RequestParam String name) {
         return registerService.uniqueEmailCheck(name, param);
     }
 
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/user/api/register")
+    @RequestMapping(value = "/user/register")
     public JSONObject register(@RequestBody User user) {
         return registerService.register(user.getUrlString());
     }

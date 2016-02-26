@@ -47,12 +47,12 @@
 
         <h2 class="green">新用户注册</h2>
 
-        <form class="form" action="<%=basePath%>user/api/register" onsubmit="return false;" id="register_form">
+        <form class="form" action="<%=basePath%>user/register" onsubmit="return false;" id="register_form">
             <ul>
                 <li>
                     <label class="label"><span class="need">*</span> 用户名：</label>
                     <input type="text" value="" name="username" class="inputxt"
-                           ajaxurl="<%=basePath%>user/api/uniqueUserNameCheck"
+                           ajaxurl="<%=basePath%>user/uniqueUserNameCheck"
                            datatype="s6-16"
                            nullmsg="请设置用户名！"
                            errormsg="用户名长度在6~16位之间！"/>
@@ -80,7 +80,7 @@
                     <input type="text" value="" name="email" class="inputxt"
                            datatype="e"
                            nullmsg="请填写邮箱！"
-                           ajaxurl="<%=basePath%>user/api/uniqueEmailCheck"/>
+                           ajaxurl="<%=basePath%>user/uniqueEmailCheck"/>
                     <span class="Validform_checktip">用于接收系统邮件和修改密码</span>
                 </li>
                 <li>
@@ -168,7 +168,7 @@
                     }
                 }
                 requestObj = {
-                    url: '${basePath}user/api/register',
+                    url: '${basePath}user/register',
                     data: user,
                     success: successCallback,
                     error: errorCallback

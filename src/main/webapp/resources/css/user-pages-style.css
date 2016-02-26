@@ -11,7 +11,7 @@
 
 .wraper {
     display: inline-block;
-    min-width: 50%;
+    min-width: 30rem;
     margin: 0 auto;
     padding: 3rem;
     background-color: rgba(255, 255, 255, .7);
@@ -139,7 +139,7 @@
 }
 
 .form .action {
-    padding-left: 8.5rem;
+    padding-left: 9rem;
 }
 
 .wraper > div:last-child {

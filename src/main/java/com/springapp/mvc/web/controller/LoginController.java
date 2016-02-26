@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/user/api/login")
+    @RequestMapping(value = "/user/login")
     public JSONObject login(ModelMap model, @RequestBody User user) {
         System.out.println("Inside of login handler method");
         String params = "nam=" + user.getUsername() + "&" + "psw=" + user.getPassword();
@@ -40,7 +40,7 @@ public class LoginController {
         return result;
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping("/user/logout")
     public String logout(SessionStatus status) {
         status.setComplete();
         return "logoutDone";

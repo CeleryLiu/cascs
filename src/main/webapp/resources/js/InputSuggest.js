@@ -3,10 +3,10 @@
  */
 var InputSuggest = {
     init: function () {
-        var suggestURL = 'api/getSuggestions?search=';
+        console.log('Inside InputSuggest.init() ======');
         this.suggestCursorToggle();
-        this.getSuggestions('#home_search_input', suggestURL);
-        this.getSuggestions('#global-search-input', suggestURL);
+        this.getSuggestions('#home_search_input', Constant.SUGGEST_URL);
+        this.getSuggestions('#global-search-input', Constant.SUGGEST_URL);
     },
     getSuggestions: function (inputSelector, sourceURL) {
         var $input = $(inputSelector);
@@ -18,7 +18,7 @@ var InputSuggest = {
                 //Prefetched data is fetched and processed on initialization. If the browser supports local storage,
                 // the processed data will be cached there to prevent additional network requests on subsequent page loads.
                 prefetch: {
-                    url: 'resources/data/suggestions.json',
+                    url: Constant.LOCAL_SUGGEST_URL,
                     //url: dataSource,
                     limit: 10,
                     //ttl: 10000,//The time (in milliseconds) the prefetched data should be cached in local storage. Defaults to 86400000 (1 day).

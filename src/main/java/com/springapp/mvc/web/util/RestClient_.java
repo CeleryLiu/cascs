@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.springapp.mvc.web.config.Constant;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class RestClient_ {
@@ -202,6 +203,18 @@ public class RestClient_ {
             result = forgetPwd;
         }
         return result;
+    }
+
+    /*
+* @function http get请求，参数为requestParam，参数名在uri中已指定，只能为一个参数
+* @param uri：请求地址，包含请求参数。示例：http://10.10.10.10?q={q}，其中q为参数名；{q}表示参数值，必须和本方法中urlVariables的key一致
+* @param requestParam，json格式的字符串
+* @return String，结果为json字符串（取决去http服务器返回的数据，可能不是json）
+* used for map, point(globe),advanced search
+*/
+    public String get(String uri, String requestParam) {
+        System.out.println("Inside get(String, String) ======, uri = " + uri + "request = " + requestParam);
+        return "";
     }
 
 /*    public static void main(String[] args) {

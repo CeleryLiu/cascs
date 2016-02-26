@@ -62,12 +62,12 @@ var User = {
                     }
                 }
                 requestObj = {
-                    url: 'user/api/register',
+                    url: Constant.USER_REGISTER_URL,
                     data: user,
                     success: successCallback,
                     error: errorCallback
                 };
-                ajaxLoadData(requestObj);   //也可以使用validform.js的ajaxPost方式提交，但为了前后端数据请求统一处理，所以在这里提交
+                LoadData.post(requestObj);   //也可以使用validform.js的ajaxPost方式提交，但为了前后端数据请求统一处理，所以在这里提交
                 return false;//return false的话，表单不再提交
             }
         });
@@ -118,12 +118,12 @@ var User = {
                     }
                 }
                 requestObj = {
-                    url: 'user/api/login',
+                    url: Constant.USER_LOGIN_URL,
                     success: successCallback,
                     data: user,
                     error: errorCallback
                 };
-                ajaxLoadData(requestObj);
+                LoadData.post(requestObj);
                 return false;//return false的话，表单不再提交
             }
         });
@@ -131,7 +131,6 @@ var User = {
     pwdRetrieve: function () {
         //console.log('Inside User.pwdRetrieve() ======');
         var requestObj = {};
-        var REQUEST_URL = 'http://10.10.2.174:8080/wum/login/forgetpwd.json';
         var successCallback = function (data) {
             console.log(data);
             if (data.code == 1) {
@@ -160,7 +159,7 @@ var User = {
             beforeSubmit: function (curform) {
                 //在验证成功后，表单提交前执行的函数，curform参数是当前表单对象。
                 requestObj = {
-                    url: REQUEST_URL + '?email=' + $('#pwdRe_email').val(),
+                    url: Constant.USER_PWD_RETRIEVE_URL + '?email=' + $('#pwdRe_email').val(),
                     success: successCallback,
                     error: errorCallback
                 };
@@ -169,7 +168,8 @@ var User = {
             }
         });
     },
-    init: function () {
+    listenerStarts: function () {
+        console.log('Inside User.listenerStarts() ======');
         var username = Session.get('username');
         if (username && username != '' && username != 'undefined') {
             this.setNavUsername(username);
