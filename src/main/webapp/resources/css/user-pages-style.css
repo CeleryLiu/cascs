@@ -1,0 +1,168 @@
+@charset "UTF-8";
+.section[data-anchor="se_user"] {
+    background: url("../img/login_bg.jpg") no-repeat center;
+}
+
+.tipmsg {
+    font-size: 100%;
+    padding: 0 10px;
+    margin-bottom: 2rem;
+}
+
+.wraper {
+    display: inline-block;
+    min-width: 50%;
+    margin: 0 auto;
+    padding: 3rem;
+    background-color: rgba(255, 255, 255, .7);
+    color: #424242;
+    line-height: 2rem;
+    text-align: left;
+    border-radius: 4px;
+}
+
+.wraper h3,
+.wraper h2 {
+    color: #888;
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 1.6rem;
+    margin-bottom: 2em;
+    font-family: "microsoft yahei", Verdana, Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.wraper pre {
+    border: none;
+    background: transparent;
+}
+
+.wraper a {
+    font-size: 1.5rem;
+}
+
+.lireset2 {
+    padding-left: 10px;
+}
+
+.form {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+}
+
+.form .need {
+    width: 10px;
+    color: #b20202;
+}
+
+.form td {
+    padding: 5px 0;
+    vertical-align: top;
+    text-align: left;
+}
+
+.form .inputxt, .form textarea {
+    border: 1px solid #a5aeb6;
+    width: 20rem;
+    padding: 2px;
+}
+
+.form textarea {
+    height: 75px;
+}
+
+.form label {
+    margin: 0 1rem 0 .4rem;
+    font-size: 100%;
+}
+
+.form .tip {
+    line-height: 20px;
+    color: #5f6a72;
+}
+
+.form select {
+    width: 202px;
+}
+
+.formalter select {
+    width: 124px;
+}
+
+.swfupload {
+    vertical-align: top;
+}
+
+.passwordStrength {
+
+}
+
+.passwordStrength b {
+    font-weight: normal;
+}
+
+.passwordStrength b, .passwordStrength span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 16px;
+    line-height: 18px \9;
+    height: 16px;
+}
+
+.passwordStrength span {
+    width: 45px;
+    text-align: center;
+    background-color: #d0d0d0;
+    border-right: 1px solid #fff;
+}
+
+.passwordStrength .last {
+    border-right: none;
+}
+
+.passwordStrength .bgStrength {
+    color: #fff;
+    background-color: #71b83d;
+}
+
+.form li {
+    padding-bottom: .5rem;
+}
+
+.Validform_checktip {
+    margin-left: 10px;
+}
+
+.form .label {
+    display: inline-block;
+    width: 7rem;
+    color: #424242;
+}
+
+.form .action {
+    padding-left: 8.5rem;
+}
+
+.wraper > div:last-child {
+    padding-left: .5rem;
+    /*font-size: 120%;*/
+    font-weight: bold;
+}
+
+.toTop {
+    /*display: block;*/
+    width: 48px;
+    height: 49px;
+    overflow: hidden;
+    text-indent: -20000px;
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+    display: none;
+    background: url(../img/totop.png) no-repeat;
+    _position: absolute;
+    _top: expression(documentElement.scrollTop+documentElement.clientHeight-this.offsetHeight-20);
+}
+
+.forward-link {
+    margin-left: 1rem;
+}
