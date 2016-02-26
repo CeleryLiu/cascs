@@ -2,5 +2,6 @@ classes/
 out/
 target/
 .idea/
+src\main\java\com\springapp\mvc\web\util\RestClient.java
 *.iml
 *.bak
