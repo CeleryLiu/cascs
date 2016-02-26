@@ -95,6 +95,6 @@
         </div>
     </div>
 </div>
-<div id="pivots_wrapper" class="pivots-wrapper for-sidebar-padding">aaaaaaaaaaaaaaaaa
+<div id="pivots_wrapper" class="pivots-wrapper for-sidebar-padding">
     <ul class="pivots"></ul>
 </div>

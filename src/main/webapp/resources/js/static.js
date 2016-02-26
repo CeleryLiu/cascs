@@ -13,7 +13,7 @@ var Constant = {
         return ['#686868', '#1BBC9B', ''];
     }()),
     FIXED_ELEMENTS: (function () {
-        return '.header, .footer, .sidebar,.global-search-wrapper';
+        return '.header, .footer, .sidebar,.global-search-wrapper,#pivots_wrapper';
     }()),
     SLIDE_NAV_TOOLTIPS: (function () {
         return ['备用']

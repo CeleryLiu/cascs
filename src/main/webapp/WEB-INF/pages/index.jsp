@@ -106,16 +106,16 @@
         <h1>数据流3D</h1>
     </div>
     <div class="section" data-anchor="se5" id="user">
-        <div class="slide" data-anchor="sl0">
+        <div class="slide" data-anchor="se5_login">
             <%@include file="user/login.jsp" %>
         </div>
-        <div class="slide" data-anchor="sl1">
+        <div class="slide" data-anchor="se5_pwd">
             <%@include file="user/pwdRetrieve.jsp" %>
         </div>
-        <div class="slide" data-anchor="sl2">
+        <div class="slide" data-anchor="se5_reg">
             <%@include file="user/register.jsp" %>
         </div>
-        <div class="slide" data-anchor="sl3">
+        <div class="slide" data-anchor="se5_agreement">
             <%@include file="user/agreement.jsp" %>
         </div>
     </div>
