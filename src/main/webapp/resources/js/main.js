@@ -2,7 +2,6 @@
  * Created by lyp on 2016/2/21.
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
-
 $(function () {
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
@@ -82,17 +81,22 @@ $(function () {
             $.fn.fullpage.reBuild();
         },
         afterResize: function () {
-            console.log('Inside afterResize() ======');
+            //console.log('Inside afterResize() ======');
         },
         onLeave: function (index, nextIndex, direction) {
-            console.log('Inside onLeave() ======,');
+            //console.log('Inside onLeave() ======,');
             //console.log('Inside onLeave() ======, index = ' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             //↓如果下一个section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
             //BE CAREFUL! 这里的index和nextIndex的值要严格和HTML的DOM中的section一一对应
             hideNodes4NoSearchSec(nextIndex);
+            switch (index) {
+                case 5:
+                    MarkLine.destroy();
+                    break;
+            }
         },
         afterLoad: function (anchorLink, index) {
-            console.log('Inside afterLoad() ======');
+            //console.log('Inside afterLoad() ======');
             //console.log('Inside afterLoad() ======, anchorLink = ' + anchorLink + ', index = ' + index);
             //↓如果当前section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
             hideNodes4NoSearchSec(index);
@@ -100,16 +104,19 @@ $(function () {
                 case 4:
                     MarkPoint.init();
                     break;
+                case 5:
+                    MarkLine.init();
+                    break;
             }
         },
         afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
-            console.log('Inside afterSlideLoad() ======');
+            //console.log('Inside afterSlideLoad() ======');
             //console.log('Inside afterSlideLoad() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideAnchor = ' + slideAnchor + ', slideIndex = ' + slideAnchor);
             //$('.fp-slidesNav a').tooltip('hide');//隐藏slide的tooltip
         },
         onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
             //console.log('Inside onSlideLeave() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideIndex = ' + slideIndex + ', nextSlideIndex = ' + nextSlideIndex);
-            console.log('Inside onSlideLeave() ======');
+            //console.log('Inside onSlideLeave() ======');
         }
     });
 });

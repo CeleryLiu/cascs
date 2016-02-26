@@ -44,13 +44,6 @@ public class DataApiController {
     }
 
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/api/getDevicesViaAjax")
-    public ResponseBody getDevicesViaAjax(@RequestBody SearchCriteria search) {
-        logger.debug("DataApiController getDevicesViaAjax starts-----------");
-        return deviceService.getSearchedDevices(search);
-    }
-
-    @JsonView(Views.Public.class)
     @RequestMapping(value = "/api/getDevicesViaLinkFromMap")
     public ModelAndView getDevicesViaLink2(
             @RequestParam(value = "ip", required = true) String ip) {
@@ -60,24 +53,6 @@ public class DataApiController {
         search.setWd(ip);
         map.put("response", deviceService.getResponse4List(search));
         map.put("wd", ip);
-        return new ModelAndView("device-list", map);
-    }
-
-    @JsonView(Views.Public.class)
-    @RequestMapping(value = "/api/getDevicesViaLink")
-    public ModelAndView getDevicesViaLink(
-            @RequestParam(value = "country", required = false) String country,
-            @RequestParam(value = "city", required = false) String city,
-            @RequestParam(value = "type", required = false) String type,
-            @RequestParam(value = "service", required = false) String service,
-            @RequestParam(value = "os", required = false) String os,
-            @RequestParam(value = "port", required = false) String port,
-            @RequestParam(value = "app", required = false) String app) {
-        logger.debug("DataApiController getDevicesViaAjax starts-----------");
-        Map<String, String> map = new HashMap<String, String>();
-        SearchCriteria sc = new SearchCriteria();
-        sc.setWd("XXX");
-        map.put("response", gson.toJson(deviceService.getSearchResponse(sc)));
         return new ModelAndView("device-list", map);
     }
 
@@ -127,7 +102,7 @@ public class DataApiController {
             @PathVariable("permitfilter") String permitfilter,
             @PathVariable("lossycompress") Integer lossycompress) {
         logger.debug("DataApiController ==>> getResponse4Globe starts-----------");
-        System.out.println("getDevices4Globe " + typefilter);
+//        System.out.println("getDevices4Globe " + typefilter);
         permitfilter = !"all".equals(permitfilter) ? permitfilter : "";
         SearchCriteria search = new SearchCriteria();
         search.setPermitfilter(permitfilter);

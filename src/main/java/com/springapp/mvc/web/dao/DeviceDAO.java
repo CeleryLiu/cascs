@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.springapp.mvc.web.model.Device;
 import com.springapp.mvc.web.model.Device4MapOrGlobe;
-import com.springapp.mvc.web.util.MyHttpClient;
 import com.springapp.mvc.web.util.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,48 +29,6 @@ public class DeviceDAO {
 
     List<Device> devices;
     RestClient rc = new RestClient();
-
-    //Search Function
-    public List<Device> getSearchedDevices(String criteria) {
-        List<Device> result = new ArrayList<Device>();
-        for (Device device : devices) {
-            if (!StringUtils.isEmpty(criteria)) {
-                result.add(device); //http请求获取实际数据
-            }
-        }
-        return result;
-    }
-
-    //Init some devices for testing
-    @PostConstruct
-    private void initDataForTesting() {
-        devices = new ArrayList<Device>();
-        List<Double> geoCoord = new ArrayList<Double>();
-        geoCoord.add(1.2);
-        geoCoord.add(2.2);
-        geoCoord.add(3.2);
-
-        List<String> types1 = new ArrayList<String>(), types2 = new ArrayList<String>();
-        types1.add("t1Sub1");
-        types1.add("t1Sub2");
-        types2.add("t2Sub1");
-        types2.add("t2Sub2");
-        types2.add("t2Sub3");
-        MyHttpClient httpClient = new MyHttpClient();
-        if ("success".equals(httpClient.get(""))) {
-//Device(List<String> types, List<Double> geoCoord, String code, String country, String city)
-            Device d1 = new Device(types1, geoCoord, "cn", "China", "Beijing");
-            Device d2 = new Device(types1, geoCoord, "cn", "China", "Shanghai");
-            Device d3 = new Device(types2, geoCoord, "cn", "China", "Guangzhou");
-            Device d4 = new Device(types2, geoCoord, "cn", "China", "Nanjing");
-            Device d5 = new Device(types2, geoCoord, "cn", "China", "Nanjing");
-            devices.add(d1);
-            devices.add(d2);
-            devices.add(d3);
-            devices.add(d4);
-            devices.add(d5);
-        }
-    }
 
     ///////--------------------------------------------------------------------------------------------
     //返回用户查询的数据，用于前端以列表的形式显示设备信息（数据访问层）-----------------------------√

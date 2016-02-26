@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="${homeCss}">
     <spring:url value="resources/css/sidebar.css" var="sidebarCss"/>
     <link rel="stylesheet" href="${sidebarCss}">
-    <spring:url value="resources/css/markpoint.css" var="mpCss"/>
+    <spring:url value="resources/css/markpoint-line.css" var="mpCss"/>
     <link rel="stylesheet" href="${mpCss}">
     <spring:url value="resources/css/user-pages-style.css" var="userCss"/>
     <link rel="stylesheet" href="${userCss}">
@@ -101,7 +101,7 @@
     <spring:url value="resources/js/MarkPoint.js" var="mpJs"/>
     <script src="${mpJs}"></script>
     <spring:url value="resources/js/MarkLine.js" var="mlJs"/>
-    <script data-src="${mlJs}"></script>
+    <script src="${mlJs}"></script>
 
 </head>
 <body>
@@ -120,7 +120,7 @@
         <%@include file="markpoint.jsp" %>
     </div>
     <div class="section" data-anchor="se4" id="line">
-        <h1>数据流3D</h1>
+        <div id="globe4LineHolder"></div>
     </div>
     <div class="section" data-anchor="se5" id="user">
         <div class="slide" data-anchor="se5_login">

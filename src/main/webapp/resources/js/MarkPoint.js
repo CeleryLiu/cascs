@@ -40,6 +40,7 @@ var MarkPoint = {
             })
                 .success(function (data) {
                     if (data['statuscode'] == 200) {
+                        //console.log(data['data']);
                         $.each(data.data, function (key, value) {
                             if (value.length > 0) {
                                 var markPointColor = COLORS[key] == undefined ? "yellow" : COLORS[key],
@@ -166,7 +167,6 @@ var MarkPoint = {
             'echarts-x/chart/map3d'
         ], function (ec) {
             //初始化地球和charts
-            console.log('aaa');
             pointChart = ec.init(document.getElementById('markpointHolder'));
             initPointOpts = {
                 tooltip: {

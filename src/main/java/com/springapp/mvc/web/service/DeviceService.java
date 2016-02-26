@@ -29,49 +29,6 @@ public class DeviceService {
         this.deviceDAO = deviceDAO;
     }
 
-    public ResponseBody getSearchedDevices(SearchCriteria search) {
-
-        ResponseBody result = new ResponseBody();
-        if (isValidSearchCriteriaOld(search)) {
-            List<Device> devices = deviceDAO.getSearchedDevices(search.getWd());
-            if (devices.size() > 0) {
-                result.setCode("200");
-                result.setErrmsg("");
-                result.setResult(devices);
-            } else {
-                result.setCode("204");
-                result.setErrmsg("No device!");
-            }
-        } else {
-            result.setCode("400");
-            result.setErrmsg("Search criteria is empty!");
-        }
-        //ResponseBody will be converted into json format and send back to the request.
-        return result;
-    }
-
-    public SearchResponseBody getSearchResponse(SearchCriteria search) {
-
-        SearchResponseBody result = new SearchResponseBody();
-        if (isValidSearchCriteriaOld(search)) {
-            SearchResult sr = new SearchResult();
-            List<Device> devices = deviceDAO.getSearchedDevices(search.getWd());
-            if (devices.size() > 0) {
-                result.setCode("200");
-                result.setMsg("Success");
-                result.setResult(devices2SearchResult(devices));
-            } else {
-                result.setCode("204");
-                result.setMsg("No device!");
-            }
-        } else {
-            result.setCode("400");
-            result.setMsg("Search criteria is empty!");
-        }
-        //SearchResponseBody will be converted into json format and send back to the request.
-        return result;
-    }
-
     private boolean isValidSearchCriteriaOld(SearchCriteria search) {
         boolean valid = true;
         if (search == null) {
