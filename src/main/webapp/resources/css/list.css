@@ -3,10 +3,14 @@
 .list-wrapper {
     display: none;
     margin: 0 auto;
+    /*padding-top: 15rem;*/
     height: 100%;
     overflow: auto;
+    text-align: left;
 }
-
+.list-wrapper .result-count-duration{
+    margin-bottom: .5rem;
+}
 .result-container h3 {
     text-align: left;
 }
@@ -65,6 +69,7 @@
     position: absolute;
     bottom: 0;
     right: 2rem;
+    /*right: 0;*/
     display: block;
     background: hsla(0, 30%, 21%, .3);
     width: 95%;

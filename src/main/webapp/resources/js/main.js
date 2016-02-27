@@ -31,7 +31,7 @@ $(function () {
                 GlobalSearchForm.show();
             }
             if (Sidebar.isHidden()) {
-                Sidebar.show();
+                Sidebar.showOnly();
             }
             if (Pivot.isHidden()) {
                 Pivot.show();
@@ -77,6 +77,8 @@ $(function () {
             HomeSearch.listenerStarts();
             User.listenerStarts();
             //Map.init();
+            mainInit();
+            initMap();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
@@ -95,7 +97,7 @@ $(function () {
                     //MarkLine.destroy();
                     break;
                 case 3:
-                    //Map.leave();
+                    MapOpt.leave();
             }
         },
         afterLoad: function (anchorLink, index) {
@@ -103,15 +105,25 @@ $(function () {
             //console.log('Inside afterLoad() ======, anchorLink = ' + anchorLink + ', index = ' + index);
             //↓如果当前section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
             hideNodes4NoSearchSec(index);
+            var data = MySessionStorage.get('data');
             switch (index) {
+                case 1:
+                    break;
+                case 2:
+                    List.show(data);
+                    break;
                 case 3:
-                    //Map.load();
+                    MapOpt.load();
+                    MyMap.show(data);
                     break;
                 case 4:
                     //MarkPoint.init();
+                    MySessionStorage.set('currentPage', 'globe-point');
+                    //GlobePoint.show();
                     break;
                 case 5:
                     //MarkLine.init();
+                    //GlobeLine.show();
                     break;
                 case 6:
                     break;

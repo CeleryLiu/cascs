@@ -77,6 +77,8 @@
     <script src="${pagerJs}"></script>
 
     <%--↓custom js--%>
+    <spring:url value="resources/js/sessionStorage.js" var="sstJs"/>
+    <script src="${sstJs}"></script>
     <spring:url value="resources/js/static.js" var="staticJs"/>
     <script src="${staticJs}"></script>
     <spring:url value="resources/js/helper.js" var="helperJs"/>
@@ -126,9 +128,9 @@
 <%@include file="sidebar.jsp" %>
 <div id="pivots_wrapper" class="pivots-wrapper for-sidebar-padding">
     <ul class="pivots">
-        <li><a href="#">pivot1</a></li>
+        <%--<li><a href="#">pivot1</a></li>
         <li><a href="#">pivot2</a></li>
-        <li><a href="#">pivot3</a></li>
+        <li><a href="#">pivot3</a></li>--%>
     </ul>
 </div>
 
@@ -136,8 +138,9 @@
     <div class="section" data-anchor="se1">
         <%@include file="home.jsp" %>
     </div>
-    <div class="section for-sidebar-padding" data-anchor="se2" id="list">
-        <div class="result-count-duration">
+    <div class="section list-wrapper" data-anchor="se2" id="list">
+        <div style="height: 8rem;"></div>
+        <div class="result-count-duration for-sidebar-padding">
             <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
                 共用时 <strong class="badge duration">0</strong> ms。
                 当前为第<strong class="badge" id="pageTip">0</strong>页</p>

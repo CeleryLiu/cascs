@@ -87,7 +87,7 @@ function newSearch(obj) {
             timeout: 50000,
             data: JSON.stringify(obj.criteria),
             beforeSend: function () {
-                $('body').showLoading();// 添加 loading 标记类
+                //$('body').showLoading();// 添加 loading 标记类
             }
         })
         .success(function (data) {
@@ -117,6 +117,7 @@ function newSearch(obj) {
             } else {
                 console.log("ajax success with data error" + data['statuscode'], data['errmsg']);
                 alert("ajax search error");
+                errorHandler();
             }
         })
         .error(function (e) {
@@ -125,11 +126,12 @@ function newSearch(obj) {
             disableButton(homeSearchBtn, false);
             disableButton(globalSearchBtn, false);
             disableButton(advsBtn, false);
+            errorHandler();
         }).complete(function (jqXHR, textStatus) {
-            $('body').hideLoading();// 添加 loading 标记类
+            //$('body').hideLoading();// 添加 loading 标记类
             $('html, body').scrollTop(0);
         }).done(function () {
-            $('body').hideLoading();// 添加 loading 标记类
+            //$('body').hideLoading();// 添加 loading 标记类
             //启用查询按钮
             disableButton(homeSearchBtn, false);
             disableButton(globalSearchBtn, false);
