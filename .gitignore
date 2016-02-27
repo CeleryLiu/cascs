@@ -5,3 +5,4 @@ target/
 src/main/java/com/springapp/mvc/web/util/RestClient.java
 *.iml
 *.bak
+pom.xml
