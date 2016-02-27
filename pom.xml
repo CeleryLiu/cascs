@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.springapp</groupId>
-    <artifactId>cascsMe</artifactId>
+    <artifactId>cascs</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>cascsMe</name>
-    <url>http://cascsMe.com</url>
+    <name>cascs</name>
+    <url>http://cascs.com</url>
 
     <properties>
         <jdk.version>1.8</jdk.version>
@@ -159,7 +159,7 @@
     </dependencies>
 
     <build>
-        <finalName>cascsMe</finalName>
+        <finalName>cascs</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

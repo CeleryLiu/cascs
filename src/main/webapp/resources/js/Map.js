@@ -23,7 +23,7 @@ var Map = {
                 function (Map, ArcGISTiledMapServiceLayer, GraphicsLayer, InfoTemplate, FeatureLayer, HomeButton, Legend) {
                     //（1）Create map and add layer
                     map = new Map("mapHolder", {
-                        //basemap: 'gray',
+                        basemap: 'gray',
                         center: [114.25, 24.1167],
                         minZoom: 3,
                         maxZoom: 8,
@@ -32,8 +32,8 @@ var Map = {
                         logo: false
                     });
                     //（1）添加底图
-                    var basemap = new ArcGISTiledMapServiceLayer(basemapURL);
-                    map.addLayer(basemap);
+                    //var basemap = new ArcGISTiledMapServiceLayer(basemapURL);
+                    //map.addLayer(basemap);
 
                     //（2）添加用于显示分布图的graphic layer
                     var featureLayerInfoTemplate = new InfoTemplate("${Name_CHN}", "国家：<b>${Name_CHN}<b><br>共发现目标：<b>${count}</b>个");
@@ -131,6 +131,8 @@ var Map = {
         }
 
         initMap();
+    },
+    load: function () {
         $('.sidebar').addClass('map');
         $('.pivots li').addClass('map');
     },
@@ -156,7 +158,7 @@ var MyMap = {
     wrapper: $('.map-wrapper'),
     show: function (data) { //滑动到地图页时调用此方法
         console.log("FUNCTION CALL: MyMap.show");
-        MySessionStorage.set('currentPage', 'map');
+        //MySessionStorage.set('currentPage', 'map');
         $('header').css('visibility', ' visible').show();
         if (data) {
             if (data['statuscode'] == 200) {
@@ -352,8 +354,9 @@ var MyMap = {
     search: function (pageNum) {//updateSidebar, boolean，true，表示更新sidebar，否则不更新
         console.log("FUNCTION CALL: MyMap.search------------------------");
         var gValue = $('.global-search-input').val();
-        var wd = gValue ? gValue : MySessionStorage.get('wd');
-        var checkedStr = MySessionStorage.getCheckedAsStr();
+        //var wd = gValue ? gValue : MySessionStorage.get('wd');
+        //var checkedStr = MySessionStorage.getCheckedAsStr();
+        var wd = gValue;
         if (wd && wd != '') {
             var extent = getVisibleExtent();//获取并设置屏幕所在范围的经纬度geo
             var criteria = {
@@ -407,7 +410,7 @@ var MyMap = {
 var MyFeatureLayer = {
     show: function (which) {
         console.log("FUNCTION CALL: MyFeatureLayer.show");
-        var dd = MySessionStorage.get('data');
+        //var dd = MySessionStorage.get('data');
         if (dd && dd['statuscode'] == 200) {
             map.removeLayer(featureLayer);
             featureLayer.clear();

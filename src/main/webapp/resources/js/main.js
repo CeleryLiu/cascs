@@ -76,7 +76,7 @@ $(function () {
             InputSuggest.init();
             HomeSearch.listenerStarts();
             User.listenerStarts();
-            Map.init();
+            //Map.init();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
@@ -92,10 +92,10 @@ $(function () {
             hideNodes4NoSearchSec(nextIndex);
             switch (index) {
                 case 5:
-                    MarkLine.destroy();
+                    //MarkLine.destroy();
                     break;
                 case 3:
-                    Map.leave();
+                    //Map.leave();
             }
         },
         afterLoad: function (anchorLink, index) {
@@ -104,6 +104,9 @@ $(function () {
             //↓如果当前section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
             hideNodes4NoSearchSec(index);
             switch (index) {
+                case 3:
+                    //Map.load();
+                    break;
                 case 4:
                     //MarkPoint.init();
                     break;

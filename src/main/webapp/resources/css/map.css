@@ -111,10 +111,11 @@
     position: absolute;
     top: 8rem;
     right: 5rem;
-    z-index: 110;
+    z-index: 9999;
 
     /*color: #333;*/
-    background-color: rgba(102, 102, 102, 0.98);;
+    /*background-color: rgba(102, 102, 102, 0.98);;*/
+    background-color: rgba(224, 224, 224, .8);
     box-shadow: -1px 1px 1px 1px #b4b4b4;;
     /*overflow: auto;*/
     -webkit-transition: all .6s;
