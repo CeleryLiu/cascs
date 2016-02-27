@@ -27,7 +27,11 @@
     <link rel="stylesheet" href="${bsCss}">
     <spring:url value="resources/css/typeaheadjs.css" var="taCss"/>
     <link rel="stylesheet" href="${taCss}">
-
+    <%--<link rel="stylesheet" type="text/css"
+          href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/dijit/themes/tundra/tundra.css">
+    --%>
+    <link rel="stylesheet" type="text/css"
+          href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
     <%--custom css--%>
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
@@ -35,8 +39,12 @@
     <link rel="stylesheet" href="${homeCss}">
     <spring:url value="resources/css/sidebar.css" var="sidebarCss"/>
     <link rel="stylesheet" href="${sidebarCss}">
-    <spring:url value="resources/css/markpoint-line.css" var="mpCss"/>
-    <link rel="stylesheet" href="${mpCss}">
+    <spring:url value="resources/css/markpoint-line.css" var="mplCss"/>
+    <link rel="stylesheet" href="${mplCss}">
+    <spring:url value="resources/css/map.css" var="mapCss"/>
+    <link rel="stylesheet" href="${mapCss}">
+    <spring:url value="resources/css/list.css" var="lCss"/>
+    <link rel="stylesheet" href="${lCss}">
     <spring:url value="resources/css/user-pages-style.css" var="userCss"/>
     <link rel="stylesheet" href="${userCss}">
 
@@ -65,6 +73,8 @@
     <script src="${vfJs}"></script>
     <spring:url value="resources/js/libs/jquery.sha1.js" var="sha1Js"/>
     <script src="${sha1Js}"></script>
+    <spring:url value="resources/js/libs/jqPaginator.min.js" var="pagerJs"/>
+    <script src="${pagerJs}"></script>
 
     <%--↓custom js--%>
     <spring:url value="resources/js/static.js" var="staticJs"/>
@@ -81,6 +91,8 @@
     <script src="${suggestJs}"></script>
     <spring:url value="resources/js/List.js" var="listJs"/>
     <script src="${listJs}"></script>
+    <spring:url value="resources/js/Map.js" var="mapJs"/>
+    <script src="${mapJs}"></script>
     <spring:url value="resources/js/HomeSearch.js" var="hsJs"/>
     <script src="${hsJs}"></script>
     <spring:url value="resources/js/GlobalSearchForm.js" var="gsJs"/>
@@ -94,6 +106,7 @@
     <spring:url value="resources/js/main.js" var="mainJs"/>
     <script src="${mainJs}"></script>
 
+    <%--echarts lib and 3d js--%>
     <spring:url value="resources/plugins/echarts-2.2.7/build/dist/echarts.js" var="echarts"/>
     <script src="${echarts}"></script>
     <spring:url value="resources/plugins/echarts-x/build/dist/echarts-x.js" var="echartsX"/>
@@ -103,18 +116,43 @@
     <spring:url value="resources/js/MarkLine.js" var="mlJs"/>
     <script src="${mlJs}"></script>
 
+    <%--arcgis lib and map js--%>
+    <script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+
+
 </head>
 <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
+<div class="result-count-duration">
+    <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
+        共用时 <strong class="badge duration">0</strong> ms。
+        当前为第<strong class="badge" id="pageTip">0</strong>页</p>
+</div>
+<div id="pivots_wrapper" class="pivots-wrapper for-sidebar-padding">
+    <ul class="pivots">
+        <li><a href="#">pivot1</a></li>
+        <li><a href="#">pivot2</a></li>
+        <li><a href="#">pivot3</a></li>
+    </ul>
+</div>
 
 <div id="fullpage" class="fullpage">
     <div class="section" data-anchor="se0">
         <%@include file="home.jsp" %>
     </div>
-    <div class="section" data-anchor="se1" id="list"></div>
+    <div class="section" data-anchor="se1" id="list">
+        <div class="result-col for-sidebar-margin">
+            <div class="result-container">
+                <ul class="result devices"></ul>
+            </div>
+            <div class="pager-wrapper demo customBootstrap" style="margin-bottom: 2rem">
+                <ul id="pager" class="pagination"></ul>
+            </div>
+        </div>
+    </div>
     <div class="section" data-anchor="se2" id="map">
-        <h1>地图</h1>
+        <%@include file="map.jsp" %>
     </div>
     <div class="section" data-anchor="se3" id="point">
         <%@include file="markpoint.jsp" %>
