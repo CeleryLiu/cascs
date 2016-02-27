@@ -13,7 +13,7 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Hooray World Device</title>
+    <title>CASCS</title>
     <meta name="author" content="LiuYanping"/>
     <meta name="description" content="index"/>
     <meta name="keywords" content="cyberspace,device,fingerprint,security,search engine,scan,web"/>
@@ -107,14 +107,14 @@
     <script src="${mainJs}"></script>
 
     <%--echarts lib and 3d js--%>
-    <spring:url value="resources/plugins/echarts-2.2.7/build/dist/echarts.js" var="echarts"/>
+    <%--<spring:url value="resources/plugins/echarts-2.2.7/build/dist/echarts.js" var="echarts"/>
     <script src="${echarts}"></script>
     <spring:url value="resources/plugins/echarts-x/build/dist/echarts-x.js" var="echartsX"/>
     <script src="${echartsX}"></script>
     <spring:url value="resources/js/MarkPoint.js" var="mpJs"/>
     <script src="${mpJs}"></script>
     <spring:url value="resources/js/MarkLine.js" var="mlJs"/>
-    <script src="${mlJs}"></script>
+    <script src="${mlJs}"></script>--%>
 
     <%--arcgis lib and map js--%>
     <script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
@@ -124,11 +124,6 @@
 <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
-<div class="result-count-duration">
-    <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
-        共用时 <strong class="badge duration">0</strong> ms。
-        当前为第<strong class="badge" id="pageTip">0</strong>页</p>
-</div>
 <div id="pivots_wrapper" class="pivots-wrapper for-sidebar-padding">
     <ul class="pivots">
         <li><a href="#">pivot1</a></li>
@@ -138,10 +133,15 @@
 </div>
 
 <div id="fullpage" class="fullpage">
-    <div class="section" data-anchor="se0">
+    <div class="section" data-anchor="se1">
         <%@include file="home.jsp" %>
     </div>
-    <div class="section" data-anchor="se1" id="list">
+    <div class="section for-sidebar-padding" data-anchor="se2" id="list">
+        <div class="result-count-duration">
+            <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
+                共用时 <strong class="badge duration">0</strong> ms。
+                当前为第<strong class="badge" id="pageTip">0</strong>页</p>
+        </div>
         <div class="result-col for-sidebar-margin">
             <div class="result-container">
                 <ul class="result devices"></ul>
@@ -151,27 +151,27 @@
             </div>
         </div>
     </div>
-    <div class="section" data-anchor="se2" id="map">
+    <div class="section" data-anchor="se3" id="map">
         <%@include file="map.jsp" %>
     </div>
-    <div class="section" data-anchor="se3" id="point">
+    <div class="section" data-anchor="se4" id="point">
         <%@include file="markpoint.jsp" %>
     </div>
-    <div class="section" data-anchor="se4" id="line">
+    <div class="section" data-anchor="se5" id="line">
         <div id="globe4LineHolder"></div>
     </div>
-    <div class="section" data-anchor="se5" id="user">
-        <div class="slide" data-anchor="se5_login">
+    <div class="section" data-anchor="se6" id="user">
+        <div class="slide" data-anchor="se6_login">
             <%@include file="user/login.jsp" %>
         </div>
-        <div class="slide" data-anchor="se5_pwd">
-            <%@include file="user/pwdRetrieve.jsp" %>
-        </div>
-        <div class="slide" data-anchor="se5_reg">
+        <div class="slide" data-anchor="se6_reg">
             <%@include file="user/register.jsp" %>
         </div>
-        <div class="slide" data-anchor="se5_agreement">
+        <div class="slide" data-anchor="se6_agreement">
             <%@include file="user/agreement.jsp" %>
+        </div>
+        <div class="slide" data-anchor="se6_pwd">
+            <%@include file="user/pwdRetrieve.jsp" %>
         </div>
     </div>
 </div>

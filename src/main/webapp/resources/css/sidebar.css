@@ -10,20 +10,23 @@
     max-height: 100%;
     float: left;
     overflow: auto;
-    background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));
-    background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));
+    /*background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
+    /*background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
     box-sizing: border-box;
 }
 
-/*.sidebar.map {*/
-/*color: #333!important;*/
-/*background: hsla(201, 100%, 77%, 1);*/
-/*}*/
+.sidebar.map {
+    background: hsla(201, 100%, 77%, .9);
+}
 
 .sidebar a {
     font-size: 2rem;
     color: hsla(206, 85%, 65%, 1);
-    /*margin-top: 5rem;*/
+}
+
+.sidebar.map a {
+    font-size: 2rem;
+    color: #333 !important;
 }
 
 .sidebar a:hover {
@@ -32,11 +35,11 @@
 
 /*侧边栏显示。需要正文内容缩进，以免内容与边栏覆盖，margin-left的值与.sidebar-col.width一致*/
 .for-sidebar-margin {
-    margin-left: 22rem;
+    margin-left: 21rem;
 }
 
 .for-sidebar-padding {
-    padding-left: 22rem;
+    padding-left: 21rem;
 }
 
 .sidebar .search-types {
@@ -177,6 +180,12 @@
     border-radius: 6px;
 }
 
+.pivots li.map {
+    background-color: rgba(224, 224, 224, .8);
+    box-shadow: -1px 1px 1px 1px #b4b4b4;;
+}
+
+.pivots li.map.active,
 .pivots li.active {
     background: #666;
     background: rgba(0, 0, 0, 0.5);

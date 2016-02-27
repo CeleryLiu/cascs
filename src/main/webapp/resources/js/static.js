@@ -11,7 +11,7 @@ var Constant = {
         return ['首页', '搜索', '定位', '展示', '探测', '用户']
     }()),
     SECTIONS_BG_COLOR: (function () {
-        return ['transparent', '#fff', 'transparent'];
+        return ['transparent', 'transparent', 'transparent'];
     }()),
     FIXED_ELEMENTS: (function () {
         return '.header, .footer, .sidebar,.global-search-wrapper,#pivots_wrapper';

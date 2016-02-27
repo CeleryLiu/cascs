@@ -56,7 +56,7 @@ $(function () {
         controlArrows: false,
         sectionsColor: Constant.SECTIONS_BG_COLOR,
         fixedElements: Constant.FIXED_ELEMENTS,
-        resize: false,
+        resize: true,
         paddingTop: '4.8rem',     //header height = 4.6rem
         paddingBottom: '2.8rem',  //footer height = 2.6rem
         //responsiveHeight:900,
@@ -76,6 +76,7 @@ $(function () {
             InputSuggest.init();
             HomeSearch.listenerStarts();
             User.listenerStarts();
+            Map.init();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
@@ -93,6 +94,8 @@ $(function () {
                 case 5:
                     MarkLine.destroy();
                     break;
+                case 3:
+                    Map.leave();
             }
         },
         afterLoad: function (anchorLink, index) {
@@ -102,10 +105,12 @@ $(function () {
             hideNodes4NoSearchSec(index);
             switch (index) {
                 case 4:
-                    MarkPoint.init();
+                    //MarkPoint.init();
                     break;
                 case 5:
-                    MarkLine.init();
+                    //MarkLine.init();
+                    break;
+                case 6:
                     break;
             }
         },

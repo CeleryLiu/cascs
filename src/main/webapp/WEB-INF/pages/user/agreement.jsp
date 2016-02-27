@@ -17,8 +17,8 @@
 <div class="main">
 --%>
 <div class="wraper">
-    <%--<p class="tr"><a href="#se5/se5_reg" class="blue ml10 fz12 to-login "  style="background:green;">返回注册页&raquo;</a></p>--%>
-    <h2 class="green">网易通行证服务条款    <a href="#se5/se5_reg" class="ml10 fz12">返回注册页&raquo;</a>
+    <%--<p class="tr"><a href="#se6/se6_reg" class="blue ml10 fz12 to-login "  style="background:green;">返回注册页&raquo;</a></p>--%>
+    <h2 class="green">网易通行证服务条款    <a href="#se6/se6_reg" class="ml10 fz12">返回注册页&raquo;</a>
     </h2>
 
 <pre>
@@ -124,12 +124,12 @@
 （3）本条款中的标题仅为方便而设，不作为解释本条款的依据。
 如用户对本条款内容有任何疑问，可拨打客服电话（020-83568094）或登录帮助中心（http://reg.163.com/help/help.shtml）进行查询。
 </pre>
-    <p><a href="#se5/se5_reg" class="ml10 fz12">返回注册页&raquo;</a></p>
+    <p><a href="#se6/se6_reg" class="ml10 fz12">返回注册页&raquo;</a></p>
 </div>
 <%--<script type="text/javascript">
     $('a').on('click', function (e) {
         e.preventDefault();
-        $.fn.fullpage.silentMoveTo('se5','reg');
+        $.fn.fullpage.silentMoveTo('se6','reg');
     });
 </script>--%>
 <%--

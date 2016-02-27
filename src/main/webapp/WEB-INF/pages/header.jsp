@@ -17,14 +17,14 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right" id="menu">
-                        <li data-menuanchor="se0"><a href="#se0">首页</a></li>
-                        <li data-menuanchor="se1"><a href="#se1">搜索</a></li>
-                        <li data-menuanchor="se2"><a href="#se2">定位</a></li>
-                        <li data-menuanchor="se3"><a href="#se3">全球视觉</a></li>
-                        <li data-menuanchor="se4"><a href="#se4">数据探测</a></li>
+                        <li data-menuanchor="se1"><a href="#se1">首页</a></li>
+                        <li data-menuanchor="se2"><a href="#se2">搜索</a></li>
+                        <li data-menuanchor="se3"><a href="#se3">定位</a></li>
+                        <li data-menuanchor="se4"><a href="#se4">全球视觉</a></li>
+                        <li data-menuanchor="se5"><a href="#se5">数据探测</a></li>
                         <%--<li><a href="resources/search_result_display/autoplay.html">数据分析</a></li>--%>
-                        <li data-menuanchor="se5">
-                            <a href="#se5/sl0">登录</a>
+                        <li data-menuanchor="se6">
+                            <a href="#se6/se6_login">登录</a>
                             <a href="#" id="logout"><span></span> 退出</a>
                         </li>
                     </ul>

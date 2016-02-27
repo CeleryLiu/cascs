@@ -100,11 +100,11 @@
             <div class="action">
                 <input type="submit" value="同意协议并注册"/>
                 <input type="reset" value="重 置"/>
-                <a href="#se5/se5_agreement" class="forward-link">注册协议</a>
+                <a href="#se6/se6_agreement" class="forward-link">注册协议</a>
             </div>
         </form>
         <div>
-            已有账号?<a href="#se5/se5_login" class="forward-link">登录</a>
+            已有账号?<a href="#se6/se6_login" class="forward-link">登录</a>
         </div>
     </div>
 <%--</div>--%>

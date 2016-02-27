@@ -70,12 +70,12 @@
             </ul>
             <div class="action">
                 <input type="submit" value="登录"/>
-                <a href="#se5/se5_pwd" class="forward-link">忘记密码</a>
+                <a href="#se6/se6_pwd" class="forward-link">忘记密码</a>
             </div>
         </form>
 
         <div>
-            还没有账号?<a href="#se5/se5_reg" class="forward-link to-register">注册</a>
+            还没有账号?<a href="#se6/se6_reg" class="forward-link to-register">注册</a>
         </div>
     </div>
 <%--</div>--%>

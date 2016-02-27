@@ -272,6 +272,14 @@ b {
     display: none;
 }
 
+/* Style for footer texts
+  * --------------------------------------- */
+.footer {
+    height: 2.6rem;
+    padding: .4rem 10rem 0 10rem;
+    color: #ccc;
+}
+
 /* Style for sections
 * --------------------------------------- */
 .section {
@@ -312,14 +320,6 @@ b {
     bottom: 2rem;
 }
 
-/* Style for footer texts
-  * --------------------------------------- */
-.footer {
-    height: 2.6rem;
-    padding: .4rem 10rem 0 10rem;
-    color: #ccc;
-}
-
 /* Style for global form
 * --------------------------------------- */
 .global-search-wrapper {
@@ -336,7 +336,7 @@ b {
 
 .global-search-form {
     display: inline-block;
-    padding: .2rem;
+    padding: .1rem;
     width: 66%;
     color: hsla(236, 10%, 27%, 1);
     box-sizing: content-box;
@@ -366,7 +366,6 @@ b {
     border-radius: 4px;
     padding-left: .5rem;
     line-height: 2.5rem;
-    border: 1px solid green;
 }
 
 .global-search-wrapper .global-search-form .global-search-button {

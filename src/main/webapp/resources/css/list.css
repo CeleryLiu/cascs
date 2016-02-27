@@ -3,8 +3,6 @@
 .list-wrapper {
     display: none;
     margin: 0 auto;
-    padding: 0 2rem;
-    font-size: 1.8rem;
     height: 100%;
     overflow: auto;
 }
@@ -35,8 +33,6 @@
 }
 
 .list-wrapper .device .left {
-    /*  display: inline-block;
-      float: left;*/
     text-align: left;
 }
 
@@ -67,10 +63,8 @@
 
 .list-wrapper .device .right button {
     position: absolute;
-    /*top: 9rem;*/
     bottom: 0;
     right: 2rem;
-    /*right: 0;*/
     display: block;
     background: hsla(0, 30%, 21%, .3);
     width: 95%;
