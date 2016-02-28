@@ -1,4 +1,11 @@
 var HomeSearch = {
+    _INPUT_SEL: (function () {
+        return '#home_search_input';
+    }()),
+    setValue: function (val) {
+        console.log('Inside HomeSearch.setValue(), val:', val);
+        $(this._INPUT_SEL).val(val);
+    },
     listenerStart: function () {
         console.log('Inside HomeSearch.listenerStarts() ======');
         var $form = $('#home-search-form');
@@ -11,7 +18,7 @@ var HomeSearch = {
                 //（1）将data添加到sessionStorage.data
                 Session.set('data', data);
                 if (statuscode == 200) {
-                    console.log('statuscode == 200',data);
+                    console.log('statuscode == 200', data);
                     //(2.a)调用Sidebar的render方法，生成sidebar
                     Sidebar.render(data['aggregation']);
                     //(2.b)调用List的render方法，生成搜索结果页面
@@ -82,16 +89,19 @@ var mainInit = function () {
             console.log("Getting country feature set failed!");
         });
     }
+
     //获取国家Layer数据
     function getCountryFeatureSet() {
         console.log("FUNCTION CALL: getCountryFeatureSet");
         getFeatureSet(getCountryFeatureSetURL, 'country');
     }
+
 //获取省份Layer数据
     function getProvinceFeatureSet() {
         console.log("FUNCTION CALL: getProvinceFeatureSet");
         getFeatureSet(getProvinceFeatureSetURL, 'province');
     }
+
     getCountryFeatureSet();
     getProvinceFeatureSet();
     //advanced search link

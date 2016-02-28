@@ -22,9 +22,10 @@ var GlobalSearchForm = {
         $('.global-search-form').on('submit', function (e) {
             e.preventDefault();
             console.log("search in global form");
-            var criteria = $('.global-search-input').val();
+            var criteria = $('.global-search-input').val().replace(/\s{2,}/g, ' ').trim();
             if (criteria == '')return;
             MySessionStorage.set('wd', criteria);
+            HomeSearch.setValue(criteria);
             var currentPage = MySessionStorage.get('currentPage') ? MySessionStorage.get('currentPage') : $('section.active').attr('tag');
             Pivot.init();
             if (currentPage == 'list') {

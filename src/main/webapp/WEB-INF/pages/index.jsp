@@ -138,19 +138,21 @@
     <div class="section" data-anchor="se1">
         <%@include file="home.jsp" %>
     </div>
-    <div class="section list-wrapper" data-anchor="se2" id="list">
+    <div class="section" data-anchor="se2" id="list">
         <div style="height: 6rem;"></div>
-        <div class="result-count-duration for-sidebar-padding">
-            <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
-                共用时 <strong class="badge duration">0</strong> ms。
-                当前为第<strong class="badge" id="pageTip">0</strong>页</p>
-        </div>
-        <div class="result-col for-sidebar-margin">
-            <div class="result-container">
-                <ul class="result devices"></ul>
+        <div class="list-wrapper">
+            <div class="result-count-duration for-sidebar-padding">
+                <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
+                    共用时 <strong class="badge duration">0</strong> ms。
+                    当前为第<strong class="badge" id="pageTip">0</strong>页</p>
             </div>
-            <div class="pager-wrapper demo customBootstrap" style="margin-bottom: 2rem">
-                <ul id="pager" class="pagination"></ul>
+            <div class="result-col for-sidebar-margin">
+                <div class="result-container">
+                    <ul class="result devices"></ul>
+                </div>
+                <div class="pager-wrapper demo customBootstrap" style="margin-bottom: 2rem">
+                    <ul id="pager" class="pagination"></ul>
+                </div>
             </div>
         </div>
     </div>

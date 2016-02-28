@@ -6,7 +6,7 @@ var InputSuggest = {
         console.log('Inside InputSuggest.init() ======');
         this.suggestCursorToggle();
         this.getSuggestions('#home_search_input', Constant.SUGGEST_URL);
-        this.getSuggestions('#global-search-input', Constant.SUGGEST_URL);
+        this.getSuggestions('#global_search_input', Constant.SUGGEST_URL);
     },
     getSuggestions: function (inputSelector, sourceURL) {
         var $input = $(inputSelector);

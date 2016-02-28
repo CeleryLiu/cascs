@@ -62,7 +62,7 @@ $(function () {
         //responsiveHeight:900,
 
         //↓Scrolling
-        normalScrollElements: '#mapHolder', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,.list-wrappe', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 
