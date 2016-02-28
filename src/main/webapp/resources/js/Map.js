@@ -700,15 +700,20 @@ var MapSidebar = {
             pagesize = data['pagesize'],
             currpage = data['currpage'];
         paginator(total, pagesize, currpage);
+        var hoverTimeout;
         $('.map-device-list li a').on('click', function (e) {
             e.preventDefault();
             //console.log($(this).closest('li').attr('id'));
             $(this).closest('h3').next().toggleClass('on');
         }).hover(function () {
-            var lis = $('.map-device-list li div').slideUp('slow');
-            $(this).closest('h3').next().slideDown('slow');
+            //$(this).closest('h3').next().slideDown('slow');
+            var $this = $(this).closest('h3').next();
+            hoverTimeout = setTimeout(function () {
+                var lis = $('.map-device-list li div').slideUp('slow');
+                $this.slideDown('slow');
+            }, 500);
         }, function () {
-
+            clearTimeout(hoverTimeout);
         });
         /*  this.wrapper.on('hover', function (e) {
          $(this).addClass('active');
