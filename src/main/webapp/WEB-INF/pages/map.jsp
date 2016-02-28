@@ -48,7 +48,6 @@
         地理位置：<strong class="f-country"></strong><br>
         目标数量：<strong class="f-count"></strong></div>
     <div id="mapSidebar" class="">
-        <div class="clearfix"></div>
         <div class="content">
             <ul class="map-device-list"></ul>
         </div>

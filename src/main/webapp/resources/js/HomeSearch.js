@@ -60,6 +60,40 @@ var suggestionSearchURL = 'api/getSuggestions?search=',
     getProvinceFeatureSetURL = 'api/getProvinceFeatureSet';
 var featureSets = {}, countryFS = {};       //全局变量
 var mainInit = function () {
+    function getFeatureSet(url, featureSet) {
+        $.ajax({
+            url: url,
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: 50000
+        }).success(function (data) {
+            //console.log(url + "  succeed.", data);
+            if (featureSet == 'country') {
+                countryFS = data.data;
+            } else if (featureSet == 'province') {
+                provinceFS = data.data;
+            } else if (featureSet == 'city') {
+                cityFS = data.data;
+            }
+        }).error(function () {
+            console.log("Getting country feature set error!");
+        }).fail(function () {
+            console.log("Getting country feature set failed!");
+        });
+    }
+    //获取国家Layer数据
+    function getCountryFeatureSet() {
+        console.log("FUNCTION CALL: getCountryFeatureSet");
+        getFeatureSet(getCountryFeatureSetURL, 'country');
+    }
+//获取省份Layer数据
+    function getProvinceFeatureSet() {
+        console.log("FUNCTION CALL: getProvinceFeatureSet");
+        getFeatureSet(getProvinceFeatureSetURL, 'province');
+    }
+    getCountryFeatureSet();
+    getProvinceFeatureSet();
     //advanced search link
     $('.advs-link').on('click', function (e) {
         e.preventDefault();

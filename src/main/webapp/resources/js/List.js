@@ -22,8 +22,10 @@ var List = {
             this.render(data);
             this.wrapper.show();
             Sidebar.show(data['aggregation']);
-        } else {
+        } else if ($('#global_search_input').val() != '') {
             this.search(this.listPageNum);
+        } else {
+            $.fn.fullpage.silentMoveTo('se1');
         }
         this.wrapper.show();
     },

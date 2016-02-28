@@ -31,9 +31,9 @@ var Pivot = {
         if (id.indexOf(CountryId_SEPARATOR) !== -1) {
             id = id.replace(CountryId_SEPARATOR, '');
         }
-        if (this.$pivots.find('li').length < 1) {
+        /*if (this.$pivots.find('li').length < 1) {
             this.hide();
-        }
+        }*/
         if (!this.$pivots.find('#' + id))return;
         this.$pivots.append(genPivot(id, dataAttr));
         MySessionStorage.set('pivots', id.replace(new RegExp('\\s+', 'mg'), SPACE_SEPARATOR), 'add');

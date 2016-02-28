@@ -11,6 +11,7 @@ var MapOpt = {
     load: function () {
         $('.sidebar').addClass('map');
         $('.pivots li').addClass('map');
+        console.log(MapSidebar.isHidden());
     },
     leave: function () {
         $('.sidebar').removeClass('map');
@@ -59,7 +60,6 @@ function initMap() {
             var featureLayerInfoTemplate = new InfoTemplate("${Name_CHN}", "国家：<b>${Name_CHN}<b><br>共发现目标：<b>${count}</b>个");
             featureLayer = new GraphicsLayer(featureLayerInfoTemplate);
             featureLayer.on('click', function (evt) {
-                console.log("aaa");
                 var attr = evt.graphic.attributes;
                 var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
                 $('.f-country').text(name);
@@ -99,7 +99,8 @@ function initMap() {
                     e.preventDefault();
                     var $this = $(this), mapSidebar = $('#mapSidebar');
                     //mapSidebar.toggleClass('active');
-                    if (!mapSidebar.hasClass('active')) {
+                    console.log(MapSidebar.isHidden());
+                    if (MapSidebar.isHidden()) {
                         MapSidebar.show();
                         $this.html('隐藏数据' + '<span class="glyphicon glyphicon-triangle-left"></span>');
                     } else {
@@ -491,7 +492,6 @@ var MyFeatureLayer = {
                      featureLayer.clear();*/
                     for (var key in features) {
                         if (provinces.hasOwnProperty(key)) {
-                            console.log('in if');
                             var g = features[key];
                             var count = provinces[key];
                             g.attributes.count = count;
@@ -513,7 +513,7 @@ var MyFeatureLayer = {
         }
 
         function showCityFromArcGis(agg) {
-            console.log("city is rendering ...");
+            console.log("city is rendering ...", agg);
             if (!agg['country@%city'] || isEmptyObject(agg['country@%city']))return;
             //console.log("city is rendering -----------++++++++++", cityLayer.graphics);
             var countries = agg['country@%city'], cities = {};
@@ -538,7 +538,7 @@ var MyFeatureLayer = {
             }
 
             function render(cities, features) {
-                console.log("cityLayer rendering ...", features);
+                console.log("cityLayer rendering ...feature:", features);
                 var min = Number.MAX_VALUE, max = 0;
                 /*map.removeLayer(featureLayer);
                  featureLayer.clear();*/
@@ -670,14 +670,21 @@ var MyFeatureLayer = {
 };
 
 var MapSidebar = {
+    _WrapperSel: '#mapSidebar',
     wrapper: $('#mapSidebar'),
+    isHidden: function () {
+        //console.log('Inside MapSidebar.isHidden() ======');
+        return $(this._WrapperSel).is(':hidden');
+    },
     show: function () {
         console.log("FUNCTION CALL: MapSidebar.show");
-        this.wrapper.show().addClass('active');
+        //this.wrapper.show().addClass('active');
+        $(this._WrapperSel).show(500);
     },
     hide: function () {
         console.log("FUNCTION CALL: MapSidebar.hide");
-        this.wrapper.removeClass('active');
+        //this.wrapper.removeClass('active');
+        $(this._WrapperSel).hide(500);
     },
     init: function (data) {
         console.log("FUNCTION CALL: MapSidebar.init");
@@ -692,15 +699,16 @@ var MapSidebar = {
             pagesize = data['pagesize'],
             currpage = data['currpage'];
         paginator(total, pagesize, currpage);
-
         $('.map-device-list li a').on('click', function (e) {
             e.preventDefault();
-            console.log($(this).closest('li').attr('id'));
+            //console.log($(this).closest('li').attr('id'));
             $(this).closest('h3').next().toggleClass('on');
         }).hover(function () {
-            $(this).closest('h3').next().addClass('on');
+            var lis = $('.map-device-list li div').slideUp('slow');
+            delay(500);
+            $(this).closest('h3').next().slideDown('slow');
         }, function () {
-            $(this).closest('h3').next().removeClass('on');
+
         });
         /*  this.wrapper.on('hover', function (e) {
          $(this).addClass('active');

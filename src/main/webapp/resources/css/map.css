@@ -14,17 +14,18 @@
 #mapSidebar {
     display: none;
     position: absolute;
-    width: 1rem;
+    width: 20rem;
     padding: .5rem;
-    top: 7rem;
+    top: 14rem;
     right: 1px;
     z-index: 20;
     background-color: #ddd;
-    height: 80%;
+    /*height: 80%;*/
+    /*width: auto;*/
     overflow: hidden;
     font-size: 1.5rem;
     /*color: #333;*/;
-    box-shadow: -3px 3px 3px 3px #b4b4b4;;
+    box-shadow: -1px 1px 1px 1px #b4b4b4;;
     border-radius: 5px;
     /*overflow: auto;*/
     -webkit-transition: all .6s;
@@ -66,6 +67,7 @@
 }
 
 #mapSidebar .content li {
+    margin-top: .5rem;
     padding-top: .5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
@@ -126,8 +128,8 @@
 #featureInfo {
     display: none;
     position: absolute;
-    top: 5.2rem;
-    right: 3px;
+    top: 8rem;
+    left:21rem;
     z-index: 50;
     width: 14.5rem;
     padding: 1rem;

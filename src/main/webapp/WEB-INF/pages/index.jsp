@@ -139,7 +139,7 @@
         <%@include file="home.jsp" %>
     </div>
     <div class="section list-wrapper" data-anchor="se2" id="list">
-        <div style="height: 8rem;"></div>
+        <div style="height: 6rem;"></div>
         <div class="result-count-duration for-sidebar-padding">
             <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
                 共用时 <strong class="badge duration">0</strong> ms。
