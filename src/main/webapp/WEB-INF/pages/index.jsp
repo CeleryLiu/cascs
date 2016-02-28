@@ -160,10 +160,12 @@
         <%@include file="map.jsp" %>
     </div>
     <div class="section" data-anchor="se4" id="point">
-        <%@include file="markpoint.jsp" %>
+        <%--<%@include file="markpoint.jsp" %>--%>
+        <iframe src="markpoint-iframe" name="iPoint"></iframe>
     </div>
     <div class="section" data-anchor="se5" id="line">
-        <div id="globe4LineHolder"></div>
+        <%--<div id="globe4LineHolder"></div>--%>
+        <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login">

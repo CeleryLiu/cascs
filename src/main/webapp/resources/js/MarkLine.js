@@ -7,7 +7,7 @@
  */
 var MarkLine = {
     _stop: false,
-    _timeout: '',
+    _timeout: 0,
     init: function () {
         console.log('Inside MarkLine.init() ======');
         var rootPath = getRootPath();
@@ -236,7 +236,10 @@ var MarkLine = {
                         }).fail(function (f) {
                             console.log("Ajax failed!", f);
                         }).done(function (d) {
-
+                            timeout = setTimeout(function () {
+                                pageId++;
+                                SetMapOption(chart, URL + pageId);
+                            }, 3000);
                         }).error(function (e) {
                             console.log("Ajax error!", e);
                         });
@@ -251,6 +254,6 @@ var MarkLine = {
     destroy: function () {
         console.log('Inside MarkLine.destroy() ======');
         this._stop = true;
-        clearTimeout(this._timeout);
+        clearTimeout(MarkLine._timeout);
     }
 };

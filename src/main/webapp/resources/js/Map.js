@@ -774,16 +774,3 @@ var MapSidebar = {
         console.log("on selection  change, selected = ", selected);
     }
 };
-
-var GlobePoint = {
-    show: function () {
-        Sidebar.hide();
-        point.window.starts();
-    }
-};
-var GlobeLine = {
-    show: function () {
-        Sidebar.hide();
-        line.window.starts();
-    }
-};

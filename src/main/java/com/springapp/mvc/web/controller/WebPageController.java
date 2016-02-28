@@ -160,6 +160,20 @@ public class WebPageController {
     public String markline() {
         logger.debug("Inside markline()----------------------");
         System.out.println("Inside markline()----------------");
-        return "agreemarklinement";
+        return "markline";
+    }
+
+    @RequestMapping(value = "/markline-iframe", method = RequestMethod.GET)
+    public String marklineIframe() {
+        logger.debug("Inside marklineIframe()----------------------");
+        System.out.println("Inside marklineIframe()----------------");
+        return "markline-iframe";
+    }
+
+    @RequestMapping(value = "/markpoint-iframe", method = RequestMethod.GET)
+    public String markpointIframe() {
+        logger.debug("Inside markpoint-iframe()----------------------");
+        System.out.println("Inside markpoint-iframe()----------------");
+        return "markpoint-iframe";
     }
 }

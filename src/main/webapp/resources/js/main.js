@@ -79,7 +79,7 @@ $(function () {
             User.listenerStarts();
             //Map.init();
             mainInit();
-            initMap();
+            //initMap();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
@@ -115,16 +115,16 @@ $(function () {
                     break;
                 case 3:
                     MapOpt.load();
-                    MyMap.show(data);
+                    //MyMap.show(data);
                     break;
                 case 4:
                     //MarkPoint.init();
                     MySessionStorage.set('currentPage', 'globe-point');
-                    //GlobePoint.show();
+                    GlobePoint.show();
                     break;
                 case 5:
                     //MarkLine.init();
-                    //GlobeLine.show();
+                    GlobeLine.show();
                     break;
                 case 6:
                     break;
@@ -141,3 +141,15 @@ $(function () {
         }
     });
 });
+var GlobeLine = {
+    show: function () {
+        Sidebar.hide();
+        iLine.window.starts();
+    }
+};
+var GlobePoint = {
+    show: function () {
+        Sidebar.hide();
+        iPoint.window.starts();
+    }
+};
