@@ -99,7 +99,6 @@ function initMap() {
                     e.preventDefault();
                     var $this = $(this), mapSidebar = $('#mapSidebar');
                     //mapSidebar.toggleClass('active');
-                    console.log(MapSidebar.isHidden());
                     if (MapSidebar.isHidden()) {
                         MapSidebar.show();
                         $this.html('隐藏数据' + '<span class="glyphicon glyphicon-triangle-left"></span>');
@@ -111,7 +110,9 @@ function initMap() {
                 $('.map-sidebar-link')
                     .on('click', function (e) {
                         e.preventDefault();
-                        $('#mapSidebar').toggleClass('active')
+                        //$('#mapSidebar').toggleClass('active')
+                        //$('#mapSidebar').toggleClass('active')
+
                     })
                     .on('hover', function (e) {
                         e.preventDefault();
@@ -705,7 +706,6 @@ var MapSidebar = {
             $(this).closest('h3').next().toggleClass('on');
         }).hover(function () {
             var lis = $('.map-device-list li div').slideUp('slow');
-            delay(500);
             $(this).closest('h3').next().slideDown('slow');
         }, function () {
 

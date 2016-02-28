@@ -1,5 +1,5 @@
 var HomeSearch = {
-    listenerStarts: function () {
+    listenerStart: function () {
         console.log('Inside HomeSearch.listenerStarts() ======');
         var $form = $('#home-search-form');
         $form.on('submit', function (e) {

@@ -74,7 +74,8 @@ $(function () {
 
             //(init-2)custom initialize
             InputSuggest.init();
-            HomeSearch.listenerStarts();
+            HomeSearch.listenerStart();
+            GlobalSearchForm.listenerStart();
             User.listenerStarts();
             //Map.init();
             mainInit();
