@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.section[data-anchor="se_user"] {
+#user {
     background: url("../img/login_bg.jpg") no-repeat center;
 }
 

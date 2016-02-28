@@ -79,7 +79,7 @@ $(function () {
             User.listenerStarts();
             //Map.init();
             mainInit();
-            //initMap();
+            initMap();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
@@ -115,7 +115,7 @@ $(function () {
                     break;
                 case 3:
                     MapOpt.load();
-                    //MyMap.show(data);
+                    MyMap.show(data);
                     break;
                 case 4:
                     //MarkPoint.init();
