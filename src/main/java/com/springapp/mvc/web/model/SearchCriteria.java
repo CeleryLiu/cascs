@@ -36,7 +36,7 @@ public class SearchCriteria {
         return page;
     }
 
-    @JSONField(name = "pagesize")
+    @JSONField(name = "page")
     public void setPage(int page) {
         this.page = page;
     }

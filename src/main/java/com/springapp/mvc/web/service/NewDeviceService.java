@@ -1,7 +1,7 @@
 package com.springapp.mvc.web.service;
 
 
-import com.springapp.mvc.web.dao.NewDeviceDAO;
+import com.springapp.mvc.web.daoLike.NewDeviceDAO;
 import com.springapp.mvc.web.model.AdvancedSearchCriteria;
 import com.springapp.mvc.web.model.SearchCriteria;
 import net.sf.json.JSONObject;

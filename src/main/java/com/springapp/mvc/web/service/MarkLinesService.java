@@ -1,6 +1,6 @@
 package com.springapp.mvc.web.service;
 
-import com.springapp.mvc.web.dao.MarkLineDAO;
+import com.springapp.mvc.web.daoLike.MarkLineDAO;
 import com.springapp.mvc.web.model.MarkLineResponseBody;
 import com.springapp.mvc.web.model.MarkLines;
 import org.slf4j.Logger;

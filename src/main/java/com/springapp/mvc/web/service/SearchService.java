@@ -2,12 +2,12 @@ package com.springapp.mvc.web.service;/*
  * Created by lyp on 2016/2/26.
  * Author: lyp
  * Date: 2016/2/26
- * Description:搜索列表查询业务逻辑层
+ * Description:普通搜索查询业务逻辑层
  * Version: V1.0 
  */
 
 import com.springapp.mvc.web.config.Constant;
-import com.springapp.mvc.web.dao.NewDeviceDAO;
+import com.springapp.mvc.web.daoLike.NewDeviceDAO;
 import com.springapp.mvc.web.model.SearchCriteria;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -30,8 +30,8 @@ public class SearchService {
     }
 
     public String getRequest4CommonSearch(SearchCriteria search) {
-        logger.debug("Inside ListSearchService.getRequest4CommonSearch() ======");
-        System.out.println("Inside ListSearchService.getRequest4CommonSearch() ======");
+        logger.debug("SearchService.getRequest4CommonSearch() ======");
+        System.out.println("SearchService.getRequest4CommonSearch() ======");
         JSONObject result;
         if (isValidSearchCriteria(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();

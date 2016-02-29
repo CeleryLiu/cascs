@@ -1,6 +1,10 @@
 @charset "UTF-8";
 /* Style for section (sectionAnchor = se_home)
   * --------------------------------------- */
+#home {
+    background: url("../img/login_bg.jpg") no-repeat center;
+}
+
 .section .home-search .home-search-form {
     display: inline-block;
     position: relative;

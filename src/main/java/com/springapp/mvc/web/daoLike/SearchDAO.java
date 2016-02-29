@@ -1,9 +1,9 @@
-package com.springapp.mvc.web.dao;/*
- * Created by lyp on 2016-02-29.
- * @author lyp
- * @date 2016-02-29
- * @Description: 设备数据获取
- * @Version: V1.0
+package com.springapp.mvc.web.daoLike;/*
+ * Created by lyp on 2016/2/26.
+ * Author: lyp
+ * Date: 2016/2/26
+ * Description: 搜索列表查询数据处理层
+ * Version: V1.0 
  */
 
 import com.springapp.mvc.web.model.NewDevice;
@@ -18,51 +18,73 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class DeviceDAO {
-    private static final Logger logger = LoggerFactory.getLogger(DeviceDAO.class);
+public class SearchDAO {
+    private static final Logger logger = LoggerFactory.getLogger(SearchDAO.class);
     RestClient rc = new RestClient();
 
-    /*
-     * @function name: 
-     * @param: {arg[0]:"描述",arg[1]:"描述",...}
-     * @return: 返回值描述
-     * @description: 方法描述
-     * @author: lyp
-     * @date: 2016-02-29
-     */
-    //返回用户查询的数据，用于前端以列表的形式显示设备信息（数据访问层）高级搜素
-    public JSONObject getResult4DeviceSearch(String uri, Map<String, Object> criteria) {
-        logger.debug("NewDAO ==>> getData4CommonSearch starts =================");
-//        System.out.println("NewDAO ==>> getData4CommonSearch starts =======================");
+    //返回用户查询的数据，用于前端以列表的形式显示设备信息（数据访问层）
+    public JSONObject getData4CommonSearch(String uri, Map<String, Object> criteria) {
+        logger.debug("Inside SearchDAO.getDataCommonSearch ======");
+        System.out.println("Inside SearchDAO.getDataCommonSearch ======");
         JSONObject result = JSONObject.fromObject(rc.get(uri, criteria));
-//        System.out.println("before: " + result);
-
         if ("200".equals(result.getString("statuscode"))) {
-            result = deviceDataConvert(result);
+            result = rawData2ResponseBody(result);
         }
         return result;
     }
 
-    /*
-     * @function name:
-     * @param: {rawData:"需要转换的原始json数据，是从搜索平台获取到的原始设备数据"}
-     * @return: 转换后的设备数据JSONObject。{}
-     * @description: 将从搜索平台获取到的原始数据，转换为前端需要的格式，同时对数据做一些预处理，包括特殊字符和空值的处理
-     * @author: lyp
-     * @date: 2016-02-29
-     */
     @SuppressWarnings({"rawtypes", "unchecked"})
-    private JSONObject deviceDataConvert(JSONObject rawData) {
+    private JSONObject rawData2ResponseBody(JSONObject resp) {
+        JSONObject zh2en = Tool.getCountryMapping();
         //aggregation中的country@%city的处理
-        JSONObject agg = rawData.getJSONObject("aggregation");
+        JSONObject agg = resp.getJSONObject("aggregation");
         if (agg.containsKey("country@%city")) {
+            JSONObject countries = new JSONObject();    //用于存储处理后的countries
             JSONObject cc = agg.getJSONObject("country@%city");
-            agg.put("country@%city", countryCityConvert(cc));
-            rawData.put("aggregation", agg);
+            int countryCount;
+            Iterator<String> it = cc.keySet().iterator();
+            while (it.hasNext()) {
+                String key = it.next();
+                String country, city;
+                try {
+                    String[] keyArr = key.split("@%");
+                    if (keyArr.length == 2) {           //国家和城市都有值，例如"中国@%北京"
+                        country = "".equals(keyArr[0]) ? "Others" : keyArr[0];
+                        city = keyArr[1];
+                    } else if (keyArr.length == 1) {    //只有国家的，例如"中国@%"
+                        country = keyArr[0];
+                        city = "Unknown";
+                    } else {                            //既没有国家也没有城市的，例如"@%"
+                        continue;
+                    }
+                    if (!countries.containsKey(country)) {
+                        JSONObject countryObj = new JSONObject();
+                        JSONObject cities = new JSONObject();
+                        int cityCount = cc.getInt(key);
+                        cities.put(city, cityCount);
+                        countryObj.put("count", cityCount);
+                        countryObj.put("cities", cities);
+                        if (zh2en.has(country)) {
+                            countryObj.put("en", zh2en.getString(country));
+                        }
+                        countries.put(country, countryObj);
+                    } else {
+                        JSONObject tmpCountry = countries.getJSONObject(country);
+                        JSONObject tmpCities = tmpCountry.getJSONObject("cities");
+                        tmpCities.put(city, cc.getInt(key));
+                        tmpCountry.put("count", tmpCountry.getInt("count") + cc.getInt(key));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            agg.put("country@%city", countries);
+            resp.put("aggregation", agg);
         }
 
         //data
-        JSONArray data = rawData.getJSONArray("data");
+        JSONArray data = resp.getJSONArray("data");
+//        System.out.println("data=========" + data);
 
         if (data.size() > 0) {
             List<NewDevice> devices = new ArrayList<NewDevice>();
@@ -169,71 +191,11 @@ public class DeviceDAO {
                 device.setTags(tags);
                 devices.add(device);
             }
-            rawData.put("data", devices);
+            resp.put("data", devices);
         }
-        return rawData;
+        return resp;
     }
 
-    /*
-     * @function name:
-     * @param: {arg[0]:"描述",arg[1]:"描述",...}
-     * @return: 返回值描述
-     * @description: 方法描述
-     * @author: lyp
-     * @date: 2016-02-29
-     */
-    private JSONObject countryCityConvert(JSONObject rawData) {
-        JSONObject zh2en = Tool.getCountryMapping();
-        JSONObject countries = new JSONObject();    //用于存储处理后的countries
-        JSONObject cc = rawData;
-        Iterator<String> it = cc.keySet().iterator();
-
-        while (it.hasNext()) {
-            String key = it.next();
-            String country, city;
-            try {
-                String[] keyArr = key.split("@%");
-                if (keyArr.length == 2) {   //国家和城市都有值，例如"中国@%北京"
-                    country = "".equals(keyArr[0]) ? "Others" : keyArr[0];
-                    city = keyArr[1];
-                } else if (keyArr.length == 1) {    //只有国家的，例如"中国@%"
-                    country = keyArr[0];
-                    city = "Unknown";
-                } else {//既没有国家也没有城市的，例如"@%"
-                    continue;
-                }
-                if (!countries.containsKey(country)) {
-                    JSONObject countryObj = new JSONObject();
-                    JSONObject cities = new JSONObject();
-                    int initCount = cc.getInt(key);
-                    cities.put(city, initCount);
-                    countryObj.put("count", initCount);
-                    countryObj.put("cities", cities);
-                    if (zh2en.has(country)) {
-                        countryObj.put("en", zh2en.getString(country));
-                    }
-                    countries.put(country, countryObj);
-                } else {
-                    JSONObject tmpCountry = countries.getJSONObject(country);
-                    JSONObject tmpCities = tmpCountry.getJSONObject("cities");
-                    tmpCities.put(city, cc.getInt(key));
-                    tmpCountry.put("count", tmpCountry.getInt("count") + cc.getInt(key));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    /*
-     * @function name: contains
-     * @param:{sArr:"字符串数组",s:"待查询的字符串"}
-     * @return: {true:"sArr中包含s", false:"sArr中不包含s"}
-     * @description: sArr字符串数组中是否包含s。如果包含则返回true，否则返回false
-     * @author lyp
-     * @date 2016-02-29
-     */
     private boolean contains(List<String> sArr, String s) {
         boolean has = false;
         if (sArr != null) {

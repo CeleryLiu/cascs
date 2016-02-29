@@ -1,7 +1,7 @@
 package com.springapp.mvc.web.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.springapp.mvc.web.dao.DeviceDAO;
+import com.springapp.mvc.web.daoLike.DeviceDAO;
 import com.springapp.mvc.web.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
