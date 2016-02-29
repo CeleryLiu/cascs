@@ -38,7 +38,7 @@ public class DeviceDAO {
 //        System.out.println("before: " + result);
 
         if ("200".equals(result.getString("statuscode"))) {
-            result = deviceDataConvert(result);
+            result = convertData(result);
         }
         return result;
     }
@@ -52,12 +52,12 @@ public class DeviceDAO {
      * @date: 2016-02-29
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
-    private JSONObject deviceDataConvert(JSONObject rawData) {
+    private JSONObject convertData(JSONObject rawData) {
         //aggregation中的country@%city的处理
         JSONObject agg = rawData.getJSONObject("aggregation");
         if (agg.containsKey("country@%city")) {
             JSONObject cc = agg.getJSONObject("country@%city");
-            agg.put("country@%city", countryCityConvert(cc));
+            agg.put("country@%city", convertCountryCity(cc));
             rawData.put("aggregation", agg);
         }
 
@@ -175,55 +175,53 @@ public class DeviceDAO {
     }
 
     /*
-     * @function name:
-     * @param: {arg[0]:"描述",arg[1]:"描述",...}
-     * @return: 返回值描述
-     * @description: 方法描述
+     * @function name:convertCountryCity
+     * @param: {cc:"从搜素平台获取到的数据response中的部分数据：response.aggregation.country@%city"}
+     * @return: 转化后的国家和城市数据
+     * @description: 将原始国家和城市数据转换为前台所需的格式
      * @author: lyp
      * @date: 2016-02-29
      */
-    private JSONObject countryCityConvert(JSONObject rawData) {
+    private JSONObject convertCountryCity(JSONObject cc) {
         JSONObject zh2en = Tool.getCountryMapping();
-        JSONObject countries = new JSONObject();    //用于存储处理后的countries
-        JSONObject cc = rawData;
+        JSONObject result = new JSONObject();    //用于存储处理后的countries
         Iterator<String> it = cc.keySet().iterator();
-
         while (it.hasNext()) {
             String key = it.next();
-            String country, city;
+            String countryName = "", cityName = key;
             try {
-                String[] keyArr = key.split("@%");
-                if (keyArr.length == 2) {   //国家和城市都有值，例如"中国@%北京"
-                    country = "".equals(keyArr[0]) ? "Others" : keyArr[0];
-                    city = keyArr[1];
-                } else if (keyArr.length == 1) {    //只有国家的，例如"中国@%"
-                    country = keyArr[0];
-                    city = "Unknown";
-                } else {//既没有国家也没有城市的，例如"@%"
+                if ("@%".equals(key)) {//如果国家城市都为空则丢弃
                     continue;
                 }
-                if (!countries.containsKey(country)) {
+                if (key.endsWith("@%")) {//城市名为空，则城市设为unknown
+                    countryName = key.replace("@%", "");
+                    cityName = key + "Unknown";
+                } else if (key.startsWith("@%")) {//国家名为空，则国家设为unknown
+                    countryName = "Unknown";
+                    cityName = "Unknown" + key;
+                }
+                if (!result.containsKey(countryName)) {
                     JSONObject countryObj = new JSONObject();
-                    JSONObject cities = new JSONObject();
                     int initCount = cc.getInt(key);
-                    cities.put(city, initCount);
+                    JSONObject cities = new JSONObject();
+                    cities.put(cityName, initCount);
                     countryObj.put("count", initCount);
                     countryObj.put("cities", cities);
-                    if (zh2en.has(country)) {
-                        countryObj.put("en", zh2en.getString(country));
+                    if (zh2en.has(countryName)) {
+                        countryObj.put("en", zh2en.getString(countryName));
                     }
-                    countries.put(country, countryObj);
+                    result.put(countryName, countryObj);
                 } else {
-                    JSONObject tmpCountry = countries.getJSONObject(country);
+                    JSONObject tmpCountry = result.getJSONObject(countryName);
                     JSONObject tmpCities = tmpCountry.getJSONObject("cities");
-                    tmpCities.put(city, cc.getInt(key));
+                    tmpCities.put(cityName, cc.getInt(key));
                     tmpCountry.put("count", tmpCountry.getInt("count") + cc.getInt(key));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return null;
+        return result;
     }
 
     /*
