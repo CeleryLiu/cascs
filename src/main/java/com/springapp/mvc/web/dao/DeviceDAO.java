@@ -11,6 +11,7 @@ import com.springapp.mvc.web.util.RestClient;
 import com.springapp.mvc.web.util.Tool;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -147,16 +148,16 @@ public class DeviceDAO {
             //(5)location
             String location = "", country, city, province;
 
-            country = !"".equals(device_location.getString("zh_CN")) ? device_location.getString("zh_CN") : device_location.getString("country");
-            province = !"".equals(device_location.getString("zh_Pro")) ? device_location.getString("zh_Pro") : device_location.getString("province");
-            city = !"".equals(device_location.getString("zh_City")) ? device_location.getString("zh_City") : device_location.getString("city");
-            if (!"".equals(country)) {
+            country = StringUtils.isNotBlank(device_location.getString("zh_CN")) ? device_location.getString("zh_CN") : device_location.getString("country");
+            province = StringUtils.isNotBlank(device_location.getString("zh_Pro")) ? device_location.getString("zh_Pro") : device_location.getString("province");
+            city = StringUtils.isNotBlank(device_location.getString("zh_City")) ? device_location.getString("zh_City") : device_location.getString("city");
+            if (StringUtils.isNotBlank(country)) {
                 location += country;
             }
-            if (!"".equals(province)) {
+            if (StringUtils.isNotBlank(province)) {
                 location += ", " + province;
             }
-            if (!"".equals(city)) {
+            if (StringUtils.isNotBlank(city)) {
                 location += ", " + city;
             }
             device.setLocation(location);
@@ -169,7 +170,7 @@ public class DeviceDAO {
                     String portKey, portValue;
                     portKey = item.getString("protocol") + ":" + item.getString("port");
                     portValue = item.getString("banner");
-                    if (portValue == null || portValue.isEmpty()) {
+                    if (StringUtils.isBlank(portValue)) {
                         portValue = "null";
                     }
                     port.put(portKey, portValue);
@@ -179,15 +180,15 @@ public class DeviceDAO {
                             brand = item.getString("device_brand"),
                             model = item.getString("device_model");
                     //(1.b)tags.type
-                    if (!"".equals(type) && !contains(tags, type)) {
+                    if (StringUtils.isNotBlank(type) && !contains(tags, type)) {
                         tags.add(type);
                     }
                     //(1.c)tags.brand
-                    if (!"".equals(brand) && !contains(tags, brand)) {
+                    if (StringUtils.isNotBlank(brand) && !contains(tags, brand)) {
                         tags.add(brand);
                     }
                     //(1.d)tags.model
-                    if (!"".equals(model) && !contains(tags, model)) {
+                    if (StringUtils.isNotBlank(model) && !contains(tags, model)) {
                         tags.add(model);
                     }
                 }
@@ -196,7 +197,7 @@ public class DeviceDAO {
             //(1.e)tags.os
             if (os_info.containsKey("os")) {
                 String os = os_info.getString("os");
-                if (!"".equals(os) && !contains(tags, os)) {
+                if (StringUtils.isNotBlank(os) && !contains(tags, os)) {
                     tags.add(os_info.getString("os"));
                 }
             }
@@ -209,7 +210,7 @@ public class DeviceDAO {
 
                     NewDevice.VulValueEntity vulValue = new NewDevice.VulValueEntity();
                     String vulKey;
-                    vulKey = !"".equals(vul_ID.getString("CVE")) ? vul_ID.getString("CVE") : vul_ID.getString("CNVD");
+                    vulKey = StringUtils.isNotBlank(vul_ID.getString("CVE")) ? vul_ID.getString("CVE") : vul_ID.getString("CNVD");
                     vulValue.setData(item.getJSONObject("data"));
                     vulValue.setDesc(item.getString("description"));
                     vulValue.setPlatform(item.getString("platform"));
