@@ -5,27 +5,21 @@ var Sidebar = {
     _WRAPPER_SEL: (function () {
         return '.sidebar'
     }()),
-    wrapper: $('.sidebar'),
-    onlyUpdate: false,
-    showOnly: function () {
-        $(this._WRAPPER_SEL).show(Constant.HIDE_SHOW_SPEED);
-    },
-    show: function (agg) {
-        //console.log('Inside Sidebar.show() ======');
-        this.render(agg);
+
+    show: function () {
+        //console.log('Sidebar.show()');
         $(this._WRAPPER_SEL).show(Constant.HIDE_SHOW_SPEED);
     },
     hide: function () {
-        //console.log('Inside Sidebar.hide() ======');
+        //console.log('Sidebar.hide()');
         $(this._WRAPPER_SEL).hide(Constant.HIDE_SHOW_SPEED);
     },
     isHidden: function () {
-        //console.log('Inside Sidebar.isHidden() ======');
+        //console.log('Sidebar.isHidden()');
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     render: function (agg) {
-        //console.log("FUNCTION CALL: Sidebar.render");
-        //set sidebar input
+        //console.log("Sidebar.render()");
         $.each(agg, function (key, value) {
             if (key == 'country@%city') {
                 var $country = $('#countryList').find('ol.facet-values').show().html(''); //清空以前的数据

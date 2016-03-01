@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>数据探测</title>
+    <%--<spring:url value="/resources/css/bootstrap.min.css" var="bsCss"/>--%>
+    <%--<link href="${bsCss}" rel="stylesheet">--%>
+    <%--<spring:url value="/resources/css/base.css" var="baseCss"/>--%>
+    <%--<link rel="stylesheet" href="${baseCss}">--%>
     <%--<spring:url value="/resources/css/device-probe-globe.css" var="probeCss"/>--%>
     <%--<link rel="stylesheet" href="${probeCss}">--%>
     <style type="text/css" rel="stylesheet">
@@ -38,10 +42,5 @@
 <script src="${helperJs}"></script>
 <spring:url value="/resources/js/device-probe-globe.js" var="probeJs"/>
 <script src="${probeJs}"></script>
-<script>
- $(function(){
-     console.log("iframe starts>>>>>>>>>>>>>>>>>>>>>>>>>>");
- })
-</script>
 </body>
 </html>

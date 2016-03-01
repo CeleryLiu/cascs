@@ -17,7 +17,6 @@
     <meta name="author" content="LiuYanping"/>
     <meta name="description" content="index"/>
     <meta name="keywords" content="cyberspace,device,fingerprint,security,search engine,scan,web"/>
-
     <%--↓basic css--%>
     <spring:url value="resources/css/jquery.fullpage.css" var="fpCss"/>
     <link rel="stylesheet" href="${fpCss}">
@@ -43,8 +42,8 @@
     <link rel="stylesheet" href="${mplCss}">
     <spring:url value="resources/css/map.css" var="mapCss"/>
     <link rel="stylesheet" href="${mapCss}">
-    <spring:url value="resources/css/list.css" var="lCss"/>
-    <link rel="stylesheet" href="${lCss}">
+    <spring:url value="resources/css/list.css" var="listCss"/>
+    <link rel="stylesheet" href="${listCss}">
     <spring:url value="resources/css/user-pages-style.css" var="userCss"/>
     <link rel="stylesheet" href="${userCss}">
 
@@ -161,7 +160,7 @@
     </div>
     <div class="section" data-anchor="se4" id="point">
         <%--<%@include file="markpoint.jsp" %>--%>
-        <iframe src="markpoint-iframe" name="iPoint"></iframe>
+        <iframe data-src="markpoint-iframe" name="iPoint"></iframe>
     </div>
     <div class="section" data-anchor="se5" id="line">
         <%--<div id="globe4LineHolder"></div>--%>

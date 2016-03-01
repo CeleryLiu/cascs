@@ -17,8 +17,8 @@ $(function () {
     var hideNodes4NoSearchSec = function (sectionIdx) {
         var hideIdxList = Constant.NO_SEARCH_SECTION_IDX;
         if ($.inArray(sectionIdx, hideIdxList) > -1) {
-            if (!GlobalSearchForm.isHidden()) {
-                GlobalSearchForm.hide();
+            if (!GlobalSearch.isHidden()) {
+                GlobalSearch.hide();
             }
             if (!Sidebar.isHidden()) {
                 Sidebar.hide();
@@ -27,8 +27,8 @@ $(function () {
                 Pivot.hide();
             }
         } else {
-            if (GlobalSearchForm.isHidden()) {
-                GlobalSearchForm.show();
+            if (GlobalSearch.isHidden()) {
+                GlobalSearch.show();
             }
             if (Sidebar.isHidden()) {
                 Sidebar.showOnly();
@@ -62,48 +62,44 @@ $(function () {
         //responsiveHeight:900,
 
         //↓Scrolling
-        normalScrollElements: '#mapHolder,.list-wrappe', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,.list-wrapper', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 
         //↓events
-        afterRender: function () {  //initialize
-            console.log('Inside afterRender() ======');
-            //(init-1)add slides nav tips, NOT IN USE FOR NOW
+        afterRender: function () {  //initialize here
+            console.log('fullPage.afterRender()');
+            //(init-1)add slides nav tips
             //addTooltip4Slides(Constant.SLIDE_NAV_TOOLTIPS);
-
             //(init-2)custom initialize
             InputSuggest.init();
-            HomeSearch.listenerStart();
-            GlobalSearchForm.listenerStart();
-            User.listenerStarts();
+            HomeSearch.listen();
+            GlobalSearch.listen();
+            //User.listenerStarts();
             //Map.init();
-            mainInit();
-            initMap();
+            //mainInit();
+            //initMap();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
         },
         afterResize: function () {
-            //console.log('Inside afterResize() ======');
+            //console.log('fullPage.afterResize()');
         },
         onLeave: function (index, nextIndex, direction) {
-            //console.log('Inside onLeave() ======,');
-            //console.log('Inside onLeave() ======, index = ' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
-            //↓如果下一个section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
-            //BE CAREFUL! 这里的index和nextIndex的值要严格和HTML的DOM中的section一一对应
-            hideNodes4NoSearchSec(nextIndex);
+            //console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
+            //BE CAREFUL! 这里的index和nextIndex的值要严格和HTML中DOM中的section一一对应，index为section的序号，从1开始
+            hideNodes4NoSearchSec(nextIndex);//↓如果下一个section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
             switch (index) {
                 case 5:
                     //MarkLine.destroy();
                     break;
                 case 3:
-                    MapOpt.leave();
+                //MapOpt.leave();
             }
         },
         afterLoad: function (anchorLink, index) {
-            //console.log('Inside afterLoad() ======');
-            //console.log('Inside afterLoad() ======, anchorLink = ' + anchorLink + ', index = ' + index);
+            //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
             //↓如果当前section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
             hideNodes4NoSearchSec(index);
             var data = MySessionStorage.get('data');
@@ -111,20 +107,20 @@ $(function () {
                 case 1:
                     break;
                 case 2:
-                    List.show(data);
+                    //List.show(data);
                     break;
                 case 3:
-                    MapOpt.load();
-                    MyMap.show(data);
+                    //MapOpt.load();
+                    //MyMap.show(data);
                     break;
                 case 4:
                     //MarkPoint.init();
                     MySessionStorage.set('currentPage', 'globe-point');
-                    GlobePoint.show();
+                    //GlobePoint.show();
                     break;
                 case 5:
                     //MarkLine.init();
-                    GlobeLine.show();
+                    //GlobeLine.show();
                     break;
                 case 6:
                     break;

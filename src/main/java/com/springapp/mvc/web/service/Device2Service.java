@@ -7,7 +7,7 @@ package com.springapp.mvc.web.service;/*
  */
 
 import com.springapp.mvc.web.config.Constant;
-import com.springapp.mvc.web.dao.DeviceDAO;
+import com.springapp.mvc.web.dao.Device2DAO;
 import com.springapp.mvc.web.model.SearchCriteria;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -23,10 +23,10 @@ public class Device2Service {
     private static final Logger logger = LoggerFactory.getLogger(DeviceService.class);
     private static final String uri4List = Constant.SE_LIST_SEARCH_URL;
     private static final String uri4Map = Constant.SE_MAP_SEARCH_URL;
-    private final DeviceDAO dao;
+    private final Device2DAO dao;
 
     @Autowired
-    public Device2Service(DeviceDAO dao) {
+    public Device2Service(Device2DAO dao) {
         this.dao = dao;
     }
 

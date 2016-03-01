@@ -1,9 +1,12 @@
-/**
+/*
  * Created by lyp on 2016/2/23.
+ * @description: input输入框提示模块
+ * @author: lyp
+ * @date: 2016-03-01
  */
 var InputSuggest = {
     init: function () {
-        console.log('Inside InputSuggest.init() ======');
+        console.log('InputSuggest.init()');
         this.suggestCursorToggle();
         this.getSuggestions('#home_search_input', Constant.SUGGEST_URL);
         this.getSuggestions('#global_search_input', Constant.SUGGEST_URL);

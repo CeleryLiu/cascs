@@ -184,17 +184,6 @@ public class DataApiController {
         return suggestionService.getResponse4Suggestion(search).toString();
     }
 
-    /*
-    * @function 高级搜索，接收高级搜索传入的查询对象
-    * @param advancedSearch，用户输入的搜索条件
-    * @result String，查询结果
-    */
-    @JsonView(Views.Public.class)
-    @RequestMapping(value = "/getSuggestions")
-    public String getSuggestions(@RequestParam(value = "search") String search) {
-        logger.debug("DataApiController advancedSearch starts-----------");
-        return suggestionService.getResponse4Suggestion(search).toString();
-    }
 
     @RequestMapping(value = "/api/getFeatureSets")
     public String getFeatureSets() {

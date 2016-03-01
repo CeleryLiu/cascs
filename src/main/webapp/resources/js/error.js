@@ -1,7 +1,14 @@
-function errorHandler() {
-    console.log("FUNCTION CALL: errorHandler");
-    console.log("ajax success with data error");
-}
+var errorHandler = function () {
+    console.log("errorHandler: ajax succeed with data error");
+    $.Showmsg("服务器开小差啦，请稍后再试！");
+    setTimeout(function () {
+        $.Hidemsg();
+    }, 3000);
+};
+
+var noDataHandler = function () {
+    console.log("noDataHandler: ajax succeed but no data");
+};
 
 function noData(data) {
     console.log("No related data found!");

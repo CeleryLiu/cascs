@@ -25,7 +25,7 @@ var Constant = {
 
     //↓urls
     LIST_SEARCH_URL: (function () {
-        return 'api/markpointSearch';
+        return 'search/list';
     }()),
     USER_REGISTER_URL: (function () {
         return 'user/register';
@@ -37,7 +37,7 @@ var Constant = {
         return 'http://10.10.2.174:8080/wum/login/forgetpwd.json';
     }()),
     SUGGEST_URL: (function () {
-        return 'getSuggestions?search='
+        return 'search/getSuggestions?search='
     }()),
     LOCAL_SUGGEST_URL: (function () {
         return 'resources/data/suggestions.json';
