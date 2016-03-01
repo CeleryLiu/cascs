@@ -25,7 +25,7 @@ var Constant = {
 
     //↓urls
     LIST_SEARCH_URL: (function () {
-        return 'api/listSearch';
+        return 'api/markpointSearch';
     }()),
     USER_REGISTER_URL: (function () {
         return 'user/register';

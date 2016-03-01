@@ -6,7 +6,7 @@
  * Version: V1.0 
  */
 /*---------------------------------------------↓List-----------------------------------------------*/
-var listSearchURL = 'api/listSearch';
+var listSearchURL = 'api/markpointSearch';
 var PAGE_SIZE = 10, //每一页的条目数
     VISIBLE_PAGES = 7; //页码个数
 

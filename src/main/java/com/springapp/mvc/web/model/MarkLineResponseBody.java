@@ -13,7 +13,7 @@ public class MarkLineResponseBody {
     @JsonView(Views.Public.class)
     String statuscode;
     @JsonView(Views.Public.class)
-    MarkLines data;
+    MarkLine data;
 
     public String getErrmsg() {
         return errmsg;
@@ -31,11 +31,11 @@ public class MarkLineResponseBody {
         this.statuscode = statuscode;
     }
 
-    public MarkLines getData() {
+    public MarkLine getData() {
         return data;
     }
 
-    public void setData(MarkLines data) {
+    public void setData(MarkLine data) {
         this.data = data;
     }
 }

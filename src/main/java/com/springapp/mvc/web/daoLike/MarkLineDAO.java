@@ -2,7 +2,7 @@ package com.springapp.mvc.web.daoLike;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.springapp.mvc.web.model.MarkLines;
+import com.springapp.mvc.web.model.MarkLine;
 import com.springapp.mvc.web.util.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,15 +35,15 @@ public class MarkLineDAO {
 
 
     //返回用于3d数据流展示的数据
-    public MarkLines getAllMarkLines(String pageId) {
-        logger.debug("DAO ==>> getAllMarkLines starts =================");
-//        System.out.println("DAO ==>> getAllMarkLines starts =================");
-        MarkLines markLines = null;
+    public MarkLine getAllMarkLines(String pageId) {
+        logger.debug("DAO ==>> getMarkLines starts =================");
+//        System.out.println("DAO ==>> getMarkLines starts =================");
+        MarkLine markLine = null;
         rc = new RestClient();
         JSONArray resArr = rc.getJSONArray(URL4Line + pageId);
         if (resArr.size() > 0) {
-            markLines = new MarkLines();
-            List<MarkLines.LinesEntity> lines = new ArrayList<MarkLines.LinesEntity>();             //lines
+            markLine = new MarkLine();
+            List<MarkLine.LinesEntity> lines = new ArrayList<MarkLine.LinesEntity>();             //lines
             Map<String, double[]> points = new HashMap<String, double[]>();    //points
             Map<String, String> lineTypes = new HashMap<String, String>();                   //line types
 
@@ -57,7 +57,7 @@ public class MarkLineDAO {
                 lineTypes.put(lineType, lineType);
 
                 //lines
-                MarkLines.LinesEntity line = new MarkLines.LinesEntity();
+                MarkLine.LinesEntity line = new MarkLine.LinesEntity();
                 double[] sGeo = {sLoc.getDouble("lon"), sLoc.getDouble("lat")},
                         eGeo = {eLoc.getDouble("lon"), eLoc.getDouble("lat")};
                 line.setType_name(lineType);
@@ -69,16 +69,16 @@ public class MarkLineDAO {
                 points.put(json.getString("start_ip"), sGeo);
                 points.put(json.getString("end_ip"), eGeo);
             }
-            markLines.setLineTypes(lineTypes);
-            markLines.setLines(lines);
-            markLines.setPoints(points);
+            markLine.setLineTypes(lineTypes);
+            markLine.setLines(lines);
+            markLine.setPoints(points);
         }
-        return markLines;
+        return markLine;
     }
 
 /*    public static void main(String[] args) {
         MarkLinesDAO mkDAO = new MarkLinesDAO();
-        MarkLines ms = mkDAO.getAllMarkLines("12345");
+        MarkLines ms = mkDAO.getMarkLines("12345");
         System.out.println(ms);
     }*/
 }

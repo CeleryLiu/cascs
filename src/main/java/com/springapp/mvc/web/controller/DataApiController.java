@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.springapp.mvc.web.jsonView.Views;
 import com.springapp.mvc.web.model.AdvancedSearchCriteria;
 import com.springapp.mvc.web.model.MarkLineResponseBody;
-import com.springapp.mvc.web.model.ResponseBody;
 import com.springapp.mvc.web.model.SearchCriteria;
 import com.springapp.mvc.web.service.*;
 import net.sf.json.JSONObject;
@@ -27,17 +26,17 @@ public class DataApiController {
     private static final Logger logger = LoggerFactory.getLogger(DataApiController.class);
     private static Gson gson = new Gson();
     private final DeviceService deviceService;
-    private final MarkLinesService markLinesService;
+    private final MarklineService marklineService;
     private final SuggestionService suggestionService;
     private final NewDeviceService newDeviceService;
     private final FeatureSetService featureSetService;
 
     @Autowired
-    public DataApiController(DeviceService deviceService, MarkLinesService markLinesService,
+    public DataApiController(DeviceService deviceService, MarklineService marklineService,
                              SuggestionService suggestionService, NewDeviceService newDeviceService,
                              FeatureSetService featureSetService) {
         this.deviceService = deviceService;
-        this.markLinesService = markLinesService;
+        this.marklineService = marklineService;
         this.suggestionService = suggestionService;
         this.newDeviceService = newDeviceService;
         this.featureSetService = featureSetService;
@@ -125,7 +124,7 @@ public class DataApiController {
     public MarkLineResponseBody getAllMarkLines(@RequestParam(value = "pageId") String pageId) {
         logger.debug("DataApiController MarkLineResponseBody starts-----------");
 //        System.out.println("Controller MarkLineResponseBody starts-----------pageId = " + pageId);
-        return markLinesService.getAllMarkLines(pageId);
+        return marklineService.getResponse(pageId);
     }
 
     /*
@@ -208,8 +207,8 @@ public class DataApiController {
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/api/listSearch")
     public String listSearch(@RequestBody SearchCriteria search) {
-        logger.debug("DataApiController --> listSearch starts-----------" + JSONObject.fromObject(search));
-        System.out.println("DataApiController --> listSearch starts-----------" + JSONObject.fromObject(search));
+        logger.debug("DataApiController --> markpointSearch starts-----------" + JSONObject.fromObject(search));
+        System.out.println("DataApiController --> markpointSearch starts-----------" + JSONObject.fromObject(search));
         String result = newDeviceService.getResponse4ListSearch(search);
         System.out.println("Controller-->Result for list: " + result);
         return result;
