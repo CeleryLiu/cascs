@@ -30,7 +30,7 @@
           href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/dijit/themes/tundra/tundra.css">
     --%>
     <link rel="stylesheet" type="text/css"
-          href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+          href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
     <%--custom css--%>
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
@@ -82,10 +82,10 @@
     <script src="${staticJs}"></script>
     <spring:url value="resources/js/helper.js" var="helperJs"/>
     <script src="${helperJs}"></script>
-    <spring:url value="resources/js/noData.js" var="noData"/>
-    <script src="${noData}"></script>
     <spring:url value="resources/js/LoadData.js" var="ajax"/>
     <script src="${ajax}"></script>
+    <spring:url value="resources/js/error.js" var="errorJs"/>
+    <script src="${errorJs}"></script>
     <spring:url value="resources/js/Session.js" var="sessionJs"/>
     <script src="${sessionJs}"></script>
     <spring:url value="resources/js/InputSuggest.js" var="suggestJs"/>
@@ -96,7 +96,7 @@
     <script src="${mapJs}"></script>
     <spring:url value="resources/js/HomeSearch.js" var="hsJs"/>
     <script src="${hsJs}"></script>
-    <spring:url value="resources/js/GlobalSearchForm.js" var="gsJs"/>
+    <spring:url value="resources/js/GlobalSearch.js" var="gsJs"/>
     <script src="${gsJs}"></script>
     <spring:url value="resources/js/Sidebar.js" var="sidebarJs"/>
     <script src="${sidebarJs}"></script>
@@ -118,7 +118,8 @@
     <script src="${mlJs}"></script>--%>
 
     <%--arcgis lib and map js--%>
-    <script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+    <script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+    <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
 
 
 </head>
@@ -134,10 +135,10 @@
 </div>
 
 <div id="fullpage" class="fullpage">
-    <div class="section" data-anchor="se1">
+    <div class="section" data-anchor="se1" id="homeSe">
         <%@include file="home.jsp" %>
     </div>
-    <div class="section" data-anchor="se2" id="list">
+    <div class="section" data-anchor="se2" id="listSe">
         <div style="height: 6rem;"></div>
         <div class="list-wrapper">
             <div class="result-count-duration for-sidebar-padding">
@@ -155,28 +156,28 @@
             </div>
         </div>
     </div>
-    <div class="section" data-anchor="se3" id="map">
+    <div class="section" data-anchor="se3" id="mapSe">
         <%@include file="map.jsp" %>
     </div>
-    <div class="section" data-anchor="se4" id="point">
+    <div class="section" data-anchor="se4" id="pointSe">
         <%--<%@include file="markpoint.jsp" %>--%>
         <iframe data-src="markpoint-iframe" name="iPoint"></iframe>
     </div>
-    <div class="section" data-anchor="se5" id="line">
+    <div class="section" data-anchor="se5" id="lineSe">
         <%--<div id="globe4LineHolder"></div>--%>
         <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se6" id="user">
-        <div class="slide" data-anchor="se6_login">
+        <div class="slide" data-anchor="se6_login" id="loginSl">
             <%@include file="user/login.jsp" %>
         </div>
-        <div class="slide" data-anchor="se6_reg">
+        <div class="slide" data-anchor="se6_reg" id="regSl">
             <%@include file="user/register.jsp" %>
         </div>
-        <div class="slide" data-anchor="se6_agreement">
+        <div class="slide" data-anchor="se6_agreement" id="agreementSl">
             <%@include file="user/agreement.jsp" %>
         </div>
-        <div class="slide" data-anchor="se6_pwd">
+        <div class="slide" data-anchor="se6_pwd" id="pwdRetrieveSl">
             <%@include file="user/pwdRetrieve.jsp" %>
         </div>
     </div>

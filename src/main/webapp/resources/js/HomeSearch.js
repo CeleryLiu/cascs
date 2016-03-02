@@ -14,7 +14,7 @@ var HomeSearch = {
         var $form = $(this._FORM_SEL);
         $form.on('submit', function (e) {
             e.preventDefault();
-            var userInputTxt = $(this._INPUT_SEL).val().replace(/\s{2,}/g, ' ').trim();//去除多余空白符
+            var userInputTxt = $(HomeSearch._INPUT_SEL).val().replace(/\s{2,}/g, ' ').trim();//去除多余空白符
             var successCallback = function (data) {
                 var statuscode = data['statuscode'];
                 //（1）将data添加到sessionStorage.data

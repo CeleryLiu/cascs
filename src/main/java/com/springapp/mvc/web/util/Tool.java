@@ -2,6 +2,10 @@ package com.springapp.mvc.web.util;
 
 import net.sf.json.JSONObject;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * Created by lyp on 2016-01-22.
  * 工具类
@@ -15,5 +19,16 @@ public class Tool {
 
     public static String getCountryMappingStr() {
         return ZH2EN;
+    }
+
+    //排序算法：
+    public static List<JSONObject> solrBucketList(List<JSONObject> list) {//对list按照list.get(x).getDocCount()降序排列，用于处理搜索聚类
+        Collections.sort(list, new Comparator<JSONObject>() {
+            @Override
+            public int compare(JSONObject b1, JSONObject b2) {
+                return (int) (b2.getInt("count") - b1.getInt("count"));//降序排列
+            }
+        });
+        return list;
     }
 }

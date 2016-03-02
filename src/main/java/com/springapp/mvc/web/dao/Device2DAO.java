@@ -6,6 +6,7 @@ package com.springapp.mvc.web.dao;/*
  * @Version: V1.0
  */
 
+import com.springapp.mvc.web.config.Constant;
 import com.springapp.mvc.web.model.NewDevice;
 import com.springapp.mvc.web.util.RestClient;
 import com.springapp.mvc.web.util.Tool;
@@ -89,10 +90,13 @@ public class Device2DAO {
                 }
                 if (key.endsWith("@%")) {//城市名为空，则城市设为unknown
                     countryName = key.replace("@%", "");
-                    cityName = key + "Unknown";
+                    cityName = key;
                 } else if (key.startsWith("@%")) {//国家名为空，则国家设为unknown
                     countryName = "Unknown";
-                    cityName = "Unknown" + key;
+                    cityName =key;
+                } else {
+                    countryName = key.split("@%")[0];
+                    cityName = key.split("@%")[1];
                 }
                 if (!result.containsKey(countryName)) {
                     JSONObject countryObj = new JSONObject();
@@ -101,6 +105,7 @@ public class Device2DAO {
                     cities.put(cityName, initCount);
                     countryObj.put("count", initCount);
                     countryObj.put("cities", cities);
+                    countryObj.put("zh", countryName);
                     if (zh2en.has(countryName)) {
                         countryObj.put("en", zh2en.getString(countryName));
                     }
@@ -115,6 +120,7 @@ public class Device2DAO {
                 e.printStackTrace();
             }
         }
+        sortCountries(result);
         return result;
     }
 
@@ -250,12 +256,28 @@ public class Device2DAO {
         return has;
     }
 
-    /*public static void main(String[] args) {
-        DeviceDAO dd = new DeviceDAO();
-        Map<String, Object> criteria = new HashMap<String, Object>();
-        criteria.put("wd", "camera web ch");
-        criteria.put("page", 1);
-        System.out.println(dd.getDeviceData(Constant.SE_LIST_SEARCH_URL, criteria));
 
-    }*/
+    private JSONObject sortCountries(JSONObject countryAndCity) {
+        JSONObject result = new JSONObject();
+        List<JSONObject> countryList = new ArrayList<JSONObject>();
+        for (String key : new ArrayList<String>(countryAndCity.keySet())) {
+            countryList.add(countryAndCity.getJSONObject(key));
+        }
+        countryList = Tool.solrBucketList(countryList);
+        for (int i = 0; i < countryList.size(); i++) {
+            JSONObject tmp = countryList.get(i);
+            result.put(tmp.getString("zh"), tmp);
+        }
+        System.out.println(result);
+        return result;
+    }
+
+
+    public static void main(String[] args) {
+        Device2DAO dd = new Device2DAO();
+        Map<String, Object> criteria = new HashMap<String, Object>();
+        criteria.put("wd", "abc");
+        criteria.put("page", 1);
+        dd.getDeviceData(Constant.SE_LIST_SEARCH_URL, criteria);
+    }
 }

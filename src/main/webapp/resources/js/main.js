@@ -31,14 +31,22 @@ $(function () {
                 GlobalSearch.show();
             }
             if (Sidebar.isHidden()) {
-                Sidebar.showOnly();
+                Sidebar.show();
             }
             if (Pivot.isHidden()) {
                 Pivot.show();
             }
         }
     };
-
+    var getCurrentPageId = function () {
+        //body.class="fp-viewing-sectionAnchor-slideAnchor"
+        var classStr = $('body').attr('class');
+        var secAndSliAnchor = classStr.substring(classStr.indexOf('fp-viewing-'));
+        if (secAndSliAnchor.indexOf(' ') != -1) {
+            secAndSliAnchor = secAndSliAnchor.substring(0, classStr.indexOf(' '));
+        }
+        console.log(secAndSliAnchor);
+    };
     $('.fullpage').fullpage({
         //↓Navigation
         menu: '#menu',
@@ -69,6 +77,8 @@ $(function () {
         //↓events
         afterRender: function () {  //initialize here
             console.log('fullPage.afterRender()');
+            getCurrentPageId();
+
             //(init-1)add slides nav tips
             //addTooltip4Slides(Constant.SLIDE_NAV_TOOLTIPS);
             //(init-2)custom initialize

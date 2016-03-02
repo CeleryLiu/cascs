@@ -20,7 +20,73 @@ var Sidebar = {
     },
     render: function (agg) {
         //console.log("Sidebar.render()");
+        //param countryObj={en:englishName,count:totalCount,cities:cityObjList}
+        function genSidebarCountryLi(countryName, countryObj, count) {
+            //co=country,ci=city
+            var coLi = $('<li class="facet-value"></li>'),
+                coInput = $('<input type="checkbox" class="country">').attr('value', countryName),//input.class=key, input.value=value
+                coLabelContainer = $('<div class="label-container"></div>'),
+                coCount = $('<span class="facet-count"></span>').html('(' + count + ')'),
+                coLabel = $('<label class="facet-label"></label>').attr({
+                    'title': countryName
+                }).append('<bdi>' + countryName + '</bdi>');
+
+            //listener
+            coInput.css('display', 'none').on('click', function () {
+                var val = $(this).attr('value');
+                $(this).nextAll('div[data-country="' + val + '"]').collapse('toggle');
+            });
+
+            coLabelContainer.append(coCount).append(coLabel);
+            coLi.append(coInput).append(coLabelContainer);
+
+
+            var citiesContainer = $('<div class="collapse" data-country="' + countryName + '"></div>').appendTo(coLi),
+                ciList = $('<ol class="inner-facet-values"></ol>').appendTo(citiesContainer);
+            ciList.append(genSidebarLi('country', countryName, total));
+            $.each(countryObj['cities'], function (cityName, count) {
+                /*if (cityName.indexOf('/') != -1) {
+                 cityName = cityName.replace(new RegExp('/', 'mg'), '');
+                 }*/
+                /*var li = genSidebarLi('city', cityName, count);
+                 li.find('input:first-child').attr('data-country', countryName);
+                 $cities.append(li);*/
+                ciList.append(genSidebarLi('city', cityName, count));
+            });
+            return coLi;
+        }
+
+        var setCountryCity = function (countries) {
+            var $country = $('#countryList').find('ol.facet-values').show().html(''); //清空以前的数据
+            if (!isEmptyObject(countries)) {
+                $.each(countries, function (countryName, countryObj) {
+                    if (countryName.indexOf('/')) {
+                        countryName = countryName.replace(new RegExp('/', 'mg'), '');
+                    }
+                    var total = countryObj['count'],
+                        countryLi = genSidebarCountryLi(countryName, total).appendTo($country),
+                        citiesContainer = $('<div class="collapse" data-country="' + countryName + '"></div>').appendTo(countryLi),
+                        $cities = $('<ol class="inner-facet-values"></ol>').appendTo(citiesContainer);
+                    $cities.append(genSidebarLi('country', countryName, total));
+                    $.each(countryObj['cities'], function (cityName, count) {
+                        if (cityName.indexOf('/')) {
+                            cityName = cityName.replace(new RegExp('/', 'mg'), '');
+                        }
+                        /*var li = genSidebarLi('city', cityName, count);
+                         li.find('input:first-child').attr('data-country', countryName);
+                         $cities.append(li);*/
+                        $cities.append(genSidebarLi('city', cityName, count));
+                    });
+                });
+            } else {
+                $country.closest('div.panel').hide();
+            }
+
+        };
         $.each(agg, function (key, value) {
+            if (key.indexOf('/')) {
+                key = key.replace(new RegExp('/', 'mg'), '');
+            }
             if (key == 'country@%city') {
                 var $country = $('#countryList').find('ol.facet-values').show().html(''); //清空以前的数据
                 if (!isEmptyObject(value)) {
@@ -128,26 +194,6 @@ var Sidebar = {
             return li;
         }
 
-        function genSidebarCountryLi(key, value, count) {
-            var id = key + CheckboxId_SEPARATOR + value,
-                li = $('<li class="facet-value"></li>'),
-                input = $('<input type="checkbox" class="country">').attr({'id': id, 'name': id}),
-                div = $('<div class="label-container"></div>'),
-                span = $('<span class="facet-count"></span>').html('(' + count + ')'),
-                label = $('<label class="facet-label"></label>').attr({
-                    'for': id,
-                    'title': id
-                }).append('<bdi>' + value + '</bdi>');
-
-            //listener
-            input.css('display', 'none').on('click', function () {
-                $('#collapse' + id.split(CheckboxId_SEPARATOR)[1]).collapse('toggle');
-            });
-
-            div.append(span).append(label);
-            li.append(input).append(div);
-            return li;
-        }
 
         function inputEventHandler(input) {
             input.on('click', function () {
