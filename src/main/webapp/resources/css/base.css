@@ -314,7 +314,7 @@ b {
 }
 
 /* Style for slides
-  * --------------------------------------- */
+ * --------------------------------------- */
 .fp-slidesNav .tooltip {
     white-space: nowrap;
 }
@@ -324,7 +324,7 @@ b {
 }
 
 /* Style for global form
-* --------------------------------------- */
+ * --------------------------------------- */
 .global-search-wrapper {
     display: none;
     z-index: 100;
@@ -335,6 +335,9 @@ b {
     height: 3.2rem;
     padding-left: .5rem;
     text-align: left;
+    /*background-color: hsla(223, 16%, 29%, 1);*/
+    /*background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
+    /*background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
 }
 
 .global-search-form {
@@ -414,4 +417,109 @@ b {
 
 .global-search-wrapper .advs-link-wrapper a:hover {
     color: #287bbc;
+}
+
+/* Style for header2
+ *-----------------------------------------*/
+#header2 {
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    display: block;
+    width: 100%;
+    /*background-color: hsla(223, 16%, 29%, 1);*/
+    padding: 1rem 0;
+    /*background: no-repeat t00op center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
+    /*background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
+}
+
+/* Style for pivots texts
+ * --------------------------------------- */
+.pivots-wrapper {
+    display: none;
+    z-index: 99;
+    /*position: fixed;
+    top: 8rem;
+    left: 0;*/
+    /*width: 100%;*/
+    /*  background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));
+      background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
+    box-sizing: border-box;
+}
+
+.pivots li {
+    display: inline-block;
+    margin: 2px;
+    padding: 2px 0 2px 5px;
+    color: #000;
+    background: lightgray;
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.pivots li.map {
+    /*background-color: rgba(224, 224, 224, .8);*/
+    background: hsla(201, 100%, 77%, .9);
+    box-shadow: -1px 1px 1px 1px #b4b4b4;;
+}
+
+.pivots li.map.active,
+.pivots li.active {
+    background: #666;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.pivots li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.pivots li.active a:hover {
+    color: #000;
+}
+
+.pivots li:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.pivots li a,
+.pivots li.active a {
+    padding: 5px 10px;
+    display: block;
+}
+
+.pivots li.active a {
+    color: #fff;
+}
+
+.pivots li button {
+    background: transparent;
+    border: none;
+}
+
+.pivots li button:hover {
+    color: #000;
+}
+
+.pivots li button.badge {
+    margin-bottom: 2px;
+}
+
+/* Style for result-overview texts
+ * --------------------------------------- */
+.result-overview {
+    display: none;
+    z-index: 99;
+    /*position: fixed;
+    top: 11rem;
+    left: 0;*/
+    height: 1.6rem;
+    line-height: 1.6rem;
+    font-size: 1.5rem;
+}
+
+.result-overview strong.badge {
+    margin: 0 .5rem;
 }

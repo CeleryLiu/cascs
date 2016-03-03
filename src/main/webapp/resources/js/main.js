@@ -3,6 +3,7 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 $(function () {
+    history.pushState(undefined, 'home', '');//==================================state
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
         var slideNavList = $('.fp-slidesNav a');
@@ -76,7 +77,7 @@ $(function () {
         //responsiveHeight:900,
 
         //↓Scrolling
-        normalScrollElements: '#mapHolder,#list-wrapper', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,#list-wrapper,#sidebar', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 

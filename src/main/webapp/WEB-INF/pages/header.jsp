@@ -34,7 +34,7 @@
     </div>
 </div>
 <%--占一行的一个大的搜索框--%>
-<div class="global-search-wrapper" id="global_search_wrapper" style="display: none;">
+<div class="global-search-wrapper" id="global_search_wrapper">
     <form class="global-search-form" method="get" action="api/search">
         <fieldset>
             <div class="search-scope"></div>
@@ -48,4 +48,18 @@
         </fieldset>
         <div class="advs-link-wrapper"><a href="#" class="advs-link">精确搜索</a></div>
     </form>
+</div>
+<div id="header2" class="row-fluid">
+    <div class="col-lg-offset-2 col-md-offset-3 col-sm-offset-3 col-lg-10 col-md-9 col-sm-9">
+        <div class="pivots-wrapper" id="pivots_wrapper">
+            <ul class="pivots">
+                <li><a href="#">pivot3</a></li>
+            </ul>
+        </div>
+        <div class="result-overview" id="result_overview">
+            <p class="">搜索到约 <strong class="badge count">0</strong> 条结果，
+                共用时 <strong class="badge duration">0</strong> ms。
+                当前为第<strong class="badge page-num">0</strong>页</p>
+        </div>
+    </div>
 </div>

@@ -90,7 +90,7 @@ public class Device2DAO {
                 }
                 if (key.endsWith("@%")) {//城市名为空，则城市设为unknown
                     countryName = key.replace("@%", "");
-                    cityName = key;
+                    cityName = "Unknown";
                 } else if (key.startsWith("@%")) {//国家名为空，则国家设为unknown
                     countryName = "Unknown";
                     cityName =key;
@@ -268,7 +268,6 @@ public class Device2DAO {
             JSONObject tmp = countryList.get(i);
             result.put(tmp.getString("zh"), tmp);
         }
-        System.out.println(result);
         return result;
     }
 

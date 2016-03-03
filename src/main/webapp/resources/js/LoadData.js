@@ -8,13 +8,6 @@
  */
 
 var LoadData = {
-    _variable: (function () {
-        return "I am a private variable";
-    }()),
-    defaultErrorHandler: function (data) {
-        console.log("error", data);
-    },
-//get方式获取数据
     get: function (requestObj) {
         console.log("LoadData.get() ======, requestObj = ", requestObj);
         $.ajax({
@@ -23,17 +16,13 @@ var LoadData = {
             dataType: "json",
             timeout: 50000,
             beforeSend: function () {
-                //$('body').showLoading();// 添加 loading 标记类
                 if (requestObj.beforeSend) {
                     requestObj.beforeSend();
                 }
             }
-        })
-            .success(requestObj.success)
+        }).success(requestObj.success)
             .error(requestObj.error ? requestObj.error : errorHandler())
             .complete(function (jqXHR, textStatus) {
-                //$('body').hideLoading();// 删除 loading 标记类
-                $('html, body').scrollTop(0);
             });
     },
     post: function (requestObj) {
@@ -46,17 +35,13 @@ var LoadData = {
             timeout: 50000,
             data: JSON.stringify(requestObj.data),
             beforeSend: function () {
-                //$('body').showLoading();// 添加 loading 标记类
                 if (requestObj.beforeSend) {
                     requestObj.beforeSend();
                 }
             }
-        })
-            .success(requestObj.success)
+        }).success(requestObj.success)
             .error(requestObj.error ? requestObj.error : errorHandler())
             .complete(function (jqXHR, textStatus) {
-                //$('body').hideLoading();// 删除 loading 标记类
-                $('html, body').scrollTop(0);
             });
     }
 };

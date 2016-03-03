@@ -17,7 +17,8 @@ var List = {
     }()),
     tag: 'list',
     listPageNum: 1,
-    render: function (data) {
+    //pushHistory is a boolean, true: push the state into the history, false: not push
+    render: function (data, pushHistory) {
         //console.log("List.render() ======");
         /*
          * @param totalCounts：分页的总条目数
@@ -137,7 +138,6 @@ var List = {
             devices = data['data'];
 
         var $resultList = $(this._RESULT_LIST_SEL).html('');
-
         //(1)更新查询时间、查询到数据的条数、结果列表、分页
         ResultOverview.set(total, took, currpage, (Math.floor(total / pagesize) + 1));
         //(2)添加结果列表
@@ -146,6 +146,9 @@ var List = {
         }
         //(3)初始化分页插件
         paginator(total, pagesize, currpage, VISIBLE_PAGES);
+        //(4)返回顶部
+        $(this._WRAPPER_SEL).scrollTop(0);
+        $('#listSe').scrollTop(0);
     },
     search: function (pageNum) {
         //console.log("List.search() ======");
@@ -185,11 +188,6 @@ var List = {
         //console.log("List.showNoData()");
         $('.empty-result-desc-container').show();
         this.wrapper.hide();
-    },
-    hideNoData: function () {
-        //console.log("FUNCTION CALL: List.hideNoData");
-        $('.empty-result-desc-container').hide();
-        this.wrapper.show();
     },
     show: function (data) {
         //console.log("FUNCTION CALL: List.show");

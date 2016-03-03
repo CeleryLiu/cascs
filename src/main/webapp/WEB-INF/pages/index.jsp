@@ -33,8 +33,8 @@
     <link rel="stylesheet" href="${baseCss}">
     <spring:url value="resources/css/home-sec.css" var="homeCss"/>
     <link rel="stylesheet" href="${homeCss}">
-    <spring:url value="resources/css/fixed-element.css" var="fixedCss"/>
-    <link rel="stylesheet" href="${fixedCss}">
+    <spring:url value="resources/css/sidebar.css" var="sidebarCss"/>
+    <link rel="stylesheet" href="${sidebarCss}">
     <spring:url value="resources/css/markpoint-line.css" var="mplCss"/>
     <link rel="stylesheet" href="${mplCss}">
     <spring:url value="resources/css/map.css" var="mapCss"/>
@@ -95,8 +95,8 @@
     <script src="${hsJs}"></script>
     <spring:url value="resources/js/GlobalSearch.js" var="gsJs"/>
     <script src="${gsJs}"></script>
-    <spring:url value="resources/js/FixedElement.js" var="feJs"/>
-    <script src="${feJs}"></script>
+    <spring:url value="resources/js/SidebarPivotResOverview.js" var="sprJs"/>
+    <script src="${sprJs}"></script>
     <spring:url value="resources/js/User.js" var="userJs"/>
     <script src="${userJs}"></script>
     <spring:url value="resources/js/main.js" var="mainJs"/>
@@ -105,28 +105,16 @@
     <%--arcgis lib and map js--%>
     <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
-
-
 </head>
 <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
-<div class="pivots-wrapper col-lg-offset-2 col-md-offset-3 col-sm-offset-3" id="pivots_wrapper">
-    <ul class="pivots">
-        <li><a href="#">pivot3</a></li>
-    </ul>
-</div>
-<div class="result-overview col-lg-offset-2 col-md-offset-3 col-sm-offset-3" id="result_overview">
-    <p class="">搜索到约 <strong class="badge count">0</strong> 条结果，
-        共用时 <strong class="badge duration">0</strong> ms。
-        当前为第<strong class="badge page-num">0</strong>页</p>
-</div>
 <div id="fullpage" class="fullpage">
     <div class="section" data-anchor="se1" id="homeSe">
         <%@include file="home.jsp" %>
     </div>
     <div class="section" data-anchor="se2" id="listSe">
-        <div style="height: 6rem;"></div>
+        <%--<div style="height: 6rem;"></div>--%>
         <div class="list-wrapper row-fluid" id="list-wrapper">
             <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">
