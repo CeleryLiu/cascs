@@ -36,11 +36,10 @@ var LoadData = {
             });
     },
     post: function (requestObj) {
-
         var defaultErrorHandler = function (data) {
             console.log("error", data);
         };
-        console.log("FUNCTION CALL: AjaxLoadData", requestObj);
+        console.log("LoadData.post() ======", requestObj);
         $.ajax({
             url: requestObj.url,
             type: "post",

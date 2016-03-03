@@ -31,8 +31,8 @@ public class Device2Service {
     }
 
     public String getResponse4List(SearchCriteria search) {
-        logger.debug("SearchService.getResponse4List() ======");
-        System.out.println("SearchService.getResponse4List() ======");
+        logger.debug("DeviceSearch.getResponse4List() ======");
+        System.out.println("DeviceSearch.getResponse4List() ======");
         JSONObject result;
         if (isValidSearchCriteria(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();
@@ -52,8 +52,8 @@ public class Device2Service {
     }
 
     public String getResponse4Map(SearchCriteria search) {
-        logger.debug("SearchService.getResponse4Map() ======");
-        System.out.println("SearchService.getResponse4Map() ======");
+        logger.debug("DeviceSearch.getResponse4Map() ======");
+        System.out.println("DeviceSearch.getResponse4Map() ======");
         JSONObject result;
         if (isValidSearchCriteria(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();
@@ -84,7 +84,7 @@ public class Device2Service {
     }
 
    /* public static void main(String[] args) {
-        SearchService ss = new SearchService(new DeviceDAO());
+        DeviceSearch ss = new DeviceSearch(new DeviceDAO());
         SearchCriteria criteria = new SearchCriteria();
         criteria.setWd("weak camera");
         String r = ss.getResponse4Map(criteria);

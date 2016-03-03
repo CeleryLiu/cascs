@@ -64,7 +64,6 @@ var List = {
             });
             //详细内容
             var row = $('<div class="row"></div>').appendTo(li);
-            //all tags
             //tag
             var facets = $(' <div class="col-md-3 col-sm-4 left"></div>').appendTo(row);
             if (d.hasOwnProperty('tags') && d.tags != '' && d.tags.length > 0) {
@@ -87,16 +86,21 @@ var List = {
              $('<span class="label label-primary"><a href="#' + time + '">' +
              '<span class="glyphicon glyphicon-time"></span> ' + time + ' </a></span>').appendTo($time);
              }*/
+
+            facets.find('a').on('click', function (e) {
+                e.preventDefault();
+                console.log("=====================", this.href);
+            });
             //ports
             var info = $('<div class="col-md-8 col-sm-7 right"></div>').appendTo(row);
             var ports = d['ports'], vuls = d['vuls'];
             if (ports.length > 0 || vuls.length > 0) {
                 for (var i = 0; i < ports.length; i++) {
                     if (ports[i] == '' || ports[i] == null)continue;
-                    for (var key in ports[i]) {
-                        var url = key.split(':')[0] + '://' + d.ip + ':' + key.split(':')[1];
-                        var $port = $('<article><h3><a href="' + url + '" target="_blank"">' + key + '</a></article>').appendTo(info);
-                        var banner = ports[i][key];
+                    for (var pKey in ports[i]) {
+                        var url = pKey.split(':')[0] + '://' + d.ip + ':' + pKey.split(':')[1];
+                        var $port = $('<article><h3><a href="' + url + '" target="_blank"">' + pKey + '</a></article>').appendTo(info);
+                        var banner = ports[i][pKey];
                         if (banner != 'null') {
                             banner = banner.replace(/</g, "&lt;");
                         }
@@ -109,12 +113,12 @@ var List = {
                     }
                 }
                 //vuls
-                for (var i = 0; i < vuls.length; i++) {
-                    if (!vuls[i] || vuls[i] == '')continue;
+                for (var j = 0; j < vuls.length; j++) {
+                    if (!vuls[j] || vuls[j] == '')continue;
                     $('<hr>').appendTo(info);
-                    for (var key in vuls[i]) {
-                        var $vul = $('<article><h3><a href="#">' + key + '</a></article>').appendTo(info);
-                        $('<pre>' + JSON.stringify(vuls[i][key]['desc']) + '</pre>').appendTo($vul);
+                    for (var vKey in vuls[j]) {
+                        var $vul = $('<article><h3><a href="#">' + vKey + '</a></article>').appendTo(info);
+                        $('<pre>' + JSON.stringify(vuls[j][vKey]['desc']) + '</pre>').appendTo($vul);
                     }
                 }
             } else {

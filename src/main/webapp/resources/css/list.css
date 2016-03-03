@@ -1,22 +1,21 @@
 /* Style for text(list) search
  * --------------------------------------- */
 .list-wrapper {
-    /*display: none;*/
-    margin: 0 auto;
-    /*padding-top: 15rem;*/
-    /*height: 100%;*/
-    overflow: auto;
+    margin: 0;
+    padding: 2rem 0;
+    overflow-y: auto;
     text-align: left;
-    padding-bottom: 3rem;
-    background-color: red;
+    height: 100%;
+}
+
+.list-wrapper .row,
+.list-wrapper .row-fluid{
+    margin: 0;
+    padding: 0;
 }
 
 .result-container h3 {
     text-align: left;
-}
-
-.list-wrapper .result-col {
-    /*overflow-y: auto;*/
 }
 
 /*------li.device begins here------*/
@@ -32,6 +31,7 @@
     display: inline-block;
     float: none;
     clear: both;
+    margin: 0 2px;
 }
 
 .list-wrapper .device .tag a {

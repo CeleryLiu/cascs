@@ -127,8 +127,8 @@
     </div>
     <div class="section" data-anchor="se2" id="listSe">
         <div style="height: 6rem;"></div>
-        <div class="list-wrapper col-lg-offset-2 col-md-offset-3 col-sm-offset-3" id="list-wrapper">
-            <div class="result-col">
+        <div class="list-wrapper row-fluid" id="list-wrapper">
+            <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">
                     <ul class="result devices"></ul>
                 </div>

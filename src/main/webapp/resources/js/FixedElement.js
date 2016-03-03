@@ -106,7 +106,7 @@ var Sidebar = {
         $.each(agg, function (key, value) {
             var id = key != 'country@%city' ? (key + 'List') : 'countryList';
             var $ol = $('#' + id).find('ol.facet-values').html('');//清空以前的数据
-            if (isEmptyObject(value)) {
+            if (!isEmptyObject(value)) {
             } else {
                 $ol.closest('div.panel').hide();
             }
@@ -128,7 +128,8 @@ var Sidebar = {
         //(2)根据wd设置复选框的选中状态并添加对应的pivot
         $('div.panel-collapse.collapse').removeClass('in');
         var wdList = wd.split(' ');
-        wdList.each(function (idx, item) {
+        for (var i = 0; i < wdList.length; i++) {
+            var item = wdList[i];
             if (item.indexOf(':') > 0) {
                 var dKey = item.split(':')[0],
                     dValue = item.split(':')[1],
@@ -156,7 +157,7 @@ var Sidebar = {
                     Pivot.add(dKey, dValue, value);
                 }
             }
-        });
+        }
 
         //(3)监听折叠面板的状态
         $('.panel-title a').on('click', function () {

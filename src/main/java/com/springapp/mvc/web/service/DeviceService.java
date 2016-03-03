@@ -55,8 +55,8 @@ public class DeviceService {
     //////
     //返回用户查询的数据，用于前端以列表的形式显示设备信息（业务逻辑层）
     public String getResponse4List(SearchCriteria search) {
-        logger.debug("Service ==>> getDevices4List starts ================");
-//        System.out.println("Service ==>> getDevices4List starts===============");
+        logger.debug("DeviceService.getResponse4List() ================");
+//        System.out.println("DeviceService.getResponse4List() ================");
         JSONObject result;
         if (isValidSearchCriteriaOld(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();
@@ -72,7 +72,6 @@ public class DeviceService {
             result.put("statuscode", "400");
             result.put("errmsg", "Search criteria is empty!");
         }
-        //System.out.println("Service --> Result: " + result.toString());
         return result.toString();
     }
 
