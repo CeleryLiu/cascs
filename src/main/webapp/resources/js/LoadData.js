@@ -16,7 +16,7 @@ var LoadData = {
     },
 //get方式获取数据
     get: function (requestObj) {
-        console.log("FUNCTION CALL: AjaxLoadData-get", requestObj);
+        console.log("LoadData.get() ======, requestObj = ", requestObj);
         $.ajax({
             url: requestObj.url,
             type: "get",
@@ -28,18 +28,16 @@ var LoadData = {
                     requestObj.beforeSend();
                 }
             }
-        }).success(requestObj.success)
-            .error(requestObj.error ? requestObj.error : noRelatedData)
+        })
+            .success(requestObj.success)
+            .error(requestObj.error ? requestObj.error : errorHandler())
             .complete(function (jqXHR, textStatus) {
                 //$('body').hideLoading();// 删除 loading 标记类
                 $('html, body').scrollTop(0);
             });
     },
     post: function (requestObj) {
-        var defaultErrorHandler = function (data) {
-            console.log("error", data);
-        };
-        console.log("LoadData.post() ======", requestObj);
+        console.log("LoadData.post() ======, requestObj = ", requestObj);
         $.ajax({
             url: requestObj.url,
             type: "post",
@@ -55,7 +53,7 @@ var LoadData = {
             }
         })
             .success(requestObj.success)
-            .error(requestObj.error ? requestObj.error : defaultErrorHandler)
+            .error(requestObj.error ? requestObj.error : errorHandler())
             .complete(function (jqXHR, textStatus) {
                 //$('body').hideLoading();// 删除 loading 标记类
                 $('html, body').scrollTop(0);
@@ -65,7 +63,7 @@ var LoadData = {
 /*---------------------------------------Function Search--------------------------*/
 function newSearch(obj) {
     //console.log("FUNCTION CALL: newSearch", obj);
-    var homeSearchBtn   = $('#home-search-btn'),
+    var homeSearchBtn = $('#home-search-btn'),
         globalSearchBtn = $('.global-search-button'),
         globalSearchInput = $('.global-search-input'),
         advsBtn = $('.submit-advs');

@@ -26,7 +26,7 @@ var Sidebar = {
             //coXX=countryXX,ciYY=cityYY
             //country
             var coLi = $('<li class="facet-value"></li>'),
-                coInput = $('<input type="checkbox" class="country">').attr('value', countryName),//input.class=key, input.value=value
+                coInput = $('<input type="checkbox" class="country">').attr('value', countryName).css('display', 'none'),//input.class=key, input.value=value
                 coLabelContainer = $('<div class="label-container"></div>'),
                 coCount = $('<span class="facet-count"></span>').html('(' + countryObj['count'] + ')'),
                 coLabel = $('<label class="facet-label"></label>').attr({
@@ -45,10 +45,10 @@ var Sidebar = {
             citiesContainer.append(ciList);
             coLi.append(coInput).append(coLabelContainer).append(citiesContainer);
 
-            //country input listener
-            coInput.css('display', 'none').on('click', function () {
-                var val = $(this).attr('value');
-                $(this).nextAll('div[data-country="' + val + '"]').collapse('toggle');
+            //country listener
+            //coInput.css('display', 'none');
+            coLabelContainer.on('click', function () {
+                $(this).next().collapse('toggle');
             });
 
             return coLi;
@@ -78,21 +78,27 @@ var Sidebar = {
                 var $this = $(this),
                     dKey = $this.attr('data-key'),
                     dValue = $this.attr('data-value'),
-                    country = $this.attr('data-country'),
-                    value = $this.text();
+                    country = $this.attr('data-country');
                 if (this.checked) {
                     // (1) checked -> add a pivot
                     if (country) {
-                        Pivot.add(dKey, dValue, value, {'country': country});
+                        Pivot.add(dKey, dValue, {'country': country});
                     } else {
-                        Pivot.add(dKey, dValue, value);
+                        Pivot.add(dKey, dValue);
                     }
                 } else {
                     // (1) unchecked -> remove the pivot
                     if (country) {
-                        Pivot.remove(dKey, dValue);
+                        Pivot.remove({
+                            'dKey': dKey,
+                            'dValue': dValue
+                        });
                     } else {
-                        Pivot.remove(dKey, dValue, {'country': country});
+                        Pivot.remove({
+                            'dKey': dKey,
+                            'dValue': dValue,
+                            'country': country
+                        });
                     }
                 }
                 // (2) search
@@ -150,7 +156,7 @@ var Sidebar = {
 
                     //展开被选中复选框所在的面板
                     $input.closest('div.collapse').addClass('in');
-                    if (dKey == 'city') {
+                    if (dKey == 'city' || dKey == 'country') {
                         $('#countryList').addClass('in');
                     }
                     //添加pivot
@@ -214,16 +220,16 @@ var Pivot = {
             return;
         }
 
-        //生成一个pivot，dk->data-key；dv->data-value，v->text,e['country']->data-country
-        var genPivot = function (dk, dv, v, e) {
+        //生成一个pivot，dk->data-key；dv->data-value，e['country']->data-country
+        var genPivot = function (dk, dv, e) {
             //generate dom nodes
             var $pivot = $('<li class="pivot"></li>')
                 .attr({'data-key': dk, 'data-value': dv})
-                .html(v);
+                .html(dv);
             if (e && e['country']) {
                 $pivot.attr('data-country', e['country']);
             }
-            var closeBtn = $('<button class="remove-pivot" type="submit">&times;</button>')
+            var closeBtn = $('<button class="remove-pivot badge" type="submit">&times;</button>')
                 .appendTo($pivot);
 
             //listener
@@ -247,8 +253,8 @@ var Pivot = {
      *       data:{dKey->data-key，dValue->data-value,value->text,country->data-country}
      * 两个参数只传一个即可
      */
-    remove: function (pivot, data) {
-        console.log('Pivot.add() ======');
+    remove: function (data, pivot) {
+        console.log('Pivot.remove() ======');
         if (pivot) {
             pivot.remove();
         } else {
@@ -293,6 +299,6 @@ var ResultOverview = {
         var overview = $(this._WRAPPER_SEL);
         overview.find('strong.count').text(count);
         overview.find('strong.duration').text(duration);
-        overview.find('strong.pag-num').text(currpage + ' / ' + totalPage);
+        overview.find('strong.page-num').text(currpage + ' / ' + totalPage);
     }
 };

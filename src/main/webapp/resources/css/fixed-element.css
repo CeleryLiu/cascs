@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .sidebar {
     display: none;
-    /*z-index: 99;*/
+    z-index: 99;
     position: fixed;
     top: 8rem;
     padding-right: 2rem;
@@ -161,7 +161,7 @@
  * --------------------------------------- */
 .pivots-wrapper {
     display: none;
-    /*z-index: 99;*/
+    z-index: 99;
     position: fixed;
     top: 8rem;
     left: 0;
@@ -174,11 +174,12 @@
 .pivots li {
     display: inline-block;
     margin: 2px;
+    padding: 2px 0 2px 5px;
     color: #000;
     background: lightgray;
     background: rgba(255, 255, 255, 0.5);
-    -webkit-border-radius: 10px;
-    border-radius: 6px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .pivots li.map {
@@ -217,17 +218,34 @@
     color: #fff;
 }
 
+.pivots li button {
+    background: transparent;
+    border: none;
+}
+
+.pivots li button:hover {
+    color: #000;
+}
+
+.pivots li button.badge {
+    margin-bottom: 2px;
+}
+
 /* Style for result-overview texts
  * --------------------------------------- */
 .result-overview {
     display: none;
-    /*z-index: 99;*/
+    z-index: 99;
     position: fixed;
     top: 11rem;
     left: 0;
     height: 1.6rem;
     line-height: 1.6rem;
     font-size: 1.5rem;
+}
+
+.result-overview strong.badge {
+    margin: 0 .5rem;
 }
 
 /* Style for inner Scroll bar. For the "inset" look only
