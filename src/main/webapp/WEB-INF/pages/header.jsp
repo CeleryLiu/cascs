@@ -34,7 +34,7 @@
     </div>
 </div>
 <%--占一行的一个大的搜索框--%>
-<div class="global-search-wrapper" id="global-search" style="display: none;">
+<div class="global-search-wrapper" id="global_search_wrapper" style="display: none;">
     <form class="global-search-form" method="get" action="api/search">
         <fieldset>
             <div class="search-scope"></div>

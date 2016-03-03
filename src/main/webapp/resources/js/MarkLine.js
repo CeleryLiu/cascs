@@ -9,6 +9,7 @@ var MarkLine = {
     _stop: false,
     _timeout: 0,
     init: function () {
+        return;
         console.log('Inside MarkLine.init() ======');
         var rootPath = getRootPath();
 

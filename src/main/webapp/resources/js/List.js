@@ -17,25 +17,6 @@ var List = {
     tag: 'list',
     listPageNum: 1,
     result: $('.result-col'),
-    show: function (data) {
-        //console.log("FUNCTION CALL: List.show");
-        MySessionStorage.set('currentPage', this.tag);
-        $('header').css('visibility', ' visible').show();
-        if (data && data['statuscode'] == 200) {
-            this.render(data);
-            this.wrapper.show();
-            Sidebar.show(data['aggregation']);
-        } else if ($('#global_search_input').val() != '') {
-            this.search(this.listPageNum);
-        } else {
-            $.fn.fullpage.silentMoveTo('se1');
-        }
-        this.wrapper.show();
-    },
-    hide: function () {
-        //console.log("FUNCTION CALL: List.hide");
-        this.wrapper.hide();
-    },
     render: function (data) {
         //console.log("FUNCTION CALL: List.render");
         //更新查询时间、查询到数据的条数、结果列表、分页
@@ -215,6 +196,25 @@ var List = {
         //console.log("FUNCTION CALL: List.hideNoData");
         $('.empty-result-desc-container').hide();
         this.wrapper.show();
+    },
+    show: function (data) {
+        //console.log("FUNCTION CALL: List.show");
+        MySessionStorage.set('currentPage', this.tag);
+        $('header').css('visibility', ' visible').show();
+        if (data && data['statuscode'] == 200) {
+            this.render(data);
+            this.wrapper.show();
+            Sidebar.show(data['aggregation']);
+        } else if ($('#global_search_input').val() != '') {
+            this.search(this.listPageNum);
+        } else {
+            $.fn.fullpage.silentMoveTo('se1');
+        }
+        this.wrapper.show();
+    },
+    hide: function () {
+        //console.log("FUNCTION CALL: List.hide");
+        this.wrapper.hide();
     }
 };
 

@@ -5,7 +5,7 @@
     background: url("../img/login_bg.jpg") no-repeat center;
 }
 
-.section .home-search .home-search-form {
+.home-search .home-search-form {
     display: inline-block;
     position: relative;
     height: 7rem;
@@ -16,13 +16,13 @@
     margin: 0 auto;
 }
 
-.section .home-search .input-group {
+.home-search .input-group {
     min-width: 20rem;
     width: 90%;
     width: calc(100% - 6rem);
 }
 
-.section .home-search .advs-link-wrapper {
+.home-search .advs-link-wrapper {
     display: inline-block;
     position: absolute;
     top: 0;

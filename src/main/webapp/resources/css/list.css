@@ -4,14 +4,11 @@
     /*display: none;*/
     margin: 0 auto;
     /*padding-top: 15rem;*/
-    height: 100%;
-    /*overflow: auto;*/
+    /*height: 100%;*/
+    overflow: auto;
     text-align: left;
     padding-bottom: 3rem;
-    /*background-color: red;*/
-}
-.list-wrapper{
-    margin-bottom: .5rem;
+    background-color: red;
 }
 .result-container h3 {
     text-align: left;

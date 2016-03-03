@@ -87,7 +87,7 @@ body {
     color: #333;
     color: rgba(0, 0, 0, 0.5);
     background: lightgray;
-    background: no-repeat top center fixed linear-gradient(#3f4657, #452525)
+    background: no-repeat top center fixed linear-gradient(#3f4657, #452525);
 }
 
 button, input, select, textarea {

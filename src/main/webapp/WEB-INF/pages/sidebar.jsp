@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="sidebar row-fluid">
-    <div class="col-lg-1 col-md-1 pull-left panel-group" id="facet" role="tablist" aria-multiselectable="true">
+<div class="sidebar col-lg-2 col-md-3 col-sm-3 hidden-xs" id="sidebar">
+    <div class="panel-group" id="facet" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="countryTitle">
                 <h4 class="panel-title">
@@ -10,7 +10,7 @@
                     </a>
                 </h4>
             </div>
-            <div id="countryList" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="countryTitle">
+            <div id="countryList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="countryTitle">
                 <div class="panel-body">
                     <ol class="facet-values"></ol>
                 </div>
@@ -95,4 +95,3 @@
         </div>
     </div>
 </div>
-<div class="sidebar-right col-lg-1 col-md-1 pull-right"></div>
