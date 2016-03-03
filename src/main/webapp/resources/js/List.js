@@ -2,11 +2,9 @@
  * Created by lyp on 2016/2/26.
  * Author: lyp
  * Date: 2016/2/26
- * Description:搜索列表页面相关方法
+ * Description:搜索列表模块
  * Version: V1.0 
  */
-/*---------------------------------------------↓List-----------------------------------------------*/
-var listSearchURL = 'api/markpointSearch';
 var PAGE_SIZE = 10, //每一页的条目数
     VISIBLE_PAGES = 7; //页码个数
 
@@ -14,42 +12,60 @@ var List = {
     _WRAPPER_SEL: (function () {
         return '.list-wrapper';
     }()),
+    _RESULT_LIST_SEL: (function () {
+        return '.result-container ul.devices';
+    }()),
     tag: 'list',
     listPageNum: 1,
-    result: $('.result-col'),
     render: function (data) {
-        //console.log("FUNCTION CALL: List.render");
-        //更新查询时间、查询到数据的条数、结果列表、分页
-        var currpage = data['currpage'],
-            total = data['total'],
-            pagesize = data['pagesize'],
-            took = data['took'];
-        //时间
-        $('.duration').text(took);
-        //条数
-        $('.resultCount').text(total);
-        $('#pageTip').html(currpage + ' / ' + (Math.floor(total / pagesize) + 1));
-        //结果列表
-        var list = $('.result-container ul.devices').html('');
-        var devices = data['data'];
-        for (var i = 0; i < devices.length; i++) {
-            list.append(genDeviceLi(devices[i]));
-        }
-        list.append('<div class="clearfix"></div>');
-        //分页
-        paginator(total, pagesize, currpage, VISIBLE_PAGES);
-        //----------------------functions ↓---------------------
-        function genDeviceLi(d) {
-            //console.log("genDeviceLi", d);
+        //console.log("List.render() ======");
+        /*
+         * @param totalCounts：分页的总条目数
+         * @param pageSize：每一页的条目数
+         * @param currentPage：当前页码
+         * @param visiblePages: 最多显示的页码数，默认值7
+         */
+        var paginator = function (totalCounts, pageSize, currentPageNum, visiblePages) {
+            if (!visiblePages) {
+                visiblePages = VISIBLE_PAGES;
+            }
+            if (!pageSize) {
+                pageSize = PAGE_SIZE;
+            }
+            if (!totalCounts) {
+                totalCounts = 0;
+            }
+            var $pagerWrapper = $('#pager').show();
+            $pagerWrapper.jqPaginator({
+                totalCounts: totalCounts,
+                pageSize: pageSize,
+                visiblePages: visiblePages,
+                currentPage: currentPageNum,
+                first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
+                prev: '<li class="prev"><a href="javascript:void(0);"><i class="glyphicon glyphicon-triangle-left"></i>上一页</a></li>',
+                next: '<li class="next"><a href="javascript:void(0);">下一页<i class="glyphicon glyphicon-triangle-right"></i></a></li>',
+                last: '<li class="last"><a href="javascript:void(0);">末页<\/a></li>',
+                page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
+                //设置页码的Html结构,其中可以使用{{page}}代表当前页，{{totalPages}}代表总页数，{{totalCounts}}代表总条目数
+                onPageChange: function (num, type) { //num: 目标页；type:“init”（初始化），“change”（点击分页）
+                    if (type == 'change') {
+                        List.search(num);
+                    }
+                }
+            })
+        };
+        var genDeviceLi = function (d) {
             var li = $(' <li class="device"></li>');
             //ip
-            var ip = $('<h3><a href="http://' + d.ip + '" target="_blank">' + d.ip + '</a></h3>').appendTo(li);
-            //var ip = $('<h3 class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><a href="#' + d.ip + '">' + d.ip + '</a></h3>').appendTo(li);
+            var ip = $('<a href="http://' + d.ip + '" target="_blank">' + d.ip + '</a>').appendTo($('<h3></h3>')).appendTo(li);
+            ip.on('click', function (e) {
+                e.preventDefault();
+                console.log("ip is clicked!");
+            });
             //详细内容
             var row = $('<div class="row"></div>').appendTo(li);
             //all tags
             //tag
-            //var facets = $(' <div class="col-md-offset-1 col-md-2 col-md-offset-1 col-sm-3 left"></div>').appendTo(row);
             var facets = $(' <div class="col-md-3 col-sm-4 left"></div>').appendTo(row);
             if (d.hasOwnProperty('tags') && d.tags != '' && d.tags.length > 0) {
                 var $tags = $('<div class="tag"></div>').appendTo(facets);
@@ -71,28 +87,20 @@ var List = {
              $('<span class="label label-primary"><a href="#' + time + '">' +
              '<span class="glyphicon glyphicon-time"></span> ' + time + ' </a></span>').appendTo($time);
              }*/
-            facets.find('a').on('click', function (e) {
-                e.preventDefault();
-            });
-
-            //ports and vuls
+            //ports
             var info = $('<div class="col-md-8 col-sm-7 right"></div>').appendTo(row);
-            var ports = d.ports;
-            var noData = true;
-            if (ports != '' && ports.length > 0) {
-                noData = false;
+            var ports = d['ports'], vuls = d['vuls'];
+            if (ports.length > 0 || vuls.length > 0) {
                 for (var i = 0; i < ports.length; i++) {
                     if (ports[i] == '' || ports[i] == null)continue;
                     for (var key in ports[i]) {
-
-                        var url = key.split(': ')[0] + '://' + d.ip + ':' + key.split(': ')[1];
+                        var url = key.split(':')[0] + '://' + d.ip + ':' + key.split(':')[1];
                         var $port = $('<article><h3><a href="' + url + '" target="_blank"">' + key + '</a></article>').appendTo(info);
                         var banner = ports[i][key];
-                        if (banner || banner == '') {
+                        if (banner != 'null') {
                             banner = banner.replace(/</g, "&lt;");
                         }
                         var $pre = $('<pre>' + banner + '</pre>').appendTo($port);
-
                         $pre.on('click', function () {
                             if (!info.hasClass('active')) {
                                 $(this).closest('div.right').addClass('active');
@@ -100,23 +108,16 @@ var List = {
                         });
                     }
                 }
-            }
-            var vuls = d.vuls;
-            if (vuls != '' && vuls.length > 1) {
-                noData = false;
-                for (var i = 0; i < ports.length; i++) {
+                //vuls
+                for (var i = 0; i < vuls.length; i++) {
                     if (!vuls[i] || vuls[i] == '')continue;
                     $('<hr>').appendTo(info);
                     for (var key in vuls[i]) {
-                        /* var vul_url = key.split(': ')[0] + '://' + d.ip + ':' + key.split(': ')[1];
-                         var $port = $('<article><h3><a href="' + vul_url + '" target="_blank"">' + key + '</a></article>').appendTo(info);
-                         */
                         var $vul = $('<article><h3><a href="#">' + key + '</a></article>').appendTo(info);
                         $('<pre>' + JSON.stringify(vuls[i][key]['desc']) + '</pre>').appendTo($vul);
                     }
                 }
-            }
-            if (noData) {
+            } else {
                 info.html("null");
             }
             var closeBtn = $('<button class="up"><span class="glyphicon glyphicon-menu-down"></span></button>').appendTo(info);
@@ -124,71 +125,60 @@ var List = {
                 $(this).closest('div.right').toggleClass('active');
             });
             return li;
-        }
+        };
+        var currpage = data['currpage'],
+            total = data['total'],
+            pagesize = data['pagesize'],
+            took = data['took'],
+            devices = data['data'];
 
-        /*
-         * @param totalCounts：分页的总条目数
-         * @param pageSize：每一页的条目数
-         * @param currentPage：当前页码
-         * @param visiblePages: 最多显示的页码数，默认值7
-         */
-        function paginator(totalCounts, pageSize, currentPageNum, visiblePages) {
-            if (visiblePages == undefined) {
-                visiblePages = VISIBLE_PAGES;
-            }
-            if (pageSize == undefined) {
-                pageSize = PAGE_SIZE;
-            }
-            if (!totalCounts || totalCounts == undefined) {
-                totalCounts = 0;
-            }
-            var $pagerWrapper = $('#pager').show();
-            $pagerWrapper.jqPaginator({
-                totalCounts: totalCounts,
-                pageSize: pageSize,
-                visiblePages: visiblePages,
-                currentPage: currentPageNum,
-                first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
-                prev: '<li class="prev"><a href="javascript:void(0);"><i class="glyphicon glyphicon-triangle-left"></i>上一页</a></li>',
-                next: '<li class="next"><a href="javascript:void(0);">下一页<i class="glyphicon glyphicon-triangle-right"></i></a></li>',
-                last: '<li class="last"><a href="javascript:void(0);">末页<\/a></li>',
-                page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
-                //设置页码的Html结构,其中可以使用{{page}}代表当前页，{{totalPages}}代表总页数，{{totalCounts}}代表总条目数
-                onPageChange: function (num, type) { //num: 目标页；type:“init”（初始化），“change”（点击分页）
-                    if (type == 'change') {
-                        //console.log('{{page}}');
-                        //console.log(num + ", " + type);
-                        //searchViaAjax(URL, $('#wd').val(), num);
-                        List.listPageNum = num;
-                        List.search(num);
-                    }
-                }
-            })
+        var $resultList = $(this._RESULT_LIST_SEL).html('');
+
+        //(1)更新查询时间、查询到数据的条数、结果列表、分页
+        ResultOverview.set(total, took, currpage, (Math.floor(total / pagesize) + 1));
+        //(2)添加结果列表
+        for (var i = 0; i < devices.length; i++) {
+            $resultList.append(genDeviceLi(devices[i]));
         }
+        //(3)初始化分页插件
+        paginator(total, pagesize, currpage, VISIBLE_PAGES);
     },
-    search: function (pageNumber) {
-     //updateSidebar为boolean，true则更新侧边栏，否则不更新
-        //console.log("FUNCTION CALL: List.search");
-        /*var wd = MySessionStorage.get('wd');
-         wd = wd ? wd : $('.global-search-input').val();*/
-        var wd = $('.global-search-input').val();
-        wd = wd ? wd : MySessionStorage.get('wd');
-        var checkedStr = MySessionStorage.getCheckedAsStr();
+    search: function (pageNum) {
+        //console.log("List.search() ======");
+        var wd = $(GlobalSearch._INPUT_SEL).val();
         if (wd && wd != '') {
-            var obj = {
-                "url": listSearchURL,
-                "criteria": {
-                    //"wd": wd + checkedStr,
-                    "wd": wd + ' ' + Pivot.getUserSelected(),
-                    "page": pageNumber ? pageNumber : this.listPageNum
+            var successCallback = function (data) {
+                var statuscode = data['statuscode'];
+                //（1）将data添加到sessionStorage.data
+                Session.set('data', data);
+                if (statuscode == 200) {
+                    console.log('List search succeed. statuscode == 200', data);
+                    //(2.a)调用Sidebar的render方法，生成sidebar
+                    Sidebar.render(data);
+                    //(2.b)调用List的render方法，生成搜索结果页面
+                    List.render(data);
+                    //(3)隐藏no-data div
+                    $('.no-data').hide();
+                } else if (statuscode == 204) {
+                    noDataHandler();
+                } else {
+                    errorHandler();
                 }
             };
-            MySessionStorage.clearChecked();
-            newSearch(obj);
+            var requestObj = {
+                'url': Constant.LIST_SEARCH_URL,
+                'success': successCallback,
+                'error': errorHandler,
+                'data': {
+                    'wd': wd + ' ' + Pivot.getUserSelected(),
+                    'page': pageNum ? pageNum : 1
+                }
+            };
+            LoadData.post(requestObj);
         }
     },
     showNoData: function () {
-        //console.log("FUNCTION CALL: List.showNoData");
+        //console.log("List.showNoData()");
         $('.empty-result-desc-container').show();
         this.wrapper.hide();
     },

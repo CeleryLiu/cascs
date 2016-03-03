@@ -39,7 +39,7 @@
         <fieldset>
             <div class="search-scope"></div>
             <div class="search-box-container">
-                <input class="global-search-input typeahead" type="text" placeholder="Search Here"
+                <input class="global-search-input typeahead" type="text" placeholder="Search ..."
                        id="global_search_input">
             </div>
             <button type="submit" class="global-search-button btn btn-primary" role="button">

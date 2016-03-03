@@ -8,6 +8,9 @@ var errorHandler = function () {
 
 var noDataHandler = function () {
     console.log("noDataHandler: ajax succeed but no data");
+    if ($('#listSe').hasClass('active')) {
+        $('.no-data').show();
+    }
 };
 
 function noData(data) {

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .sidebar {
-    /*display: none;*/
+    display: none;
     /*z-index: 99;*/
     position: fixed;
     top: 8rem;
@@ -160,7 +160,7 @@
 /* Style for pivots texts
  * --------------------------------------- */
 .pivots-wrapper {
-    /*display: none;*/
+    display: none;
     /*z-index: 99;*/
     position: fixed;
     top: 8rem;
@@ -175,7 +175,7 @@
     display: inline-block;
     margin: 2px;
     color: #000;
-    background: #fff;
+    background: lightgray;
     background: rgba(255, 255, 255, 0.5);
     -webkit-border-radius: 10px;
     border-radius: 6px;
@@ -204,7 +204,7 @@
 }
 
 .pivots li:hover {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .pivots li a,
@@ -220,14 +220,14 @@
 /* Style for result-overview texts
  * --------------------------------------- */
 .result-overview {
-    /*display: none;*/
+    display: none;
     /*z-index: 99;*/
     position: fixed;
-    top: 10rem;
+    top: 11rem;
     left: 0;
     height: 1.6rem;
     line-height: 1.6rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 /* Style for inner Scroll bar. For the "inset" look only

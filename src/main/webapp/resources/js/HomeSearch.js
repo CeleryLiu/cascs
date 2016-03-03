@@ -10,7 +10,7 @@ var HomeSearch = {
         $(this._INPUT_SEL).val(val);
     },
     listen: function () {
-        console.log('HomeSearch.listen()');
+        console.log('HomeSearch.listen() ======');
         var $form = $(this._FORM_SEL);
         $form.on('submit', function (e) {
             e.preventDefault();
@@ -22,7 +22,7 @@ var HomeSearch = {
                 if (statuscode == 200) {
                     console.log('Home search succeed. statuscode == 200', data);
                     //(2.a)调用Sidebar的render方法，生成sidebar
-                    Sidebar.render(data['aggregation']);
+                    Sidebar.render(data);
                     //(2.b)调用List的render方法，生成搜索结果页面
                     List.render(data);
                     //(3)将用户的搜索条件填充到全局搜索框
@@ -36,15 +36,18 @@ var HomeSearch = {
                 }
             };
             var requestObj = {
-                url: Constant.LIST_SEARCH_URL,
-                success: successCallback,
-                error: errorHandler,
-                data: {
-                    wd: userInputTxt,
-                    page: 1
+                'url': Constant.LIST_SEARCH_URL,
+                'success': successCallback,
+                'error': errorHandler,
+                'data': {
+                    'wd': userInputTxt,
+                    'page': 1
                 }
             };
             if (userInputTxt == '')return;    //如果输入为空白，则留在当前页，不提交表单
+            //(1)清空Pivot
+            Pivot.init();
+            //(2)搜索
             LoadData.post(requestObj);         //提交表单，搜索
         });
     }

@@ -273,11 +273,11 @@ public class Device2DAO {
     }
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Device2DAO dd = new Device2DAO();
         Map<String, Object> criteria = new HashMap<String, Object>();
         criteria.put("wd", "abc");
         criteria.put("page", 1);
         dd.getDeviceData(Constant.SE_LIST_SEARCH_URL, criteria);
-    }
+    }*/
 }

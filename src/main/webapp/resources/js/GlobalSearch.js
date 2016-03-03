@@ -9,40 +9,43 @@ var GlobalSearch = {
         return '.global-search-form';
     }()),
     _INPUT_SEL: (function () {
-        return '.global-search-input';
+        return '#global_search_input';
     }()),
     setValue: function (val) {
         console.log('GlobalSearch.setValue(), val:' + val);
         $(this._INPUT_SEL).val(val);
     },
+    getValue: function () {
+        return $(this._INPUT_SEL).val().replace(/\s{2,}/g, ' ').trim();
+    },
     show: function () {
-        //console.log('Inside GlobalSearchForm.show() ======');
+        //console.log('GlobalSearchForm.show() ======');
         $(this._WRAPPER_SEL).show(Constant.HIDE_SHOW_SPEED);
     },
     hide: function () {
-        //console.log('Inside GlobalSearchForm.hide() ======');
+        //console.log('GlobalSearchForm.hide() ======');
         $(this._WRAPPER_SEL).hide(Constant.HIDE_SHOW_SPEED);
     },
     isHidden: function () {
-        //console.log('Inside GlobalSearchForm.isHidden() ======');
+        //console.log('GlobalSearchForm.isHidden() ======');
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     listen: function () {
-        console.log('Inside GlobalSearchForm.listenerStart() ======');
-        $('.global-search-form').on('submit', function (e) {
+        console.log('GlobalSearchForm.listenerStart() ======');
+        $(GlobalSearch._FORM_SEL).on('submit', function (e) {
             e.preventDefault();
-            console.log("search in global form");
-            var criteria = $('.global-search-input').val().replace(/\s{2,}/g, ' ').trim();
+            var criteria = GlobalSearch.getValue();
             if (criteria == '')return;
-            MySessionStorage.set('wd', criteria);
-            HomeSearch.setValue(criteria);
-            var currentPage = MySessionStorage.get('currentPage') ? MySessionStorage.get('currentPage') : $('section.active').attr('tag');
+            //(1)清空Pivot
             Pivot.init();
-            if (currentPage == 'list') {
+            //(2)搜索
+            if ($('#listSe').hasClass('active')) {
                 List.search(1);
-            } else if (currentPage == 'map') {
+            } else if ($('#mapSe').hasClass('active')) {
                 MyMap.search(1);
             }
+            //(3)设置首页搜索框的值
+            //HomeSearch.setValue(criteria);
         });
     }
 };

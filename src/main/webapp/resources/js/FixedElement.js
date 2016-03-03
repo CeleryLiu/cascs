@@ -36,7 +36,7 @@ var Sidebar = {
             //cities
             var citiesContainer = $('<div class="collapse" data-country="' + countryName + '"></div>'),
                 ciList = $('<ol class="inner-facet-values"></ol>');
-            ciList.append(genSidebarLi('country', countryName, total));
+            ciList.append(genSidebarLi('country', countryName, countryObj['count']));
             $.each(countryObj['cities'], function (cityName, count) {
                 ciList.append(genSidebarLi('city', cityName, count));
             });
@@ -288,10 +288,10 @@ var ResultOverview = {
         //console.log('ResultOverview.isHidden() ======');
         return $(this._WRAPPER_SEL).is(':hidden');
     },
-    set: function (count, duration, pageNum) {
+    set: function (count, duration, currpage, totalPage) {
         var overview = $(this._WRAPPER_SEL);
         overview.find('strong.count').text(count);
         overview.find('strong.duration').text(duration);
-        overview.find('strong.pag-num').text(pageNum);
+        overview.find('strong.pag-num').text(currpage + ' / ' + totalPage);
     }
 };

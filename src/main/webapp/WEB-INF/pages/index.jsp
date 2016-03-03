@@ -127,8 +127,8 @@
     </div>
     <div class="section" data-anchor="se2" id="listSe">
         <div style="height: 6rem;"></div>
-        <div class="list-wrapper" id="list-wrapper">
-            <div class="result-col for-sidebar-margin">
+        <div class="list-wrapper col-lg-offset-2 col-md-offset-3 col-sm-offset-3" id="list-wrapper">
+            <div class="result-col">
                 <div class="result-container">
                     <ul class="result devices"></ul>
                 </div>
@@ -136,6 +136,7 @@
                     <ul id="pager" class="pagination"></ul>
                 </div>
             </div>
+            <div class="no-data">没有搜索到相关设备，您可以尝试使用其他关键字搜索！</div>
         </div>
     </div>
     <div class="section" data-anchor="se3" id="mapSe">

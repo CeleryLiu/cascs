@@ -86,9 +86,9 @@ $(function () {
             //(init-1)add slides nav tips
             //addTooltip4Slides(Constant.SLIDE_NAV_TOOLTIPS);
             //(init-2)custom initialize
-            //InputSuggest.init();
-            //HomeSearch.listen();
-            //GlobalSearch.listen();
+            InputSuggest.init();
+            HomeSearch.listen();
+            GlobalSearch.listen();
             //User.listenerStarts();
             //Map.init();
             //mainInit();
@@ -102,8 +102,6 @@ $(function () {
         },
         onLeave: function (index, nextIndex, direction) {
             //console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
-            //BE CAREFUL! 这里的index和nextIndex的值要严格和HTML中DOM中的section一一对应，index为section的序号，从1开始
-            //toggleFixedElement(nextIndex);//↓如果下一个section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
             switch (index) {
                 case 5:
                     //MarkLine.destroy();
@@ -118,6 +116,8 @@ $(function () {
             //↓如果当前section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
             //toggleFixedElement(index);
             //var data = MySessionStorage.get('data');
+            toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
+
             switch (index) {
                 case 1:
                     break;

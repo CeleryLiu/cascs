@@ -10,11 +10,13 @@
     padding-bottom: 3rem;
     background-color: red;
 }
+
 .result-container h3 {
     text-align: left;
 }
-.list-wrapper .result-col{
-/*overflow-y: auto;*/
+
+.list-wrapper .result-col {
+    /*overflow-y: auto;*/
 }
 
 /*------li.device begins here------*/
@@ -118,6 +120,12 @@
 
 .list-wrapper .right.active article pre {
     cursor: auto;
+}
+
+.list-wrapper .no-data {
+    display: none;
+    margin: 3rem auto;
+    font-size: 2rem;
 }
 
 #pager {
