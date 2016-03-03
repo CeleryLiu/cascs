@@ -3,7 +3,6 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 $(function () {
-    history.pushState(undefined, 'home', '');//==================================state
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
         var slideNavList = $('.fp-slidesNav a');
@@ -77,6 +76,7 @@ $(function () {
         //responsiveHeight:900,
 
         //↓Scrolling
+        autoScrolling: true,
         normalScrollElements: '#mapHolder,#list-wrapper,#sidebar', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
@@ -91,7 +91,7 @@ $(function () {
             HomeSearch.listen();
             GlobalSearch.listen();
             //User.listenerStarts();
-            //Map.init();
+            ArcMap.init();
             //mainInit();
             //initMap();
 
@@ -108,7 +108,7 @@ $(function () {
                     //MarkLine.destroy();
                     break;
                 case 3:
-                    //ArcMap.leave();
+                    ArcMap.onLeave();
                     break;
             }
         },
@@ -127,9 +127,8 @@ $(function () {
                     //$(Sidebar._WRAPPER_SEL).addClass('list');
                     break;
                 case 3:
-                    //ArcMap.load();
+                    ArcMap.onLoad();
                     //MyMap.show(data);
-                    //$(Sidebar._WRAPPER_SEL).addClass('map');
                     break;
                 case 4:
                     //MarkPoint.init();

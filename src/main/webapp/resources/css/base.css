@@ -331,7 +331,8 @@ b {
     position: absolute;
     top: 4.8rem;
     left: 0;
-    width: 100%;
+    width: 70%;
+    width: calc(100% - 28rem);
     height: 3.2rem;
     padding-left: .5rem;
     text-align: left;
@@ -343,7 +344,7 @@ b {
 .global-search-form {
     display: inline-block;
     /*padding: .1rem;*/
-    width: 66%;
+    width: 100%;
     color: hsla(236, 10%, 27%, 1);
     box-sizing: content-box;
 }

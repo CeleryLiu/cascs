@@ -110,12 +110,12 @@
     border-radius: 10px 0 0 0;
 }
 
-#tool-wrapper {
+#tool_wrapper {
     position: absolute;
-    top: 8rem;
+    top: 5rem;
     right: 5rem;
     z-index: 9999;
-
+    max-width: 24rem;
     /*color: #333;*/
     /*background-color: rgba(102, 102, 102, 0.98);;*/
     background-color: rgba(224, 224, 224, .8);
@@ -133,11 +133,12 @@
 #featureInfo {
     /*display: none;*/
     position: absolute;
-    top: 8rem;
-    left: 21rem;
+    bottom: 3rem;
+    right: .5rem;
     z-index: 50;
     width: 14.5rem;
-    padding: 1rem;
+    padding: .5rem;
+    margin: .5rem;
     font-size: 1.5rem;
     /*color: #333;*/
     background-color: rgba(222, 222, 222, 0.8);

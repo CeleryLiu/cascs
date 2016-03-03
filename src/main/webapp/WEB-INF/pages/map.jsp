@@ -12,12 +12,11 @@
 --%>
 <div class="map-wrapper">
     <div class="mapHolder" id="mapHolder"></div>
-    <div id="legend-wrapper">
+    <div id="legend_wrapper">
         <div id="legend"></div>
     </div>
-
     <%--<div id="homeButton"></div>--%>
-    <div class="btn-group" role="group" id="tool-wrapper">
+    <div class="btn-group" role="group" id="tool_wrapper">
         <button type="button" class="btn btn-default open" id="sidebarCtrl">
             <span class="glyphicon glyphicon-triangle-left"></span>
             隐藏侧栏
@@ -49,7 +48,8 @@
     </div>
     <div id="featureInfo">
         地理位置：<strong class="f-country"></strong><br>
-        目标数量：<strong class="f-count"></strong></div>
+        目标数量：<strong class="f-count"></strong>
+    </div>
     <div id="mapSidebar" class="">
         <div class="content">
             <ul class="map-device-list"></ul>

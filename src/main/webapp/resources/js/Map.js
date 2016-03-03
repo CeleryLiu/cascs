@@ -36,6 +36,7 @@ var ArcMap = {
                 "dojo/domReady!"
             ],
             function (Map, ArcGISTiledMapServiceLayer, GraphicsLayer, InfoTemplate, FeatureLayer, SimpleLineSymbol, SimpleFillSymbol, Color, HomeButton) {
+                var map, featureLayer, labelLayer, cityLayer;
                 //（1）Create map and add layer
                 map = new Map("mapHolder", {
                     //basemap: 'gray',
@@ -56,18 +57,18 @@ var ArcMap = {
                     SimpleFillSymbol.STYLE_SOLID,
                     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([230, 255, 0]), 2), new Color([121, 37, 135, 0.7]));
                 featureLayer = new GraphicsLayer(featureLayerInfoTemplate);
-                on('click', function (evt) {
+                featureLayer.on('click', function (evt) {
                     var attr = evt.graphic.attributes;
                     var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
                     $('.f-country').text(name);
                     $('.f-count').text(attr.count);
                 });
                 //FOR OUTLINE
-                on('mouse-over', function (evt) {
+                featureLayer.on('mouse-over', function (evt) {
                     //console.log('on mouse over', evt.graphic);
                     evt.graphic.setSymbol(flOutline);
                 });
-                on('mouse-out', function (evt) {
+                featureLayer.on('mouse-out', function (evt) {
                     //console.log('on mouse out');
                     evt.graphic.setSymbol(null);
                 });
@@ -152,12 +153,16 @@ var ArcMap = {
                                 $this.removeClass('open').find('span').removeClass('glyphicon-eye-open');
                             }
                         });
+                    ArcMap._globalVariables.map = map;
+                    ArcMap._globalVariables.featureLayer = featureLayer;
+                    ArcMap._globalVariables.labelLayer = labelLayer;
+                    ArcMap._globalVariables.cityLayer = cityLayer;
                 });
                 map.on('zoom-end', function (e) {
                     //console.log("zoom level: " + map.getZoom());
                     //research on zoom------------需要添加这样一个按钮（如果用户点击了则执行MyMap.search，否则缩放不重新搜索）
                     if ($('#city').hasClass('open')) {
-                        MyFeatureLayer.updateCityLayer(featuresDisplayed);
+                        MyFeatureLayer.updateCityLayer(this._globalVariables.featuresDisplayed);
                     }
                 });
 
@@ -168,11 +173,12 @@ var ArcMap = {
             });
     },
     onLoad: function () {
-        $('.sidebar').addClass('map');
+        $(Sidebar._WRAPPER_SEL).addClass('map');
         $('.pivots li').addClass('map');
+        //ResultOverview.hide();
     },
     onLeave: function () {
-        $('.sidebar').removeClass('map');
+        $(Sidebar._WRAPPER_SEL).removeClass('map');
         $('.pivots li').removeClass('map');
     },
     render: function () {
