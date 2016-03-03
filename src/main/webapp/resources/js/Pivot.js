@@ -5,110 +5,95 @@ var Pivot = {
     _WRAPPER_SEL: (function () {
         return '.pivots-wrapper'
     }()),
-    wrapper: $('#pivots_wrapper'),
-    $pivots: $('.pivots'),
+    _PIVOTS_UL_SEL: (function () {
+        return '.pivots';
+    }()),
     show: function () {
-        //console.log('Inside Pivot.show() =======');
+        //console.log('Pivot.show() =======');
         $(this._WRAPPER_SEL).show(Constant.HIDE_SHOW_SPEED);
     },
     hide: function () {
-        console.log('Inside Pivot.hide() =======');
+        console.log('Pivot.hide() =======');
         $(this._WRAPPER_SEL).hide();
     },
     isHidden: function () {
-        //console.log('Inside Pivot.isHidden() ======');
+        //console.log('Pivot.isHidden() ======');
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     init: function () {
-        this.wrapper.hide();
-        this.$pivots.html('');
-        sessionStorage.removeItem('pivots');
-        console.log('Inside Pivot.init() ======');
+        console.log('Pivot.init() ======');
+        $(this._PIVOTS_UL_SEL).html('');
     },
-    add: function (id, dataAttr) {//id,not the jquery object；dataAttr为城市特加的属性，表示该城市所属的国家，可选
-        console.log('Inside Pivot.add() ======');
-        id = id.split('/')[0];
-        if (id.indexOf(CountryId_SEPARATOR) !== -1) {
-            id = id.replace(CountryId_SEPARATOR, '');
-        }
-        /*if (this.$pivots.find('li').length < 1) {
-            this.hide();
-        }*/
-        if (!this.$pivots.find('#' + id))return;
-        this.$pivots.append(genPivot(id, dataAttr));
-        MySessionStorage.set('pivots', id.replace(new RegExp('\\s+', 'mg'), SPACE_SEPARATOR), 'add');
-        if (this.$pivots.find('li').length >= 1) {
-            this.show();
+    //dKey->data-key; dValue->data-value; value->text; extra.country->data-country
+    add: function (dKey, dValue, value, extra) {
+        console.log('Pivot.add() ======');
+        var pivots = $(this._PIVOTS_UL_SEL),
+            $p = pivots.find('li[data-value="' + dValue + '"]');
+        if ($p
+            && $p.attr('data-key') == dKey
+            && (!extra || $p.attr('data-country') == extra['country'])) {
+            return;
         }
 
-        //生成一个pivot，key为搜索关键字（也是aggregation中的每一项），value为用户选择的checkbox的值
-        function genPivot(id, _dataAttr) {
-            var $pivot = $('<li class="pivot"></li>').attr({
-                'id': id.replace(new RegExp('\\s+', 'mg'), SPACE_SEPARATOR),
-                'data-country': _dataAttr
-            });
-            var htmlText = id.split(PivotId_SEPARATOR)[1].replace(new RegExp(SPACE_SEPARATOR, 'mg'), ' ');
-            if (_dataAttr) {
-                $pivot.html(_dataAttr + ': ' + htmlText);
-            } else {
-                $pivot.html(htmlText);
+        //生成一个pivot，dk->data-key；dv->data-value，v->text,e['country']->data-country
+        var genPivot = function (dk, dv, v, e) {
+            //generate dom nodes
+            var $pivot = $('<li class="pivot"></li>')
+                .attr({'data-key': dk, 'data-value': dv})
+                .html(v);
+            if (e && e['country']) {
+                $pivot.attr('data-country', e['country']);
             }
-
-            var closeBtn = $('<button class="remove-pivot" type="submit">&times;</button>').appendTo($pivot);
+            var closeBtn = $('<button class="remove-pivot" type="submit">&times;</button>')
+                .appendTo($pivot);
 
             //listener
             closeBtn.on('click', function () {
-                var pid = $(this).closest('li.pivot').attr('id');
-                var k_v = pid.split(PivotId_SEPARATOR);
-                var k = k_v[0], v = k_v[1];
-
                 //（1）移除对应pivot
-                Pivot.remove($(this).parent('li.pivot'));
+                $(this).parent('li.pivot').remove();
 
-                //（2）取消选中复选框
-                var checkboxId = pid.replace(PivotId_SEPARATOR, CheckboxId_SEPARATOR);
-                if (checkboxId.indexOf('country' + CheckboxId_SEPARATOR) !== -1) {
-                    if (checkboxId.indexOf(CountryId_SEPARATOR) < 0) {
-                        checkboxId += CountryId_SEPARATOR;
-                        $('#' + checkboxId).siblings('li').find('input').each(function (index, item) {
-                            $(item).prop('checked', false);
-                        });
-                    }
-                } else {
-                    var checkbox = $('#' + checkboxId);
-                    checkbox.prop('checked', false);
-                }
-
-                //（3）从sessionStorage中移除对应checkbox id
-                MySessionStorage.set('checked', checkboxId, 'remove');
-
-                //（4）重新搜索
-                Sidebar.searchOnCheckboxChange();
+                //（2）重新搜索
+                Sidebar.searchOnChange();
             });
             return $pivot;
+        };
+        pivots.append(genPivot(dKey, dValue, value, extra));
+        if (pivots.find('li').length > 0) {
+            this.show();
         }
+
     },
-    remove: function (pivot) {//jquery object
-        console.log('Inside Pivot.add() ======', pivot);
+    /**
+     * param pivot为要移除的pivot对应的jquery对象
+     *       data:{dKey->data-key，dValue->data-value,value->text,country->data-country}
+     * 两个参数只传一个即可
+     */
+    remove: function (pivot, data) {
+        console.log('Pivot.add() ======');
         if (pivot) {
             pivot.remove();
-            if (pivot.attr('id')) {
-                MySessionStorage.set('pivots', pivot.attr('id'), 'remove');
+        } else {
+            var $p = $(this._PIVOTS_UL_SEL).find('li[data-value="' + data['dValue'] + '"]');
+            if ($p.attr('data-key') == data['dKey'] && (!data['country'] || data['country'] == $p.attr('data-country'))) {
+                $p.remove();
             }
         }
-        if (this.$pivots.find('li').length <= 0) {
-            this.wrapper.hide();
+        if ($(this._PIVOTS_UL_SEL).find('li').length <= 0) {
+            this.hide();
         }
     },
-    getAllPivotsAsStr: function () {
+    getUserSelected: function () {
+        //console.log("Pivot.getUserSelected() ======");
         var result = '';
-        //console.log("FUNCTION CALL: Pivot.getAllPivotsAsStr");
-        this.$pivots.find('li').each(function (idx, item) {
-            if ($(item).attr('data-country')) {
-                result += 'country:' + $(this).attr('data-country') + ' ';
+        $(this._PIVOTS_UL_SEL).find('li').each(function (idx, item) {
+            var $item = $(item);
+            if ($item.attr('data-country')) {
+                result += 'country:' + $item.attr('data-country') + ' ';
             }
-            result += item.id.replace(PivotId_SEPARATOR, ':') + ' ';
+            result += $item.attr('data-key') + ':' + $item.attr('data-value') + ' ';
         });
-        return result.replace(new RegExp(SPACE_SEPARATOR, 'g'), ' ');
+        return result.trim();
     }
 };
+
+var ResultOverview = {};

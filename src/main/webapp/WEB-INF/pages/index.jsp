@@ -36,8 +36,8 @@
     <link rel="stylesheet" href="${baseCss}">
     <spring:url value="resources/css/home-sec.css" var="homeCss"/>
     <link rel="stylesheet" href="${homeCss}">
-    <spring:url value="resources/css/sidebar.css" var="sidebarCss"/>
-    <link rel="stylesheet" href="${sidebarCss}">
+    <spring:url value="resources/css/fixed-element.css" var="fixedCss"/>
+    <link rel="stylesheet" href="${fixedCss}">
     <spring:url value="resources/css/markpoint-line.css" var="mplCss"/>
     <link rel="stylesheet" href="${mplCss}">
     <spring:url value="resources/css/map.css" var="mapCss"/>
@@ -98,10 +98,10 @@
     <script src="${hsJs}"></script>
     <spring:url value="resources/js/GlobalSearch.js" var="gsJs"/>
     <script src="${gsJs}"></script>
-    <spring:url value="resources/js/Sidebar.js" var="sidebarJs"/>
-    <script src="${sidebarJs}"></script>
-    <spring:url value="resources/js/Pivot.js" var="pivotJs"/>
-    <script src="${pivotJs}"></script>
+    <spring:url value="resources/js/FixedElement.js" var="feJs"/>
+    <script src="${feJs}"></script>
+    <%--<spring:url value="resources/js/Pivot.js" var="pivotJs"/>
+    <script src="${pivotJs}"></script>--%>
     <spring:url value="resources/js/User.js" var="userJs"/>
     <script src="${userJs}"></script>
     <spring:url value="resources/js/main.js" var="mainJs"/>
@@ -126,12 +126,15 @@
 <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
-<div id="pivots_wrapper" class="pivots-wrapper for-sidebar-padding">
+<div class="pivots-wrapper for-sidebar-padding">
     <ul class="pivots">
-        <%--<li><a href="#">pivot1</a></li>
-        <li><a href="#">pivot2</a></li>
-        <li><a href="#">pivot3</a></li>--%>
+        <li><a href="#">pivot3</a></li>
     </ul>
+</div>
+<div class="result-overview">
+    <p>搜索到约 <strong class="badge count">0</strong> 条结果，
+        共用时 <strong class="badge duration">0</strong> ms。
+        当前为第<strong class="badge page-num">0</strong>页</p>
 </div>
 
 <div id="fullpage" class="fullpage">
@@ -141,11 +144,6 @@
     <div class="section" data-anchor="se2" id="listSe">
         <div style="height: 6rem;"></div>
         <div class="list-wrapper">
-            <div class="result-count-duration for-sidebar-padding">
-                <p>搜索到约 <strong class="badge resultCount">0</strong> 条结果，
-                    共用时 <strong class="badge duration">0</strong> ms。
-                    当前为第<strong class="badge" id="pageTip">0</strong>页</p>
-            </div>
             <div class="result-col for-sidebar-margin">
                 <div class="result-container">
                     <ul class="result devices"></ul>

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="sidebar">
-    <div class="panel-group" id="facet" role="tablist" aria-multiselectable="true">
+<div class="sidebar row-fluid">
+    <div class="col-lg-1 col-md-1 pull-left panel-group" id="facet" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="countryTitle">
                 <h4 class="panel-title">
@@ -95,3 +95,4 @@
         </div>
     </div>
 </div>
+<div class="sidebar-right col-lg-1 col-md-1 pull-right"></div>

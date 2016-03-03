@@ -14,7 +14,7 @@ $(function () {
         });
         slideNavList.tooltip();
     };
-    var hideNodes4NoSearchSec = function (sectionIdx) {
+    var toggleFixedElement = function (sectionIdx) {
         var hideIdxList = Constant.NO_SEARCH_SECTION_IDX;
         if ($.inArray(sectionIdx, hideIdxList) > -1) {
             if (!GlobalSearch.isHidden()) {
@@ -26,6 +26,9 @@ $(function () {
             if (!Pivot.isHidden()) {
                 Pivot.hide();
             }
+            if (!ResultOverview.isHidden()) {
+                ResultOverview.hide();
+            }
         } else {
             if (GlobalSearch.isHidden()) {
                 GlobalSearch.show();
@@ -35,6 +38,9 @@ $(function () {
             }
             if (Pivot.isHidden()) {
                 Pivot.show();
+            }
+            if (ResultOverview.isHidden()) {
+                ResultOverview.show();
             }
         }
     };
@@ -99,7 +105,7 @@ $(function () {
         onLeave: function (index, nextIndex, direction) {
             //console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             //BE CAREFUL! 这里的index和nextIndex的值要严格和HTML中DOM中的section一一对应，index为section的序号，从1开始
-            hideNodes4NoSearchSec(nextIndex);//↓如果下一个section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
+            toggleFixedElement(nextIndex);//↓如果下一个section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
             switch (index) {
                 case 5:
                     //MarkLine.destroy();
@@ -111,17 +117,19 @@ $(function () {
         afterLoad: function (anchorLink, index) {
             //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
             //↓如果当前section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
-            hideNodes4NoSearchSec(index);
+            toggleFixedElement(index);
             var data = MySessionStorage.get('data');
             switch (index) {
                 case 1:
                     break;
                 case 2:
                     //List.show(data);
+                    $(Sidebar._WRAPPER_SEL).addClass('list');
                     break;
                 case 3:
                     //MapOpt.load();
                     //MyMap.show(data);
+                    $(Sidebar._WRAPPER_SEL).addClass('map');
                     break;
                 case 4:
                     //MarkPoint.init();

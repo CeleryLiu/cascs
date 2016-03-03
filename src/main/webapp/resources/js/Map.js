@@ -363,7 +363,7 @@ var MyMap = {
             var criteria = {
                 //"geo": extent,
                 //"wd": wd + checkedStr,
-                "wd": wd + ' ' + Pivot.getAllPivotsAsStr(),
+                "wd": wd + ' ' + Pivot.getUserSelected(),
                 //"zoomlevel": map.getZoom(),
                 "pagesize": MAP_PAGE_SIZE,
                 "page": pageNum ? pageNum : this.mapPageNum

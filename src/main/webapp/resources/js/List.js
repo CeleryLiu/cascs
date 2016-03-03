@@ -11,9 +11,12 @@ var PAGE_SIZE = 10, //每一页的条目数
     VISIBLE_PAGES = 7; //页码个数
 
 var List = {
+    _WRAPPER_SEL: (function () {
+        return '.list-wrapper';
+    }()),
     tag: 'list',
     listPageNum: 1,
-    wrapper: $('.result-col'),
+    result: $('.result-col'),
     show: function (data) {
         //console.log("FUNCTION CALL: List.show");
         MySessionStorage.set('currentPage', this.tag);
@@ -182,7 +185,8 @@ var List = {
             })
         }
     },
-    search: function (pageNumber) {  //updateSidebar为boolean，true则更新侧边栏，否则不更新
+    search: function (pageNumber) {
+     //updateSidebar为boolean，true则更新侧边栏，否则不更新
         //console.log("FUNCTION CALL: List.search");
         /*var wd = MySessionStorage.get('wd');
          wd = wd ? wd : $('.global-search-input').val();*/
@@ -194,7 +198,7 @@ var List = {
                 "url": listSearchURL,
                 "criteria": {
                     //"wd": wd + checkedStr,
-                    "wd": wd + ' ' + Pivot.getAllPivotsAsStr(),
+                    "wd": wd + ' ' + Pivot.getUserSelected(),
                     "page": pageNumber ? pageNumber : this.listPageNum
                 }
             };
