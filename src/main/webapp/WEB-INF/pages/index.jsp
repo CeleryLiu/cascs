@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="${bsCss}">
     <spring:url value="resources/css/typeaheadjs.css" var="taCss"/>
     <link rel="stylesheet" href="${taCss}">
-    <%--<link rel="stylesheet" type="text/css"--%>
-    <%--href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
+    <link rel="stylesheet" type="text/css"
+          href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
     <%--custom css--%>
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
@@ -103,7 +103,7 @@
     <script src="${mainJs}"></script>
 
     <%--arcgis lib and map js--%>
-    <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
+    <script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
 </head>
 <body>

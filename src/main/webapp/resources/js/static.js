@@ -27,6 +27,15 @@ var Constant = {
     LIST_SEARCH_URL: (function () {
         return 'search/list';
     }()),
+    MAP_SEARCH_URL: (function () {
+        return 'search/map';
+    }()),
+    BASEMAP_URL: (function () {
+        return 'http://10.10.2.81:6080/arcgis/rest/services/China_Community_BaseMap/MapServer';
+    }()),
+    CITY_FEATURELAYER_URL: (function () {
+        return 'http://10.10.2.81:6080/arcgis/rest/services/area/MapServer/1';
+    }()),
     USER_REGISTER_URL: (function () {
         return 'user/register';
     }()),

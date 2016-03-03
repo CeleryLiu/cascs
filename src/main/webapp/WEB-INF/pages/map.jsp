@@ -43,6 +43,9 @@
         <button type="button" class="btn btn-default" id="mapSidebarCtrl">显示数据
             <span class="glyphicon glyphicon-triangle-right"></span>
         </button>
+        <button type="button" class="btn btn-default active" id="labelLayerCtrl">隐藏数量
+            <span class="glyphicon glyphicon-eye-open"></span>
+        </button>
     </div>
     <div id="featureInfo">
         地理位置：<strong class="f-country"></strong><br>

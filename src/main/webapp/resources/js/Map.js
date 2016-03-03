@@ -5,17 +5,179 @@
  * Description: map model
  * Version: V1.0
  */
-var MapOpt = {
-    init: function () {
+var ArcMap = {
+    _WRAPPER_SEL: (function () {
+        return '.map-wrapper';
+    }()),
+    _globalVariables: {
+        MAP_PAGE_SIZE: 10,
+        featuresDisplayed: {},
+        map: {},
+        countryFS: {},  //Country Feature Set, 在main中初始化
+        provinceFS: {}, //Province Feature Set, 在main中初始化
+        cityFS: {}, //City Feature Set,
+        cityLayer: {},
+        clusterLayer: {},
+        featureLayer: {},
+        labelLayer: {}
     },
-    load: function () {
+    init: function () {
+        require(
+            [
+                "esri/map",
+                "esri/layers/ArcGISTiledMapServiceLayer",
+                "esri/layers/GraphicsLayer",
+                "esri/InfoTemplate",
+                "esri/layers/FeatureLayer",
+                "esri/symbols/SimpleLineSymbol",
+                "esri/symbols/SimpleFillSymbol",
+                "esri/Color",
+                //"esri/dijit/HomeButton",
+                "dojo/domReady!"
+            ],
+            function (Map, ArcGISTiledMapServiceLayer, GraphicsLayer, InfoTemplate, FeatureLayer, SimpleLineSymbol, SimpleFillSymbol, Color, HomeButton) {
+                //（1）Create map and add layer
+                map = new Map("mapHolder", {
+                    //basemap: 'gray',
+                    center: [114.25, 24.1167],
+                    minZoom: 3,
+                    maxZoom: 8,
+                    zoom: 4,
+                    sliderPosition: "top-right",
+                    logo: false
+                });
+                //（1）添加底图
+                var basemap = new ArcGISTiledMapServiceLayer(Constant.BASEMAP_URL);
+                map.addLayer(basemap);
+
+                //（2）添加用于显示分布图的graphic layer
+                var featureLayerInfoTemplate = new InfoTemplate("${Name_CHN}", "国家：<b>${Name_CHN}<b><br>共发现目标：<b>${count}</b>个");
+                var flOutline = new SimpleFillSymbol(
+                    SimpleFillSymbol.STYLE_SOLID,
+                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([230, 255, 0]), 2), new Color([121, 37, 135, 0.7]));
+                featureLayer = new GraphicsLayer(featureLayerInfoTemplate);
+                on('click', function (evt) {
+                    var attr = evt.graphic.attributes;
+                    var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
+                    $('.f-country').text(name);
+                    $('.f-count').text(attr.count);
+                });
+                //FOR OUTLINE
+                on('mouse-over', function (evt) {
+                    //console.log('on mouse over', evt.graphic);
+                    evt.graphic.setSymbol(flOutline);
+                });
+                on('mouse-out', function (evt) {
+                    //console.log('on mouse out');
+                    evt.graphic.setSymbol(null);
+                });
+                map.addLayer(featureLayer);
+
+                //(3)添加文字层，为featureLayer添加设备数量信息
+                labelLayer = new GraphicsLayer();
+                map.addLayer(labelLayer);
+
+                map.on('load', function () {
+                    console.log("map loaded");
+                    //（3）添加城市featureLayer
+                    cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
+                        outFields: ["*"]
+                    });
+                    cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
+                    //map.addLayer(cityLayer);
+
+                    //（4）listeners
+                    $('#sidebarCtrl').on('click', function (e) {
+                        e.preventDefault();
+                        var $this = $(this);
+                        $this.toggleClass('open');
+                        if ($this.hasClass('open')) {
+                            Sidebar.showOnly();
+                            $this.html('<span class="glyphicon glyphicon-triangle-left"></span>' + '隐藏侧栏');
+                        } else {
+                            Sidebar.hide();
+                            $this.html('<span class="glyphicon glyphicon-triangle-right"></span>' + '显示侧栏');
+                        }
+                    });
+                    $('#mapSidebarCtrl').on('click', function (e) {
+                        e.preventDefault();
+                        var $this = $(this), mapSidebar = $('#mapSidebar');
+                        //mapSidebar.toggleClass('active');
+                        if (MapSidebar.isHidden()) {
+                            MapSidebar.show();
+                            $this.html('隐藏数据' + '<span class="glyphicon glyphicon-triangle-left"></span>');
+                        } else {
+                            MapSidebar.hide();
+                            $this.html('显示数据' + '<span class="glyphicon glyphicon-triangle-right"></span>');
+                        }
+                    });
+                    $('#labelLayerCtrl').on('click', function (e) {
+                        e.preventDefault();
+                        var $this = $(this);
+                        if (!$this.hasClass('active')) {
+                            labelLayer.show();
+                            $this
+                                .addClass('active')
+                                .html('隐藏数量 ' + '<span class="glyphicon glyphicon-eye-open"></span>');
+                        } else {
+                            labelLayer.hide();
+                            $this
+                                .removeClass('active')
+                                .html('显示数量 ' + '<span class="glyphicon glyphicon-eye-close"></span>');
+                        }
+                    });
+                    $('.map-sidebar-link')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            //$('#mapSidebar').toggleClass('active')
+                            //$('#mapSidebar').toggleClass('active')
+
+                        })
+                        .on('hover', function (e) {
+                            e.preventDefault();
+                            $('#mapSidebar').addClass('onHover');
+                        });
+                    //监听tool bar的分布图点击事件
+                    $('.map-layer a')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            var $this = $(this);
+                            $this.toggleClass('open');
+                            if ($this.hasClass('open')) {
+                                $('.map-layer a').removeClass('open').find('span').removeClass('glyphicon-eye-open');
+                                $this.addClass('open').find('span').addClass('glyphicon-eye-open');
+                                MyFeatureLayer.show($this.attr('id'));
+                            } else {
+                                MyFeatureLayer.hide();
+                                $this.removeClass('open').find('span').removeClass('glyphicon-eye-open');
+                            }
+                        });
+                });
+                map.on('zoom-end', function (e) {
+                    //console.log("zoom level: " + map.getZoom());
+                    //research on zoom------------需要添加这样一个按钮（如果用户点击了则执行MyMap.search，否则缩放不重新搜索）
+                    if ($('#city').hasClass('open')) {
+                        MyFeatureLayer.updateCityLayer(featuresDisplayed);
+                    }
+                });
+
+                map.on('pan-end', function (e) {
+                    //console.log("paning: " + map.getZoom());
+                    //MyMap.search(false, 1);
+                });
+            });
+    },
+    onLoad: function () {
         $('.sidebar').addClass('map');
         $('.pivots li').addClass('map');
-        console.log(MapSidebar.isHidden());
     },
-    leave: function () {
+    onLeave: function () {
         $('.sidebar').removeClass('map');
         $('.pivots li').removeClass('map');
+    },
+    render: function () {
+    },
+    search: function () {
     }
 };
 /*---------------------------------------------↓Map-----------------------------------------------*/
@@ -185,18 +347,24 @@ var MyMap = {
     },
     render: function (data) {//向地图添加设备标注
         console.log("FUNCTION CALL: MyMap.render");
+        var layerToShow = $('.map-layer').find('a.open');
+        var whichFeature = layerToShow ? layerToShow.attr('id') : 'country';
         if (map) {
             //（1）添加设备层
-            addClusters(data['data']);
+            //addClusters(data['data']);
             //（2）显示地图右侧边栏
-            MapSidebar.init(data);
+            //MapSidebar.init(data);
+            //(3)默认显示分布图
+            MyFeatureLayer.show('country');
         } else {
             var interval = setInterval(function () {
                 if (map) {
                     //（1）添加设备层
-                    addClusters(data['data']);
+                    //addClusters(data['data']);
                     //（2）显示地图右侧边栏
-                    MapSidebar.init(data);
+                    //MapSidebar.init(data);
+                    //(3)默认显示分布图
+                    MyFeatureLayer.show('country');
                     clearInterval(interval);
                 }
             }, 1000);
@@ -408,15 +576,31 @@ var MyMap = {
         console.log("FUNCTION CALL: MyMap.showNoData");
         console.log("map no data");
     }
+
 };
 
+var addLabel = function (layer, graphic, text) {
+    // add number to feature
+    require(["esri/graphic", "esri/symbols/TextSymbol", "esri/Color",
+        'esri/symbols/Font'], function (Graphic, TextSymbol, Color, Font) {
+        var label = new TextSymbol(
+            text,
+            new Font("15pt", Font.STYLE_ITALIC, Font.VARIANT_NORMAL, Font.WEIGHT_BOLDER, "Courier"),
+            new Color([60, 215, 60])
+        );
+        layer.add(new Graphic(graphic.geometry, label));
+    });
+};
 var MyFeatureLayer = {
     show: function (which) {
         console.log("FUNCTION CALL: MyFeatureLayer.show");
         var dd = MySessionStorage.get('data');
         if (dd && dd['statuscode'] == 200) {
+            $('#featureInfo').show();
             map.removeLayer(featureLayer);
             featureLayer.clear();
+            map.removeLayer(labelLayer);
+            labelLayer.clear();
             switch (which) {
                 case 'country':
                     showCountry(dd['aggregation']);
@@ -442,6 +626,7 @@ var MyFeatureLayer = {
                 var wait = setInterval(function () {
                     if (countryFS && countryFS.features && !isEmptyObject(countryFS.features)) {
                         render(agg['country@%city'], countryFS.features);
+                        clearInterval(wait);
                     }
                 }, 1000);
             }
@@ -455,7 +640,10 @@ var MyFeatureLayer = {
                             var g = features[country.en];
                             g.attributes.count = country.count;
                             g.attributes.Name_CHN = key;
-                            featureLayer.add(new Graphic(g));
+                            //featureLayer.add(new Graphic(g));
+                            var newGraphic = new Graphic(g);
+                            featureLayer.add(newGraphic);
+                            addLabel(labelLayer, newGraphic, country.count);//add text to labelLayer
                             setMinMax(country.count);
                         }
                     }
@@ -483,12 +671,14 @@ var MyFeatureLayer = {
                 var wait = setInterval(function () {
                     if (provinceFS && provinceFS.features && !isEmptyObject(provinceFS.features)) {
                         render(agg['province'], provinceFS.features);
+                        clearInterval(wait);
                     }
                 }, 1000);
             }
             function render(provinces, features) {
                 var min = Number.MAX_VALUE, max = 0;
-                require(["esri/graphic"], function (Graphic) {
+                require(["esri/graphic", "esri/symbols/TextSymbol", "esri/Color",
+                    'esri/symbols/Font'], function (Graphic, TextSymbol, Color, Font) {
                     /*map.removeLayer(featureLayer);
                      featureLayer.clear();*/
                     for (var key in features) {
@@ -496,7 +686,10 @@ var MyFeatureLayer = {
                             var g = features[key];
                             var count = provinces[key];
                             g.attributes.count = count;
-                            featureLayer.add(new Graphic(g));
+                            //featureLayer.add(new Graphic(g));
+                            var newGraphic = new Graphic(g);
+                            featureLayer.add(newGraphic);
+                            addLabel(labelLayer, newGraphic, count);//add text to labelLayer
                             setMinMax(count);
                         }
                     }
@@ -550,6 +743,7 @@ var MyFeatureLayer = {
                             var g = features[i];
                             g.attributes.count = count;
                             featureLayer.add(g);
+                            addLabel(labelLayer, g, count);//add text to labelLayer
                             setMinMax(count);
                             featuresDisplayed[key] = count;
                         }
@@ -590,14 +784,17 @@ var MyFeatureLayer = {
                 layer.setRenderer(renderer);
                 map.addLayer(layer, 3);
                 layer.show();
-                map.reorderLayer(clusterLayer, 100);
+                map.addLayer(labelLayer, 4);
+                //map.reorderLayer(clusterLayer, 100);
             });
         }
     },
     hide: function () {
         console.log("FUNCTION CALL: MyFeatureLayer.hide");
         featureLayer.clear();
+        labelLayer.clear();
         cityLayer.hide();
+        $('#featureInfo').hide();
     },
     updateCityLayer: function (citiesDisplayed) {
         console.log("city is rendering ...");
@@ -610,6 +807,7 @@ var MyFeatureLayer = {
             var wait = setInterval(function () {
                 if (cityLayer && cityLayer.graphics && cityLayer.graphics.length > 0) {
                     render(cities, cityLayer.graphics);
+                    clearInterval(wait);
                 }
             }, 1000);
         }
@@ -626,6 +824,7 @@ var MyFeatureLayer = {
                         var g = features[i];
                         g.attributes.count = count;
                         featureLayer.add(g);
+                        addLabel(labelLayer, g, count);//add text to labelLayer
                         setMinMax(count);
                     }
                 }
@@ -648,7 +847,7 @@ var MyFeatureLayer = {
                 "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol"
                 //"esri/dijit/Legend"
             ], function (Graphic, SimpleRenderer, Color, SimpleFillSymbol, SimpleLineSymbol, Legend) {
-                var sfs = new SimpleFillSymbol().setOutline(new SimpleLineSymbol().setWidth(0.1).setColor(new Color([128, 128, 128])));
+                var sfs = new SimpleFillSymbol().setOutline(new SimpleLineSymbol().setWidth(.2).setColor(new Color('#000')));
                 var renderer = new SimpleRenderer(sfs);
                 renderer.setColorInfo({
                     field: "count",
@@ -664,7 +863,8 @@ var MyFeatureLayer = {
                 layer.setRenderer(renderer);
                 map.addLayer(layer, 3);
                 layer.show();
-                map.reorderLayer(clusterLayer, 100);
+                map.addLayer(labelLayer, 4);
+                //map.reorderLayer(clusterLayer, 100);
             });
         }
     }

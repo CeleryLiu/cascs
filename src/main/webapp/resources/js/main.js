@@ -108,7 +108,7 @@ $(function () {
                     //MarkLine.destroy();
                     break;
                 case 3:
-                    //MapOpt.leave();
+                    //ArcMap.leave();
                     break;
             }
         },
@@ -127,7 +127,7 @@ $(function () {
                     //$(Sidebar._WRAPPER_SEL).addClass('list');
                     break;
                 case 3:
-                    //MapOpt.load();
+                    //ArcMap.load();
                     //MyMap.show(data);
                     //$(Sidebar._WRAPPER_SEL).addClass('map');
                     break;

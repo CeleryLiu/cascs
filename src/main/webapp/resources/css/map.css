@@ -126,11 +126,15 @@
     border-radius: 3px;
 }
 
-#featureInfo {
+#mapSidebarCtrl {
     display: none;
+}
+
+#featureInfo {
+    /*display: none;*/
     position: absolute;
     top: 8rem;
-    left:21rem;
+    left: 21rem;
     z-index: 50;
     width: 14.5rem;
     padding: 1rem;
