@@ -52,9 +52,7 @@
 <div id="header2" class="row-fluid">
     <div class="col-lg-offset-2 col-md-offset-3 col-sm-offset-3 col-lg-10 col-md-9 col-sm-9">
         <div class="pivots-wrapper" id="pivots_wrapper">
-            <ul class="pivots">
-                <li><a href="#">pivot3</a></li>
-            </ul>
+            <ul class="pivots"></ul>
         </div>
         <div class="result-overview" id="result_overview">
             <p class="">搜索到约 <strong class="badge count">0</strong> 条结果，

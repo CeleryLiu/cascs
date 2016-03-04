@@ -6,7 +6,7 @@
  * Version: V1.0 
  */
 var Constant = {
-    //for fullPage.js
+    //↓fullPage.js
     SECTION_NAV_TOOLTIPS: (function () {
         return ['首页', '搜索', '定位', '展示', '探测', '用户']
     }()),
@@ -30,11 +30,20 @@ var Constant = {
     MAP_SEARCH_URL: (function () {
         return 'search/map';
     }()),
+    MAP_IMG_BASEPATH: (function () {
+        return 'resources/img/';
+    }()),
     BASEMAP_URL: (function () {
         return 'http://10.10.2.81:6080/arcgis/rest/services/China_Community_BaseMap/MapServer';
     }()),
     CITY_FEATURELAYER_URL: (function () {
         return 'http://10.10.2.81:6080/arcgis/rest/services/area/MapServer/1';
+    }()),
+    COUNTRY_FEATURESET_URL: (function () {
+        return 'api/getCountryFeatureSet';
+    }()),
+    PROVINCE_FEATURESET_URL: (function () {
+        return 'api/getProvinceFeatureSet';
     }()),
     USER_REGISTER_URL: (function () {
         return 'user/register';
@@ -50,6 +59,16 @@ var Constant = {
     }()),
     LOCAL_SUGGEST_URL: (function () {
         return 'resources/data/suggestions.json';
+    }()),
+
+    //↓pagination
+    PAGE_SIZE: (function () {
+        //每一页的条目数
+        return 10;
+    }()),
+    VISIBLE_PAGES: (function () {
+        //页码个数
+        return 7;
     }()),
 
     //others

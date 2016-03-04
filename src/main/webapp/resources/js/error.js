@@ -1,5 +1,6 @@
 var errorHandler = function () {
     console.log("errorHandler: ajax succeed with data error");
+    //最好跳转到新页面去，可以很好的适应状态管理
     $.Showmsg("服务器开小差啦，请稍后再试！");
     setTimeout(function () {
         $.Hidemsg();
@@ -7,10 +8,20 @@ var errorHandler = function () {
 };
 
 var noDataHandler = function () {
-    console.log("noDataHandler: ajax succeed but no data");
+    console.log("noDataHandler: ajax succeed but no data found");
     if ($('#listSe').hasClass('active')) {
         $('.no-data').show();
     }
+    $('.search-box-container').popover({
+        content: "没有搜索到" + '' + "相关的数据，可尝试搜索其他关键词",
+        placement: 'bottom',
+        trigger: 'manual'
+    }).popover('show');
+    setTimeout(function () {
+        $('.search-box-container').popover('hide');
+    }, 2000);
+    // (1)返回首页
+    $.fn.fullpage.silentMoveTo('se1');
 };
 
 function noData(data) {

@@ -21,25 +21,25 @@
             <span class="glyphicon glyphicon-triangle-left"></span>
             隐藏侧栏
         </button>
-        <div class="btn-group" role="group">
+        <div class="btn-group disabled" role="group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                 分布图
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li class="map-layer"><a href="#" id="country" class="">按国家 <span
+                <li class="map-layer"><a href="#" id="country" class="open">按国家 <span
+                        class="glyphicon glyphicon-eye-open"></span></a>
+                </li>
+                <li class="map-layer"><a href="#" id="province" class="">按省份(中国) <span
                         class="glyphicon"></span></a>
                 </li>
-                <li class="map-layer"><a href="#" id="province" class="">按省份 <span
-                        class="glyphicon"></span></a>
-                </li>
-                <li class="map-layer"><a href="#" id="city" class="">按城市 <span
+                <li class="map-layer"><a href="#" id="city" class="">按城市(中国) <span
                         class="glyphicon"></span></a>
                 </li>
             </ul>
         </div>
-        <button type="button" class="btn btn-default" id="mapSidebarCtrl">显示数据
+        <button type="button" class="btn btn-default disabled" id="mapSidebarCtrl">显示数据
             <span class="glyphicon glyphicon-triangle-right"></span>
         </button>
         <button type="button" class="btn btn-default active" id="labelLayerCtrl">隐藏数量

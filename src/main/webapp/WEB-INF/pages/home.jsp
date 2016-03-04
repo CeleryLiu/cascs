@@ -15,7 +15,7 @@
 --%>
 <div class="home-search">
     <form class="home-search-form" id="home_search_form">
-        <div class="input-group">
+        <div class="input-group search-box-container">
             <input type="text" class="form-control" placeholder="Search..."
                    id="home_search_input" name="home_search_input">
             <%--<button class="btn btn-default remove"><span class="glyphicon glyphicon-remove"></span></button>--%>

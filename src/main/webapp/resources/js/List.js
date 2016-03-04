@@ -5,9 +5,6 @@
  * Description:搜索列表模块
  * Version: V1.0 
  */
-var PAGE_SIZE = 10, //每一页的条目数
-    VISIBLE_PAGES = 7; //页码个数
-
 var List = {
     _WRAPPER_SEL: (function () {
         return '.list-wrapper';
@@ -15,10 +12,8 @@ var List = {
     _RESULT_LIST_SEL: (function () {
         return '.result-container ul.devices';
     }()),
-    tag: 'list',
     listPageNum: 1,
-    //pushHistory is a boolean, true: push the state into the history, false: not push
-    render: function (data, pushHistory) {
+    render: function (data) {
         //console.log("List.render() ======");
         /*
          * @param totalCounts：分页的总条目数
@@ -26,43 +21,21 @@ var List = {
          * @param currentPage：当前页码
          * @param visiblePages: 最多显示的页码数，默认值7
          */
-        var paginator = function (totalCounts, pageSize, currentPageNum, visiblePages) {
-            if (!visiblePages) {
-                visiblePages = VISIBLE_PAGES;
-            }
-            if (!pageSize) {
-                pageSize = PAGE_SIZE;
-            }
-            if (!totalCounts) {
-                totalCounts = 0;
-            }
-            var $pagerWrapper = $('#pager').show();
-            $pagerWrapper.jqPaginator({
-                totalCounts: totalCounts,
-                pageSize: pageSize,
-                visiblePages: visiblePages,
-                currentPage: currentPageNum,
-                first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
-                prev: '<li class="prev"><a href="javascript:void(0);"><i class="glyphicon glyphicon-triangle-left"></i>上一页</a></li>',
-                next: '<li class="next"><a href="javascript:void(0);">下一页<i class="glyphicon glyphicon-triangle-right"></i></a></li>',
-                last: '<li class="last"><a href="javascript:void(0);">末页<\/a></li>',
-                page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
-                //设置页码的Html结构,其中可以使用{{page}}代表当前页，{{totalPages}}代表总页数，{{totalCounts}}代表总条目数
-                onPageChange: function (num, type) { //num: 目标页；type:“init”（初始化），“change”（点击分页）
-                    if (type == 'change') {
-                        List.search(num);
-                    }
-                }
-            })
-        };
+        if (!data)return;
+        if (data['statuscode'] == 204) {
+            noDataHandler();
+        } else if (data['statuscode']) {
+            errorHandler();
+        }
         var genDeviceLi = function (d) {
             var li = $(' <li class="device"></li>');
             //ip
-            var ip = $('<a href="http://' + d.ip + '" target="_blank">' + d.ip + '</a>').appendTo($('<h3></h3>')).appendTo(li);
+            var ip = $('<a href="http://' + d.ip + '" target="_blank">' + d.ip + '</a>');
             ip.on('click', function (e) {
                 e.preventDefault();
                 console.log("ip is clicked!");
             });
+            $('<h3></h3>').append(ip).appendTo(li);
             //详细内容
             var row = $('<div class="row"></div>').appendTo(li);
             //tag
@@ -136,17 +109,16 @@ var List = {
             pagesize = data['pagesize'],
             took = data['took'],
             devices = data['data'];
-
         var $resultList = $(this._RESULT_LIST_SEL).html('');
-        //(1)更新查询时间、查询到数据的条数、结果列表、分页
+        // (1)更新查询时间、查询到数据的条数、结果列表、分页
         ResultOverview.set(total, took, currpage, (Math.floor(total / pagesize) + 1));
-        //(2)添加结果列表
+        // (2)添加结果列表
         for (var i = 0; i < devices.length; i++) {
             $resultList.append(genDeviceLi(devices[i]));
         }
-        //(3)初始化分页插件
-        paginator(total, pagesize, currpage, VISIBLE_PAGES);
-        //(4)返回顶部
+        // (3)初始化分页插件
+        paginator(total, pagesize, currpage, Constant.VISIBLE_PAGES, List.search);
+        // (4)返回顶部
         $(this._WRAPPER_SEL).scrollTop(0);
         $('#listSe').scrollTop(0);
     },
@@ -174,7 +146,7 @@ var List = {
         };
         var requestObj = {
             'url': Constant.LIST_SEARCH_URL,
-            'success': successCallback,
+            //'success': successCallback,
             'error': errorHandler,
             'data': {
                 'wd': wd + ' ' + Pivot.getUserSelected(),
@@ -183,29 +155,23 @@ var List = {
         };
         LoadData.post(requestObj);
     },
-    showNoData: function () {
-        //console.log("List.showNoData()");
-        $('.empty-result-desc-container').show();
-        this.wrapper.hide();
-    },
-    show: function (data) {
-        //console.log("FUNCTION CALL: List.show");
-        MySessionStorage.set('currentPage', this.tag);
-        $('header').css('visibility', ' visible').show();
-        if (data && data['statuscode'] == 200) {
-            this.render(data);
-            this.wrapper.show();
-            Sidebar.show(data['aggregation']);
-        } else if ($('#global_search_input').val() != '') {
-            this.search(this.listPageNum);
+    onSearchSucceed: function (data) {
+        var statuscode = data['statuscode'];
+        //（1）将data添加到sessionStorage.data
+        Session.set('data', data);
+        if (statuscode == 200) {
+            console.log('List search succeed. statuscode == 200', data);
+            //(2.a)调用Sidebar的render方法，生成sidebar
+            Sidebar.render(data);
+            //(2.b)调用List的render方法，生成搜索结果页面
+            List.render(data);
+            //(3)隐藏no-data div
+            $('.no-data').hide();
+        } else if (statuscode == 204) {
+            noDataHandler();
         } else {
-            $.fn.fullpage.silentMoveTo('se1');
+            errorHandler();
         }
-        this.wrapper.show();
-    },
-    hide: function () {
-        //console.log("FUNCTION CALL: List.hide");
-        this.wrapper.hide();
     }
 };
 

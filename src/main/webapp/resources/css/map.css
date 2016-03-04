@@ -111,6 +111,7 @@
 }
 
 #tool_wrapper {
+    display: none;
     position: absolute;
     top: 5rem;
     right: 5rem;
@@ -140,7 +141,7 @@
     padding: .5rem;
     margin: .5rem;
     font-size: 1.5rem;
-    /*color: #333;*/
+    text-align: left;
     background-color: rgba(222, 222, 222, 0.8);
     /*   -webkit-box-shadow: -3px 3px 3px 3px #b4b4b4;;
        -moz-box-shadow: -3px 3px 3px 3px #b4b4b4;;

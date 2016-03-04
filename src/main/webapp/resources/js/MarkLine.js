@@ -254,7 +254,5 @@ var MarkLine = {
     },
     destroy: function () {
         console.log('Inside MarkLine.destroy() ======');
-        this._stop = true;
-        clearTimeout(MarkLine._timeout);
     }
 };

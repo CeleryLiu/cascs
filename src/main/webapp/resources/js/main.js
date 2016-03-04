@@ -2,7 +2,16 @@
  * Created by lyp on 2016/2/21.
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
+var currentPage = 1;
+var data;
+window.onpopstate = function (event) {
+    console.log(event, event.state);
+    //Use false as the second argument below
+    // - state will already be on the stack when going Back/Forwards
+    createView(event.state, false);
+};
 $(function () {
+    history.pushState({contentId: 1, title: 'Welcome to CASCS'}, 'Welcome to CASCS', '');
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
         var slideNavList = $('.fp-slidesNav a');
@@ -43,16 +52,17 @@ $(function () {
                 ResultOverview.show();
             }
         }
-    };
-    var getCurrentPageId = function () {
-        //body.class="fp-viewing-sectionAnchor-slideAnchor"
-        var classStr = $('body').attr('class');
-        var secAndSliAnchor = classStr.substring(classStr.indexOf('fp-viewing-'));
-        if (secAndSliAnchor.indexOf(' ') != -1) {
-            secAndSliAnchor = secAndSliAnchor.substring(0, classStr.indexOf(' '));
+        if (sectionIdx == 3) {
+            $('#tool_wrapper').show();
+        } else {
+            $('#tool_wrapper').hide();
         }
-        console.log(secAndSliAnchor);
     };
+
+    // starts --------------
+    // ArcGis feature set
+    ArcMap.initFeatureSets();
+    //full page js
     $('.fullpage').fullpage({
         //↓Navigation
         menu: '#menu',
@@ -90,10 +100,8 @@ $(function () {
             InputSuggest.init();
             HomeSearch.listen();
             GlobalSearch.listen();
-            //User.listenerStarts();
             ArcMap.init();
-            //mainInit();
-            //initMap();
+            //User.listenerStarts();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
@@ -104,40 +112,38 @@ $(function () {
         onLeave: function (index, nextIndex, direction) {
             //console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             switch (index) {
-                case 5:
-                    //MarkLine.destroy();
-                    break;
                 case 3:
                     ArcMap.onLeave();
+                    break;
+                case 5:
+                    iLine.window.destroy();
+                    break;
+                default:
                     break;
             }
         },
         afterLoad: function (anchorLink, index) {
             //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
-            //↓如果当前section不是搜索界面/首页，则隐藏全局搜索框、侧边栏和Pivot
-            //toggleFixedElement(index);
-            //var data = MySessionStorage.get('data');
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
-
+            currentPage = index;
             switch (index) {
                 case 1:
                     break;
                 case 2:
-                    //List.show(data);
-                    //$(Sidebar._WRAPPER_SEL).addClass('list');
+                    $(Sidebar._WRAPPER_SEL).addClass('list');
+                    List.render(data);
                     break;
                 case 3:
                     ArcMap.onLoad();
-                    //MyMap.show(data);
+                    ArcMap.render(data);
                     break;
                 case 4:
-                    //MarkPoint.init();
-                    //MySessionStorage.set('currentPage', 'globe-point');
-                    //GlobePoint.show();
+                    Sidebar.hide();
+                    iPoint.window.starts();
                     break;
                 case 5:
-                    //MarkLine.init();
-                    //GlobeLine.show();
+                    Sidebar.hide();
+                    iLine.window.starts();
                     break;
                 case 6:
                     break;
@@ -154,15 +160,3 @@ $(function () {
         }
     });
 });
-var GlobeLine = {
-    show: function () {
-        Sidebar.hide();
-        iLine.window.starts();
-    }
-};
-var GlobePoint = {
-    show: function () {
-        Sidebar.hide();
-        iPoint.window.starts();
-    }
-};

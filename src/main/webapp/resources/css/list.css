@@ -9,13 +9,14 @@
 }
 
 .list-wrapper .row,
-.list-wrapper .row-fluid{
+.list-wrapper .row-fluid {
     margin: 0;
     padding: 0;
 }
 
 .result-container h3 {
     text-align: left;
+    padding: 1rem .5rem .5rem 1rem;
 }
 
 /*------li.device begins here------*/

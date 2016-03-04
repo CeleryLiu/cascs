@@ -6,7 +6,7 @@
     z-index: 99;
     position: fixed;
     top: 8rem;
-    padding-right: 2rem;
+    padding-right: 1rem;
     left: 0;
     max-height: 100%;
     float: left;
@@ -83,7 +83,8 @@
 }
 
 #facet ol li.facet-value {
-    width: 16rem;
+    /*width: 16rem;*/
+    width: 100%;
     padding-bottom: 3px;
 }
 
@@ -156,7 +157,8 @@
 }
 
 #facet ol.inner-facet-values .facet-value {
-    width: 15rem;
+    /*width: 15rem;*/
+    width: 100%;
 }
 
 /* Style for inner Scroll bar. For the "inset" look only

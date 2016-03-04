@@ -42,7 +42,7 @@ var GlobalSearch = {
             if ($('#listSe').hasClass('active')) {
                 List.search(1);
             } else if ($('#mapSe').hasClass('active')) {
-                MyMap.search(1);
+                ArcMap.search(1);
             }
             //(3)设置首页搜索框的值
             //HomeSearch.setValue(criteria);

@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="${bsCss}">
     <spring:url value="resources/css/typeaheadjs.css" var="taCss"/>
     <link rel="stylesheet" href="${taCss}">
+    <spring:url value="resources/css/themes/pace-theme-mac-osx.css" var="paceCss"/>
+    <link rel="stylesheet" href="${paceCss}">
     <link rel="stylesheet" type="text/css"
           href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
     <%--custom css--%>
@@ -53,7 +55,6 @@
         };
     </script>
     <![endif]-->
-
     <%--↓js libs--%>
     <spring:url value="resources/js/libs/jquery-1.11.3.min.js" var="jqJs"/>
     <script src="${jqJs}"></script>
@@ -71,16 +72,17 @@
     <script src="${sha1Js}"></script>
     <spring:url value="resources/js/libs/jqPaginator.min.js" var="pagerJs"/>
     <script src="${pagerJs}"></script>
-
-    <%--↓custom js--%>
-    <spring:url value="resources/js/sessionStorage.js" var="sstJs"/>
-    <script src="${sstJs}"></script>
+    <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
+    <script data-pace-options='{"elements": { "selectors": ["#mapHolder"] },"startOnPageLoad": false,"ajax":true }'
+            src="${paceJs}"></script>
     <spring:url value="resources/js/static.js" var="staticJs"/>
     <script src="${staticJs}"></script>
     <spring:url value="resources/js/helper.js" var="helperJs"/>
     <script src="${helperJs}"></script>
     <spring:url value="resources/js/LoadData.js" var="ajax"/>
     <script src="${ajax}"></script>
+    <spring:url value="resources/js/Pager.js" var="pagerJs"/>
+    <script src="${pagerJs}"></script>
     <spring:url value="resources/js/error.js" var="errorJs"/>
     <script src="${errorJs}"></script>
     <spring:url value="resources/js/Session.js" var="sessionJs"/>
@@ -114,7 +116,7 @@
         <%@include file="home.jsp" %>
     </div>
     <div class="section" data-anchor="se2" id="listSe">
-        <%--<div style="height: 6rem;"></div>--%>
+        <div style="height: 7rem;"></div>
         <div class="list-wrapper row-fluid" id="list-wrapper">
             <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">

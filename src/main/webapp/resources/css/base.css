@@ -511,6 +511,7 @@ b {
 /* Style for result-overview texts
  * --------------------------------------- */
 .result-overview {
+    margin-top: .5rem;
     display: none;
     z-index: 99;
     /*position: fixed;
