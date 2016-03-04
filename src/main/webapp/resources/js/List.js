@@ -153,36 +153,35 @@ var List = {
     search: function (pageNum) {
         //console.log("List.search() ======");
         var wd = $(GlobalSearch._INPUT_SEL).val();
-        if (wd && wd != '') {
-            var successCallback = function (data) {
-                var statuscode = data['statuscode'];
-                //（1）将data添加到sessionStorage.data
-                Session.set('data', data);
-                if (statuscode == 200) {
-                    console.log('List search succeed. statuscode == 200', data);
-                    //(2.a)调用Sidebar的render方法，生成sidebar
-                    Sidebar.render(data);
-                    //(2.b)调用List的render方法，生成搜索结果页面
-                    List.render(data);
-                    //(3)隐藏no-data div
-                    $('.no-data').hide();
-                } else if (statuscode == 204) {
-                    noDataHandler();
-                } else {
-                    errorHandler();
-                }
-            };
-            var requestObj = {
-                'url': Constant.LIST_SEARCH_URL,
-                'success': successCallback,
-                'error': errorHandler,
-                'data': {
-                    'wd': wd + ' ' + Pivot.getUserSelected(),
-                    'page': pageNum ? pageNum : 1
-                }
-            };
-            LoadData.post(requestObj);
-        }
+        if (!wd && wd == '') return;
+        var successCallback = function (data) {
+            var statuscode = data['statuscode'];
+            //（1）将data添加到sessionStorage.data
+            Session.set('data', data);
+            if (statuscode == 200) {
+                console.log('List search succeed. statuscode == 200', data);
+                //(2.a)调用Sidebar的render方法，生成sidebar
+                Sidebar.render(data);
+                //(2.b)调用List的render方法，生成搜索结果页面
+                List.render(data);
+                //(3)隐藏no-data div
+                $('.no-data').hide();
+            } else if (statuscode == 204) {
+                noDataHandler();
+            } else {
+                errorHandler();
+            }
+        };
+        var requestObj = {
+            'url': Constant.LIST_SEARCH_URL,
+            'success': successCallback,
+            'error': errorHandler,
+            'data': {
+                'wd': wd + ' ' + Pivot.getUserSelected(),
+                'page': pageNum ? pageNum : 1
+            }
+        };
+        LoadData.post(requestObj);
     },
     showNoData: function () {
         //console.log("List.showNoData()");

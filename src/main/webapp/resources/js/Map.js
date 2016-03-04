@@ -11,7 +11,6 @@ var ArcMap = {
     }()),
     _globalVariables: {
         MAP_PAGE_SIZE: 10,
-        featuresDisplayed: {},
         map: {},
         countryFS: {},  //Country Feature Set, 在main中初始化
         provinceFS: {}, //Province Feature Set, 在main中初始化
@@ -86,14 +85,18 @@ var ArcMap = {
                     });
                     cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
                     //map.addLayer(cityLayer);
-
+                    //初始化
+                    ArcMap._globalVariables.map = map;
+                    ArcMap._globalVariables.featureLayer = featureLayer;
+                    ArcMap._globalVariables.labelLayer = labelLayer;
+                    ArcMap._globalVariables.cityLayer = cityLayer;
                     //（4）listeners
                     $('#sidebarCtrl').on('click', function (e) {
                         e.preventDefault();
                         var $this = $(this);
                         $this.toggleClass('open');
                         if ($this.hasClass('open')) {
-                            Sidebar.showOnly();
+                            Sidebar.show();
                             $this.html('<span class="glyphicon glyphicon-triangle-left"></span>' + '隐藏侧栏');
                         } else {
                             Sidebar.hide();
@@ -103,7 +106,6 @@ var ArcMap = {
                     $('#mapSidebarCtrl').on('click', function (e) {
                         e.preventDefault();
                         var $this = $(this), mapSidebar = $('#mapSidebar');
-                        //mapSidebar.toggleClass('active');
                         if (MapSidebar.isHidden()) {
                             MapSidebar.show();
                             $this.html('隐藏数据' + '<span class="glyphicon glyphicon-triangle-left"></span>');
@@ -153,16 +155,12 @@ var ArcMap = {
                                 $this.removeClass('open').find('span').removeClass('glyphicon-eye-open');
                             }
                         });
-                    ArcMap._globalVariables.map = map;
-                    ArcMap._globalVariables.featureLayer = featureLayer;
-                    ArcMap._globalVariables.labelLayer = labelLayer;
-                    ArcMap._globalVariables.cityLayer = cityLayer;
                 });
                 map.on('zoom-end', function (e) {
                     //console.log("zoom level: " + map.getZoom());
                     //research on zoom------------需要添加这样一个按钮（如果用户点击了则执行MyMap.search，否则缩放不重新搜索）
                     if ($('#city').hasClass('open')) {
-                        MyFeatureLayer.updateCityLayer(this._globalVariables.featuresDisplayed);
+                        MyFeatureLayer.updateCityLayer(this._globalVariables.featureLayer);
                     }
                 });
 
@@ -181,187 +179,18 @@ var ArcMap = {
         $(Sidebar._WRAPPER_SEL).removeClass('map');
         $('.pivots li').removeClass('map');
     },
-    render: function () {
-    },
-    search: function () {
-    }
-};
-/*---------------------------------------------↓Map-----------------------------------------------*/
-var mapSearchURL = "api/mapSearch",
-    basemapURL = 'http://10.10.2.81:6080/arcgis/rest/services/China_Community_BaseMap/MapServer',
-    countryLayerURL = 'http://10.10.2.81:6080/arcgis/rest/services/world/MapServer/0',
-    provinceLayerURL = 'http://10.10.2.81:6080/arcgis/rest/services/testprovince1/FeatureServer/1',
-//cityLayer = 'http://10.10.2.81:6080/arcgis/rest/services/testprovince1/FeatureServer/2';
-    cityLayerURL = 'http://10.10.2.81:6080/arcgis/rest/services/area/MapServer/1';
-var MAP_PAGE_SIZE = 10, featuresDisplayed = {};
-var map, countryFS = {}, provinceFS = {}, cityFS = {}, cityLayer, clusterLayer, featureLayer;
-
-function initMap() {
-    console.log("FUNCTION CALL: initMap");
-    require(
-        [
-            "esri/map",
-            "esri/layers/ArcGISTiledMapServiceLayer",
-            "esri/layers/GraphicsLayer",
-            "esri/InfoTemplate",
-            "esri/layers/FeatureLayer",
-            //"esri/dijit/HomeButton",
-            //"esri/dijit/Legend",
-            "dojo/domReady!"
-        ],
-        function (Map, ArcGISTiledMapServiceLayer, GraphicsLayer, InfoTemplate, FeatureLayer, HomeButton, Legend) {
-            //（1）Create map and add layer
-            map = new Map("mapHolder", {
-                //basemap: 'gray',
-                center: [114.25, 24.1167],
-                minZoom: 3,
-                maxZoom: 8,
-                zoom: 4,
-                sliderPosition: "top-right",
-                logo: false
-            });
-            //（1）添加底图
-            var basemap = new ArcGISTiledMapServiceLayer(basemapURL);
-            map.addLayer(basemap);
-
-            //（2）添加用于显示分布图的graphic layer
-            var featureLayerInfoTemplate = new InfoTemplate("${Name_CHN}", "国家：<b>${Name_CHN}<b><br>共发现目标：<b>${count}</b>个");
-            featureLayer = new GraphicsLayer(featureLayerInfoTemplate);
-            featureLayer.on('click', function (evt) {
-                var attr = evt.graphic.attributes;
-                var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
-                $('.f-country').text(name);
-                $('.f-count').text(attr.count);
-            });
-            /* var legend = new Legend({
-             map: map,
-             layerInfos: [{layer: featureLayer}]
-             }, "legend");
-             legend.startup();
-             */
-            map.addLayer(featureLayer);
-
-            map.on('load', function () {
-                console.log("map loaded");
-                //（3）添加城市featureLayer
-                cityLayer = new FeatureLayer(cityLayerURL, {
-                    outFields: ["*"]
-                });
-                cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
-                //map.addLayer(cityLayer);
-
-                //（4）listener
-                $('#sidebarCtrl').on('click', function (e) {
-                    e.preventDefault();
-                    var $this = $(this);
-                    $this.toggleClass('open');
-                    if ($this.hasClass('open')) {
-                        Sidebar.showOnly();
-                        $this.html('<span class="glyphicon glyphicon-triangle-left"></span>' + '隐藏侧栏');
-                    } else {
-                        Sidebar.hide();
-                        $this.html('<span class="glyphicon glyphicon-triangle-right"></span>' + '显示侧栏');
-                    }
-                });
-                $('#mapSidebarCtrl').on('click', function (e) {
-                    e.preventDefault();
-                    var $this = $(this), mapSidebar = $('#mapSidebar');
-                    //mapSidebar.toggleClass('active');
-                    if (MapSidebar.isHidden()) {
-                        MapSidebar.show();
-                        $this.html('隐藏数据' + '<span class="glyphicon glyphicon-triangle-left"></span>');
-                    } else {
-                        MapSidebar.hide();
-                        $this.html('显示数据' + '<span class="glyphicon glyphicon-triangle-right"></span>');
-                    }
-                });
-                $('.map-sidebar-link')
-                    .on('click', function (e) {
-                        e.preventDefault();
-                        //$('#mapSidebar').toggleClass('active')
-                        //$('#mapSidebar').toggleClass('active')
-
-                    })
-                    .on('hover', function (e) {
-                        e.preventDefault();
-                        $('#mapSidebar').addClass('onHover');
-                    });
-                //监听tool bar的分布图点击事件
-                $('.map-layer a')
-                    .on('click', function (e) {
-                        e.preventDefault();
-                        var $this = $(this);
-                        $this.toggleClass('open');
-                        if ($this.hasClass('open')) {
-                            $('.map-layer a').removeClass('open').find('span').removeClass('glyphicon-eye-open');
-                            $this.addClass('open').find('span').addClass('glyphicon-eye-open');
-                            MyFeatureLayer.show($this.attr('id'));
-                            $('#featureInfo').show()
-                        } else {
-                            MyFeatureLayer.hide();
-                            $this.removeClass('open').find('span').removeClass('glyphicon-eye-open');
-                            $('#featureInfo').hide()
-                        }
-                    });
-            });
-            map.on('zoom-end', function (e) {
-                //console.log("zoom levle: " + map.getZoom());
-                //research on zoom------------需要添加这样一个按钮（如果用户点击了则执行MyMap.search，否则缩放不重新搜索）
-                //MyMap.search(1);
-                if ($('#city').hasClass('open')) {
-                    MyFeatureLayer.updateCityLayer(featuresDisplayed);
-                }
-            });
-
-            map.on('pan-end', function (e) {
-                //console.log("paning: " + map.getZoom());
-                //MyMap.search(false, 1);
-            });
-        });
-}
-
-//initMap();
-//-----------------------------------------分隔线---------------------------
-var MyMap = {
-    mapPageNum: 1,
-    wrapper: $('.map-wrapper'),
-    show: function (data) { //滑动到地图页时调用此方法
-
-        console.log("FUNCTION CALL: MyMap.show");
-        MySessionStorage.set('currentPage', 'map');
-        $('header').css('visibility', ' visible').show();
-        if (data) {
-            if (data['statuscode'] == 200) {
-                //（1）渲染地图
-                this.render(data);
-                //（2）显示左侧边栏
-                Sidebar.show(data['aggregation']);
-                /*if (!Sidebar.onlyUpdate) {
-                 Sidebar.show(data['aggregation']);
-                 } else {
-                 Sidebar.update();
-                 }*/
-            } else {
-                this.search(1);
-            }
-        }
-        this.wrapper.show();
-    },
-    hide: function () {
-        console.log("FUNCTION CALL: MyMap.hide");
-        this.wrapper.hide();
-    },
     render: function (data) {//向地图添加设备标注
-        console.log("FUNCTION CALL: MyMap.render");
-        var layerToShow = $('.map-layer').find('a.open');
-        var whichFeature = layerToShow ? layerToShow.attr('id') : 'country';
+        console.log("ArcMap.render() ======");
+        var layerToShow = $('.map-layer').find('a.open'),
+            whichFeature = layerToShow ? layerToShow.attr('id') : 'country',
+            map = this._globalVariables.map;
         if (map) {
             //（1）添加设备层
             //addClusters(data['data']);
             //（2）显示地图右侧边栏
             //MapSidebar.init(data);
             //(3)默认显示分布图
-            MyFeatureLayer.show('country');
+            MyFeatureLayer.show(whichFeature);
         } else {
             var interval = setInterval(function () {
                 if (map) {
@@ -370,7 +199,7 @@ var MyMap = {
                     //（2）显示地图右侧边栏
                     //MapSidebar.init(data);
                     //(3)默认显示分布图
-                    MyFeatureLayer.show('country');
+                    MyFeatureLayer.show(whichFeature);
                     clearInterval(interval);
                 }
             }, 1000);
@@ -527,81 +356,87 @@ var MyMap = {
             clusterLayer.clearSingles();
         }
     },
-    search: function (pageNum) {//updateSidebar, boolean，true，表示更新sidebar，否则不更新
-        console.log("FUNCTION CALL: MyMap.search------------------------");
-        var gValue = $('.global-search-input').val();
-        var wd = gValue ? gValue : MySessionStorage.get('wd');
-        var checkedStr = MySessionStorage.getCheckedAsStr();
-        if (wd && wd != '') {
-            var extent = getVisibleExtent();//获取并设置屏幕所在范围的经纬度geo
-            var criteria = {
-                //"geo": extent,
-                //"wd": wd + checkedStr,
-                "wd": wd + ' ' + Pivot.getUserSelected(),
-                //"zoomlevel": map.getZoom(),
-                "pagesize": MAP_PAGE_SIZE,
-                "page": pageNum ? pageNum : this.mapPageNum
-            };
-            var searchObj = {
-                "url": mapSearchURL,
-                "criteria": criteria
-            };
-            console.log("ad;ahidoja;fid", searchObj);
-            MySessionStorage.clearChecked();
-            newSearch(searchObj);
+    search: function (pageNum) {
+        console.log("ArcMap.search() ======");
+        var wd = GlobalSearch.getValue();
+        if (!wd && wd == '') return;
 
-            //获取地图的可视范围的经纬度
-            function getVisibleExtent() {
-                var polygonCCW = '';
-                require([
-                    "esri/geometry/ScreenPoint",
-                    "esri/geometry/webMercatorUtils"
-                ], function (ScreenPoint, webMercatorUtils) {
-                    var windowHeight = $(window).height(), windowWidth = $(window).width();
-                    var sLeftTop = new ScreenPoint(0, 0),
-                        sRightBottom = new ScreenPoint(windowWidth, windowHeight);
-                    var mLeftTop = webMercatorUtils.webMercatorToGeographic(map.toMap(sLeftTop)),
-                        mRightBottom = webMercatorUtils.webMercatorToGeographic(map.toMap(sRightBottom));
-                    /* var mLeftTop = map.toMap(sLeftTop),
-                     mRightBottom = map.toMap(sRightBottom);*/
-
-                    var xL = mLeftTop.x, xR = mRightBottom.x, yT = mLeftTop.y, yB = mRightBottom.y;
-                    //逆时针，4个点，首尾闭合
-                    polygonCCW = 'polygon(' +
-                    xL + ' ' + yT + ',' +             //左上
-                    xL + ' ' + yB + ',' +             //左下
-                    xR + ' ' + yB + ',' +             //右下
-                    xR + ' ' + yT + ',' +             //右上
-                    xL + ' ' + yT + ')';              //首尾闭合
-                });
-                return polygonCCW;
+        var successCallback = function (data) {
+            var statuscode = data['statuscode'];
+            //（1）将data添加到sessionStorage.data
+            Session.set('data', data);
+            if (statuscode == 200) {
+                console.log('Map search succeed. statuscode == 200', data);
+                //(2.a)调用Sidebar的render方法，生成sidebar
+                Sidebar.render(data);
+                //(2.b)调用Map的render方法，生成搜索结果页面
+                ArcMap.render(data);
+                //(3)为MyFeatureLayer.data赋值
+                MyFeatureLayer.data = data;
+                //(4)隐藏no-data div
+                $('.no-data').hide();
+            } else if (statuscode == 204) {
+                noDataHandler();
+            } else {
+                errorHandler();
             }
+        };
+        var requestObj = {
+            'url': Constant.LIST_SEARCH_URL,
+            'success': successCallback,
+            'error': errorHandler,
+            'data': {
+                'wd': wd + ' ' + Pivot.getUserSelected(),
+                //"geo": extent,
+                //"zoomlevel": map.getZoom(),
+                'pagesize': this._globalVariables.MAP_PAGE_SIZE,
+                'page': pageNum ? pageNum : 1
+            }
+        };
+        LoadData.post(requestObj);
+
+        //获取地图的可视范围的经纬度
+        function getVisibleExtent() {
+            var polygonCCW = '';
+            require([
+                "esri/geometry/ScreenPoint",
+                "esri/geometry/webMercatorUtils"
+            ], function (ScreenPoint, webMercatorUtils) {
+                var windowHeight = $(window).height(), windowWidth = $(window).width();
+                var sLeftTop = new ScreenPoint(0, 0),
+                    sRightBottom = new ScreenPoint(windowWidth, windowHeight);
+                var mLeftTop = webMercatorUtils.webMercatorToGeographic(map.toMap(sLeftTop)),
+                    mRightBottom = webMercatorUtils.webMercatorToGeographic(map.toMap(sRightBottom));
+                /* var mLeftTop = map.toMap(sLeftTop),
+                 mRightBottom = map.toMap(sRightBottom);*/
+
+                var xL = mLeftTop.x, xR = mRightBottom.x, yT = mLeftTop.y, yB = mRightBottom.y;
+                //逆时针，4个点，首尾闭合
+                polygonCCW = 'polygon(' +
+                xL + ' ' + yT + ',' +             //左上
+                xL + ' ' + yB + ',' +             //左下
+                xR + ' ' + yB + ',' +             //右下
+                xR + ' ' + yT + ',' +             //右上
+                xL + ' ' + yT + ')';              //首尾闭合
+            });
+            return polygonCCW;
         }
-    },
-    showNoData: function () {
-        console.log("FUNCTION CALL: MyMap.showNoData");
-        console.log("map no data");
     }
-
 };
-
-var addLabel = function (layer, graphic, text) {
-    // add number to feature
-    require(["esri/graphic", "esri/symbols/TextSymbol", "esri/Color",
-        'esri/symbols/Font'], function (Graphic, TextSymbol, Color, Font) {
-        var label = new TextSymbol(
-            text,
-            new Font("15pt", Font.STYLE_ITALIC, Font.VARIANT_NORMAL, Font.WEIGHT_BOLDER, "Courier"),
-            new Color([60, 215, 60])
-        );
-        layer.add(new Graphic(graphic.geometry, label));
-    });
-};
+//-----------------------------------------分隔线---------------------------
 var MyFeatureLayer = {
+    data: {},
+    featuresDisplayed: {},
     show: function (which) {
-        console.log("FUNCTION CALL: MyFeatureLayer.show");
-        var dd = MySessionStorage.get('data');
-        if (dd && dd['statuscode'] == 200) {
+        console.log("MyFeatureLayer.show() ======");
+        var dd = this.data,
+            map = ArcMap._globalVariables.map,
+            featureLayer = ArcMap._globalVariables.featureLayer,
+            labelLayer = ArcMap._globalVariables.labelLayer,
+            countryFS = ArcMap._globalVariables.countryFS,
+            provinceFS = ArcMap._globalVariables.provinceFS,
+            cityLayer = ArcMap._globalVariables.cityLayer;
+        if (!isEmptyObject(dd) && dd['statuscode'] == 200) {
             $('#featureInfo').show();
             map.removeLayer(featureLayer);
             featureLayer.clear();
@@ -619,11 +454,10 @@ var MyFeatureLayer = {
                     break;
             }
         } else {
-            MyMap.showNoData();
+            noDataHandler();
         }
 
         function showCountry(agg) {
-            //console.log("country is rendering ---------countries==", agg['country@%city']);
             if (!agg['country@%city'] || isEmptyObject(agg['country@%city']))return;
             if (countryFS && countryFS.features && !isEmptyObject(countryFS.features)) {
                 render(agg['country@%city'], countryFS.features);
@@ -649,7 +483,7 @@ var MyFeatureLayer = {
                             //featureLayer.add(new Graphic(g));
                             var newGraphic = new Graphic(g);
                             featureLayer.add(newGraphic);
-                            addLabel(labelLayer, newGraphic, country.count);//add text to labelLayer
+                            MyFeatureLayer.addLabel(labelLayer, newGraphic, country.count);//add text to labelLayer
                             setMinMax(country.count);
                         }
                     }
@@ -669,7 +503,6 @@ var MyFeatureLayer = {
         function showProvince(agg) {
             console.log("province is rendering ...");
             if (!agg['province'] || isEmptyObject(agg['province']))return;
-            //console.log("province is rendering -----------++++++++++", provinceFS);
             if (provinceFS && provinceFS.features && !isEmptyObject(provinceFS.features)) {
                 render(agg['province'], provinceFS.features);
             } else {
@@ -695,7 +528,7 @@ var MyFeatureLayer = {
                             //featureLayer.add(new Graphic(g));
                             var newGraphic = new Graphic(g);
                             featureLayer.add(newGraphic);
-                            addLabel(labelLayer, newGraphic, count);//add text to labelLayer
+                            MyFeatureLayer.addLabel(labelLayer, newGraphic, count);//add text to labelLayer
                             setMinMax(count);
                         }
                     }
@@ -715,7 +548,6 @@ var MyFeatureLayer = {
         function showCityFromArcGis(agg) {
             console.log("city is rendering ...", agg);
             if (!agg['country@%city'] || isEmptyObject(agg['country@%city']))return;
-            //console.log("city is rendering -----------++++++++++", cityLayer.graphics);
             var countries = agg['country@%city'], cities = {};
             for (var co in countries) {
                 var country = countries[co];
@@ -749,7 +581,7 @@ var MyFeatureLayer = {
                             var g = features[i];
                             g.attributes.count = count;
                             featureLayer.add(g);
-                            addLabel(labelLayer, g, count);//add text to labelLayer
+                            MyFeatureLayer.addLabel(labelLayer, g, count);//add text to labelLayer
                             setMinMax(count);
                             featuresDisplayed[key] = count;
                         }
@@ -796,16 +628,16 @@ var MyFeatureLayer = {
         }
     },
     hide: function () {
-        console.log("FUNCTION CALL: MyFeatureLayer.hide");
-        featureLayer.clear();
-        labelLayer.clear();
-        cityLayer.hide();
+        console.log("MyFeatureLayer.hide() ======");
+        ArcMap._globalVariables.featureLayer.clear();
+        ArcMap._globalVariables.labelLayer.clear();
+        ArcMap._globalVariables.cityLayer.hide();
         $('#featureInfo').hide();
     },
-    updateCityLayer: function (citiesDisplayed) {
+    updateCityLayer: function (featureLayer) {
         console.log("city is rendering ...");
-        var cities = citiesDisplayed;
-
+        var cities = MyFeatureLayer.featuresDisplayed,
+            cityLayer = ArcMap._globalVariables.cityLayer;
         if (cityLayer && cityLayer.graphics && cityLayer.graphics.length > 0) {
             render(cities, cityLayer.graphics);
         } else {
@@ -830,7 +662,7 @@ var MyFeatureLayer = {
                         var g = features[i];
                         g.attributes.count = count;
                         featureLayer.add(g);
-                        addLabel(labelLayer, g, count);//add text to labelLayer
+                        MyFeatureLayer.addLabel(labelLayer, g, count);//add text to labelLayer
                         setMinMax(count);
                     }
                 }
@@ -873,9 +705,20 @@ var MyFeatureLayer = {
                 //map.reorderLayer(clusterLayer, 100);
             });
         }
+    },
+    addLabel: function (layer, graphic, text) {
+        // add number to feature
+        require(["esri/graphic", "esri/symbols/TextSymbol", "esri/Color",
+            'esri/symbols/Font'], function (Graphic, TextSymbol, Color, Font) {
+            var label = new TextSymbol(
+                text,
+                new Font("15pt", Font.STYLE_ITALIC, Font.VARIANT_NORMAL, Font.WEIGHT_BOLDER, "Courier"),
+                new Color([60, 215, 60])
+            );
+            layer.add(new Graphic(graphic.geometry, label));
+        });
     }
 };
-
 var MapSidebar = {
     _WrapperSel: '#mapSidebar',
     wrapper: $('#mapSidebar'),
