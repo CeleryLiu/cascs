@@ -66,6 +66,7 @@ var initFullpage = function () {
         } else {
             $('#tool_wrapper').hide();
         }
+        $.fn.fullpage.reBuild();
     };
     $('.fullpage').fullpage({
         //↓Navigation
@@ -122,7 +123,8 @@ var initFullpage = function () {
         },
         afterLoad: function (anchorLink, index) {
             console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
-            //toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
+            toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
+
             currentPage = index;
             var data = Session.get('data');
             switch (index) {
@@ -132,7 +134,7 @@ var initFullpage = function () {
                 case 2:
                     $(Sidebar._WRAPPER_SEL).addClass('list');
                     if (data) {
-                        //List.onSearchSucceed(data);
+                        List.onSearchSucceed(data);
                     }
                     break;
                 case 3:
@@ -166,19 +168,19 @@ var initFullpage = function () {
 };
 $(function () {
     /*Pace.ignore(function () {
-        ArcMap.initFeatureSets();
-        ArcMap.init();
-    });*/
+     ArcMap.initFeatureSets();
+     ArcMap.init();
+     });*/
     InputSuggest.init();
     HomeSearch.listen();
     GlobalSearch.listen();
     //User.listenerStarts();
     initFullpage();//full page js
 
- /*   history.pushState({
-        contentId: 1,
-        title: 'Welcome to CASCS',
-        q: '',
-        data: null
-    }, 'Welcome to CASCS', '');*/
+    /*   history.pushState({
+     contentId: 1,
+     title: 'Welcome to CASCS',
+     q: '',
+     data: null
+     }, 'Welcome to CASCS', '');*/
 });
