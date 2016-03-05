@@ -25,7 +25,7 @@ var LoadData = {
             });
     },
     post: function (requestObj) {
-        console.log("LoadData.post() ======, requestObj = ", requestObj);
+        //console.log("LoadData.post() ======, requestObj = ", requestObj);
         $.ajax({
             url: requestObj.url,
             type: "post",
@@ -38,6 +38,7 @@ var LoadData = {
                 Pace.start();
             }
         }).success(function (data) {
+            globalData = data;
             if (requestObj.success) {
                 requestObj.success(data);
             } else {
@@ -50,6 +51,7 @@ var LoadData = {
                     true
                 );
             }
+            //$.fn.fullpage.destroy();
 
             Pace.stop();
         })
@@ -121,7 +123,7 @@ var createView = function (stateObject, pushHistory) {
                 break;
         }
     } else if (statuscode == 204) {
-        noDataHandler();
+        noDataHandler(data);
     } else {
         errorHandler();
     }
@@ -132,5 +134,6 @@ var createView = function (stateObject, pushHistory) {
      *   thirdOne: the URL - this will appear in the browser address bar
      * }
      */
-    //if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
+    if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
+    console.log("==========================");
 };

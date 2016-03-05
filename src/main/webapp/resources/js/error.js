@@ -7,8 +7,23 @@ var errorHandler = function () {
     }, 3000);
 };
 
-var noDataHandler = function () {
+var noDataHandler = function (data) {
     console.log("noDataHandler: ajax succeed but no data found");
+    if (data) {
+        var currpage = data['currpage'],
+            total = data['total'],
+            pagesize = data['pagesize'],
+            took = data['took'];
+        ResultOverview.set(total, took, currpage, pagesize);
+    }
+    if ($('#listSe').hasClass('active')) {
+        $(List._WRAPPER_SEL).hide();
+        $('.no-data').show();
+        // (2)返回首页
+        /*     setTimeout(function () {
+         $.fn.fullpage.silentMoveTo('se1');
+         }, 5000);*/
+    }
     $('.search-box-container').popover({
         content: "没有搜索到" + '' + "相关的数据，可尝试搜索其他关键词",
         placement: 'bottom',
@@ -17,15 +32,6 @@ var noDataHandler = function () {
     setTimeout(function () {
         $('.search-box-container').popover('hide');
     }, 2000);
-
-    if ($('#listSe').hasClass('active')) {
-        $(List._WRAPPER_SEL).hide();
-        $('.no-data').show();
-        // (2)返回首页
-        setTimeout(function () {
-            $.fn.fullpage.silentMoveTo('se1');
-        }, 5000);
-    }
 };
 
 function noData(data) {

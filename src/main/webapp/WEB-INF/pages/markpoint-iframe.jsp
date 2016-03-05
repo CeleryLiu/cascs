@@ -170,7 +170,7 @@
 <script src="${mpJs}"></script>--%>
 <script>
     $(function () {
-        console.log("iframe markpoint starts>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//        console.log("iframe markpoint starts>>>>>>>>>>>>>>>>>>>>>>>>>>");
     })
 </script>
 </body>

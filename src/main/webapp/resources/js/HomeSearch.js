@@ -9,7 +9,7 @@ var HomeSearch = {
         return $(this._INPUT_SEL).val().replace(/\s{2,}/g, ' ').trim();
     },
     setValue: function (val) {
-        console.log('HomeSearch.setValue(), val:' + val);
+        //console.log('HomeSearch.setValue(), val:' + val);
         $(this._INPUT_SEL).val(val);
     },
     listen: function () {
@@ -23,7 +23,7 @@ var HomeSearch = {
                 //（1）将data添加到sessionStorage.data
                 Session.set('data', data);
                 if (statuscode == 200) {
-                    console.log('Home search succeed. statuscode == 200', data);
+                    //console.log('Home search succeed. statuscode == 200', data);
                     //(2.a)调用Sidebar的render方法，生成sidebar
                     Sidebar.render(data);
                     //(2.b)调用List的render方法，生成搜索结果页面
@@ -33,7 +33,7 @@ var HomeSearch = {
                     //(4)跳转到list页面
                     $.fn.fullpage.silentMoveTo('se2');
                 } else if (statuscode == 204) {
-                    noDataHandler();
+                    noDataHandler(data);
                 } else {
                     errorHandler();
                 }
@@ -59,7 +59,7 @@ var HomeSearch = {
         /*//（1）将data添加到sessionStorage.data
          Session.set('data', data);*/
         if (statuscode == 200) {
-            console.log('Home search succeed. statuscode == 200', data);
+            //console.log('Home search succeed. statuscode == 200', data);
             //(2.a)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
             //(2.b)调用List的render方法，生成搜索结果页面
@@ -70,7 +70,7 @@ var HomeSearch = {
             $.fn.fullpage.silentMoveTo('se2');
         } else if (statuscode == 204) {
             console.log('home no data');
-            noDataHandler();
+            noDataHandler(data);
         } else {
             console.log('home no error');
             errorHandler();

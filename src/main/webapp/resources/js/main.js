@@ -3,15 +3,16 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 var currentPage = 1;
-var data;
+var globalData;
 window.onpopstate = function (event) {
+    console.log(event);
+    console.log(event.state);
     if (event.state == null || event.state.data == null)return;
     //Use false as the second argument below
     // - state will already be on the stack when going Back/Forwards
-    createView(event.state, false);
+    //createView(event.state, false);
 };
 $(function () {
-    history.pushState({contentId: 1, title: 'Welcome to CASCS', q: '', data: null}, 'Welcome to CASCS', '');
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
         var slideNavList = $('.fp-slidesNav a');
@@ -68,8 +69,13 @@ $(function () {
     };
 
     // starts --------------
-    // ArcGis feature set
     ArcMap.initFeatureSets();
+    InputSuggest.init();
+    HomeSearch.listen();
+    GlobalSearch.listen();
+    ArcMap.init();
+    User.listenerStarts();
+
     //full page js
     $('.fullpage').fullpage({
         //↓Navigation
@@ -83,6 +89,7 @@ $(function () {
         //↓Accessibility
         animateAnchor: false,//scroll with animation or will directly load on the given section; default to true
         keyboardScrolling: false,
+        //recordHistory: false,
 
         //↓Design
         controlArrows: false,
@@ -101,24 +108,18 @@ $(function () {
 
         //↓events
         afterRender: function () {  //initialize here
-            //console.log('fullPage.afterRender()');
+            console.log('fullPage.afterRender()');
             //(init-1)add slides nav tips
             //addTooltip4Slides(Constant.SLIDE_NAV_TOOLTIPS);
             //(init-2)custom initialize
-            InputSuggest.init();
-            HomeSearch.listen();
-            GlobalSearch.listen();
-            ArcMap.init();
-            User.listenerStarts();
-
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
         },
         afterResize: function () {
-            //console.log('fullPage.afterResize()');
+            console.log('fullPage.afterResize()');
         },
         onLeave: function (index, nextIndex, direction) {
-            //console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
+            console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             switch (index) {
                 case 3:
                     ArcMap.onLeave();
@@ -131,7 +132,7 @@ $(function () {
             }
         },
         afterLoad: function (anchorLink, index) {
-            //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
+            console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
             currentPage = index;
             var data = Session.get('data');
@@ -164,13 +165,19 @@ $(function () {
             }
         },
         afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
-            //console.log('Inside afterSlideLoad() ======');
+            console.log('Inside afterSlideLoad() ======');
             //console.log('Inside afterSlideLoad() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideAnchor = ' + slideAnchor + ', slideIndex = ' + slideAnchor);
             //$('.fp-slidesNav a').tooltip('hide');//隐藏slide的tooltip
         },
         onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
-            //console.log('Inside onSlideLeave() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideIndex = ' + slideIndex + ', nextSlideIndex = ' + nextSlideIndex);
+            console.log('Inside onSlideLeave() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideIndex = ' + slideIndex + ', nextSlideIndex = ' + nextSlideIndex);
             //console.log('Inside onSlideLeave() ======');
         }
     });
+    history.pushState({
+        contentId: 1,
+        title: 'Welcome to CASCS',
+        q: HomeSearch.getValue(),
+        data: null
+    }, 'Welcome to CASCS', '');
 });

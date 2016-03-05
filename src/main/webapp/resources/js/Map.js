@@ -117,7 +117,7 @@ var ArcMap = {
                 );
 
                 map.on('load', function () {
-                    console.log("map loaded");
+                    //console.log("map loaded");
                     //（4）添加城市featureLayer
                     Pace.ignore(    //不显示进度条
                         function () {
@@ -222,7 +222,7 @@ var ArcMap = {
         $('.pivots').find('li').removeClass('map');
     },
     render: function (data) {
-        console.log("ArcMap.render() ======");
+        //console.log("ArcMap.render() ======");
         var layerToShow = $('.map-layer').find('a.open'),
             whichFeature = layerToShow ? layerToShow.attr('id') : 'country',
             map = this.v.map;
@@ -252,7 +252,7 @@ var ArcMap = {
         }
     },
     search: function (pageNum) {
-        console.log("ArcMap.search() ======");
+        //console.log("ArcMap.search() ======");
         var wd = GlobalSearch.getValue();
         if (!wd && wd == '') return;
         var successCallback = function (data) {
@@ -260,7 +260,7 @@ var ArcMap = {
             //（1）将data添加到sessionStorage.data
             Session.set('data', data);
             if (statuscode == 200) {
-                console.log('Map search succeed. statuscode == 200', data);
+                //console.log('Map search succeed. statuscode == 200', data);
                 //(2.a)调用Sidebar的render方法，生成sidebar
                 Sidebar.render(data);
                 //(2.b)调用Map的render方法，生成搜索结果页面
@@ -268,7 +268,7 @@ var ArcMap = {
                 //(3)隐藏no-data div
                 $('.no-data').hide();
             } else if (statuscode == 204) {
-                noDataHandler();
+                noDataHandler(data);
             } else {
                 errorHandler();
             }
@@ -449,7 +449,7 @@ var ArcMap = {
             map.centerAndZoom(cp, 4);
 
             clusterLayer.on('click', function (e) {
-                console.log("cluster layer's feature is clicked");
+                //console.log("cluster layer's feature is clicked");
                 e.preventDefault();
             });
 
@@ -478,7 +478,7 @@ var ArcMap = {
             //(3)隐藏no-data div
             $('.no-data').hide();
         } else if (statuscode == 204) {
-            noDataHandler();
+            noDataHandler(data);
         } else {
             errorHandler();
         }
@@ -496,7 +496,7 @@ var MyFeatureLayer = {
     featuresDisplayed: {},
     show: function (which, mapVar) {
         //obj: map,featureLayer,labelLayer,countryFS,provinceFS,cityLayer
-        console.log("MyFeatureLayer.show() ======");
+        //console.log("MyFeatureLayer.show() ======");
         var map = mapVar.map,
             featureLayer = mapVar.featureLayer,
             labelLayer = mapVar.labelLayer,
@@ -523,7 +523,7 @@ var MyFeatureLayer = {
                     break;
             }
         } else {
-            noDataHandler();
+            noDataHandler(data);
         }
         Pace.stop();
         function showCountry(agg) {
@@ -531,7 +531,7 @@ var MyFeatureLayer = {
             if (countryFS.features && !isEmptyObject(countryFS.features)) {
                 render(agg['country@%city'], countryFS.features);
             } else {
-                console.log("country layer is not loaded yet. wait...");
+                //console.log("country layer is not loaded yet. wait...");
                 var wait = setInterval(function () {
                     if (countryFS.features && !isEmptyObject(countryFS.features)) {
                         render(agg['country@%city'], countryFS.features);
@@ -540,7 +540,7 @@ var MyFeatureLayer = {
                 }, 1000);
             }
             function render(countries, features) {
-                console.log("countryLayer is rendering...");
+                //console.log("countryLayer is rendering...");
                 var min = Number.MAX_VALUE, max = 0;
                 require(["esri/graphic"], function (Graphic) {
                     for (var key in countries) {
@@ -569,13 +569,13 @@ var MyFeatureLayer = {
         }
 
         function showProvince(agg) {
-            console.log("showProvince ...agg = ", agg);
+            //console.log("showProvince ...agg = ", agg);
             if (!agg['province'] || isEmptyObject(agg['province']))return;
             if (provinceFS.features && !isEmptyObject(provinceFS.features)) {
-                console.log("province layer about to rending...");
+                //console.log("province layer about to rending...");
                 render(agg['province'], provinceFS.features);
             } else {
-                console.log("province layer is not loaded yet. wait...");
+                //console.log("province layer is not loaded yet. wait...");
                 var wait = setInterval(function () {
                     if (provinceFS.features && !isEmptyObject(provinceFS.features)) {
                         render(agg['province'], provinceFS.features);
@@ -612,7 +612,7 @@ var MyFeatureLayer = {
         }
 
         function showCityFromArcGis(agg) {
-            console.log("city is rendering ...", agg);
+            //console.log("city is rendering ...", agg);
             if (!agg['country@%city'] || isEmptyObject(agg['country@%city']))return;
             var countries = agg['country@%city'], cities = {};
             for (var co in countries) {
@@ -628,7 +628,7 @@ var MyFeatureLayer = {
             } else {
                 var count = 0;
                 var wait = setInterval(function () {
-                    console.log('waiting city fs init....', count++);
+                    //console.log('waiting city fs init....', count++);
                     if ((cityLayer.graphics && cityLayer.graphics.length > 0) || count > 10) {
                         render(cities, cityLayer.graphics);
                         clearInterval(wait);
@@ -637,9 +637,9 @@ var MyFeatureLayer = {
             }
 
             function render(cities, features) {
-                console.log("cityLayer rendering ...feature:", features);
+                //console.log("cityLayer rendering ...feature:", features);
                 var min = Number.MAX_VALUE, max = 0;
-                console.log('aaaa');
+                //console.log('aaaa');
                 for (var key in cities) {
                     for (var i = 0; i < features.length; i++) {
                         if (features[i].attributes['Name_CHN'].indexOf(key) >= 0) {
@@ -653,7 +653,7 @@ var MyFeatureLayer = {
                         }
                     }
                 }
-                console.log('bbb');
+                //console.log('bbb');
 
                 renderFeatureLayer(featureLayer, 0, max);
                 function setMinMax(count) {
@@ -668,8 +668,6 @@ var MyFeatureLayer = {
         }
 
         function renderFeatureLayer(layer, min, max) {
-            console.log('ddd');
-
             require([
                 "esri/graphic",
                 "esri/renderers/SimpleRenderer", "esri/Color",
@@ -696,7 +694,7 @@ var MyFeatureLayer = {
         }
     },
     hide: function () {
-        console.log("MyFeatureLayer.hide() ======");
+        //console.log("MyFeatureLayer.hide() ======");
         ArcMap.v.featureLayer.clear();
         ArcMap.v.featureLayer.hide();
         ArcMap.v.labelLayer.clear();
@@ -707,10 +705,10 @@ var MyFeatureLayer = {
         var cities = MyFeatureLayer.featuresDisplayed,
             cityLayer = mapVariables.cityLayer, featureLayer = mapVariables.featureLayer;
         if (cityLayer.graphics && cityLayer.graphics.length > 0) {
-            console.log("city is updating ...");
+            //console.log("city is updating ...");
             render(cities, cityLayer.graphics);
         } else {
-            console.log("city layer is not loaded yet. wait...");
+            //console.log("city layer is not loaded yet. wait...");
             var wait = setInterval(function () {
                 if (cityLayer.graphics && cityLayer.graphics.length > 0) {
                     render(cities, cityLayer.graphics);
@@ -720,7 +718,7 @@ var MyFeatureLayer = {
         }
 
         function render(cities, features) {
-            console.log("cityLayer rendering ...", features);
+            //console.log("cityLayer rendering ...", features);
             var min = Number.MAX_VALUE, max = 0;
             for (var key in cities) {
                 for (var i = 0; i < features.length; i++) {
@@ -792,17 +790,17 @@ var MapSidebar = {
         return $(this._WrapperSel).is(':hidden');
     },
     show: function () {
-        console.log("FUNCTION CALL: MapSidebar.show");
+        //console.log("FUNCTION CALL: MapSidebar.show");
         //this.wrapper.show().addClass('active');
         $(this._WrapperSel).show(500);
     },
     hide: function () {
-        console.log("FUNCTION CALL: MapSidebar.hide");
+        //console.log("FUNCTION CALL: MapSidebar.hide");
         //this.wrapper.removeClass('active');
         $(this._WrapperSel).hide(500);
     },
     init: function (data) {
-        console.log("FUNCTION CALL: MapSidebar.init");
+        //console.log("FUNCTION CALL: MapSidebar.init");
         var devices = data['data'];
         //添加设备
         $('.map-device-list').html('');
@@ -883,8 +881,8 @@ var MapSidebar = {
         }
     },
     onSelectionChange: function () {    //用户选择了一个设备的时候，在地图上弹出对应设备的infowindow
-        console.log("FUNCTION CALL: MapSidebar.onSelectionChange");
+        //console.log("FUNCTION CALL: MapSidebar.onSelectionChange");
         var selected = map.infoWindow.getSelectedFeature();
-        console.log("on selection  change, selected = ", selected);
+        //console.log("on selection  change, selected = ", selected);
     }
 };

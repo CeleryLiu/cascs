@@ -186,7 +186,7 @@ var User = {
         });
     },
     listenerStarts: function () {
-        console.log('Inside User.listenerStarts() ======');
+        //console.log('Inside User.listenerStarts() ======');
         var username = Session.get('username');
         if (username && username != '' && username != 'undefined') {
             this.setNavUsername(username);

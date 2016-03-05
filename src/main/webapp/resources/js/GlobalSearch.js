@@ -12,7 +12,7 @@ var GlobalSearch = {
         return '#global_search_input';
     }()),
     setValue: function (val) {
-        console.log('GlobalSearch.setValue(), val:' + val);
+        //console.log('GlobalSearch.setValue(), val:' + val);
         $(this._INPUT_SEL).val(val);
     },
     getValue: function () {

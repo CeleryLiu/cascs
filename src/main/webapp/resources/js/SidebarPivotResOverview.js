@@ -19,7 +19,7 @@ var Sidebar = {
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     render: function (data) {
-        console.log("Sidebar.render()", data);
+        console.log("Sidebar.render()");
         var agg = data['aggregation'], wd = data['wd'] ? data['wd'] : data['q']['wd'];
         //param countryObj={en:englishName,count:totalCount,cities:cityObjList}
         var genSidebarCountryLi = function (countryName, countryObj) {

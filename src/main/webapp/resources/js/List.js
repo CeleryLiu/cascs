@@ -125,7 +125,7 @@ var List = {
             //（1）将data添加到sessionStorage.data
             Session.set('data', data);
             if (statuscode == 200) {
-                console.log('List search succeed. statuscode == 200', data);
+                //console.log('List search succeed. statuscode == 200', data);
                 //(2.a)调用Sidebar的render方法，生成sidebar
                 Sidebar.render(data);
                 //(2.b)调用List的render方法，生成搜索结果页面
@@ -133,7 +133,7 @@ var List = {
                 //(3)隐藏no-data div
                 $('.no-data').hide();
             } else if (statuscode == 204) {
-                noDataHandler();
+                noDataHandler(data);
             } else {
                 errorHandler();
             }
@@ -154,7 +154,7 @@ var List = {
         //（1）将data添加到sessionStorage.data
         //Session.set('data', data);
         if (statuscode == 200) {
-            console.log('List search succeed. statuscode == 200', data);
+            //console.log('List search succeed. statuscode == 200', data);
             //(2.a)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
             //(2.b)调用List的render方法，生成搜索结果页面
@@ -163,7 +163,7 @@ var List = {
             $('.no-data').hide();
         } else if (statuscode == 204) {
             console.log('list no data');
-            noDataHandler();
+            noDataHandler(data);
         } else {
             console.log('list error');
             errorHandler();
