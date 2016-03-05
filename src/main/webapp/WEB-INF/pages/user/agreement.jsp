@@ -18,7 +18,8 @@
 --%>
 <div class="wraper">
     <%--<p class="tr"><a href="#se6/se6_reg" class="blue ml10 fz12 to-login "  style="background:green;">返回注册页&raquo;</a></p>--%>
-    <h2 class="green">网易通行证服务条款    <a href="#se6/se6_reg" class="ml10 fz12">返回注册页&raquo;</a>
+    <h2 class="green">网易通行证服务条款
+        <%--<a href="#se6/se6_reg" class="ml10 fz12">返回注册页&raquo;</a>--%>
     </h2>
 
 <pre>

@@ -3,14 +3,14 @@
  */
 var User = {
     setNavUsername: function (name) {
-        var $usermenus = $('#menu').find('li[data-menuanchor="se_user"]');
+        var $usermenus = $('#menu').find('li[data-menuanchor="se6"]');
         var $logout = $('#logout');
         $usermenus.find('a').hide();
         $logout
             .on('click', function (e) {
                 e.preventDefault();
                 Session.reset('username');
-                $usermenus.find('a[href="#se_user/sl_user_login"]').show();
+                $usermenus.find('a[href="#se6/se6_login"]').show();
                 $logout.hide().find('span').text('');
             })
             .show().css('display', 'inline-block')
@@ -33,16 +33,21 @@ var User = {
                     Session.set('username', uname);//将用户名存入session
                     User.setNavUsername(uname);//将导航条中“登录”设置为用户名+退出
                     history.back();//跳转回登录前的页面，待优化
-                }, 2000);
-            } else {
-                $.showmsg("注册失败，请稍后重新注册！");
+                }, 3000);
+            } else if (data.reason) {
+                $.showmsg("注册失败！" + data.reason);
                 setTimeout(function () {
                     $.Hidemsg();
                 }, 2000);
+            } else {
+                errorCallback();
             }
         };
         var errorCallback = function () {
-            console.log("ajax error!");
+            $.showmsg("注册失败，请稍后再试！");
+            setTimeout(function () {
+                $.Hidemsg();
+            }, 2000);
         };
 
         //表单验证提交
@@ -82,23 +87,29 @@ var User = {
         var successCallback = function (data) {
             console.log(data);
             if (data.code == 1) {
-                $.Showmsg("登录成功！即将返回到登录前的页面。");
+                $.Showmsg("登录成功！");
                 setTimeout(function () {
                     var uname = data['data']['username'];
                     $.Hidemsg();
                     Session.set('username', uname);//将用户名存入session
                     User.setNavUsername(uname);//将导航条中“登录”设置为用户名+退出
-                    history.back();//跳转回登录前的页面，待优化
+                    window.location.href = getRootPath();
+                    //history.back();//跳转回登录前的页面，待优化
                 }, 2000);
-            } else {
-                $.Showmsg("操作失败，请稍后再试！");
+            } else if (data.reason) {
+                $.Showmsg("登录失败！" + data.reason);
                 setTimeout(function () {
                     $.Hidemsg();
                 }, 2000);
+            } else {
+                errorCallback();
             }
         };
         var errorCallback = function () {
-            console.log("ajax error!");
+            $.Showmsg("登录失败，请稍后再试！");
+            setTimeout(function () {
+                $.Hidemsg();
+            }, 2000);
         };
         //表单验证和提交
         $("#login_form").Validform({
@@ -134,13 +145,19 @@ var User = {
         var successCallback = function (data) {
             console.log(data);
             if (data.code == 1) {
-                $.Showmsg("邮件发送成功，即将转到登录页面！");
+                $.Showmsg("邮件发送成功！");
                 setTimeout(function () {
                     $.Hidemsg();
-                    window.location.href = 'login';
+                    //$.fn.fullpage.silentMoveTo('se6', 'se6_login');
+                    window.location.href = getRootPath() + '#se6/se6_pwd';
+                }, 3000);
+            } else if (data.reason) {
+                console.log("code != 1");
+                $.Showmsg("操作失败！" + data.reason);
+                setTimeout(function () {
+                    $.Hidemsg();
                 }, 3000);
             } else {
-                console.log("code != 1");
                 errorCallback();
             }
         };

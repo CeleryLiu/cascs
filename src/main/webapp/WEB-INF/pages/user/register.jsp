@@ -42,7 +42,7 @@
 <body>
 <%@ include file="../new-header.jsp" %>
 <div class="main">--%>
-    <div class="wraper">
+    <div class="wraper reg">
         <%--<p class="tr"><a href="javascript:history.go(-1); " class="blue ml10 fz12">返回上一页&raquo;</a></p>--%>
 
         <h2 class="green">新用户注册</h2>

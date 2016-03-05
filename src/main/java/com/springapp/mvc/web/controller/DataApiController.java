@@ -108,8 +108,8 @@ public class DataApiController {
         search.setTypefilter(typefilter);
         search.setLossycompress(lossycompress);
         String result = deviceService.getResponse4Globe(search);
-//        System.out.println("globe point");
-//        System.out.println(result);
+        System.out.println("globe point");
+        System.out.println(result);
         return result;
     }
 

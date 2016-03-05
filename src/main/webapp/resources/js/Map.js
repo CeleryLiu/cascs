@@ -107,14 +107,22 @@ var ArcMap = {
                 labelLayer = new GraphicsLayer();
                 map.addLayer(labelLayer);
 
+                Pace.ignore(    //不显示进度条
+                    function () {
+                        ArcMap.v.cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
+                            outFields: ["*"]
+                        });
+                    }
+                );
+
                 map.on('load', function () {
                     console.log("map loaded");
                     //（4）添加城市featureLayer
                     Pace.ignore(    //不显示进度条
                         function () {
-                            ArcMap.v.cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
-                                outFields: ["*"]
-                            });
+                            /*ArcMap.v.cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
+                             outFields: ["*"]
+                             });*/
                             ArcMap.v.cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
                         }
                     );

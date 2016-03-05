@@ -11,7 +11,7 @@
 
 .wraper {
     display: inline-block;
-    min-width: 30rem;
+    min-width: 50rem;
     margin: 0 auto;
     padding: 3rem;
     background-color: rgba(255, 255, 255, .7);
@@ -38,6 +38,10 @@
 
 .wraper a {
     font-size: 1.5rem;
+}
+
+.wraper.reg {
+    min-width: 53rem;
 }
 
 .lireset2 {

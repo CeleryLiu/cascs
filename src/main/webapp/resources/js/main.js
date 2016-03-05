@@ -109,7 +109,7 @@ $(function () {
             HomeSearch.listen();
             GlobalSearch.listen();
             ArcMap.init();
-            //User.listenerStarts();
+            User.listenerStarts();
 
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();

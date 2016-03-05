@@ -28,12 +28,12 @@ public class MarkpointController {
     }
 
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/search/markpoint")
-    public String markpointSearch(
+    @RequestMapping(value = "/search/markpoint/{typefilter}/{permitfilter}/{lossycompress}")
+    public String markpoint(
             @PathVariable("typefilter") String typefilter,
             @PathVariable("permitfilter") String permitfilter,
             @PathVariable("lossycompress") Integer lossycompress) {
-        logger.debug("MarkpointController.markpointSearch() starts-----------");
+        logger.debug("MarkpointController.markpoint() starts-----------");
         permitfilter = !"all".equals(permitfilter) ? permitfilter : "";
         SearchCriteria search = new SearchCriteria();
         search.setPermitfilter(permitfilter);

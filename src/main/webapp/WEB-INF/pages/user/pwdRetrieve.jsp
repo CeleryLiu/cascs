@@ -64,7 +64,7 @@
         </ul>
         <div class="action">
             <input type="submit" value="发送密码重置邮件"/>
-            <a href="javascript:$.fn.fullpage.silentMoveTo('se6',1);" class="forward-link">返回登录页</a>
+            <a href="#se6/se6_login" class="forward-link">返回登录页</a>
             <%--<a href="#se6/se6_login" class="forward-link">返回登录页</a>--%>
         </div>
     </form>

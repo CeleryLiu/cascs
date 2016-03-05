@@ -134,11 +134,11 @@
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
         <%--<%@include file="markpoint.jsp" %>--%>
-        <iframe data-src="markpoint-iframe" name="iPoint"></iframe>
+        <iframe src="markpoint-iframe" name="iPoint"></iframe>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
         <%--<div id="globe4LineHolder"></div>--%>
-        <iframe data-src="markline-iframe" name="iLine"></iframe>
+        <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">

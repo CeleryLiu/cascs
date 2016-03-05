@@ -38,19 +38,23 @@ var LoadData = {
                 Pace.start();
             }
         }).success(function (data) {
-            //requestObj.success(data);
-            createView({
-                    q: GlobalSearch.getValue(),
-                    contentId: currentPage,
-                    title: 'Welcome to CASCS ' + currentPage,
-                    data: data
-                },
-                true
-            );
+            if (requestObj.success) {
+                requestObj.success(data);
+            } else {
+                createView({
+                        q: GlobalSearch.getValue(),
+                        contentId: currentPage,
+                        title: 'Welcome to CASCS ' + currentPage,
+                        data: data
+                    },
+                    true
+                );
+            }
+
             Pace.stop();
         })
             .error(function (e) {
-                //console.log("ajax error");
+                console.log("ajax error");
                 if (requestObj.error) {
                     requestObj.error()
                 } else {

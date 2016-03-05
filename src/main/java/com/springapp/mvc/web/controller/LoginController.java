@@ -36,7 +36,11 @@ public class LoginController {
         System.out.println("Inside of login handler method");
         String params = "nam=" + user.getUsername() + "&" + "psw=" + user.getPassword();
         JSONObject result = loginService.login(params);
-        model.addAttribute("user", result.getObject("data", User.class));
+        User sUser = new User();
+        if (result.getJSONObject("data") != null) {
+            result.getObject("data", User.class);
+        }
+        model.addAttribute("user", sUser);
         return result;
     }
 
