@@ -117,7 +117,7 @@
     <div class="section" data-anchor="se1" id="homeSe">
         <%@include file="home.jsp" %>
     </div>
-  <%--  <div class="section" data-anchor="se2" id="listSe">
+    <div class="section" data-anchor="se2" id="listSe">
         <div class="list-wrapper row-fluid" id="list-wrapper" style="padding-top: 5rem">
             <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">
@@ -129,7 +129,7 @@
             </div>
             <div class="no-data">没有搜索到相关设备，您可以尝试使用其他关键字搜索！</div>
         </div>
-    </div>--%>
+    </div>
     <div class="section" data-anchor="se3" id="mapSe">
         <%--<%@include file="map.jsp" %>--%>
     </div>

@@ -169,7 +169,7 @@ $(function () {
         ArcMap.initFeatureSets();
         ArcMap.init();
     });*/
-    //InputSuggest.init();
+    InputSuggest.init();
     //HomeSearch.listen();
     //GlobalSearch.listen();
     //User.listenerStarts();
