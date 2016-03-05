@@ -25,10 +25,10 @@ var List = {
             var li = $(' <li class="device"></li>');
             //ip
             var ip = $('<a href="http://' + d.ip + '" target="_blank">' + d.ip + '</a>');
-            ip.on('click', function (e) {
+            /*ip.on('click', function (e) {
                 e.preventDefault();
                 console.log("ip is clicked!");
-            });
+            });*/
             $('<h3></h3>').append(ip).appendTo(li);
             //详细内容
             var row = $('<div class="row"></div>').appendTo(li);

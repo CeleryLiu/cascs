@@ -27,6 +27,9 @@ var Constant = {
     LIST_SEARCH_URL: (function () {
         return 'search/list';
     }()),
+    LINE_SEARCH_URL: (function () {
+        return 'search/link';
+    }()),
     MAP_SEARCH_URL: (function () {
         return 'search/map';
     }()),

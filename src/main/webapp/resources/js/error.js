@@ -9,9 +9,6 @@ var errorHandler = function () {
 
 var noDataHandler = function () {
     console.log("noDataHandler: ajax succeed but no data found");
-    if ($('#listSe').hasClass('active')) {
-        $('.no-data').show();
-    }
     $('.search-box-container').popover({
         content: "没有搜索到" + '' + "相关的数据，可尝试搜索其他关键词",
         placement: 'bottom',
@@ -20,8 +17,15 @@ var noDataHandler = function () {
     setTimeout(function () {
         $('.search-box-container').popover('hide');
     }, 2000);
-    // (1)返回首页
-    $.fn.fullpage.silentMoveTo('se1');
+
+    if ($('#listSe').hasClass('active')) {
+        $(List._WRAPPER_SEL).hide();
+        $('.no-data').show();
+        // (2)返回首页
+        setTimeout(function () {
+            $.fn.fullpage.silentMoveTo('se1');
+        }, 5000);
+    }
 };
 
 function noData(data) {

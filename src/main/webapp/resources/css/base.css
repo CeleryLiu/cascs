@@ -459,13 +459,13 @@ b {
     border-radius: 4px;
 }
 
-.pivots li.map {
+.pivots.map li {
     /*background-color: rgba(224, 224, 224, .8);*/
     background: hsla(201, 100%, 77%, .9);
     box-shadow: -1px 1px 1px 1px #b4b4b4;;
 }
 
-.pivots li.map.active,
+.pivots.map li.active,
 .pivots li.active {
     background: #666;
     background: rgba(0, 0, 0, 0.5);

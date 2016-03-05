@@ -132,5 +132,5 @@ var createView = function (stateObject, pushHistory) {
      *   thirdOne: the URL - this will appear in the browser address bar
      * }
      */
-    if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
+    //if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
 };

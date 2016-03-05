@@ -213,12 +213,13 @@ var ArcMap = {
     },
     onLoad: function () {
         $(Sidebar._WRAPPER_SEL).addClass('map');
-        $('.pivots li').addClass('map');
+        //console.log('on load map', $(Pivot._WRAPPER_SEL).html());
+        $(Pivot._PIVOTS_UL_SEL).addClass('map');
         ResultOverview.hide();
     },
     onLeave: function () {
         $(Sidebar._WRAPPER_SEL).removeClass('map');
-        $('.pivots li').removeClass('map');
+        $('.pivots').find('li').removeClass('map');
     },
     render: function (data) {
         console.log("ArcMap.render() ======");
