@@ -26,6 +26,8 @@ var LoadData = {
     },
     post: function (requestObj) {
         //console.log("LoadData.post() ======, requestObj = ", requestObj);
+        console.log('start pace');
+        Pace.start();
         $.ajax({
             url: requestObj.url,
             type: "post",
@@ -35,7 +37,6 @@ var LoadData = {
             data: JSON.stringify(requestObj.data),
             beforeSend: function () {
                 disableButtons(true);
-                Pace.start();
             }
         }).success(function (data) {
             globalData = data;
@@ -53,7 +54,6 @@ var LoadData = {
             }
             //$.fn.fullpage.destroy();
 
-            Pace.stop();
         })
             .error(function (e) {
                 console.log("ajax error");
@@ -66,6 +66,7 @@ var LoadData = {
             })
             .complete(function (jqXHR, textStatus) {
                 disableButtons(false);
+                Pace.stop();
             });
     }
 };
