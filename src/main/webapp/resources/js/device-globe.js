@@ -35,8 +35,8 @@ function starts() {
 
     require.config({
         paths: {
-            'echarts': basePath + "resources/plugins/echarts-2.2.7/build/dist",
-            'echarts-x': basePath + "resources/plugins/echarts-x/build/dist"
+            'echarts': basePath2 + "resources/plugins/echarts-2.2.7/build/dist",
+            'echarts-x': basePath2 + "resources/plugins/echarts-x/build/dist"
         }
     });
 
@@ -60,7 +60,7 @@ function starts() {
                     selectedMode: 'single',
                     baseLayer: {
                         backgroundColor: '',
-                        backgroundImage: basePath + 'resources/img/earth.jpg',
+                        backgroundImage: basePath2 + 'resources/img/earth.jpg',
                         quality: 'high'
                     },
                     light: {
@@ -126,7 +126,7 @@ function starts() {
                                         selectedMode: 'single',
                                         baseLayer: {
                                             backgroundColor: '',
-                                            backgroundImage: basePath + 'resources/img/earth.jpg',
+                                            backgroundImage: basePath2 + 'resources/img/earth.jpg',
                                             quality: 'high'
                                         },
                                         light: {

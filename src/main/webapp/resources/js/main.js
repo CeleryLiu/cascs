@@ -4,14 +4,14 @@
  */
 var currentPage = 1;
 var globalData;
-window.onpopstate = function (event) {
-    console.log(event);
-    console.log(event.state);
-    if (event.state == null || event.state.data == null)return;
-    //Use false as the second argument below
-    // - state will already be on the stack when going Back/Forwards
-    //createView(event.state, false);
-};
+/*window.onpopstate = function (event) {
+ console.log(event);
+ console.log(event.state);
+ if (event.state == null || event.state.data == null)return;
+ //Use false as the second argument below
+ // - state will already be on the stack when going Back/Forwards
+ //createView(event.state, false);
+ };*/
 var initFullpage = function () {
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
@@ -145,11 +145,9 @@ var initFullpage = function () {
                     break;
                 case 4:
                     Sidebar.hide();
-                    $.fn.fullpage.reBuild();
-                    //iPoint.window.starts();
                     break;
                 case 5:
-                    //Sidebar.hide();
+                    Sidebar.hide();
                     //iLine.window.starts();
                     break;
                 case 6:
@@ -175,7 +173,7 @@ $(function () {
     InputSuggest.init();
     HomeSearch.listen();
     GlobalSearch.listen();
-    //User.listenerStarts();
+    User.listenerStarts();
     initFullpage();//full page js
 
     /*   history.pushState({

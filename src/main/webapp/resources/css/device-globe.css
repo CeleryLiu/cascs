@@ -8,14 +8,14 @@
     /*overflow: hidden;*/
 }
 /*color: #6db33f, #3f4657, #452525*/
-#main,
+#pointMain,
 #markpointHolder {
     height: 100%;
     width: 100%;
     background: no-repeat top center fixed linear-gradient(#3f4657, #452525)
 }
 
-#main span {
+#pointMain span {
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
@@ -154,7 +154,7 @@
     background-color: transparent;
 }
 
-#legend {
+#pointLegend {
     display: inline-block;
     z-index: 999;
     position: absolute;
@@ -171,11 +171,11 @@
     box-shadow: 10px 11px 17px 1px rgba(0, 0, 0, 0.3);
 }
 
-#legend .item {
+#pointLegend .item {
     border-bottom: 1px dashed #452525;
 }
 
-#legend a,
+#pointLegend a,
 #brand a {
     display: inline-block;
     /*width: 100%;*/
@@ -190,27 +190,27 @@
     border-radius: 4px;
 }
 
-/*#legend div #monitorTitle {
+/*#pointLegend div #monitorTitle {
     color: green;
     font-weight: bold;
 }*/
 
-/*#legend a:before {
+/*#pointLegend a:before {
     content: '\20';
 }*/
 
-#legend a:hover,
+#pointLegend a:hover,
 #brand a:hover {
     box-shadow: inset 0 0 10px #ee0;
 }
 
-#legend a:focus,
+#pointLegend a:focus,
 #brand a:focus {
     border: 1px solid #ee0;
     box-shadow: inset 0 0 10px #ee0;
 }
 
-#legend > div > a {
+#pointLegend > div > a {
     display: block;
     width: 100%;
     height: 100%;
@@ -218,23 +218,23 @@
     padding: .5rem 1rem;
 }
 
-#legend > div > a > i {
+#pointLegend > div > a > i {
     margin-left: 16px;
     margin-left: 1rem;
 }
 
-#legend ul li span {
+#pointLegend ul li span {
     border: none;
 }
 
-#legend ul {
+#pointLegend ul {
     padding-left: 8px;
     padding-left: .5rem;
     /*background-color: #452525;*/
     /*border-radius: 4px;*/
 }
 
-#legend ul li {
+#pointLegend ul li {
     line-height: 28px;
     line-height: 1.8rem;
     font-size: 19px;
@@ -242,7 +242,7 @@
     list-style: none;
 }
 
-#legend ul li:first-child {
+#pointLegend ul li:first-child {
     margin-top: 4px;
     margin-top: .3rem;
     padding-top: 4px;
@@ -251,7 +251,7 @@
     border-top-right-radius: 4px;
 }
 
-#legend ul li:last-child {
+#pointLegend ul li:last-child {
     padding-bottom: 4px;
     padding-bottom: .3rem;
     border-bottom-left-radius: 4px;

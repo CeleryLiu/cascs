@@ -134,23 +134,23 @@
         <%--<%@include file="map.jsp" %>--%>
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
-        <%--<iframe src="markpoint-iframe"></iframe>--%>
+        <%--<iframe src="markpoint-iframe" name="iPoint"></iframe>--%>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
         <%--<iframe src="markline-iframe" name="iLine"></iframe>--%>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">
-            <%--<%@include file="user/login.jsp" %>--%>
+            <%@include file="user/login.jsp" %>
         </div>
         <div class="slide" data-anchor="se6_reg" id="regSl">
-            <%--<%@include file="user/register.jsp" %>--%>
+            <%@include file="user/register.jsp" %>
         </div>
         <div class="slide" data-anchor="se6_agreement" id="agreementSl">
-            <%--<%@include file="user/agreement.jsp" %>--%>
+            <%@include file="user/agreement.jsp" %>
         </div>
         <div class="slide" data-anchor="se6_pwd" id="pwdRetrieveSl">
-            <%--<%@include file="user/pwdRetrieve.jsp" %>--%>
+            <%@include file="user/pwdRetrieve.jsp" %>
         </div>
     </div>
 </div>

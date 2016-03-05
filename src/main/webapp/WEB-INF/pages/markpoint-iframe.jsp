@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
+    String path2 = request.getContextPath();
+    String basePath2 = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-    pageContext.setAttribute("basePath", basePath);// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。
-    String basePathNoPort = request.getScheme() + "://" + request.getServerName();
+            + path2 + "/";
+    pageContext.setAttribute("basePath2", basePath2);// 将 "项目路径basePath2" 放入pageContext中，待以后用EL表达式读出。
+    String basePath2NoPort = request.getScheme() + "://" + request.getServerName();
 %>
-<base href="<%=basePath%>">
+<base href="<%=basePath2%>">
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -16,20 +16,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>3D视觉</title>
-    <spring:url value="/resources/css/bootstrap.min.css" var="bsCss"/>
-    <link href="${bsCss}" rel="stylesheet">
-    <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
-    <link rel="stylesheet" href="${awsFont}">
-    <spring:url value="/resources/css/device-globe.css" var="globeCss"/>
-    <link rel="stylesheet" href="${globeCss}">
+    <%--<spring:url value="/resources/css/bootstrap.min.css" var="bsCss"/>--%>
+    <%--<link href="${bsCss}" rel="stylesheet">--%>
+    <%--<spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>--%>
+    <%--<link rel="stylesheet" href="${awsFont}">--%>
+    <%--<spring:url value="/resources/css/device-globe.css" var="globeCss"/>--%>
+    <%--<link rel="stylesheet" href="${globeCss}">--%>
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="resources/css/device-globe.css" rel="stylesheet">
     <script type="text/javascript">
-        var basePath = '${basePath}';
+        var basePath2 = '${basePath2}';
     </script>
 </head>
 <body>
 <%--<%@include file="header.jsp" %>--%>
-<div id="main">
-    <div id="legend">
+<div id="pointMain">
+    <div id="pointLegend">
         <div class="item">
             <a href="api/getDevices4Globe/monitor/all/2" data-toggle="collapse" data-target="#monitor"
                id="monitorTitle">监控设备
@@ -153,8 +156,7 @@
     </div>
     <div id="markpointHolder"></div>
 </div>
-<%--<%@include file="footer.jsp" %>--%>
-<spring:url value="resources/js/libs/jquery-1.11.3.min.js" var="jqJs"/>
+<%--<%@include file="foo<%--<spring:url value="resources/js/libs/jquery-1.11.3.min.js" var="jqJs"/>
 <script src="${jqJs}"></script>
 <spring:url value="resources/js/libs/bootstrap.min.js" var="bsJs"/>
 <script src="${bsJs}"></script>
@@ -165,9 +167,16 @@
 <spring:url value="resources/js/helper.js" var="helperJs"/>
 <script src="${helperJs}"></script>
 <spring:url value="resources/js/device-globe.js" var="globeJs"/>
-<script src="${globeJs}"></script>
-<%--<spring:url value="resources/js/MarkPoint.js" var="mpJs"/>
-<script src="${mpJs}"></script>--%>
+<script src="${globeJs}"></script>--%>ter.jsp" %>--%>
+
+
+<script src="resources/js/libs/jquery-1.11.3.min.js"></script>
+<script src="resources/js/libs/bootstrap.min.js"></script>
+<script src="resources/plugins/echarts-2.2.7/build/dist/echarts.js"></script>
+<script src="resources/plugins/echarts-x/build/dist/echarts-x.js"></script>
+<script src="resources/js/helper.js"></script>
+<script src="resources/js/device-globe.js"></script>
+
 <script>
     $(function () {
         starts();
