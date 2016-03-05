@@ -18,7 +18,8 @@ var ArcMap = {
         cityLayer: {},
         clusterLayer: {},
         featureLayer: {},
-        labelLayer: {}
+        labelLayer: {},
+        data: {}
     },
     initFeatureSets: function () {
         var getFeatureSet = function (url, which) {
@@ -167,6 +168,36 @@ var ArcMap = {
                             e.preventDefault();
                             $('#mapSidebar').addClass('onHover');
                         });
+                    //(4)监听tool bar的分布图点击事件
+                    $('.map-layer a').removeClass('disabled')
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            var $this = $(this);
+                            $this.toggleClass('open');
+                            if ($this.hasClass('open')) {
+                                $('.map-layer a').removeClass('open').find('span').removeClass('glyphicon-eye-open');
+                                $this.addClass('open').find('span').addClass('glyphicon-eye-open');
+                                MyFeatureLayer.show($this.attr('id'), ArcMap.v);
+                            } else {
+                                MyFeatureLayer.hide();
+                                $this.removeClass('open').find('span').removeClass('glyphicon-eye-open');
+                            }
+                        });
+                    $('#labelLayerCtrl').removeClass('disabled').on('click', function (e) {
+                        e.preventDefault();
+                        var $this = $(this);
+                        if (!$this.hasClass('active')) {
+                            ArcMap.v.labelLayer.show();
+                            $this
+                                .addClass('active')
+                                .html('隐藏数量 ' + '<span class="glyphicon glyphicon-eye-open"></span>');
+                        } else {
+                            ArcMap.v.labelLayer.hide();
+                            $this
+                                .removeClass('active')
+                                .html('显示数量 ' + '<span class="glyphicon glyphicon-eye-close"></span>');
+                        }
+                    });
                 });
                 map.on('zoom-end', function (e) {
                     //console.log("zoom level: " + map.getZoom());
@@ -191,7 +222,6 @@ var ArcMap = {
     },
     render: function (data) {
         console.log("ArcMap.render() ======");
-
         var layerToShow = $('.map-layer').find('a.open'),
             whichFeature = layerToShow ? layerToShow.attr('id') : 'country',
             map = this.v.map;
@@ -202,6 +232,10 @@ var ArcMap = {
             //MapSidebar.init(data);
             //(3)默认显示分布图
             MyFeatureLayer.show(whichFeature, this.v, data);
+            //（4）居中显示
+            this.centerAt(this.v.map, this.v.data.data[0]);
+            //(5)清空featureLayer template
+            $('#featureInfo').find('strong').text('');
         } else {
             var interval = setInterval(function () {
                 if (!isEmptyObject(map)) {
@@ -215,36 +249,6 @@ var ArcMap = {
                 }
             }, 1000);
         }
-        //(4)监听tool bar的分布图点击事件
-        $('.map-layer a').removeClass('disabled')
-            .on('click', function (e) {
-                e.preventDefault();
-                var $this = $(this);
-                $this.toggleClass('open');
-                if ($this.hasClass('open')) {
-                    $('.map-layer a').removeClass('open').find('span').removeClass('glyphicon-eye-open');
-                    $this.addClass('open').find('span').addClass('glyphicon-eye-open');
-                    MyFeatureLayer.show($this.attr('id'), ArcMap.v, data);
-                } else {
-                    MyFeatureLayer.hide();
-                    $this.removeClass('open').find('span').removeClass('glyphicon-eye-open');
-                }
-            });
-        $('#labelLayerCtrl').removeClass('disabled').on('click', function (e) {
-            e.preventDefault();
-            var $this = $(this);
-            if (!$this.hasClass('active')) {
-                ArcMap.v.labelLayer.show();
-                $this
-                    .addClass('active')
-                    .html('隐藏数量 ' + '<span class="glyphicon glyphicon-eye-open"></span>');
-            } else {
-                ArcMap.v.labelLayer.hide();
-                $this
-                    .removeClass('active')
-                    .html('显示数量 ' + '<span class="glyphicon glyphicon-eye-close"></span>');
-            }
-        });
     },
     search: function (pageNum) {
         console.log("ArcMap.search() ======");
@@ -269,7 +273,7 @@ var ArcMap = {
             }
         };
         var requestObj = {
-            'url': Constant.LIST_SEARCH_URL,
+            'url': Constant.MAP_SEARCH_URL,
             //'success': successCallback,
             'error': errorHandler,
             'data': {
@@ -462,7 +466,8 @@ var ArcMap = {
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
         //（1）将data添加到sessionStorage.data
-        Session.set('data', data);
+        //Session.set('data', data);
+        ArcMap.v.data = data;
         if (statuscode == 200) {
             console.log('Map search succeed. statuscode == 200', data);
             //(2.a)调用Sidebar的render方法，生成sidebar
@@ -476,11 +481,19 @@ var ArcMap = {
         } else {
             errorHandler();
         }
+    },
+    centerAt: function (map, device) {
+        require([
+            "esri/geometry/Point"
+        ], function (Point) {
+            var cp = new Point(device.lon, device.lat);
+            map.centerAndZoom(cp, 4);
+        });
     }
 };
 var MyFeatureLayer = {
     featuresDisplayed: {},
-    show: function (which, mapVar, data) {
+    show: function (which, mapVar) {
         //obj: map,featureLayer,labelLayer,countryFS,provinceFS,cityLayer
         console.log("MyFeatureLayer.show() ======");
         var map = mapVar.map,
@@ -488,7 +501,8 @@ var MyFeatureLayer = {
             labelLayer = mapVar.labelLayer,
             countryFS = mapVar.countryFS,
             provinceFS = mapVar.provinceFS,
-            cityLayer = mapVar.cityLayer;
+            cityLayer = mapVar.cityLayer,
+            data = mapVar.data;
         Pace.start();
         if (!isEmptyObject(data) && data['statuscode'] == 200) {
             $('#featureInfo').show();
@@ -554,9 +568,10 @@ var MyFeatureLayer = {
         }
 
         function showProvince(agg) {
-            console.log("province is rendering ...");
+            console.log("showProvince ...agg = ", agg);
             if (!agg['province'] || isEmptyObject(agg['province']))return;
             if (provinceFS.features && !isEmptyObject(provinceFS.features)) {
+                console.log("province layer about to rending...");
                 render(agg['province'], provinceFS.features);
             } else {
                 console.log("province layer is not loaded yet. wait...");
@@ -623,6 +638,7 @@ var MyFeatureLayer = {
             function render(cities, features) {
                 console.log("cityLayer rendering ...feature:", features);
                 var min = Number.MAX_VALUE, max = 0;
+                console.log('aaaa');
                 for (var key in cities) {
                     for (var i = 0; i < features.length; i++) {
                         if (features[i].attributes['Name_CHN'].indexOf(key) >= 0) {
@@ -636,6 +652,8 @@ var MyFeatureLayer = {
                         }
                     }
                 }
+                console.log('bbb');
+
                 renderFeatureLayer(featureLayer, 0, max);
                 function setMinMax(count) {
                     if (count < min) {
@@ -649,6 +667,8 @@ var MyFeatureLayer = {
         }
 
         function renderFeatureLayer(layer, min, max) {
+            console.log('ddd');
+
             require([
                 "esri/graphic",
                 "esri/renderers/SimpleRenderer", "esri/Color",
@@ -855,7 +875,7 @@ var MapSidebar = {
                 //page: '<li class="page"><a href="javascript:void(0);"> {{page}} / {{totalPages}} <\/a><\/li>',
                 onPageChange: function (n, type) {
                     if (type == 'change') {
-                        MyMap.search(n);
+                        ArcMap.search(n);
                     }
                 }
             });

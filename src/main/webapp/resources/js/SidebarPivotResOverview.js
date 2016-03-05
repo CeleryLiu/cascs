@@ -19,8 +19,8 @@ var Sidebar = {
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     render: function (data) {
-        //console.log("Sidebar.render()");
-        var agg = data['aggregation'], wd = data['wd'];
+        console.log("Sidebar.render()", data);
+        var agg = data['aggregation'], wd = data['wd'] ? data['wd'] : data['q']['wd'];
         //param countryObj={en:englishName,count:totalCount,cities:cityObjList}
         var genSidebarCountryLi = function (countryName, countryObj) {
             //coXX=countryXX,ciYY=cityYY
@@ -133,34 +133,36 @@ var Sidebar = {
 
         //(2)根据wd设置复选框的选中状态并添加对应的pivot
         $('div.panel-collapse.collapse').removeClass('in');
-        var wdList = wd.split(' ');
-        for (var i = 0; i < wdList.length; i++) {
-            var item = wdList[i];
-            if (item.indexOf(':') > 0) {
-                var dKey = item.split(':')[0],
-                    dValue = item.split(':')[1],
-                    $input = $(Sidebar._WRAPPER_SEL + ' input[data-value="' + dValue + '"]'),
-                    value;
-                if ($input && $input.attr('data-key') == dKey) {
-                    value = $input.val();
-                    //选中复选框
-                    $input.prop('checked', true);
-                    if (value == '全国') {
-                        //该国家下所有的城市都被选中，并移除Pivot中对应的城市
-                        var siblings = $input.closest('li').siblings("li");
-                        siblings.each(function (index, item) {
-                            var i = $(item).find('input').prop('checked', true).attr('disabled', 'disabled');
-                            Pivot.remove(dKey, dValue);
-                        });
-                    }
+        if (wd && wd != '') {
+            var wdList = wd.split(' ');
+            for (var i = 0; i < wdList.length; i++) {
+                var item = wdList[i];
+                if (item.indexOf(':') > 0) {
+                    var dKey = item.split(':')[0],
+                        dValue = item.split(':')[1],
+                        $input = $(Sidebar._WRAPPER_SEL + ' input[data-value="' + dValue + '"]'),
+                        value;
+                    if ($input && $input.attr('data-key') == dKey) {
+                        value = $input.val();
+                        //选中复选框
+                        $input.prop('checked', true);
+                        if (value == '全国') {
+                            //该国家下所有的城市都被选中，并移除Pivot中对应的城市
+                            var siblings = $input.closest('li').siblings("li");
+                            siblings.each(function (index, item) {
+                                var i = $(item).find('input').prop('checked', true).attr('disabled', 'disabled');
+                                Pivot.remove(dKey, dValue);
+                            });
+                        }
 
-                    //展开被选中复选框所在的面板
-                    $input.closest('div.collapse').addClass('in');
-                    if (dKey == 'city' || dKey == 'country') {
-                        $('#countryList').addClass('in');
+                        //展开被选中复选框所在的面板
+                        $input.closest('div.collapse').addClass('in');
+                        if (dKey == 'city' || dKey == 'country') {
+                            $('#countryList').addClass('in');
+                        }
+                        //添加pivot
+                        Pivot.add(dKey, dValue, value);
                     }
-                    //添加pivot
-                    Pivot.add(dKey, dValue, value);
                 }
             }
         }

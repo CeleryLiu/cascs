@@ -117,7 +117,7 @@
     </div>
     <div class="section" data-anchor="se2" id="listSe">
         <%--<div style="height: 7rem;"></div>--%>
-        <div class="list-wrapper row-fluid" id="list-wrapper" style="padding-top: 4rem">
+        <div class="list-wrapper row-fluid" id="list-wrapper" style="padding-top: 5rem">
             <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">
                     <ul class="result devices"></ul>
