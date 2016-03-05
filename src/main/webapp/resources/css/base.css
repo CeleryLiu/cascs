@@ -326,7 +326,7 @@ b {
 /* Style for global form
  * --------------------------------------- */
 .global-search-wrapper {
-    /*display: none;*/
+    display: none;
     z-index: 100;
     position: absolute;
     top: 4.8rem;

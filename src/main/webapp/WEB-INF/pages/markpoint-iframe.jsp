@@ -18,8 +18,8 @@
     <title>3D视觉</title>
     <spring:url value="/resources/css/bootstrap.min.css" var="bsCss"/>
     <link href="${bsCss}" rel="stylesheet">
-    <%--<spring:url value="/resources/css/base.css" var="baseCss"/>--%>
-    <%--<link rel="stylesheet" href="${baseCss}">--%>
+    <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
+    <link rel="stylesheet" href="${awsFont}">
     <spring:url value="/resources/css/device-globe.css" var="globeCss"/>
     <link rel="stylesheet" href="${globeCss}">
     <script type="text/javascript">
@@ -33,7 +33,7 @@
         <div class="item">
             <a href="api/getDevices4Globe/monitor/all/2" data-toggle="collapse" data-target="#monitor"
                id="monitorTitle">监控设备
-                <i class="glyphicon glyphicon-menu-down monitor"></i>
+                <i class="fa fa-chevron-down monitor"></i>
             </a>
         </div>
         <div class="collapse" id="monitor" aria-labelledby="monitorTitle">
@@ -63,7 +63,7 @@
         <div class="item">
             <a href="api/getDevices4Globe/industry_control/all/2" data-toggle="collapse" data-target="#plc"
                id="plcTitle">工控设备
-                <i class="glyphicon glyphicon-menu-down pull-right plc"></i>
+                <i class="fa fa-chevron-down pull-right plc"></i>
             </a>
         </div>
         <div class="collapse" id="plc">
@@ -93,7 +93,7 @@
         <div class=" item">
             <a href="api/getDevices4Globe/security_matter/all/1" data-toggle="collapse" data-target="#secret"
                id="secretTitle">涉密设备
-                <i class="glyphicon glyphicon-menu-down pull-right secret"></i>
+                <i class="fa fa-chevron-down pull-right secret"></i>
             </a>
         </div>
         <div class="collapse" id="secret">
@@ -123,7 +123,7 @@
         <div class="item">
             <a href="api/getDevices4Globe/network_device/all/2" data-toggle="collapse" data-target="#netDevice"
                id="netWorkTitle">网络设备
-                <i class="glyphicon glyphicon-menu-down pull-right net-device"></i>
+                <i class="fa fa-chevron-down pull-right net-device"></i>
             </a>
         </div>
         <div class="collapse" id="netDevice">
@@ -170,7 +170,7 @@
 <script src="${mpJs}"></script>--%>
 <script>
     $(function () {
-//        console.log("iframe markpoint starts>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        starts();
     })
 </script>
 </body>

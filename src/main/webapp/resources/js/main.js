@@ -144,7 +144,8 @@ var initFullpage = function () {
                     }
                     break;
                 case 4:
-                    //Sidebar.hide();
+                    Sidebar.hide();
+                    $.fn.fullpage.reBuild();
                     //iPoint.window.starts();
                     break;
                 case 5:

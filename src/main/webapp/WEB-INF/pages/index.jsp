@@ -134,7 +134,7 @@
         <%--<%@include file="map.jsp" %>--%>
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
-        <%--<iframe src="markpoint-iframe" name="iPoint"></iframe>--%>
+        <%--<iframe src="markpoint-iframe"></iframe>--%>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
         <%--<iframe src="markline-iframe" name="iLine"></iframe>--%>

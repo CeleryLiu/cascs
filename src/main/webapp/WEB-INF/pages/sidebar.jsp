@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="sidebar col-lg-2 col-md-3 col-sm-3 hidden-xs" id="sidebar" style="display: block">
+<div class="sidebar col-lg-2 col-md-3 col-sm-3 hidden-xs" id="sidebar">
     <div class="panel-group" id="facet" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="countryTitle">
