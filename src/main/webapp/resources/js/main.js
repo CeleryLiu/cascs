@@ -5,13 +5,13 @@
 var currentPage = 1;
 var data;
 window.onpopstate = function (event) {
-    console.log(event, event.state);
+    if (event.state == null || event.state.data == null)return;
     //Use false as the second argument below
     // - state will already be on the stack when going Back/Forwards
     createView(event.state, false);
 };
 $(function () {
-    history.pushState({contentId: 1, title: 'Welcome to CASCS'}, 'Welcome to CASCS', '');
+    history.pushState({contentId: 1, title: 'Welcome to CASCS', q: '', data: null}, 'Welcome to CASCS', '');
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
         var slideNavList = $('.fp-slidesNav a');
@@ -26,31 +26,39 @@ $(function () {
     var toggleFixedElement = function (sectionIdx) {
         var hideIdxList = Constant.NO_SEARCH_SECTION_IDX;
         if ($.inArray(sectionIdx, hideIdxList) > -1) {
-            if (!GlobalSearch.isHidden()) {
-                GlobalSearch.hide();
-            }
-            if (!Sidebar.isHidden()) {
-                Sidebar.hide();
-            }
-            if (!Pivot.isHidden()) {
-                Pivot.hide();
-            }
-            if (!ResultOverview.isHidden()) {
-                ResultOverview.hide();
-            }
+            GlobalSearch.hide();
+            Sidebar.hide();
+            Pivot.hide();
+            ResultOverview.hide();
+            /*if (!GlobalSearch.isHidden()) {
+             GlobalSearch.hide();
+             }
+             if (!Sidebar.isHidden()) {
+             Sidebar.hide();
+             }
+             if (!Pivot.isHidden()) {
+             Pivot.hide();
+             }
+             if (!ResultOverview.isHidden()) {
+             ResultOverview.hide();
+             }*/
         } else {
-            if (GlobalSearch.isHidden()) {
-                GlobalSearch.show();
-            }
-            if (Sidebar.isHidden()) {
-                Sidebar.show();
-            }
-            if (Pivot.isHidden()) {
-                Pivot.show();
-            }
-            if (ResultOverview.isHidden()) {
-                ResultOverview.show();
-            }
+            GlobalSearch.show();
+            Sidebar.show();
+            Pivot.show();
+            ResultOverview.show();
+            /*if (GlobalSearch.isHidden()) {
+             GlobalSearch.show();
+             }
+             if (Sidebar.isHidden()) {
+             Sidebar.show();
+             }
+             if (Pivot.isHidden()) {
+             Pivot.show();
+             }
+             if (ResultOverview.isHidden()) {
+             ResultOverview.show();
+             }*/
         }
         if (sectionIdx == 3) {
             $('#tool_wrapper').show();
@@ -93,7 +101,7 @@ $(function () {
 
         //↓events
         afterRender: function () {  //initialize here
-            console.log('fullPage.afterRender()');
+            //console.log('fullPage.afterRender()');
             //(init-1)add slides nav tips
             //addTooltip4Slides(Constant.SLIDE_NAV_TOOLTIPS);
             //(init-2)custom initialize
@@ -126,16 +134,22 @@ $(function () {
             //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
             currentPage = index;
+            var data = Session.get('data');
             switch (index) {
                 case 1:
+                    Session.reset('data');
                     break;
                 case 2:
                     $(Sidebar._WRAPPER_SEL).addClass('list');
-                    List.render(data);
+                    if (data) {
+                        List.onSearchSucceed(data);
+                    }
                     break;
                 case 3:
                     ArcMap.onLoad();
-                    ArcMap.render(data);
+                    if (data) {
+                        ArcMap.onSearchSucceed(data);
+                    }
                     break;
                 case 4:
                     Sidebar.hide();

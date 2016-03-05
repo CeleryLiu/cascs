@@ -21,12 +21,6 @@ var List = {
          * @param currentPage：当前页码
          * @param visiblePages: 最多显示的页码数，默认值7
          */
-        if (!data)return;
-        if (data['statuscode'] == 204) {
-            noDataHandler();
-        } else if (data['statuscode']) {
-            errorHandler();
-        }
         var genDeviceLi = function (d) {
             var li = $(' <li class="device"></li>');
             //ip
@@ -158,7 +152,7 @@ var List = {
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
         //（1）将data添加到sessionStorage.data
-        Session.set('data', data);
+        //Session.set('data', data);
         if (statuscode == 200) {
             console.log('List search succeed. statuscode == 200', data);
             //(2.a)调用Sidebar的render方法，生成sidebar
@@ -168,8 +162,10 @@ var List = {
             //(3)隐藏no-data div
             $('.no-data').hide();
         } else if (statuscode == 204) {
+            console.log('list no data');
             noDataHandler();
         } else {
+            console.log('list error');
             errorHandler();
         }
     }

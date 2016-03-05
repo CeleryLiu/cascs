@@ -34,14 +34,13 @@ var LoadData = {
             timeout: 50000,
             data: JSON.stringify(requestObj.data),
             beforeSend: function () {
-                /*                if (requestObj.beforeSend) {
-                 requestObj.beforeSend();
-                 }*/
+                disableButtons(true);
                 Pace.start();
             }
         }).success(function (data) {
             //requestObj.success(data);
             createView({
+                    q: GlobalSearch.getValue(),
                     contentId: currentPage,
                     title: 'Welcome to CASCS ' + currentPage,
                     data: data
@@ -51,6 +50,7 @@ var LoadData = {
             Pace.stop();
         })
             .error(function (e) {
+                //console.log("ajax error");
                 if (requestObj.error) {
                     requestObj.error()
                 } else {
@@ -59,39 +59,67 @@ var LoadData = {
                 Pace.stop();
             })
             .complete(function (jqXHR, textStatus) {
+                disableButtons(false);
             });
     }
 };
-
+var disableButtons = function (disable) {
+    var homeSearchBtn = $('#home_search_btn'),
+        globalSearchBtn = $('#global_search_button'),
+        advsBtn = $('#advs_search_btn');
+    //启用/禁用指定的按钮
+    var disableButton = function (button, flag) {
+        if (button) {
+            button.prop("disabled", flag);
+        }
+    };
+    if (disable) {
+        disableButton(homeSearchBtn, true);
+        disableButton(globalSearchBtn, true);
+        disableButton(advsBtn, true);
+    } else {
+        disableButton(homeSearchBtn, false);
+        disableButton(globalSearchBtn, false);
+        disableButton(advsBtn, false);
+    }
+};
 var createView = function (stateObject, pushHistory) {
-    console.log(stateObject);
-    if (!stateObject)return;
-    data = stateObject.data;
+    //console.log(stateObject, stateObject.data);
+    if (stateObject == null || !stateObject.data || stateObject.data == null)return;
+    var data = stateObject.data;
     var statuscode = data['statuscode'];
     // (1)Add data loaded from the server to sessionStorage
     Session.set('data', data);
-
-    // (2)Render page by using stateObject
-    switch (stateObject.contentId) {
-        case 1:
-            HomeSearch.onSearchSucceed(data);
-            break;
-        case 2:
-            List.onSearchSucceed(data);
-            break;
-        case 3:
-            console.log('map');
-            ArcMap.onSearchSucceed(data);
-            break;
-        case 4:
-            console.log('point');
-            break;
-        case 5:
-            console.log('line');
-            break;
-        default :
-            console.log(stateObject.contentId);
-            break;
+    if (statuscode == 200) {
+        // (2)Render page by using stateObject
+        switch (stateObject.contentId) {
+            case 1:
+                HomeSearch.onSearchSucceed(data);
+                break;
+            case 2:
+                //console.log('list');
+                List.onSearchSucceed(data);
+                GlobalSearch.setValue(stateObject.q);
+                break;
+            case 3:
+                //console.log('map');
+                ArcMap.onSearchSucceed(data);
+                GlobalSearch.setValue(stateObject.q);
+                break;
+            case 4:
+                console.log('point');
+                break;
+            case 5:
+                console.log('line');
+                break;
+            default :
+                console.log(stateObject.contentId);
+                break;
+        }
+    } else if (statuscode == 204) {
+        noDataHandler();
+    } else {
+        errorHandler();
     }
     //(3) Save state on history stack
     /** param {
@@ -100,5 +128,5 @@ var createView = function (stateObject, pushHistory) {
      *   thirdOne: the URL - this will appear in the browser address bar
      * }
      */
-    if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + encodeURI(data.wd));
+    if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
 };

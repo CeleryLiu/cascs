@@ -112,10 +112,10 @@ var ArcMap = {
                     //（4）添加城市featureLayer
                     Pace.ignore(    //不显示进度条
                         function () {
-                            cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
+                            ArcMap.v.cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
                                 outFields: ["*"]
                             });
-                            cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
+                            ArcMap.v.cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
                         }
                     );
 
@@ -123,7 +123,6 @@ var ArcMap = {
                     ArcMap.v.map = map;
                     ArcMap.v.featureLayer = featureLayer;
                     ArcMap.v.labelLayer = labelLayer;
-                    ArcMap.v.cityLayer = cityLayer;
 
                     //（6）listeners
                     $('#sidebarCtrl').on('click', function (e) {
@@ -184,12 +183,7 @@ var ArcMap = {
     },
     render: function (data) {
         console.log("ArcMap.render() ======");
-        if (!data)return;
-        if (data['statuscode'] == 204) {
-            noDataHandler();
-        } else if (data['statuscode']) {
-            errorHandler();
-        }
+
         var layerToShow = $('.map-layer').find('a.open'),
             whichFeature = layerToShow ? layerToShow.attr('id') : 'country',
             map = this.v.map;
@@ -509,7 +503,6 @@ var MyFeatureLayer = {
             noDataHandler();
         }
         Pace.stop();
-
         function showCountry(agg) {
             if (!agg['country@%city'] || isEmptyObject(agg['country@%city']))return;
             if (countryFS.features && !isEmptyObject(countryFS.features)) {
@@ -605,12 +598,14 @@ var MyFeatureLayer = {
                     break;
                 }
             }
-
+            if (isEmptyObject(cities))return;
             if (cityLayer.graphics && cityLayer.graphics.length > 0) {
                 render(cities, cityLayer.graphics);
             } else {
+                var count = 0;
                 var wait = setInterval(function () {
-                    if (cityLayer.graphics && cityLayer.graphics.length > 0) {
+                    console.log('waiting city fs init....', count++);
+                    if ((cityLayer.graphics && cityLayer.graphics.length > 0) || count > 10) {
                         render(cities, cityLayer.graphics);
                         clearInterval(wait);
                     }
@@ -677,19 +672,18 @@ var MyFeatureLayer = {
         ArcMap.v.featureLayer.hide();
         ArcMap.v.labelLayer.clear();
         ArcMap.v.labelLayer.hide();
-        //ArcMap.v.cityLayer.hide();
         $('#featureInfo').hide();
     },
-    updateCityLayer: function (featureLayer, mapVariables) {
-        console.log("city is updating ...");
+    updateCityLayer: function (mapVariables) {
         var cities = MyFeatureLayer.featuresDisplayed,
-            cityLayer = mapVariables.cityLayer;
-        if (cityLayer && cityLayer.graphics && cityLayer.graphics.length > 0) {
+            cityLayer = mapVariables.cityLayer, featureLayer = mapVariables.featureLayer;
+        if (cityLayer.graphics && cityLayer.graphics.length > 0) {
+            console.log("city is updating ...");
             render(cities, cityLayer.graphics);
         } else {
             console.log("city layer is not loaded yet. wait...");
             var wait = setInterval(function () {
-                if (cityLayer && cityLayer.graphics && cityLayer.graphics.length > 0) {
+                if (cityLayer.graphics && cityLayer.graphics.length > 0) {
                     render(cities, cityLayer.graphics);
                     clearInterval(wait);
                 }

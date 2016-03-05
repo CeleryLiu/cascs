@@ -13,7 +13,7 @@ var HomeSearch = {
         $(this._INPUT_SEL).val(val);
     },
     listen: function () {
-        console.log('HomeSearch.listen() ======');
+        //console.log('HomeSearch.listen() ======');
         var $form = $(this._FORM_SEL);
         $form.on('submit', function (e) {
             e.preventDefault();
@@ -40,7 +40,7 @@ var HomeSearch = {
             };
             var requestObj = {
                 'url': Constant.LIST_SEARCH_URL,
-                'success': successCallback,
+                //'success': successCallback,
                 'error': errorHandler,
                 'data': {
                     'wd': userInputTxt,
@@ -56,8 +56,8 @@ var HomeSearch = {
     },
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
-        //（1）将data添加到sessionStorage.data
-        Session.set('data', data);
+        /*//（1）将data添加到sessionStorage.data
+         Session.set('data', data);*/
         if (statuscode == 200) {
             console.log('Home search succeed. statuscode == 200', data);
             //(2.a)调用Sidebar的render方法，生成sidebar
@@ -65,12 +65,14 @@ var HomeSearch = {
             //(2.b)调用List的render方法，生成搜索结果页面
             List.render(data);
             //(3)将用户的搜索条件填充到全局搜索框
-            GlobalSearch.setValue(HomeSearch.getValue());
+            GlobalSearch.setValue(data['wd']);
             //(4)跳转到list页面
             $.fn.fullpage.silentMoveTo('se2');
         } else if (statuscode == 204) {
+            console.log('home no data');
             noDataHandler();
         } else {
+            console.log('home no error');
             errorHandler();
         }
     }

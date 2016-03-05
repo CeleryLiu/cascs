@@ -20,7 +20,7 @@ var Constant = {
         return ['备用']
     }()),
     NO_SEARCH_SECTION_IDX: (function () {
-        return [1, 4, 5, 6]
+        return [0, 1, 4, 5, 6]
     }()),
 
     //↓urls

@@ -6,7 +6,7 @@
  */
 var InputSuggest = {
     init: function () {
-        console.log('InputSuggest.init()');
+        //console.log('InputSuggest.init() ======');
         this.suggestCursorToggle();
         this.getSuggestions('#home_search_input', Constant.SUGGEST_URL);
         this.getSuggestions('#global_search_input', Constant.SUGGEST_URL);
@@ -93,8 +93,11 @@ var InputSuggest = {
                 }
             }).on("typeahead:selected", function (event, suggestion) {
                 //console.log("suggestion", suggestion);
-                $form.submit()
-            }).on("keypress keydown keyup paste change", function () {
+                $form.submit();
+            }).on("keypress keydown keyup paste change", function (evt) {
+                /*if (evt.keyCode == 13) {
+                    $form.submit();
+                }*/
             }).filter(".home-search .flex-text").focus()
         }
     },

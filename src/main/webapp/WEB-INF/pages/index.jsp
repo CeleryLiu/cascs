@@ -116,8 +116,8 @@
         <%@include file="home.jsp" %>
     </div>
     <div class="section" data-anchor="se2" id="listSe">
-        <div style="height: 7rem;"></div>
-        <div class="list-wrapper row-fluid" id="list-wrapper">
+        <%--<div style="height: 7rem;"></div>--%>
+        <div class="list-wrapper row-fluid" id="list-wrapper" style="padding-top: 4rem">
             <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">
                     <ul class="result devices"></ul>
@@ -134,11 +134,11 @@
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
         <%--<%@include file="markpoint.jsp" %>--%>
-        <%--<iframe data-src="markpoint-iframe" name="iPoint"></iframe>--%>
+        <iframe data-src="markpoint-iframe" name="iPoint"></iframe>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
         <%--<div id="globe4LineHolder"></div>--%>
-        <%--<iframe src="markline-iframe" name="iLine"></iframe>--%>
+        <iframe data-src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">

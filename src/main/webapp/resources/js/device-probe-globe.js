@@ -1,6 +1,5 @@
-var basePath=getRootPath();
-var interval,
-    timeout,
+var basePath = getRootPath();
+var timeout,
     from = 1, to = 10,
     pageId = Math.round(Math.random() * 10),
     chart,
@@ -12,8 +11,7 @@ var interval,
         "others": "#32cd32"
     };
 
-function starts(){
-
+function starts() {
     require.config({
         paths: {
             'echarts': basePath + "/resources/plugins/echarts-2.2.7/build/dist",
@@ -35,6 +33,7 @@ function starts(){
                 "margin-bottom": "5rem"
             });
         }
+
         var initGlobe = function () {
             var initOpts = {
                 tooltip: {
@@ -256,10 +255,7 @@ function starts(){
         initGlobe();
         SetMapOption(chart, URL + pageId);
     });
-
-
-    window.onbeforeunload = function () {
-        clearInterval(interval);
-        clearTimeout(timeout);
-    };
 }
+var destroy = function () {
+    clearTimeout(timeout);
+};

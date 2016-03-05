@@ -198,7 +198,7 @@ var Pivot = {
         $(this._WRAPPER_SEL).show(Constant.HIDE_SHOW_SPEED);
     },
     hide: function () {
-        console.log('Pivot.hide() =======');
+        //console.log('Pivot.hide() =======');
         $(this._WRAPPER_SEL).hide();
     },
     isHidden: function () {
@@ -206,7 +206,7 @@ var Pivot = {
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     init: function () {
-        console.log('Pivot.init() ======');
+        //console.log('Pivot.init() ======');
         $(this._PIVOTS_UL_SEL).html('');
     },
     //dKey->data-key; dValue->data-value; value->text; extra.country->data-country

@@ -31,7 +31,7 @@ var GlobalSearch = {
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     listen: function () {
-        console.log('GlobalSearchForm.listenerStart() ======');
+        //console.log('GlobalSearchForm.listenerStart() ======');
         $(GlobalSearch._FORM_SEL).on('submit', function (e) {
             e.preventDefault();
             var criteria = GlobalSearch.getValue();

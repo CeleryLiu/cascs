@@ -42,7 +42,7 @@
                 <input class="global-search-input typeahead" type="text" placeholder="Search ..."
                        id="global_search_input">
             </div>
-            <button type="submit" class="global-search-button btn btn-primary" role="button">
+            <button type="submit" class="global-search-button btn btn-primary" role="button" id="global_search_button">
                 <span class="glyphicon glyphicon-search"></span>
             </button>
         </fieldset>

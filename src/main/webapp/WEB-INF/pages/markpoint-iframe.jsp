@@ -166,6 +166,8 @@
 <script src="${helperJs}"></script>
 <spring:url value="resources/js/device-globe.js" var="globeJs"/>
 <script src="${globeJs}"></script>
+<%--<spring:url value="resources/js/MarkPoint.js" var="mpJs"/>
+<script src="${mpJs}"></script>--%>
 <script>
     $(function () {
         console.log("iframe markpoint starts>>>>>>>>>>>>>>>>>>>>>>>>>>");
