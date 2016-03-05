@@ -12,7 +12,7 @@ window.onpopstate = function (event) {
     // - state will already be on the stack when going Back/Forwards
     //createView(event.state, false);
 };
-$(function () {
+var initFullpage = function () {
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
         var slideNavList = $('.fp-slidesNav a');
@@ -67,16 +67,6 @@ $(function () {
             $('#tool_wrapper').hide();
         }
     };
-
-    // starts --------------
-    ArcMap.initFeatureSets();
-    InputSuggest.init();
-    HomeSearch.listen();
-    GlobalSearch.listen();
-    ArcMap.init();
-    User.listenerStarts();
-
-    //full page js
     $('.fullpage').fullpage({
         //↓Navigation
         menu: '#menu',
@@ -174,6 +164,18 @@ $(function () {
             //console.log('Inside onSlideLeave() ======');
         }
     });
+};
+$(function () {
+    Pace.ignore(function () {
+        ArcMap.initFeatureSets();
+        ArcMap.init();
+    });
+    InputSuggest.init();
+    HomeSearch.listen();
+    GlobalSearch.listen();
+    User.listenerStarts();
+    initFullpage();//full page js
+
     history.pushState({
         contentId: 1,
         title: 'Welcome to CASCS',

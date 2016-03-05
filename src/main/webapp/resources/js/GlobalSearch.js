@@ -45,7 +45,7 @@ var GlobalSearch = {
                 ArcMap.search(1);
             }
             //(3)设置首页搜索框的值
-            //HomeSearch.setValue(criteria);
+            HomeSearch.setValue(criteria);
         });
     }
 };
