@@ -45,14 +45,14 @@ var List = {
             if (loc && loc != '') {
                 var $location = $('<div class="tag location"></div>').appendTo(facets);
                 $('<span class="label label-danger"><a href="#' + loc + '">' +
-                '<span class="glyphicon glyphicon-map-marker"></span> ' + loc + ' </a></span>').appendTo($location);
+                '<span class="fa fa-map-marker"></span> ' + loc + ' </a></span>').appendTo($location);
             }
             //time
             /* var time = d.timestamp;
              if (time && time != '') {
              var $time = $('<div class="tag time"></div>').appendTo(facets);
              $('<span class="label label-primary"><a href="#' + time + '">' +
-             '<span class="glyphicon glyphicon-time"></span> ' + time + ' </a></span>').appendTo($time);
+             '<span class="fa fa-times"></span> ' + time + ' </a></span>').appendTo($time);
              }*/
 
             facets.find('a').on('click', function (e) {
@@ -92,7 +92,7 @@ var List = {
             } else {
                 info.html("null");
             }
-            var closeBtn = $('<button class="up"><span class="glyphicon glyphicon-menu-down"></span></button>').appendTo(info);
+            var closeBtn = $('<button class="up"><span class="fa fa-caret-down"></span></button>').appendTo(info);
             closeBtn.on('click', function () {
                 $(this).closest('div.right').toggleClass('active');
             });

@@ -26,8 +26,7 @@ var LoadData = {
     },
     post: function (requestObj) {
         //console.log("LoadData.post() ======, requestObj = ", requestObj);
-        console.log('start pace');
-        Pace.start();
+        //Pace.start();
         $.ajax({
             url: requestObj.url,
             type: "post",
@@ -62,11 +61,11 @@ var LoadData = {
                 } else {
                     errorHandler()
                 }
-                Pace.stop();
+                //Pace.stop();
             })
             .complete(function (jqXHR, textStatus) {
                 disableButtons(false);
-                Pace.stop();
+                //Pace.stop();
             });
     }
 };

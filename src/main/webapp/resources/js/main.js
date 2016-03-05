@@ -170,8 +170,8 @@ $(function () {
         ArcMap.init();
     });*/
     InputSuggest.init();
-    //HomeSearch.listen();
-    //GlobalSearch.listen();
+    HomeSearch.listen();
+    GlobalSearch.listen();
     //User.listenerStarts();
     initFullpage();//full page js
 
