@@ -26,9 +26,9 @@ var List = {
             //ip
             var ip = $('<a href="http://' + d.ip + '" target="_blank">' + d.ip + '</a>');
             /*ip.on('click', function (e) {
-                e.preventDefault();
-                console.log("ip is clicked!");
-            });*/
+             e.preventDefault();
+             console.log("ip is clicked!");
+             });*/
             $('<h3></h3>').append(ip).appendTo(li);
             //详细内容
             var row = $('<div class="row"></div>').appendTo(li);
@@ -104,6 +104,7 @@ var List = {
             took = data['took'],
             devices = data['data'];
         var $resultList = $(this._RESULT_LIST_SEL).html('');
+        $(this._WRAPPER_SEL).show();
         // (1)更新查询时间、查询到数据的条数、结果列表、分页
         ResultOverview.set(total, took, currpage, (Math.floor(total / pagesize) + 1));
         // (2)添加结果列表
