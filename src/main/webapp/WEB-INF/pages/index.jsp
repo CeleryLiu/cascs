@@ -28,8 +28,10 @@
     <link rel="stylesheet" href="${taCss}">
     <spring:url value="resources/css/themes/pace-theme-mac-osx.css" var="paceCss"/>
     <link rel="stylesheet" href="${paceCss}">
-    <link rel="stylesheet" type="text/css"
-          href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+    <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
+    <link rel="stylesheet" href="${awsFont}">
+    <%--    <link rel="stylesheet" type="text/css"
+              href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
     <%--custom css--%>
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
@@ -72,9 +74,9 @@
     <script src="${sha1Js}"></script>
     <spring:url value="resources/js/libs/jqPaginator.min.js" var="pagerJs"/>
     <script src="${pagerJs}"></script>
-    <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
-    <script data-pace-options='{"elements": { "selectors": ["#mapHolder"] },"startOnPageLoad": false,"ajax":true }'
-            src="${paceJs}"></script>
+    <%--    <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
+        <script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
+                src="${paceJs}"></script>--%>
     <spring:url value="resources/js/static.js" var="staticJs"/>
     <script src="${staticJs}"></script>
     <spring:url value="resources/js/helper.js" var="helperJs"/>
@@ -105,7 +107,7 @@
     <script src="${mainJs}"></script>
 
     <%--arcgis lib and map js--%>
-    <script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+    <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
 </head>
 <body>
@@ -115,8 +117,7 @@
     <div class="section" data-anchor="se1" id="homeSe">
         <%@include file="home.jsp" %>
     </div>
-    <div class="section" data-anchor="se2" id="listSe">
-        <%--<div style="height: 7rem;"></div>--%>
+  <%--  <div class="section" data-anchor="se2" id="listSe">
         <div class="list-wrapper row-fluid" id="list-wrapper" style="padding-top: 5rem">
             <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">
@@ -128,30 +129,28 @@
             </div>
             <div class="no-data">没有搜索到相关设备，您可以尝试使用其他关键字搜索！</div>
         </div>
-    </div>
+    </div>--%>
     <div class="section" data-anchor="se3" id="mapSe">
-        <%@include file="map.jsp" %>
+        <%--<%@include file="map.jsp" %>--%>
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
-        <%--<%@include file="markpoint.jsp" %>--%>
-        <iframe src="markpoint-iframe" name="iPoint"></iframe>
+        <%--<iframe src="markpoint-iframe" name="iPoint"></iframe>--%>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
-        <%--<div id="globe4LineHolder"></div>--%>
-        <iframe src="markline-iframe" name="iLine"></iframe>
+        <%--<iframe src="markline-iframe" name="iLine"></iframe>--%>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">
-            <%@include file="user/login.jsp" %>
+            <%--<%@include file="user/login.jsp" %>--%>
         </div>
         <div class="slide" data-anchor="se6_reg" id="regSl">
-            <%@include file="user/register.jsp" %>
+            <%--<%@include file="user/register.jsp" %>--%>
         </div>
         <div class="slide" data-anchor="se6_agreement" id="agreementSl">
-            <%@include file="user/agreement.jsp" %>
+            <%--<%@include file="user/agreement.jsp" %>--%>
         </div>
         <div class="slide" data-anchor="se6_pwd" id="pwdRetrieveSl">
-            <%@include file="user/pwdRetrieve.jsp" %>
+            <%--<%@include file="user/pwdRetrieve.jsp" %>--%>
         </div>
     </div>
 </div>

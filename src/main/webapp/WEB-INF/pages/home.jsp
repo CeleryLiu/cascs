@@ -16,13 +16,12 @@
 <div class="home-search">
     <form class="home-search-form" id="home_search_form">
         <div class="input-group search-box-container">
-            <input type="text" class="form-control" placeholder="Search..."
-                   id="home_search_input" name="home_search_input">
-            <%--<button class="btn btn-default remove"><span class="glyphicon glyphicon-remove"></span></button>--%>
+            <input type="text"
+                   class="form-control typeahead home-search-input"
+                   placeholder="Search...">
             <button type="submit" class="btn btn-primary" id="home_search_btn">搜索一下
             </button>
         </div>
-
         <div class="advs-link-wrapper">
             <a href="#" class="advs-link" id="advanced-search">精确搜索</a>
         </div>

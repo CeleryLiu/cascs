@@ -27,39 +27,39 @@ var initFullpage = function () {
     var toggleFixedElement = function (sectionIdx) {
         var hideIdxList = Constant.NO_SEARCH_SECTION_IDX;
         if ($.inArray(sectionIdx, hideIdxList) > -1) {
-            GlobalSearch.hide();
-            Sidebar.hide();
-            Pivot.hide();
-            ResultOverview.hide();
-            /*if (!GlobalSearch.isHidden()) {
-             GlobalSearch.hide();
-             }
-             if (!Sidebar.isHidden()) {
+            /*GlobalSearch.hide();
              Sidebar.hide();
-             }
-             if (!Pivot.isHidden()) {
              Pivot.hide();
-             }
-             if (!ResultOverview.isHidden()) {
-             ResultOverview.hide();
-             }*/
+             ResultOverview.hide();*/
+            if (!GlobalSearch.isHidden()) {
+                GlobalSearch.hide();
+            }
+            if (!Sidebar.isHidden()) {
+                Sidebar.hide();
+            }
+            if (!Pivot.isHidden()) {
+                Pivot.hide();
+            }
+            if (!ResultOverview.isHidden()) {
+                ResultOverview.hide();
+            }
         } else {
-            GlobalSearch.show();
-            Sidebar.show();
-            Pivot.show();
-            ResultOverview.show();
-            /*if (GlobalSearch.isHidden()) {
-             GlobalSearch.show();
-             }
-             if (Sidebar.isHidden()) {
+            /*GlobalSearch.show();
              Sidebar.show();
-             }
-             if (Pivot.isHidden()) {
              Pivot.show();
-             }
-             if (ResultOverview.isHidden()) {
-             ResultOverview.show();
-             }*/
+             ResultOverview.show();*/
+            if (GlobalSearch.isHidden()) {
+                GlobalSearch.show();
+            }
+            if (Sidebar.isHidden()) {
+                Sidebar.show();
+            }
+            if (Pivot.isHidden()) {
+                Pivot.show();
+            }
+            if (ResultOverview.isHidden()) {
+                ResultOverview.show();
+            }
         }
         if (sectionIdx == 3) {
             $('#tool_wrapper').show();
@@ -101,7 +101,6 @@ var initFullpage = function () {
             console.log('fullPage.afterRender()');
             //(init-1)add slides nav tips
             //addTooltip4Slides(Constant.SLIDE_NAV_TOOLTIPS);
-            //(init-2)custom initialize
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
         },
@@ -112,10 +111,10 @@ var initFullpage = function () {
             console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             switch (index) {
                 case 3:
-                    ArcMap.onLeave();
+                    //ArcMap.onLeave();
                     break;
                 case 5:
-                    iLine.window.destroy();
+                    //iLine.window.destroy();
                     break;
                 default:
                     break;
@@ -123,7 +122,7 @@ var initFullpage = function () {
         },
         afterLoad: function (anchorLink, index) {
             console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
-            toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
+            //toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
             currentPage = index;
             var data = Session.get('data');
             switch (index) {
@@ -133,22 +132,22 @@ var initFullpage = function () {
                 case 2:
                     $(Sidebar._WRAPPER_SEL).addClass('list');
                     if (data) {
-                        List.onSearchSucceed(data);
+                        //List.onSearchSucceed(data);
                     }
                     break;
                 case 3:
-                    ArcMap.onLoad();
+                    //ArcMap.onLoad();
                     if (data) {
-                        ArcMap.onSearchSucceed(data);
+                        //ArcMap.onSearchSucceed(data);
                     }
                     break;
                 case 4:
-                    Sidebar.hide();
-                    iPoint.window.starts();
+                    //Sidebar.hide();
+                    //iPoint.window.starts();
                     break;
                 case 5:
-                    Sidebar.hide();
-                    iLine.window.starts();
+                    //Sidebar.hide();
+                    //iLine.window.starts();
                     break;
                 case 6:
                     break;
@@ -166,20 +165,20 @@ var initFullpage = function () {
     });
 };
 $(function () {
-    Pace.ignore(function () {
+    /*Pace.ignore(function () {
         ArcMap.initFeatureSets();
         ArcMap.init();
-    });
-    InputSuggest.init();
-    HomeSearch.listen();
-    GlobalSearch.listen();
-    User.listenerStarts();
+    });*/
+    //InputSuggest.init();
+    //HomeSearch.listen();
+    //GlobalSearch.listen();
+    //User.listenerStarts();
     initFullpage();//full page js
 
-    history.pushState({
+ /*   history.pushState({
         contentId: 1,
         title: 'Welcome to CASCS',
-        q: HomeSearch.getValue(),
+        q: '',
         data: null
-    }, 'Welcome to CASCS', '');
+    }, 'Welcome to CASCS', '');*/
 });

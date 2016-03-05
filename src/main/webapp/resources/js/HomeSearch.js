@@ -1,16 +1,16 @@
 var HomeSearch = {
     _INPUT_SEL: (function () {
-        return '#home_search_input';
+        return '#hsi';//short for home search input
     }()),
     _FORM_SEL: (function () {
         return '#home_search_form';
     }()),
     getValue: function () {
-        return $(this._INPUT_SEL).val().replace(/\s{2,}/g, ' ').trim();
+        return $(this._FORM_SEL).find('input').val().replace(/\s{2,}/g, ' ').trim();
     },
     setValue: function (val) {
         //console.log('HomeSearch.setValue(), val:' + val);
-        $(this._INPUT_SEL).val(val);
+        $(this._FORM_SEL).find('input').val(val);
     },
     listen: function () {
         //console.log('HomeSearch.listen() ======');

@@ -1,12 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="sidebar col-lg-2 col-md-3 col-sm-3 hidden-xs" id="sidebar">
+<div class="sidebar col-lg-2 col-md-3 col-sm-3 hidden-xs" id="sidebar" style="display: block">
     <div class="panel-group" id="facet" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="countryTitle">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#countryList" aria-expanded="false" aria-controls="countryList">
-                        国家<span class="glyphicon glyphicon-menu-down pull-right"></span>
+                        国家
+                        <span class="fa fa-chevron-right"></span>
+                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
                     </a>
                 </h4>
             </div>
@@ -21,7 +23,9 @@
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#device_serviceList" aria-expanded="false" aria-controls="device_serviceList">
-                        服务<span class="glyphicon glyphicon-menu-down pull-right"></span>
+                        服务
+                        <span class="fa fa-chevron-right"></span>
+                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
                     </a>
                 </h4>
             </div>
@@ -37,7 +41,9 @@
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#portList" aria-expanded="false" aria-controls="portList">
-                        端口<span class="glyphicon glyphicon-menu-down pull-right"></span>
+                        端口
+                        <span class="fa fa-chevron-right"></span>
+                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
                     </a>
                 </h4>
             </div>
@@ -52,7 +58,9 @@
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#device_typeList" aria-expanded="false" aria-controls="device_typeList">
-                        类型<span class="glyphicon glyphicon-menu-down pull-right"></span>
+                        类型
+                        <span class="fa fa-chevron-right"></span>
+                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
                     </a>
                 </h4>
             </div>
@@ -68,7 +76,9 @@
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#vulList" aria-expanded="false" aria-controls="vulList">
-                        漏洞<span class="glyphicon glyphicon-menu-down pull-right"></span>
+                        漏洞
+                        <span class="fa fa-chevron-right"></span>
+                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
                     </a>
                 </h4>
             </div>
@@ -83,7 +93,9 @@
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#osList" aria-expanded="false" aria-controls="osList">
-                        操作系统<span class="glyphicon glyphicon-menu-down pull-right"></span>
+                        操作系统
+                        <span class="fa fa-chevron-right"></span>
+                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
                     </a>
                 </h4>
             </div>

@@ -22,7 +22,7 @@
     width: calc(100% - 6rem);
 }
 
-#home_search_input {
+.home-search input {
     border-radius: 3px;
 }
 

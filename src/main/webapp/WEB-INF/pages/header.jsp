@@ -35,15 +35,19 @@
 </div>
 <%--占一行的一个大的搜索框--%>
 <div class="global-search-wrapper" id="global_search_wrapper">
+
     <form class="global-search-form" method="get" action="api/search">
         <fieldset>
             <div class="search-scope"></div>
             <div class="search-box-container">
-                <input class="global-search-input typeahead" type="text" placeholder="Search ..."
+                <input class="global-search-input typeahead" type="text"
+                       placeholder="Search ..."
+                       autofocus="autofocus"
                        id="global_search_input">
             </div>
             <button type="submit" class="global-search-button btn btn-primary" role="button" id="global_search_button">
-                <span class="glyphicon glyphicon-search"></span>
+                <span class="fa fa-search"></span>
+                <%--<span class="glyphicon glyphicon-search"></span>--%>
             </button>
         </fieldset>
         <div class="advs-link-wrapper"><a href="#" class="advs-link">精确搜索</a></div>
