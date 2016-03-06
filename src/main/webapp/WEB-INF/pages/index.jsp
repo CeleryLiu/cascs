@@ -116,6 +116,7 @@
 <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
+<%@include file="advs.jsp" %>
 <div id="fullpage" class="fullpage">
     <div class="section" data-anchor="se1" id="homeSe">
         <%@include file="home.jsp" %>
@@ -138,11 +139,9 @@
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
         <iframe src="markpoint-iframe" name="iPoint"></iframe>
-        <%--<div>sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</div>--%>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
-        <%--<div>eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</div>--%>
-    <iframe src="markline-iframe" name="iLine"></iframe>
+        <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">
