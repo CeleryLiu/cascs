@@ -3,19 +3,51 @@
 var AdvSearch = {
     form: $('#advs'),
     wrapper: $('#advs_wrapper'),
+    listen: function () {
+        //advanced search link
+        $('.advs-link').on('click', function (e) {
+            e.preventDefault();
+            var $advsWrapper = $('#advs_wrapper').toggleClass('active');
+            /*var dirIndicator = $('.advs-link-main').find('span');
+             if ($advsWrapper.hasClass('active')) {
+             dirIndicator.removeClass('fa fa-caret-right').addClass('fa fa-caret-left');
+             } else {
+             dirIndicator.removeClass('fa fa-caret-left').addClass('fa fa-caret-right');
+             }*/
+        });
+
+        //advanced search form controls.close
+        $('.close-advs').on('click', function () {
+            AdvSearch.hide();
+        });
+
+        //advanced search form controls.reset
+        $('.reset-advs').on('click', function () {
+            document.getElementById("advs").reset();
+        });
+
+        //date default value
+        $('#time_to').val(new Date().toDateInputValue());
+
+        //advanced search form
+        $('#advs').on('submit', function (e) {
+            e.preventDefault();
+            AdvSearch.search(this);
+        });
+    },
     show: function () {
         console.log("FUNCTION CALL: AdvSearch.show");
         this.wrapper.addClass('active');
-        $('.advs-link-main').find('span')
-            .removeClass('glyphicon-menu-left')
-            .addClass('glyphicon-menu-right');
+        /*$('.advs-link-main').find('span')
+         .removeClass('fa fa-caret-left')
+         .addClass('fa fa-caret-right');*/
     },
     hide: function () {
         console.log("FUNCTION CALL: AdvSearch.hide");
         this.wrapper.removeClass('active');
-        $('.advs-link-main').find('span')
-            .removeClass('glyphicon-menu-right')
-            .addClass('glyphicon-menu-left');
+        /*$('.advs-link-main').find('span')
+         .removeClass('fa fa-caret-right')
+         .addClass('fa fa-caret-left');*/
     },
     search: function (form) {
         console.log("FUNCTION CALL: AdvSearch.search");
@@ -78,25 +110,38 @@ var AdvSearch = {
                 noInputTag = false;
             }
         }
+
         if (!noInputTag) {
-            $('.global_search_input').val(inputStr);
-            MySessionStorage.set('advsCriteria', criteria);
+            GlobalSearch.setValue(inputStr);
         } else {//如果用户未输入，则不提交
-            $('.global_search_input').val('');
+            GlobalSearch.setValue('');
             $('#must').focus();
             return;
         }
-        if (!MySessionStorage.get('currentPage')) {
-            MySessionStorage.set('currentPage', 'list');
-            homepage_search_flag = true;
+        var successCallback = function (data) {
+            var statuscode = data['statuscode'];
+            //（1）将data添加到sessionStorage.data
+            Session.set('data', data);
+            switch (currentPage) {
+                case 3:
+                    ArcMap.onSearchSucceed(data);
+                    break;
+                case 2:
+                    List.onSearchSucceed(data);
+            }
         }
+        /*if (!MySessionStorage.get('currentPage')) {
+         MySessionStorage.set('currentPage', 'list');
+         homepage_search_flag = true;
+         }*/
+        var requestObj = {
+            'url': Constant.ADVS_SEARCH_RUL,
+            'success': successCallback,
+            'error': errorHandler,
+            'data': criteria
+        };
 
-        $('.carousel').carousel(1);
-        AjaxLoadData({
-            url: Constant.ADVS_SEARCH_RUL,
-            criteria: criteria
-        });
-        homepage_search_flag = false;
+        LoadData.post(requestObj);
         //hide loading-------------------待开发
         this.hide();
     }

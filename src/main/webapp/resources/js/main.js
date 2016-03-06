@@ -93,7 +93,7 @@ var initFullpage = function () {
 
         //↓Scrolling
         autoScrolling: true,
-        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar,#advs_wrappe', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar,.advs-wrapper', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 
@@ -112,7 +112,7 @@ var initFullpage = function () {
             console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             switch (index) {
                 case 3:
-                    ArcMap.onLeave();
+                    //ArcMap.onLeave();
                     break;
                 case 5:
                     iLine.window.destroy();
@@ -138,9 +138,9 @@ var initFullpage = function () {
                     }
                     break;
                 case 3:
-                    ArcMap.onLoad();
+                    //ArcMap.onLoad();
                     if (data) {
-                        ArcMap.onSearchSucceed(data);
+                        //ArcMap.onSearchSucceed(data);
                     }
                     break;
                 case 4:
@@ -168,12 +168,13 @@ var initFullpage = function () {
 };
 $(function () {
     Pace.ignore(function () {
-        ArcMap.initFeatureSets();
-        ArcMap.init();
+        //ArcMap.initFeatureSets();
+        //ArcMap.init();
     });
     InputSuggest.init();
     HomeSearch.listen();
     GlobalSearch.listen();
+    AdvSearch.listen();
     User.listenerStarts();
     initFullpage();//full page js
     /*   history.pushState({

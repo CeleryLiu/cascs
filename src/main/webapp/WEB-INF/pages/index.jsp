@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="${paceCss}">
     <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
     <link rel="stylesheet" href="${awsFont}">
-    <link rel="stylesheet" type="text/css"
-          href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+    <%--<link rel="stylesheet" type="text/css"--%>
+    <%--href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
     <spring:url value="resources/css/home-sec.css" var="homeCss"/>
@@ -46,7 +46,8 @@
     <link rel="stylesheet" href="${listCss}">
     <spring:url value="resources/css/user-pages-style.css" var="userCss"/>
     <link rel="stylesheet" href="${userCss}">
-
+    <spring:url value="resources/css/advs.css" var="advsCss"/>
+    <link rel="stylesheet" href="${advsCss}">
     <!--[if IE]>
     <script type="text/javascript">
         var console = {
@@ -110,13 +111,13 @@
         var djConfig = {parseOnLoad: true}
     </script>
     <%--arcgis lib and map js--%>
-    <script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+    <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
 </head>
 <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
-<%--<%@include file="advs.jsp" %>--%>
+<%@include file="advs.jsp" %>
 <div id="fullpage" class="fullpage">
     <div class="section" data-anchor="se1" id="homeSe">
         <%@include file="home.jsp" %>

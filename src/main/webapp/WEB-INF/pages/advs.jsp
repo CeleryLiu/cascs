@@ -158,7 +158,7 @@
                 </div>
             </fieldset>
             <div class="form-controls">
-                <input type="submit" value="搜索" name="submit" class="submit-advs" id="advs_search_btn">
+                <input type="submit" value="搜索" name="submit" class="" id="advs_search_btn">
                 <input type="reset" class="reset-advs text-button" value="重置">
             </div>
         </form>

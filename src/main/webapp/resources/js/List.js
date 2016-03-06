@@ -14,7 +14,7 @@ var List = {
     }()),
     listPageNum: 1,
     render: function (data) {
-        //console.log("List.render() ======");
+        //console.log("List.render() ======", data);
         /*
          * @param totalCounts：分页的总条目数
          * @param pageSize：每一页的条目数

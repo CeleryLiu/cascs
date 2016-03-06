@@ -27,9 +27,10 @@ public class FeatureSetsFillerOnStartup implements ApplicationListener<ContextRe
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        countryFeatureSet = getCountryFeatureSet();
-        provinceFeatureSet = getProvinceFeatureSet();
-        cityFeatureSet = getCityFeatureSet();
+        System.out.println("FeatureSetsFillerOnStartup.onApplicationEvent()");
+//        countryFeatureSet = getCountryFeatureSet();
+//        provinceFeatureSet = getProvinceFeatureSet();
+//        cityFeatureSet = getCityFeatureSet();
     }
 
     public static JSONObject getCountryFeatureSet() {
