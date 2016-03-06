@@ -163,14 +163,14 @@ var List = {
             //(3)隐藏no-data div
             $('.no-data').hide();
             //(4)设置GlobalSearch的值
-            var wd = data.q ? data.q : data.wd;
-            //console.log(wd, localWd, '====================================');
+            var dd = data ? data : Session.get('data');
+            var wd = dd.q ? dd.q : dd.wd;
             var localWd = Session.get('wd');
-            var localData = Session.get('data');
-            console.log(localData,localWd);
-            if (localData && localWd && localData.wd == localWd) {
-                GlobalSearch.setValue(localWd);
-                HomeSearch.setValue(localWd);
+            if (dd) {
+                if (wd && localWd && wd.indexOf(localWd) != -1) {
+                    GlobalSearch.setValue(localWd);
+                    HomeSearch.setValue(localWd);
+                }
             }
             //（5）滚动到顶部
             $(List._WRAPPER_SEL).animate({scrollTop: 0}, 'slow');

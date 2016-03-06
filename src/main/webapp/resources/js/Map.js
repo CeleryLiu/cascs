@@ -478,12 +478,14 @@ var ArcMap = {
             //(3)隐藏no-data div
             $('.no-data').hide();
             //(4)设置GlobalSearch的值
-            var wd = data.q ? data.q : data.wd;
+            var dd = data ? data : Session.get('data');
+            var wd = dd.q ? dd.q : dd.wd;
             var localWd = Session.get('wd');
-            var localData = Session.get('data');
-            if (localData && localWd && localData.wd == localWd) {
-                GlobalSearch.setValue(localWd);
-                HomeSearch.setValue(localWd);
+            if (dd) {
+                if (wd && localWd && wd.indexOf(localWd) != -1) {
+                    GlobalSearch.setValue(localWd);
+                    HomeSearch.setValue(localWd);
+                }
             }
         } else if (statuscode == 204) {
             noDataHandler(data);
