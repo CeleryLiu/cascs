@@ -106,7 +106,7 @@ var List = {
         var $resultList = $(this._RESULT_LIST_SEL).html('');
         $(this._WRAPPER_SEL).show();
         // (1)更新查询时间、查询到数据的条数、结果列表、分页
-        ResultOverview.set(total, took, currpage, (Math.floor(total / pagesize) + 1));
+        ResultOverview.set(data);
         // (2)添加结果列表
         for (var i = 0; i < devices.length; i++) {
             $resultList.append(genDeviceLi(devices[i]));

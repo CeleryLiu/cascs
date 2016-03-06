@@ -148,7 +148,7 @@
     bottom: 3rem;
     right: .5rem;
     z-index: 50;
-    width: 14.5rem;
+    min-width: 14.5rem;
     padding: .5rem;
     margin: .5rem;
     font-size: 1.5rem;

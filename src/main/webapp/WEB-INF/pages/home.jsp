@@ -16,7 +16,7 @@
 <div class="home-search">
     <form class="home-search-form" id="home_search_form">
         <div class="input-group search-box-container">
-            <input type="text"
+            <input type="text" id="hsi"
                    class="form-control typeahead home-search-input"
                    placeholder="Search...">
             <button type="submit" class="btn btn-primary" id="home_search_btn">搜索一下

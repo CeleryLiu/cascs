@@ -439,6 +439,7 @@ b {
 .pivots-wrapper {
     display: none;
     z-index: 99;
+    margin-top: .5rem;
     /*position: fixed;
     top: 8rem;
     left: 0;*/
@@ -511,7 +512,6 @@ b {
 /* Style for result-overview texts
  * --------------------------------------- */
 .result-overview {
-    margin-top: .5rem;
     display: none;
     z-index: 99;
     /*position: fixed;

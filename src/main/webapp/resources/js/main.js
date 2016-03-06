@@ -153,6 +153,7 @@ var initFullpage = function () {
                 case 6:
                     break;
             }
+            $.fn.fullpage.reBuild();
         },
         afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
             console.log('Inside afterSlideLoad() ======');

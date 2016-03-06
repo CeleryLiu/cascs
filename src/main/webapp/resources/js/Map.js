@@ -214,7 +214,7 @@ var ArcMap = {
     onLoad: function () {
         $(Sidebar._WRAPPER_SEL).addClass('map');
         $(Pivot._PIVOTS_UL_SEL).addClass('map');
-        ResultOverview.hide();
+        //ResultOverview.hide();
     },
     onLeave: function () {
         $(Sidebar._WRAPPER_SEL).removeClass('map');
@@ -267,6 +267,8 @@ var ArcMap = {
                 ArcMap.render(data);
                 //(3)隐藏no-data div
                 $('.no-data').hide();
+                //(4)设置result overview
+                ResultOverview.set(data);
             } else if (statuscode == 204) {
                 noDataHandler(data);
             } else {
@@ -487,6 +489,8 @@ var ArcMap = {
                     HomeSearch.setValue(localWd);
                 }
             }
+            //(5)设置result overview
+            ResultOverview.set(data);
         } else if (statuscode == 204) {
             noDataHandler(data);
         } else {

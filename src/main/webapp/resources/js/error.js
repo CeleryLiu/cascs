@@ -10,11 +10,7 @@ var errorHandler = function () {
 var noDataHandler = function (data) {
     console.log("noDataHandler: ajax succeed but no data found");
     if (data) {
-        var currpage = data['currpage'],
-            total = data['total'],
-            pagesize = data['pagesize'],
-            took = data['took'];
-        ResultOverview.set(total, took, currpage, pagesize);
+        ResultOverview.set(data);
     }
     if ($('#listSe').hasClass('active')) {
         $(List._WRAPPER_SEL).hide();

@@ -36,6 +36,7 @@ var LoadData = {
             data: JSON.stringify(requestObj.data),
             beforeSend: function () {
                 disableButtons(true);
+                Pace.start();
             }
         }).success(function (data) {
             globalData = data;
@@ -53,8 +54,6 @@ var LoadData = {
                     true
                 );
             }
-            //$.fn.fullpage.destroy();
-
         })
             .error(function (e) {
                 console.log("ajax error");
@@ -63,11 +62,10 @@ var LoadData = {
                 } else {
                     errorHandler()
                 }
-                //Pace.stop();
             })
             .complete(function (jqXHR, textStatus) {
                 disableButtons(false);
-                //Pace.stop();
+                Pace.stop();
             });
     }
 };

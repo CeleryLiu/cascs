@@ -1,8 +1,8 @@
 /* Style for text(list) search
  * --------------------------------------- */
 .list-wrapper {
-    margin: 0;
-    padding: 8rem 0 2rem 0;
+    margin: 9rem 0 0 0;
+    padding: 0 0 2rem 0;
     overflow-y: auto;
     text-align: left;
     /*height: 100%;*/

@@ -302,10 +302,14 @@ var ResultOverview = {
         //console.log('ResultOverview.isHidden() ======');
         return $(this._WRAPPER_SEL).is(':hidden');
     },
-    set: function (count, duration, currpage, totalPage) {
+    set: function (data) {
+        var currpage = data['currpage'],
+            count = data['total'],
+            pagesize = data['pagesize'],
+            duration = data['took'];
         var overview = $(this._WRAPPER_SEL);
         overview.find('strong.count').text(count);
         overview.find('strong.duration').text(duration);
-        overview.find('strong.page-num').text(currpage + ' / ' + totalPage);
+        overview.find('strong.page-num').text(currpage + ' / ' + (Math.floor(count / pagesize) + 1));
     }
 };
