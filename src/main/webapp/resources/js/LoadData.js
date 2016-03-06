@@ -39,6 +39,8 @@ var LoadData = {
             }
         }).success(function (data) {
             globalData = data;
+            Session.set('data', data);
+            Session.set('wd', GlobalSearch.getValue() ? GlobalSearch.getValue() : HomeSearch.getValue());
             if (requestObj.success) {
                 requestObj.success(data);
             } else {
@@ -95,7 +97,7 @@ var createView = function (stateObject, pushHistory) {
     var data = stateObject.data;
     var statuscode = data['statuscode'];
     // (1)Add data loaded from the server to sessionStorage
-    Session.set('data', data);
+    //Session.set('data', data);
     if (statuscode == 200) {
         // (2)Render page by using stateObject
         switch (stateObject.contentId) {
@@ -134,6 +136,6 @@ var createView = function (stateObject, pushHistory) {
      *   thirdOne: the URL - this will appear in the browser address bar
      * }
      */
-    //if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
-    console.log("==========================");
+        //if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
+    //console.log("==========================");
 };

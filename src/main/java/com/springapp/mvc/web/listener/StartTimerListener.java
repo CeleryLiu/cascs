@@ -25,10 +25,9 @@ public class StartTimerListener implements ServletContextListener {
     */
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-//        return;
-        System.out.println("--------------------------timer.init-----------------------");
-//        suggTimer = new SuggestionTimer();
-//        suggTimer.execute();
+//        System.out.println("--------------------------timer.init-----------------------");
+        suggTimer = new SuggestionTimer();
+        suggTimer.execute();
 //        System.out.println(NewSuggestions.getSuggestions());
     }
 

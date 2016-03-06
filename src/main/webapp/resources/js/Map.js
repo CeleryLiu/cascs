@@ -213,13 +213,13 @@ var ArcMap = {
     },
     onLoad: function () {
         $(Sidebar._WRAPPER_SEL).addClass('map');
-        //console.log('on load map', $(Pivot._WRAPPER_SEL).html());
         $(Pivot._PIVOTS_UL_SEL).addClass('map');
         ResultOverview.hide();
     },
     onLeave: function () {
         $(Sidebar._WRAPPER_SEL).removeClass('map');
-        $('.pivots').find('li').removeClass('map');
+        $(Pivot._PIVOTS_UL_SEL).removeClass('map');
+
     },
     render: function (data) {
         //console.log("ArcMap.render() ======");
@@ -470,13 +470,20 @@ var ArcMap = {
         //Session.set('data', data);
         ArcMap.v.data = data;
         if (statuscode == 200) {
-            console.log('Map search succeed. statuscode == 200', data);
+            //console.log('Map search succeed. statuscode == 200', data);
             //(2.a)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
             //(2.b)调用Map的render方法，生成搜索结果页面
             ArcMap.render(data);
             //(3)隐藏no-data div
             $('.no-data').hide();
+            //(4)设置GlobalSearch的值
+            var wd = data.q ? data.q : data.wd;
+            var localWd = Session.get('wd');
+            if (localWd && wd && wd.indexOf(localWd) != -1 && GlobalSearch.getValue() == '') {
+                GlobalSearch.setValue(localWd);
+                HomeSearch.setValue(localWd);
+            }
         } else if (statuscode == 204) {
             noDataHandler(data);
         } else {

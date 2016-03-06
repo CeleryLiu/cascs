@@ -4,11 +4,22 @@
     display: block;
     margin: 0 auto;
     color: #333;
+    min-height: 100%;
+    /*padding-bottom: 1px;*/
+    margin-bottom: 1px;
+    box-sizing: content-box;
+    /*background-color: green;*/
 }
 
 .mapHolder {
+    /*z-index: 999999;*/
+    /*min-height: 100%;*/
     width: 100%;
     height: 100%;
+}
+
+#mapHolder_root {
+    min-height: 100% !important;
 }
 
 #mapSidebar {

@@ -118,8 +118,8 @@ var List = {
         $('#listSe').scrollTop(0);
     },
     search: function (pageNum) {
-        //console.log("List.search() ======");
-        var wd = $(GlobalSearch._INPUT_SEL).val();
+        console.log("List.search() ======");
+        var wd = GlobalSearch.getValue() == '' ? GlobalSearch.getValue() : HomeSearch.getValue();
         if (!wd && wd == '') return;
         var successCallback = function (data) {
             var statuscode = data['statuscode'];
@@ -162,6 +162,14 @@ var List = {
             List.render(data);
             //(3)隐藏no-data div
             $('.no-data').hide();
+            //(4)设置GlobalSearch的值
+            var wd = data.q ? data.q : data.wd;
+            var localWd = Session.get('wd');
+            console.log(wd, localWd,'====================================');
+            if (localWd && wd && wd.indexOf(localWd) != -1 && GlobalSearch.getValue() == '') {
+                GlobalSearch.setValue(localWd);
+                HomeSearch.setValue(localWd);
+            }
         } else if (statuscode == 204) {
             console.log('list no data');
             noDataHandler(data);

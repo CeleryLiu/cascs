@@ -68,6 +68,8 @@ var HomeSearch = {
             GlobalSearch.setValue(data['wd']);
             //(4)跳转到list页面
             $.fn.fullpage.silentMoveTo('se2');
+            //(5)当前页改为2
+            currentPage = 2;
         } else if (statuscode == 204) {
             console.log('home no data');
             noDataHandler(data);

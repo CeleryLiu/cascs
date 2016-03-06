@@ -30,9 +30,8 @@
     <link rel="stylesheet" href="${paceCss}">
     <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
     <link rel="stylesheet" href="${awsFont}">
-    <%--    <link rel="stylesheet" type="text/css"
-              href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
-    <%--custom css--%>
+    <link rel="stylesheet" type="text/css"
+          href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
     <spring:url value="resources/css/home-sec.css" var="homeCss"/>
@@ -76,9 +75,9 @@
     <script src="${pagerJs}"></script>
     <spring:url value="resources/js/libs/jquery.pjax.js" var="pjaxJs"/>
     <script src="${pjaxJs}"></script>
-    <%--    <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
-        <script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
-                src="${paceJs}"></script>--%>
+    <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
+    <script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
+            src="${paceJs}"></script>
     <spring:url value="resources/js/static.js" var="staticJs"/>
     <script src="${staticJs}"></script>
     <spring:url value="resources/js/helper.js" var="helperJs"/>
@@ -107,9 +106,11 @@
     <script src="${userJs}"></script>
     <spring:url value="resources/js/main.js" var="mainJs"/>
     <script src="${mainJs}"></script>
-
+    <script type="text/javascript">
+        var djConfig = {parseOnLoad: true}
+    </script>
     <%--arcgis lib and map js--%>
-    <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
+    <script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
 </head>
 <body>
@@ -120,7 +121,7 @@
         <%@include file="home.jsp" %>
     </div>
     <div class="section" data-anchor="se2" id="listSe">
-        <div class="list-wrapper row-fluid" id="list-wrapper" style="padding-top: 5rem">
+        <div class="list-wrapper row-fluid" id="list_wrapper">
             <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
                 <div class="result-container">
                     <ul class="result devices"></ul>
@@ -136,12 +137,12 @@
         <%@include file="map.jsp" %>
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
-        <div>eeeeeeeeeeeeeeeeeeeeeeeeee</div>
-        <%--<iframe src="markpoint-iframe" name="iPoint"></iframe>--%>
+        <iframe src="markpoint-iframe" name="iPoint"></iframe>
+        <%--<div>sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</div>--%>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
-        <div>sssssssssssssssssssss</div>
-        <%--<iframe src="markline-iframe" name="iLine"></iframe>--%>
+        <%--<div>eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</div>--%>
+    <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">

@@ -6,8 +6,11 @@ var Session = {
     get: function (key) {
         var value;
         switch (key) {
-            case 'username':  //List
+            case 'username':  //string
                 value = getUsername();
+                break;
+            case 'wd':  //string
+                value = getWd();
                 break;
             case 'checked': //Array
                 value = getChecked();
@@ -29,6 +32,14 @@ var Session = {
             return uname;
         }
 
+        function getWd() {
+            var wd = sessionStorage.getItem('wd');
+            if (wd) {
+                wd = wd.trim();
+            }
+            return wd;
+        }
+
         function getChecked() {
             var checked = sessionStorage.getItem('checked');
             if (checked && checked != 'undefined') {
@@ -39,14 +50,19 @@ var Session = {
 
         function getData() {//JSONObject
             var data = sessionStorage.getItem('data');
+            //console.log(data);
             if (data && data != 'undefined') {
                 data = JSON.parse(data);
             }
+            //console.log(data);
             return data;
         }
     },
     set: function (key, value, operation) {
         switch (key) {
+            case 'wd':
+                setWd(value);
+                break;
             case 'username':
                 setUsername(value);
                 break;
@@ -57,6 +73,12 @@ var Session = {
                 setData(value);
                 break;
         }
+        function setWd(value) {   //string
+            if (value) {
+                sessionStorage.setItem('wd', value);
+            }
+        }
+
         function setUsername(value) {   //string
             if (value && value != '') {
                 sessionStorage.setItem('username', value);
@@ -88,6 +110,7 @@ var Session = {
         }
 
         function setData(value) {   //JSONObject
+            //console.log('data',value);
             if (value && value != 'undefined') {
                 sessionStorage.setItem('data', JSON.stringify(value));
             }

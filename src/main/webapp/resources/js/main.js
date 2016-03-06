@@ -93,7 +93,7 @@ var initFullpage = function () {
 
         //↓Scrolling
         autoScrolling: true,
-        normalScrollElements: '#mapHolder,#list-wrapper,#sidebar', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 
@@ -112,10 +112,10 @@ var initFullpage = function () {
             console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             switch (index) {
                 case 3:
-                    //ArcMap.onLeave();
+                    ArcMap.onLeave();
                     break;
                 case 5:
-                    //iLine.window.destroy();
+                    iLine.window.destroy();
                     break;
                 default:
                     break;
@@ -129,7 +129,7 @@ var initFullpage = function () {
             var data = Session.get('data');
             switch (index) {
                 case 1:
-                    Session.reset('data');
+                    //Session.reset('data');
                     break;
                 case 2:
                     $(Sidebar._WRAPPER_SEL).addClass('list');
@@ -138,9 +138,9 @@ var initFullpage = function () {
                     }
                     break;
                 case 3:
-                    //ArcMap.onLoad();
+                    ArcMap.onLoad();
                     if (data) {
-                        //ArcMap.onSearchSucceed(data);
+                        ArcMap.onSearchSucceed(data);
                     }
                     break;
                 case 4:
@@ -148,7 +148,7 @@ var initFullpage = function () {
                     break;
                 case 5:
                     Sidebar.hide();
-                    //iLine.window.starts();
+                    iLine.window.starts();
                     break;
                 case 6:
                     break;
@@ -166,16 +166,15 @@ var initFullpage = function () {
     });
 };
 $(function () {
-    /*Pace.ignore(function () {
-     ArcMap.initFeatureSets();
-     ArcMap.init();
-     });*/
+    Pace.ignore(function () {
+        ArcMap.initFeatureSets();
+        ArcMap.init();
+    });
     InputSuggest.init();
     HomeSearch.listen();
     GlobalSearch.listen();
     User.listenerStarts();
     initFullpage();//full page js
-
     /*   history.pushState({
      contentId: 1,
      title: 'Welcome to CASCS',

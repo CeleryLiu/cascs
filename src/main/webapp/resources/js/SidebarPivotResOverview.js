@@ -19,7 +19,7 @@ var Sidebar = {
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     render: function (data) {
-        console.log("Sidebar.render()");
+        //console.log("Sidebar.render()");
         var agg = data['aggregation'], wd = data['wd'] ? data['wd'] : data['q']['wd'];
         //param countryObj={en:englishName,count:totalCount,cities:cityObjList}
         var genSidebarCountryLi = function (countryName, countryObj) {
@@ -88,18 +88,23 @@ var Sidebar = {
                     }
                 } else {
                     // (1) unchecked -> remove the pivot
-                    if (country) {
-                        Pivot.remove({
-                            'dKey': dKey,
-                            'dValue': dValue
-                        });
-                    } else {
-                        Pivot.remove({
-                            'dKey': dKey,
-                            'dValue': dValue,
-                            'country': country
-                        });
-                    }
+                    Pivot.remove({
+                        'dKey': dKey,
+                        'dValue': dValue,
+                        'country': country
+                    });
+                    /* if (country) {
+                     Pivot.remove({
+                     'dKey': dKey,
+                     'dValue': dValue
+                     });
+                     } else {
+                     Pivot.remove({
+                     'dKey': dKey,
+                     'dValue': dValue,
+                     'country': country
+                     });
+                     }*/
                 }
                 // (2) search
                 Sidebar.searchOnChange();
@@ -146,12 +151,12 @@ var Sidebar = {
                         value = $input.val();
                         //选中复选框
                         $input.prop('checked', true);
-                        if (value == '全国') {
+                        if (dKey == 'country') {
                             //该国家下所有的城市都被选中，并移除Pivot中对应的城市
                             var siblings = $input.closest('li').siblings("li");
                             siblings.each(function (index, item) {
                                 var i = $(item).find('input').prop('checked', true).attr('disabled', 'disabled');
-                                Pivot.remove(dKey, dValue);
+                                Pivot.remove({'dKye': dKey, 'dValue': dValue});
                             });
                         }
 
@@ -213,7 +218,7 @@ var Pivot = {
     },
     //dKey->data-key; dValue->data-value; value->text; extra.country->data-country
     add: function (dKey, dValue, value, extra) {
-        console.log('Pivot.add() ======');
+        //console.log('Pivot.add() ======');
         var pivots = $(this._PIVOTS_UL_SEL),
             $p = pivots.find('li[data-value="' + dValue + '"]');
         if ($p
@@ -256,7 +261,7 @@ var Pivot = {
      * 两个参数只传一个即可
      */
     remove: function (data, pivot) {
-        console.log('Pivot.remove() ======');
+        //console.log('Pivot.remove() ======');
         if (pivot) {
             pivot.remove();
         } else {
