@@ -1,5 +1,5 @@
 /* ----------------------------- Advanced Search 精确搜索 - ----------------------------- */
-var advancedSearchURL = 'api/advancedSearch';
+//var advancedSearchURL = 'api/advancedSearch';
 var AdvSearch = {
     form: $('#advs'),
     wrapper: $('#advs_wrapper'),
@@ -93,7 +93,7 @@ var AdvSearch = {
 
         $('.carousel').carousel(1);
         AjaxLoadData({
-            url: advancedSearchURL,
+            url: Constant.ADVS_SEARCH_RUL,
             criteria: criteria
         });
         homepage_search_flag = false;

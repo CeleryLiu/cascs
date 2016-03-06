@@ -116,7 +116,7 @@
 <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
-<%@include file="advs.jsp" %>
+<%--<%@include file="advs.jsp" %>--%>
 <div id="fullpage" class="fullpage">
     <div class="section" data-anchor="se1" id="homeSe">
         <%@include file="home.jsp" %>

@@ -6,11 +6,13 @@ var HomeSearch = {
         return '#home_search_form';
     }()),
     getValue: function () {
-        return $(this._FORM_SEL).find('input').val().replace(/\s{2,}/g, ' ').trim();
+        //return $(this._FORM_SEL).find('input').val().replace(/\s{2,}/g, ' ').trim();
+        return $(this._FORM_SEL).typeahead('val').replace(/\s{2,}/g, ' ').trim();
     },
     setValue: function (val) {
         //console.log('HomeSearch.setValue(), val:' + val);
-        $(this._FORM_SEL).find('input').val(val);
+        //$(this._FORM_SEL).find('input').val(val);
+        $(this._INPUT_SEL).typeahead('val', val);
     },
     listen: function () {
         //console.log('HomeSearch.listen() ======');

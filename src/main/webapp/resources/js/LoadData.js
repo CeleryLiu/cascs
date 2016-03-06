@@ -25,7 +25,7 @@ var LoadData = {
             });
     },
     post: function (requestObj) {
-        //console.log("LoadData.post() ======, requestObj = ", requestObj);
+        console.log("LoadData.post() ======, requestObj = ", requestObj);
         //Pace.start();
         $.ajax({
             url: requestObj.url,
@@ -129,6 +129,7 @@ var createView = function (stateObject, pushHistory) {
     } else {
         errorHandler();
     }
+    $.fn.fullpage.reBuild();
     //(3) Save state on history stack
     /** param {
      *   firstOne: any object that will let you restore state
@@ -136,6 +137,6 @@ var createView = function (stateObject, pushHistory) {
      *   thirdOne: the URL - this will appear in the browser address bar
      * }
      */
-        //if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
+    //if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
     //console.log("==========================");
 };

@@ -119,7 +119,7 @@ var List = {
     },
     search: function (pageNum) {
         console.log("List.search() ======");
-        var wd = GlobalSearch.getValue() == '' ? GlobalSearch.getValue() : HomeSearch.getValue();
+        var wd = $(GlobalSearch._INPUT_SEL).typeahead('val');
         if (!wd && wd == '') return;
         var successCallback = function (data) {
             var statuscode = data['statuscode'];
@@ -164,12 +164,16 @@ var List = {
             $('.no-data').hide();
             //(4)设置GlobalSearch的值
             var wd = data.q ? data.q : data.wd;
+            //console.log(wd, localWd, '====================================');
             var localWd = Session.get('wd');
-            console.log(wd, localWd,'====================================');
-            if (localWd && wd && wd.indexOf(localWd) != -1 && GlobalSearch.getValue() == '') {
+            var localData = Session.get('data');
+            console.log(localData,localWd);
+            if (localData && localWd && localData.wd == localWd) {
                 GlobalSearch.setValue(localWd);
                 HomeSearch.setValue(localWd);
             }
+            //（5）滚动到顶部
+            $(List._WRAPPER_SEL).animate({scrollTop: 0}, 'slow');
         } else if (statuscode == 204) {
             console.log('list no data');
             noDataHandler(data);

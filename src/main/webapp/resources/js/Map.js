@@ -253,7 +253,7 @@ var ArcMap = {
     },
     search: function (pageNum) {
         //console.log("ArcMap.search() ======");
-        var wd = GlobalSearch.getValue();
+        var wd = $(GlobalSearch._INPUT_SEL).typeahead('val');
         if (!wd && wd == '') return;
         var successCallback = function (data) {
             var statuscode = data['statuscode'];
@@ -480,7 +480,8 @@ var ArcMap = {
             //(4)设置GlobalSearch的值
             var wd = data.q ? data.q : data.wd;
             var localWd = Session.get('wd');
-            if (localWd && wd && wd.indexOf(localWd) != -1 && GlobalSearch.getValue() == '') {
+            var localData = Session.get('data');
+            if (localData && localWd && localData.wd == localWd) {
                 GlobalSearch.setValue(localWd);
                 HomeSearch.setValue(localWd);
             }

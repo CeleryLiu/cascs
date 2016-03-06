@@ -14,7 +14,7 @@ var Constant = {
         return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent'];
     }()),
     FIXED_ELEMENTS: (function () {
-        return '#header, #footer, #sidebar,#header2, #global_search_wrapper, #tool_wrapper';
+        return '#header, #footer, #sidebar,#header2, #global_search_wrapper, #tool_wrapper, #advs_wrapper';
     }()),
     SLIDE_NAV_TOOLTIPS: (function () {
         return ['备用']
@@ -24,6 +24,9 @@ var Constant = {
     }()),
 
     //↓urls
+    ADVS_SEARCH_RUL: (function () {
+        return 'api/advancedSearch';
+    }()),
     LIST_SEARCH_URL: (function () {
         return 'search/list';
     }()),

@@ -93,7 +93,7 @@ var initFullpage = function () {
 
         //↓Scrolling
         autoScrolling: true,
-        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar,#advs_wrappe', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 
