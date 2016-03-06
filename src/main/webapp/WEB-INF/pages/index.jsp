@@ -74,6 +74,8 @@
     <script src="${sha1Js}"></script>
     <spring:url value="resources/js/libs/jqPaginator.min.js" var="pagerJs"/>
     <script src="${pagerJs}"></script>
+    <spring:url value="resources/js/libs/jquery.pjax.js" var="pjaxJs"/>
+    <script src="${pjaxJs}"></script>
     <%--    <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
         <script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
                 src="${paceJs}"></script>--%>
@@ -131,12 +133,14 @@
         </div>
     </div>
     <div class="section" data-anchor="se3" id="mapSe">
-        <%--<%@include file="map.jsp" %>--%>
+        <%@include file="map.jsp" %>
     </div>
     <div class="section" data-anchor="se4" id="pointSe">
+        <div>eeeeeeeeeeeeeeeeeeeeeeeeee</div>
         <%--<iframe src="markpoint-iframe" name="iPoint"></iframe>--%>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
+        <div>sssssssssssssssssssss</div>
         <%--<iframe src="markline-iframe" name="iLine"></iframe>--%>
     </div>
     <div class="section" data-anchor="se6" id="user">

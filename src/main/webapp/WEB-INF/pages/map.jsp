@@ -18,7 +18,7 @@
     <%--<div id="homeButton"></div>--%>
     <div class="btn-group" role="group" id="tool_wrapper">
         <button type="button" class="btn btn-default open" id="sidebarCtrl">
-            <span class="glyphicon glyphicon-triangle-left"></span>
+            <span class="fa fa-caret-left"></span>
             隐藏侧栏
         </button>
         <div class="btn-group disabled" role="group">
@@ -29,21 +29,21 @@
             </button>
             <ul class="dropdown-menu">
                 <li class="map-layer"><a href="#" id="country" class="open">按国家 <span
-                        class="glyphicon glyphicon-eye-open"></span></a>
+                        class="fa fa-caret-right"></span></a>
                 </li>
                 <li class="map-layer"><a href="#" id="province" class="">按省份(中国) <span
-                        class="glyphicon"></span></a>
+                        class="fa"></span></a>
                 </li>
                 <li class="map-layer"><a href="#" id="city" class="">按城市(中国) <span
-                        class="glyphicon"></span></a>
+                        class="fa"></span></a>
                 </li>
             </ul>
         </div>
         <button type="button" class="btn btn-default disabled" id="mapSidebarCtrl">显示数据
-            <span class="glyphicon glyphicon-triangle-right"></span>
+            <span class="fa fa-caret-right"></span>
         </button>
         <button type="button" class="btn btn-default active" id="labelLayerCtrl">隐藏数量
-            <span class="glyphicon glyphicon-eye-open"></span>
+            <span class="fa fa-caret-right"></span>
         </button>
     </div>
     <div id="featureInfo">

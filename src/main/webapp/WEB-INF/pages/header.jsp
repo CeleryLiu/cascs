@@ -47,7 +47,6 @@
             </div>
             <button type="submit" class="global-search-button btn btn-primary" role="button" id="global_search_button">
                 <span class="fa fa-search"></span>
-                <%--<span class="glyphicon glyphicon-search"></span>--%>
             </button>
         </fieldset>
         <div class="advs-link-wrapper"><a href="#" class="advs-link">精确搜索</a></div>

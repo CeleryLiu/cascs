@@ -140,10 +140,10 @@ var ArcMap = {
                         $this.toggleClass('open');
                         if ($this.hasClass('open')) {
                             Sidebar.show();
-                            $this.html('<span class="glyphicon glyphicon-triangle-left"></span>' + '隐藏侧栏');
+                            $this.html('<span class="fa fa-caret-left"></span>' + '隐藏侧栏');
                         } else {
                             Sidebar.hide();
-                            $this.html('<span class="glyphicon glyphicon-triangle-right"></span>' + '显示侧栏');
+                            $this.html('<span class="fa fa-caret-right"></span>' + '显示侧栏');
                         }
                     });
                     $('#mapSidebarCtrl').on('click', function (e) {
@@ -151,10 +151,10 @@ var ArcMap = {
                         var $this = $(this), mapSidebar = $('#mapSidebar');
                         if (MapSidebar.isHidden()) {
                             MapSidebar.show();
-                            $this.html('隐藏数据' + '<span class="glyphicon glyphicon-triangle-left"></span>');
+                            $this.html('隐藏数据' + '<span class="fa fa-caret-left"></span>');
                         } else {
                             MapSidebar.hide();
-                            $this.html('显示数据' + '<span class="glyphicon glyphicon-triangle-right"></span>');
+                            $this.html('显示数据' + '<span class="fa fa-caret-right"></span>');
                         }
                     });//暂时未使用
                     $('.map-sidebar-link')
@@ -175,12 +175,12 @@ var ArcMap = {
                             var $this = $(this);
                             $this.toggleClass('open');
                             if ($this.hasClass('open')) {
-                                $('.map-layer a').removeClass('open').find('span').removeClass('glyphicon-eye-open');
-                                $this.addClass('open').find('span').addClass('glyphicon-eye-open');
+                                $('.map-layer a').removeClass('open').find('span').removeClass('fa fa-caret-right');
+                                $this.addClass('open').find('span').addClass('fa fa-caret-right');
                                 MyFeatureLayer.show($this.attr('id'), ArcMap.v);
                             } else {
                                 MyFeatureLayer.hide();
-                                $this.removeClass('open').find('span').removeClass('glyphicon-eye-open');
+                                $this.removeClass('open').find('span').removeClass('fa fa-caret-right');
                             }
                         });
                     $('#labelLayerCtrl').removeClass('disabled').on('click', function (e) {
@@ -190,12 +190,12 @@ var ArcMap = {
                             ArcMap.v.labelLayer.show();
                             $this
                                 .addClass('active')
-                                .html('隐藏数量 ' + '<span class="glyphicon glyphicon-eye-open"></span>');
+                                .html('隐藏数量 ' + '<span class="fa fa-caret-right"></span>');
                         } else {
                             ArcMap.v.labelLayer.hide();
                             $this
                                 .removeClass('active')
-                                .html('显示数量 ' + '<span class="glyphicon glyphicon-eye-close"></span>');
+                                .html('显示数量 ' + '<span class="fa fa-caret-left"></span>');
                         }
                     });
                 });
@@ -868,8 +868,8 @@ var MapSidebar = {
                 totalPages: totalCounts,
                 visiblePages: 1,
                 currentPage: currentPageNum,
-                prev: '<li class="prev"><a href="javascript:void(0);"><span class="glyphicon glyphicon-triangle-left"><\/span><\/a><\/li>',
-                next: '<li class="next"><a href="javascript:void(0);"><span class="glyphicon glyphicon-triangle-right"><\/a><\/li>',
+                prev: '<li class="prev"><a href="javascript:void(0);"><span class="fa fa-caret-left"><\/span><\/a><\/li>',
+                next: '<li class="next"><a href="javascript:void(0);"><span class="fa fa-caret-right"><\/a><\/li>',
                 page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
                 //page: '<li class="page"><a href="javascript:void(0);"> {{page}} / {{totalPages}} <\/a><\/li>',
                 onPageChange: function (n, type) {

@@ -21,7 +21,7 @@
     <div class="item">
         <a href="api/getDevices4Globe/monitor/all/2" data-toggle="collapse" data-target="#monitor"
            id="monitorTitle">监控设备
-            <i class="glyphicon glyphicon-menu-down monitor"></i>
+            <i class="fa fa-caret-down monitor"></i>
         </a>
     </div>
     <div class="collapse" id="monitor" aria-labelledby="monitorTitle">
@@ -51,7 +51,7 @@
     <div class="item">
         <a href="api/getDevices4Globe/industry_control/all/2" data-toggle="collapse" data-target="#plc"
            id="plcTitle">工控设备
-            <i class="glyphicon glyphicon-menu-down pull-right plc"></i>
+            <i class="fa fa-caret-down pull-right plc"></i>
         </a>
     </div>
     <div class="collapse" id="plc">
@@ -81,7 +81,7 @@
     <div class=" item">
         <a href="api/getDevices4Globe/security_matter/all/1" data-toggle="collapse" data-target="#secret"
            id="secretTitle">涉密设备
-            <i class="glyphicon glyphicon-menu-down pull-right secret"></i>
+            <i class="fa fa-caret-down pull-right secret"></i>
         </a>
     </div>
     <div class="collapse" id="secret">
@@ -111,7 +111,7 @@
     <div class="item">
         <a href="api/getDevices4Globe/network_device/all/2" data-toggle="collapse" data-target="#netDevice"
            id="netWorkTitle">网络设备
-            <i class="glyphicon glyphicon-menu-down pull-right net-device"></i>
+            <i class="fa fa-caret-down pull-right net-device"></i>
         </a>
     </div>
     <div class="collapse" id="netDevice">

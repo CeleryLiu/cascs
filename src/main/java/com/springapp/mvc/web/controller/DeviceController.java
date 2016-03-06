@@ -43,4 +43,12 @@ public class DeviceController {
         System.out.println("DeviceController.mapSearch() ======" + JSONObject.fromObject(search));
         return deviceService.getResponse4Map(search);
     }
+
+    @JsonView(Views.Public.class)
+    @RequestMapping(value = "/search/pjax/list", headers = "X-PJAX")
+    public String listSearchPjax(@RequestBody SearchCriteria search) {
+        logger.debug("DeviceController.listSearchPjax() ======" + JSONObject.fromObject(search));
+        System.out.println("DeviceController.listSearchPjax() ======" + JSONObject.fromObject(search));
+        return deviceService.getResponse4List(search);
+    }
 }
