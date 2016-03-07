@@ -107,6 +107,7 @@ var initFullpage = function () {
         },
         afterResize: function () {
             //console.log('fullPage.afterResize()');
+            $.fn.fullpage.reBuild();
         },
         onLeave: function (index, nextIndex, direction) {
             //console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
