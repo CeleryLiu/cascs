@@ -27,7 +27,7 @@ public class LoginService {
     public JSONObject login(String params) {
         String url = Constant.WUM_LOGIN_URL + "?" + params;
         JSONObject response = rc.getJSONObject(url);
-        System.out.println("login response: "+response);
+//        System.out.println("login response: "+response);
         if (response == null) {
             response = new JSONObject();
             response.put("code", "555");    //用户管理平台服务器错误

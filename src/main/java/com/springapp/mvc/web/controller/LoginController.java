@@ -33,7 +33,7 @@ public class LoginController {
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/user/login")
     public JSONObject login(ModelMap model, @RequestBody User user) {
-        System.out.println("Inside of login handler method");
+//        System.out.println("Inside of login handler method");
         String params = "nam=" + user.getUsername() + "&" + "psw=" + user.getPassword();
         JSONObject result = loginService.login(params);
         User sUser = new User();

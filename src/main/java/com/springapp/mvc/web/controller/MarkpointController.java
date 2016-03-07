@@ -40,7 +40,7 @@ public class MarkpointController {
         search.setTypefilter(typefilter);
         search.setLossycompress(lossycompress);
         String result = markpointService.getResponse(search);
-        System.out.println(result);
+//        System.out.println(result);
         return result;
     }
 

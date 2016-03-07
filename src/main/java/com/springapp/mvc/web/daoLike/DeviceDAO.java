@@ -207,7 +207,7 @@ public class DeviceDAO {
     //返回用于3d设备展示的数据（数据访问层）-----------------------------------------------------√
     public JSONObject getDevices4Globe(String criteria) {
         logger.debug("DAO ==>> getResponse4Globe starts =================");
-        System.out.println("DAO ==>> getResponse4Globe starts =======================");
+//        System.out.println("DAO ==>> getResponse4Globe starts =======================");
         JSONObject result = JSON.parseObject(rc.get(uri4Globe, criteria));
         if ("200".equals(result.getString("statuscode"))) {
             JSONArray data = result.getJSONArray("data");
@@ -345,7 +345,7 @@ public class DeviceDAO {
                         break;
                 }
                 result.put("data", deviceList);
-                System.out.println("处理时间：" + (Long.parseLong(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date())) - before));
+//                System.out.println("处理时间：" + (Long.parseLong(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date())) - before));
             }
         }
 //        System.out.println("Map DAO-->" + result.toString());

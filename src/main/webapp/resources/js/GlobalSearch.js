@@ -36,6 +36,7 @@ var GlobalSearch = {
         $(GlobalSearch._FORM_SEL).on('submit', function (e) {
             e.preventDefault();
             var criteria = GlobalSearch.getValue();
+            $('.tt-menu').hide(300);
             if (criteria == '')return;
             //(1)清空Pivot
             Pivot.init();

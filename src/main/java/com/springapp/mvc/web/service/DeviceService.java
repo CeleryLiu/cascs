@@ -78,7 +78,7 @@ public class DeviceService {
     //返回用户查询的数据，用于前端3d地球显示设备信息（业务逻辑层）
     public String getResponse4Globe(SearchCriteria search) {
         logger.debug("Service ==>> getResponse4Globe starts ================");
-        System.out.println("Service ==>> getResponse4Globe starts-------");
+//        System.out.println("Service ==>> getResponse4Globe starts-------");
         JSONObject result;
         if (isValidSearchCriteriaOld(search)) {
             result = deviceDAO.getDevices4Globe(JSONObject.toJSON(search).toString());

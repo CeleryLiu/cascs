@@ -6,7 +6,7 @@
  */
 var InputSuggest = {
     init: function () {
-        console.log('InputSuggest.init() ======');
+        //console.log('InputSuggest.init() ======');
         this.suggestCursorToggle();
         this.getSuggestions('.home-search-input', Constant.SUGGEST_URL);
         this.getSuggestions('#global_search_input', Constant.SUGGEST_URL);

@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="${paceCss}">
     <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
     <link rel="stylesheet" href="${awsFont}">
-    <%--<link rel="stylesheet" type="text/css"--%>
-    <%--href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
+    <link rel="stylesheet" type="text/css"
+          href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
     <spring:url value="resources/css/home-sec.css" var="homeCss"/>
@@ -111,7 +111,7 @@
         var djConfig = {parseOnLoad: true}
     </script>
     <%--arcgis lib and map js--%>
-    <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
+    <script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
 </head>
 <body>

@@ -103,7 +103,7 @@ function starts() {
      * url：ajax获取数据的地址
      */
     function SetChart(url, chart) {
-        console.log(chart);
+        //console.log(chart);
         $.ajax({
             type: "POST",
             url: url,
@@ -116,7 +116,7 @@ function starts() {
                     /*for multi type of device*/
                     $.each(data.data, function (key, value) {
                         if (value.length > 0) {
-                            console.log("value", value);
+                            //console.log("value", value);
                             var markPointColor = COLORS[key] == undefined ? "yellow" : COLORS[key],
                                 legendData = [],
                                 series = [
@@ -196,7 +196,7 @@ function starts() {
                                  },*/
                                 series: series
                             };
-                            console.log(opts);
+                            //console.log(opts);
                             chart.setOption(opts, true);
                             chart.hideLoading();
                         } else {

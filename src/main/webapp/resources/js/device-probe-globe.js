@@ -25,7 +25,7 @@ function starts() {
         'echarts-x/chart/map3d'
     ], function (ec) {
         function beforeInit() {
-            console.log("beforeInit      starts");
+            //console.log("beforeInit      starts");
             var width = $(window).width(), height = $(window).height();
             $('#globe4LineHolder').css({
                 "width": width,

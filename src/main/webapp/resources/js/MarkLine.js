@@ -10,7 +10,7 @@ var MarkLine = {
     _timeout: 0,
     init: function () {
         return;
-        console.log('Inside MarkLine.init() ======');
+        //console.log('Inside MarkLine.init() ======');
         var rootPath = getRootPath();
 
         var pageId = Math.round(Math.random() * 10),

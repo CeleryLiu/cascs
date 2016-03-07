@@ -99,30 +99,31 @@ var initFullpage = function () {
 
         //↓events
         afterRender: function () {  //initialize here
-            console.log('fullPage.afterRender()');
+            //console.log('fullPage.afterRender()');
             //(init-1)add slides nav tips
             //addTooltip4Slides(Constant.SLIDE_NAV_TOOLTIPS);
             //(init-3)updates the DOM structure to fit the new window
             $.fn.fullpage.reBuild();
         },
         afterResize: function () {
-            console.log('fullPage.afterResize()');
+            //console.log('fullPage.afterResize()');
         },
         onLeave: function (index, nextIndex, direction) {
-            console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
+            //console.log('fullPage.onLeave(), index:' + index + ', nextIndex = ' + nextIndex + ', direction = ' + direction);
             switch (index) {
                 case 3:
-                    //ArcMap.onLeave();
+                    ArcMap.onLeave();
                     break;
                 case 5:
                     iLine.window.destroy();
+                    clearTimeout(iLine.window.timeout);
                     break;
                 default:
                     break;
             }
         },
         afterLoad: function (anchorLink, index) {
-            console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
+            //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
 
             currentPage = index;
@@ -138,9 +139,9 @@ var initFullpage = function () {
                     }
                     break;
                 case 3:
-                    //ArcMap.onLoad();
+                    ArcMap.onLoad();
                     if (data) {
-                        //ArcMap.onSearchSucceed(data);
+                        ArcMap.onSearchSucceed(data);
                     }
                     break;
                 case 4:
@@ -156,20 +157,20 @@ var initFullpage = function () {
             $.fn.fullpage.reBuild();
         },
         afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
-            console.log('Inside afterSlideLoad() ======');
+            //console.log('Inside afterSlideLoad() ======');
             //console.log('Inside afterSlideLoad() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideAnchor = ' + slideAnchor + ', slideIndex = ' + slideAnchor);
             //$('.fp-slidesNav a').tooltip('hide');//隐藏slide的tooltip
         },
         onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
-            console.log('Inside onSlideLeave() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideIndex = ' + slideIndex + ', nextSlideIndex = ' + nextSlideIndex);
+            //console.log('Inside onSlideLeave() ======, anchorLink = ' + anchorLink + ', index = ' + index + ', slideIndex = ' + slideIndex + ', nextSlideIndex = ' + nextSlideIndex);
             //console.log('Inside onSlideLeave() ======');
         }
     });
 };
 $(function () {
     Pace.ignore(function () {
-        //ArcMap.initFeatureSets();
-        //ArcMap.init();
+        ArcMap.initFeatureSets();
+        ArcMap.init();
     });
     InputSuggest.init();
     HomeSearch.listen();

@@ -152,7 +152,7 @@ public class DataApiController {
     @RequestMapping(value = "/api/advancedSearch")
     public String advancedSearch(@RequestBody AdvancedSearchCriteria criteria) {
         logger.debug("DataApiController advancedSearch starts-----------");
-        System.out.println("DataApiController advancedSearch starts-----------" + JSONObject.fromObject(criteria));
+//        System.out.println("DataApiController advancedSearch starts-----------" + JSONObject.fromObject(criteria));
         String result = newDeviceService.getResponse4AdvanceSearch(criteria);
 //        System.out.println("advancedSearch====" + result);
         return result;
@@ -166,9 +166,9 @@ public class DataApiController {
     @RequestMapping(value = "/api/mapSearch")
     public String mapSearch(@RequestBody SearchCriteria search) {
         logger.debug("DataApiController advancedSearch starts-----------");
-        System.out.println("DataApiController advancedSearch starts-----------" + JSONObject.fromObject(search));
+//        System.out.println("DataApiController advancedSearch starts-----------" + JSONObject.fromObject(search));
         String result = newDeviceService.getResponse4MapSearch(search);
-        System.out.println("mapSearch====" + result);
+//        System.out.println("mapSearch====" + result);
         return result;
     }
 
@@ -197,9 +197,9 @@ public class DataApiController {
     @RequestMapping(value = "/api/listSearch")
     public String listSearch(@RequestBody SearchCriteria search) {
         logger.debug("DataApiController --> markpointSearch starts-----------" + JSONObject.fromObject(search));
-        System.out.println("DataApiController --> markpointSearch starts-----------" + JSONObject.fromObject(search));
+//        System.out.println("DataApiController --> markpointSearch starts-----------" + JSONObject.fromObject(search));
         String result = newDeviceService.getResponse4ListSearch(search);
-        System.out.println("Controller-->Result for list: " + result);
+//        System.out.println("Controller-->Result for list: " + result);
         return result;
     }
 

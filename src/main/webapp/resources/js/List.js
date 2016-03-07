@@ -57,7 +57,7 @@ var List = {
 
             facets.find('a').on('click', function (e) {
                 e.preventDefault();
-                console.log("=====================", this.href);
+                //console.log("=====================", this.href);
             });
             //ports
             var info = $('<div class="col-md-8 col-sm-7 right"></div>').appendTo(row);
@@ -118,7 +118,7 @@ var List = {
         $('#listSe').scrollTop(0);
     },
     search: function (pageNum) {
-        console.log("List.search() ======");
+        //console.log("List.search() ======");
         var wd = $(GlobalSearch._INPUT_SEL).typeahead('val');
         if (!wd && wd == '') return;
         var successCallback = function (data) {
@@ -167,7 +167,9 @@ var List = {
             var wd = dd.q ? dd.q : dd.wd;
             var localWd = Session.get('wd');
             if (dd) {
-                if (wd && localWd && wd.indexOf(localWd) != -1) {
+                //console.log(wd,localWd);
+                //if (wd && localWd && wd.indexOf(localWd) != -1) {
+                if (wd && localWd) {
                     GlobalSearch.setValue(localWd);
                     HomeSearch.setValue(localWd);
                 }

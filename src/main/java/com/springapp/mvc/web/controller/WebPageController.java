@@ -103,28 +103,28 @@ public class WebPageController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         logger.debug("Inside index()----------------------");
-        System.out.println("Inside index()----------------");
+//        System.out.println("Inside index()----------------");
         return "index";
     }
 
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
     public String register() {
         logger.debug("Inside register()----------------------");
-        System.out.println("Inside register()----------------");
+//        System.out.println("Inside register()----------------");
         return "user/register";
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.GET)
     public String login() {
         logger.debug("Inside login()----------------------");
-        System.out.println("Inside login()----------------");
+//        System.out.println("Inside login()----------------");
         return "user/login";
     }
 
     @RequestMapping(value = "/user/pwdRetrieve", method = RequestMethod.GET)
     public String pwdRetrieve() {
         logger.debug("Inside pwdRetrieve()----------------------");
-        System.out.println("Inside pwdRetrieve()----------------");
+//        System.out.println("Inside pwdRetrieve()----------------");
         return "user/pwdRetrieve";
     }
 
@@ -138,42 +138,42 @@ public class WebPageController {
     @RequestMapping(value = "/map", method = RequestMethod.GET)
     public String map() {
         logger.debug("Inside map()----------------------");
-        System.out.println("Inside map()----------------");
+//        System.out.println("Inside map()----------------");
         return "map";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listt() {
         logger.debug("Inside list()----------------------");
-        System.out.println("Inside list()----------------");
+//        System.out.println("Inside list()----------------");
         return "list";
     }
 
     @RequestMapping(value = "/markpoint", method = RequestMethod.GET)
     public String markpoint() {
         logger.debug("Inside markpoint()----------------------");
-        System.out.println("Inside markpoint()----------------");
+//        System.out.println("Inside markpoint()----------------");
         return "markpoint";
     }
 
     @RequestMapping(value = "/markline", method = RequestMethod.GET)
     public String markline() {
         logger.debug("Inside markline()----------------------");
-        System.out.println("Inside markline()----------------");
+//        System.out.println("Inside markline()----------------");
         return "markline";
     }
 
     @RequestMapping(value = "/markline-iframe", method = RequestMethod.GET)
     public String marklineIframe() {
         logger.debug("Inside marklineIframe()----------------------");
-        System.out.println("Inside marklineIframe()----------------++");
+//        System.out.println("Inside marklineIframe()----------------++");
         return "markline-iframe";
     }
 
     @RequestMapping(value = "/markpoint-iframe", method = RequestMethod.GET)
     public String markpointIframe() {
         logger.debug("Inside markpoint-iframe()----------------------");
-        System.out.println("Inside markpoint-iframe()----------------+++");
+//        System.out.println("Inside markpoint-iframe()----------------+++");
         return "markpoint-iframe";
     }
 }

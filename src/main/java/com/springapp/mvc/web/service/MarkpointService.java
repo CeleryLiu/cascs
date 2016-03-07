@@ -39,7 +39,7 @@ public class MarkpointService {
     //返回用户查询的数据，用于前端3d地球显示设备信息（业务逻辑层）
     public String getResponse(SearchCriteria search) {
         logger.debug("MarkpointService.getResponse()starts ================");
-        System.out.println("MarkpointService.getResponse()starts-------");
+//        System.out.println("MarkpointService.getResponse()starts-------");
         JSONObject result;
         if (isValidSearchCriteriaOld(search)) {
             result = markpointDAO.getDevices(uri4Markpoint, JSONObject.toJSON(search).toString());

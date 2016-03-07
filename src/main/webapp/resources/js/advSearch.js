@@ -36,21 +36,21 @@ var AdvSearch = {
         });
     },
     show: function () {
-        console.log("FUNCTION CALL: AdvSearch.show");
+        //console.log("FUNCTION CALL: AdvSearch.show");
         this.wrapper.addClass('active');
         /*$('.advs-link-main').find('span')
          .removeClass('fa fa-caret-left')
          .addClass('fa fa-caret-right');*/
     },
     hide: function () {
-        console.log("FUNCTION CALL: AdvSearch.hide");
+        //console.log("FUNCTION CALL: AdvSearch.hide");
         this.wrapper.removeClass('active');
         /*$('.advs-link-main').find('span')
          .removeClass('fa fa-caret-right')
          .addClass('fa fa-caret-left');*/
     },
     search: function (form) {
-        console.log("FUNCTION CALL: AdvSearch.search");
+        //console.log("FUNCTION CALL: AdvSearch.search");
         if (!form) {
             form = this.form;
         }
@@ -77,13 +77,13 @@ var AdvSearch = {
                 //set 查询条件
                 criteria[key] = values;
 
-                //set sessionStorage checked
-                if (values != '' && (key == 'country' || key == 'city' || key == 'port' || key == 'os' || key == 'vul' || key == 'device_service' || key == 'device_type')) {
-                    var valueArr = values.split(' ');
-                    for (var j = 0; j < valueArr.length; j++) {
-                        MySessionStorage.set('checked', valueArr[j], 'add');
-                    }
-                }
+                /*//set sessionStorage checked
+                 if (values != '' && (key == 'country' || key == 'city' || key == 'port' || key == 'os' || key == 'vul' || key == 'device_service' || key == 'device_type')) {
+                 var valueArr = values.split(' ');
+                 for (var j = 0; j < valueArr.length; j++) {
+                 MySessionStorage.set('checked', valueArr[j], 'add');
+                 }
+                 }*/
             }
             if (ipSegment != '') {
                 criteria['ip'] += ' ' + ipSegment.replace(/^-|-$/g, '');//去掉首尾的“-”和空格
@@ -105,14 +105,14 @@ var AdvSearch = {
             if (key == 'lastModified' && criteria[key].indexOf('-') <= 0) {
                 continue;
             }
-            inputStr += criteria[key];
+            inputStr += ' ' + criteria[key];
             if (criteria[key] && criteria[key].replace(/\s+/g, '') != '') {
                 noInputTag = false;
             }
         }
 
         if (!noInputTag) {
-            GlobalSearch.setValue(inputStr);
+            GlobalSearch.setValue(inputStr.replace(/\s+/g, ' ').trim());
         } else {//如果用户未输入，则不提交
             GlobalSearch.setValue('');
             $('#must').focus();
@@ -129,7 +129,7 @@ var AdvSearch = {
                 case 2:
                     List.onSearchSucceed(data);
             }
-        }
+        };
         /*if (!MySessionStorage.get('currentPage')) {
          MySessionStorage.set('currentPage', 'list');
          homepage_search_flag = true;

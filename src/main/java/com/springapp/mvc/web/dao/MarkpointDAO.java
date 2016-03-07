@@ -27,7 +27,7 @@ public class MarkpointDAO {
 
     public JSONObject getDevices(String uri, String criteria) {
         logger.debug("MarkpointDAO.getDevices starts =================");
-        System.out.println("MarkpointDAO.getDevices starts, uri:" + uri + ", criteria:" + criteria);
+//        System.out.println("MarkpointDAO.getDevices starts, uri:" + uri + ", criteria:" + criteria);
         JSONObject result = JSON.parseObject(rc.get(uri, criteria));
         if ("200".equals(result.getString("statuscode"))) {
             JSONArray data = result.getJSONArray("data");
@@ -68,7 +68,7 @@ public class MarkpointDAO {
         } else {
             result.put("data", new JSONObject());
         }
-        System.out.println("DAO getResponse4Globe Result:" + result.toString());
+//        System.out.println("DAO getResponse4Globe Result:" + result.toString());
         return result;
     }
 }

@@ -8,7 +8,7 @@
  */
 var LoadData = {
     get: function (requestObj) {
-        console.log("LoadData.get() ======, requestObj = ", requestObj);
+        //console.log("LoadData.get() ======, requestObj = ", requestObj);
         $.ajax({
             url: requestObj.url,
             type: "get",
@@ -25,7 +25,7 @@ var LoadData = {
             });
     },
     post: function (requestObj) {
-        console.log("LoadData.post() ======, requestObj = ", requestObj);
+        //console.log("LoadData.post() ======, requestObj = ", requestObj);
         //Pace.start();
         $.ajax({
             url: requestObj.url,
@@ -113,13 +113,13 @@ var createView = function (stateObject, pushHistory) {
                 GlobalSearch.setValue(stateObject.q);
                 break;
             case 4:
-                console.log('point');
+                //console.log('point');
                 break;
             case 5:
-                console.log('line');
+                //console.log('line');
                 break;
             default :
-                console.log(stateObject.contentId);
+                //console.log(stateObject.contentId);
                 break;
         }
     } else if (statuscode == 204) {

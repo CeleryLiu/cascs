@@ -222,7 +222,7 @@ var ArcMap = {
 
     },
     render: function (data) {
-        //console.log("ArcMap.render() ======");
+        //console.log("ArcMap.render() ======",data.q);
         var layerToShow = $('.map-layer').find('a.open'),
             whichFeature = layerToShow ? layerToShow.attr('id') : 'country',
             map = this.v.map;
@@ -484,7 +484,8 @@ var ArcMap = {
             var wd = dd.q ? dd.q : dd.wd;
             var localWd = Session.get('wd');
             if (dd) {
-                if (wd && localWd && wd.indexOf(localWd) != -1) {
+                //if (wd && localWd && wd.indexOf(localWd) != -1) {
+                if (wd && localWd) {
                     GlobalSearch.setValue(localWd);
                     HomeSearch.setValue(localWd);
                 }

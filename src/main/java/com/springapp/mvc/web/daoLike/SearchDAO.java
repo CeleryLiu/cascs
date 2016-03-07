@@ -25,7 +25,7 @@ public class SearchDAO {
     //返回用户查询的数据，用于前端以列表的形式显示设备信息（数据访问层）
     public JSONObject getData4CommonSearch(String uri, Map<String, Object> criteria) {
         logger.debug("Inside SearchDAO.getDataCommonSearch ======");
-        System.out.println("Inside SearchDAO.getDataCommonSearch ======");
+//        System.out.println("Inside SearchDAO.getDataCommonSearch ======");
         JSONObject result = JSONObject.fromObject(rc.get(uri, criteria));
         if ("200".equals(result.getString("statuscode"))) {
             result = rawData2ResponseBody(result);

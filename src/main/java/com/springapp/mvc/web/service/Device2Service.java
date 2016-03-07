@@ -32,7 +32,7 @@ public class Device2Service {
 
     public String getResponse4List(SearchCriteria search) {
         logger.debug("DeviceSearch.getResponse4List() ======");
-        System.out.println("DeviceSearch.getResponse4List() ======");
+//        System.out.println("DeviceSearch.getResponse4List() ======");
         JSONObject result;
         if (isValidSearchCriteria(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();
@@ -53,7 +53,7 @@ public class Device2Service {
 
     public String getResponse4Map(SearchCriteria search) {
         logger.debug("DeviceSearch.getResponse4Map() ======");
-        System.out.println("DeviceSearch.getResponse4Map() ======");
+//        System.out.println("DeviceSearch.getResponse4Map() ======");
         JSONObject result;
         if (isValidSearchCriteria(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();

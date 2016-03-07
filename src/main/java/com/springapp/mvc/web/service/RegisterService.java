@@ -76,7 +76,7 @@ public class RegisterService {
     public JSONObject register(String params) {
         String url = Constant.WUM_REGISTER_URL + "?" + params;
         JSONObject response = rc.getJSONObject(url);
-        System.out.println(response);
+//        System.out.println(response);
         if (response == null) {
             response = new JSONObject();
             response.put("code", "555");    //用户管理平台服务器错误
