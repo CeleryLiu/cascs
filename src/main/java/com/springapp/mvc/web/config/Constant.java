@@ -16,7 +16,7 @@ public class Constant {
     public static final String SE_MAP_SEARCH_URL = SE_BASEPATH + "search/map?q={q}";//-地图场景下的搜索
     public static final String SE_LIST_SEARCH_URL = SE_BASEPATH + "search?wd={wd}&page={page}";//-普通（文字）场景下的搜索
     public static final String SE_MARKPOINT_SEARCH_URL = SE_BASEPATH + "search/mapcluster?q={q}";//-3D设备展示场景下的搜索
-    public static final String SE_HOTKEY_URL="http://10.10.2.143:8083/es/search/hotkey";//热搜数据。返回值：{"wd":{"freeom":2,"free":1,"time":1}}
+    public static final String SE_HOTKEY_URL = SE_BASEPATH + "search/hotkey";//热搜数据。返回值：{"wd":{"freeom":2,"free":1,"time":1}}
 
     //↓逻辑平台相关URL（提供3D地图数据流展示数据的接口）
     private static final String LG_BASEPATH = "http://10.10.2.84:8082/";//裸机平台根目录
