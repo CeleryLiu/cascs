@@ -3,6 +3,7 @@ package com.springapp.mvc.web.model;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.springapp.mvc.web.util.RestClient;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +42,30 @@ public class NewSuggestions {
             for (String key : keys) {
                 JSONArray arrItem = data.getJSONArray(key);
                 for (int i = 0; i < arrItem.size(); i++) {
-                    if ("description.port_info.device_model".equals(key)) {
-//                        System.out.println(key);
+                    if (StringUtils.equals(key, "description.port_info.device_model")
+                            || StringUtils.equals(key, "description.device_location.province")
+                            || StringUtils.equals(key, "description.vul_info.vul_name")
+                            || StringUtils.isBlank(arrItem.getString(i))) {
                         continue;
                     }
-                    suggestions.add(arrItem.get(i).toString());
-//                    suggestions.add(key + ":" + arrItem.get(i));
+                    String prefix = key.substring(key.lastIndexOf(".") + 1);
+                    if (StringUtils.equals(prefix, "vul_type")) {
+                        prefix = "vul";
+                    } else if (StringUtils.equals(prefix, "device_type")) {
+                        prefix = "type";
+                    } else if (StringUtils.equals(prefix, "device_service")) {
+                        prefix = "service";
+                    }
+                    suggestions.add(prefix + ":" + arrItem.getString(i));
                 }
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        initSuggestions();
+        for (int i = 0; i < suggestions.size(); i++) {
+            System.out.println(suggestions.get(i));
         }
     }
 }
