@@ -235,10 +235,12 @@ public class DeviceDAO {
                     for (int j = 0; j < permit.size(); j++) {
                         String key = category + "_" + permit.get(j);
                         if (map.containsKey(key)) {
-                            map.get(key).add(device);
+                            map.get(key).add(myClone(device));
+//                            map.get(key).add(device);
                         } else {
                             List<Device4MapOrGlobe> device4MapOrGlobeList = new ArrayList<Device4MapOrGlobe>();
-                            device4MapOrGlobeList.add(device);
+                            device4MapOrGlobeList.add(myClone(device));
+//                            device4MapOrGlobeList.add(device);
                             map.put(key, device4MapOrGlobeList);
                         }
                     }
@@ -349,6 +351,15 @@ public class DeviceDAO {
             }
         }
 //        System.out.println("Map DAO-->" + result.toString());
+        return result;
+    }
+
+    private Device4MapOrGlobe myClone(Device4MapOrGlobe d) {
+        Device4MapOrGlobe result = new Device4MapOrGlobe();
+        result.setCity(d.getCity());
+        result.setCountry(d.getCountry());
+        result.setGeoCoord(d.getGeoCoord());
+        result.setIp(d.getIp());
         return result;
     }
 }

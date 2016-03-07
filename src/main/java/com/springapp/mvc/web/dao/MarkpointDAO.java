@@ -54,6 +54,7 @@ public class MarkpointDAO {
                     JSONArray permit = desc.getJSONArray("device_permit");
                     for (int j = 0; j < permit.size(); j++) {
                         String key = category + "_" + permit.get(j);
+                        System.out.println(key);
                         if (map.containsKey(key)) {
                             map.get(key).add(device);
                         } else {

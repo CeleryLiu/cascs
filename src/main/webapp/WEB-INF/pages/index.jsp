@@ -48,6 +48,8 @@
     <link rel="stylesheet" href="${userCss}">
     <spring:url value="resources/css/advs.css" var="advsCss"/>
     <link rel="stylesheet" href="${advsCss}">
+    <spring:url value="resources/css/media.css" var="mediaCss"/>
+    <link rel="stylesheet" href="${mediaCss}">
     <!--[if IE]>
     <script type="text/javascript">
         var console = {

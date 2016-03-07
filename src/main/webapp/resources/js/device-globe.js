@@ -116,7 +116,13 @@ function starts() {
                     /*for multi type of device*/
                     $.each(data.data, function (key, value) {
                         if (value.length > 0) {
-                            //console.log("value", value);
+                            //console.log("value", value, 'key=' + key);
+                            for (var i = 0; i < value.length; i++) {
+                                if (!value[i].geoCoord) {
+                                    console.log(i, value[i].geoCoord);
+                                    value.splice(i, 1);
+                                }
+                            }
                             var markPointColor = COLORS[key] == undefined ? "yellow" : COLORS[key],
                                 legendData = [],
                                 series = [
@@ -149,13 +155,13 @@ function starts() {
                                     normal: {
                                         color: markPointColor
                                     }
-                                };
-                            markPointData = value.map(function (item) {
-                                return {
-                                    itemStyle: markPointStyle,
-                                    geoCoord: item.geoCoord     //经纬度
-                                }
-                            });
+                                },
+                                markPointData = value.map(function (item) {
+                                    return {
+                                        itemStyle: markPointStyle,
+                                        geoCoord: item.geoCoord     //经纬度
+                                    }
+                                });
                             legendData.push(key);
                             series.push(
                                 {
@@ -200,7 +206,7 @@ function starts() {
                             chart.setOption(opts, true);
                             chart.hideLoading();
                         } else {
-                            alert("暂无该类型设备！");
+                            console.log("暂无该类型设备！");
                             chart.setOption(initPointOpts);
                         }
                     });
@@ -217,9 +223,10 @@ function starts() {
                 console.log("AJAX Failed!", f);
             })
             .done(function (d) {
-                console.log("AJAX Done", d);
+                //console.log("AJAX Done", d);
             });
     }
+
     //监听点击事件
     $('a').on('click', function (e) {
         e.preventDefault();
@@ -229,3 +236,21 @@ function starts() {
         }
     });
 }
+
+/**
+ *删除数组指定下标或指定对象
+ */
+Array.prototype.remove = function (obj) {
+    for (var i = 0; i < this.length; i++) {
+        var temp = this[i];
+        if (!isNaN(obj)) {
+            temp = i;
+        }
+        if (temp == obj) {
+            for (var j = i; j < this.length; j++) {
+                this[j] = this[j + 1];
+            }
+            this.length = this.length - 1;
+        }
+    }
+};
