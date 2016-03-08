@@ -66,6 +66,9 @@ var Constant = {
     SUGGEST_URL: (function () {
         return 'search/getSuggestions?search='
     }()),
+    RECOMMEND_URL: (function () {
+        return 'search/recommend'
+    }()),
     LOCAL_SUGGEST_URL: (function () {
         return 'resources/data/suggestions.json';
     }()),
@@ -83,5 +86,8 @@ var Constant = {
     //others
     HIDE_SHOW_SPEED: (function () {
         return 500;
+    }()),
+    KEY_MAPPING: (function () {
+        return '{"type":"device_type","brand":"device_brand","service":"device_service","vul":"vul_type"}';
     }())
 };

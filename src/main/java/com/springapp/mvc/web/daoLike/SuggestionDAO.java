@@ -1,6 +1,6 @@
 package com.springapp.mvc.web.daoLike;
 
-import com.springapp.mvc.web.model.NewSuggestions;
+import com.springapp.mvc.web.model.Suggestion;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class SuggestionDAO {
     public List<String> getSuggestions(String query) {
-        List<String> suggestions = NewSuggestions.getSuggestions();
+        List<String> suggestions = Suggestion.getSuggestions();
         List<String> result = new ArrayList<String>();
         String[] queryList = query.split(" ");
         for (int i = 0; i < queryList.length; i++) {
@@ -22,9 +22,12 @@ public class SuggestionDAO {
                     result.add(s);
                 }
             }
-            ;
         }
         return result;
+    }
+
+    public List<String> getRecommend() {
+        return Suggestion.getRecommend();
     }
 
     /*public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package com.springapp.mvc.web.timer;
 
-import com.springapp.mvc.web.model.NewSuggestions;
+import com.springapp.mvc.web.model.Suggestion;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -17,7 +17,7 @@ public class SuggestionTimer {
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                NewSuggestions.initSuggestions();
+                Suggestion.setSuggestionAndRecommend();
 //                System.out.println("----------init-------------" + new Date().getTime());
             }
         };

@@ -17,7 +17,6 @@ import java.util.List;
 @Service
 public class SuggestionService {
     private static final Logger logger = LoggerFactory.getLogger(SuggestionService.class);
-    private static final String URL = "http://10.10.2.143:8083/se/search/advanced/completionsuggest";
     private final SuggestionDAO dao;
 
     @Autowired
@@ -26,9 +25,8 @@ public class SuggestionService {
     }
 
 
-    //返回用户查询的数据，用于前端以列表的形式显示设备信息（高级搜索）
     public JSONObject getResponse4Suggestion(String query) {
-        logger.debug("Service ==>> getResponse4AdvanceSearch starts ================");
+        logger.debug("SuggestionService.getResponse4Suggestion starts ================");
         JSONObject result = new JSONObject();
         List<String> suggests = dao.getSuggestions(query);
         if (suggests.size() > 0) {
@@ -43,6 +41,22 @@ public class SuggestionService {
         return result;
     }
 
+
+    public JSONObject getResponse4Recommend() {
+        logger.debug("SuggestionService.getResponse4Recommend starts ================");
+        JSONObject result = new JSONObject();
+        List<String> suggests = dao.getRecommend();
+        if (suggests.size() > 0) {
+            result.put("statuscode", "200");
+            result.put("errmsg", "");
+            result.put("data", suggests);
+        } else {
+            result.put("statuscode", "204");
+            result.put("errmsg", "");
+            result.put("data", new JSONArray());
+        }
+        return result;
+    }
    /* public static void main(String[] args) {
         SuggestionService ss = new SuggestionService(new SuggestionDAO());
         System.out.println(ss.getResponse4Suggestion("l 2"));

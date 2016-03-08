@@ -10,6 +10,7 @@ var InputSuggest = {
         this.suggestCursorToggle();
         this.getSuggestions('.home-search-input', Constant.SUGGEST_URL);
         this.getSuggestions('#global_search_input', Constant.SUGGEST_URL);
+        this.startRecommend();
     },
     getSuggestions: function (inputSelector, sourceURL) {
         var $input = $(inputSelector);
@@ -96,8 +97,8 @@ var InputSuggest = {
                 $form.submit();
             }).on("keypress keydown keyup paste change", function (evt) {
                 /*if (evt.keyCode == 13) {
-                    $form.submit();
-                }*/
+                 $form.submit();
+                 }*/
             }).filter(".home-search .flex-text").focus()
         }
     },
@@ -107,5 +108,39 @@ var InputSuggest = {
             $('.tt-suggestion').removeClass('tt-cursor');
             $(this).addClass('tt-cursor');
         });
+    },
+    startRecommend: function () {
+        var $input = $("input[role=combobox]");
+
+        function recommendInput() {
+            var url = Constant.RECOMMEND_URL;
+            var dorks = [];
+            var length = 0;
+
+            function randomInput() {
+                var recommend = "";
+                var random = parseInt(Math.random() * length, 10);
+                if ($input.val() == "") {
+                    console.log($input.length, $input.val(), recommend);
+                    recommend = dorks[random];
+                    $input.attr("placeholder", recommend)
+                }
+                setTimeout(function () {
+                    randomInput()
+                }, 3e3)
+            }
+
+            $.getJSON(url, {}, function (data) {
+                dorks = data.data;
+                length = data.data.length;
+                randomInput()
+            })
+        }
+
+        if ($input.length) {
+            setTimeout(function () {
+                recommendInput()
+            }, 1000);
+        }
     }
 };

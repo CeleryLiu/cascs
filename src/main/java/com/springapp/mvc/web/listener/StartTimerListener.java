@@ -1,6 +1,5 @@
 package com.springapp.mvc.web.listener;
 
-import com.springapp.mvc.web.model.NewSuggestions;
 import com.springapp.mvc.web.timer.SuggestionTimer;
 
 import javax.servlet.ServletContextEvent;

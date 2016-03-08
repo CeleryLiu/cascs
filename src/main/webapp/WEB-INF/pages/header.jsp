@@ -41,6 +41,7 @@
             <div class="search-scope"></div>
             <div class="search-box-container">
                 <input class="global-search-input typeahead" type="text"
+                       role="combobox"
                        placeholder="Search ..."
                        autofocus="autofocus"
                        id="global_search_input">
