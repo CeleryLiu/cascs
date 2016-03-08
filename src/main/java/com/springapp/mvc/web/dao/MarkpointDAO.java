@@ -9,7 +9,7 @@ package com.springapp.mvc.web.dao;/*
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.springapp.mvc.web.model.Markpoint;
+import com.springapp.mvc.web.model.Device4MapOrGlobe;
 import com.springapp.mvc.web.util.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,16 +27,17 @@ public class MarkpointDAO {
 
     public JSONObject getDevices(String uri, String criteria) {
         logger.debug("MarkpointDAO.getDevices starts =================");
-//        System.out.println("MarkpointDAO.getDevices starts, uri:" + uri + ", criteria:" + criteria);
+        System.out.println("MarkpointDAO.getDevices starts, uri:" + uri + ", criteria:" + criteria);
         JSONObject result = JSON.parseObject(rc.get(uri, criteria));
+        System.out.println(result);
         if ("200".equals(result.getString("statuscode"))) {
             JSONArray data = result.getJSONArray("data");
-            Map<String, List<Markpoint>> map;
-            map = new HashMap<String, List<Markpoint>>();
+            Map<String, List<Device4MapOrGlobe>> map;
+            map = new HashMap<String, List<Device4MapOrGlobe>>();
             if (data.size() > 0) {
                 for (Object o : data) {
                     JSONObject d = (JSONObject) JSONObject.toJSON(o);
-                    Markpoint device = new Markpoint();
+                    Device4MapOrGlobe device = new Device4MapOrGlobe();
 
                     JSONObject desc = d.getJSONObject("description");
                     JSONObject loc = desc.getJSONObject("device_location");
@@ -54,13 +55,14 @@ public class MarkpointDAO {
                     JSONArray permit = desc.getJSONArray("device_permit");
                     for (int j = 0; j < permit.size(); j++) {
                         String key = category + "_" + permit.get(j);
-                        System.out.println(key);
                         if (map.containsKey(key)) {
-                            map.get(key).add(device);
+                            map.get(key).add(myClone(device));
+//                            map.get(key).add(device);
                         } else {
-                            List<Markpoint> MarkpointList = new ArrayList<Markpoint>();
-                            MarkpointList.add(device);
-                            map.put(key, MarkpointList);
+                            List<Device4MapOrGlobe> device4MapOrGlobeList = new ArrayList<Device4MapOrGlobe>();
+                            device4MapOrGlobeList.add(myClone(device));
+//                            device4MapOrGlobeList.add(device);
+                            map.put(key, device4MapOrGlobeList);
                         }
                     }
                 }
@@ -69,7 +71,16 @@ public class MarkpointDAO {
         } else {
             result.put("data", new JSONObject());
         }
-//        System.out.println("DAO getResponse4Globe Result:" + result.toString());
+        System.out.println("DAO getResponse4Globe Result:" + result.toString());
+        return result;
+    }
+
+    private Device4MapOrGlobe myClone(Device4MapOrGlobe d) {
+        Device4MapOrGlobe result = new Device4MapOrGlobe();
+        result.setCity(d.getCity());
+        result.setCountry(d.getCountry());
+        result.setGeoCoord(d.getGeoCoord());
+        result.setIp(d.getIp());
         return result;
     }
 }

@@ -7,76 +7,57 @@ var HomeSearch = {
     }()),
     getValue: function () {
         //return $(this._FORM_SEL).find('input').val().replace(/\s{2,}/g, ' ').trim();
-        return $(this._FORM_SEL).find('input').typeahead('val').replace(/\s{2,}/g, ' ').trim();
+        var $input = $(this._INPUT_SEL), val = $input.val();
+        if (val == "") {
+            val = $input.attr('placeholder');
+            $input.val(val)
+        }
+        return val;
+        //return $(this._FORM_SEL).find('input').typeahead('val').replace(/\s{2,}/g, ' ').trim();
     },
     setValue: function (val) {
         //console.log('HomeSearch.setValue(), val:' + val);
-        //$(this._FORM_SEL).find('input').val(val);
-        $(this._INPUT_SEL).typeahead('val', val);
+        $(this._INPUT_SEL).val(val);
     },
     listen: function () {
         //console.log('HomeSearch.listen() ======');
         var $form = $(this._FORM_SEL);
         $form.on('submit', function (e) {
             e.preventDefault();
-            var userInputTxt = HomeSearch.getValue();//去除多余空白符
-            var successCallback = function (data) {
-                var statuscode = data['statuscode'];
-                //（1）将data添加到sessionStorage.data
-                Session.set('data', data);
-                if (statuscode == 200) {
-                    //console.log('Home search succeed. statuscode == 200', data);
-                    //(2.a)调用Sidebar的render方法，生成sidebar
-                    Sidebar.render(data);
-                    //(2.b)调用List的render方法，生成搜索结果页面
-                    List.render(data);
-                    //(3)将用户的搜索条件填充到全局搜索框
-                    GlobalSearch.setValue(userInputTxt);
-                    //(4)跳转到list页面
-                    $.fn.fullpage.silentMoveTo('se2');
-                } else if (statuscode == 204) {
-                    noDataHandler(data);
-                } else {
-                    errorHandler();
-                }
-            };
+            var wd = HomeSearch.getValue();//去除多余空白符
+            var successCallback = this.onSearchSucceed;
             var requestObj = {
                 'url': Constant.LIST_SEARCH_URL,
                 //'success': successCallback,
                 'error': errorHandler,
                 'data': {
-                    'wd': userInputTxt,
+                    'wd': wd,
                     'page': 1
                 }
             };
-            if (userInputTxt == '')return;    //如果输入为空白，则留在当前页，不提交表单
             //(1)清空Pivot
             Pivot.init();
-            //(2)搜索
-            LoadData.post(requestObj);         //提交表单，搜索
+            //(2)为GlobalSearch赋值
+            GlobalSearch.setValue(wd);
+            //(3)提交表单，搜索
+            LoadData.post(requestObj);
         });
     },
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
-        /*//（1）将data添加到sessionStorage.data
-         Session.set('data', data);*/
         if (statuscode == 200) {
             //console.log('Home search succeed. statuscode == 200', data);
-            //(2.a)调用Sidebar的render方法，生成sidebar
+            //(1)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
-            //(2.b)调用List的render方法，生成搜索结果页面
+            //(2)调用List的render方法，生成搜索结果页面
             List.render(data);
-            //(3)将用户的搜索条件填充到全局搜索框
-            GlobalSearch.setValue(data['wd']);
-            //(4)跳转到list页面
+            //(3)跳转到list页面
             $.fn.fullpage.silentMoveTo('se2');
-            //(5)当前页改为2
+            //(4)当前页改为2
             currentPage = 2;
         } else if (statuscode == 204) {
-            console.log('home no data');
             noDataHandler(data);
         } else {
-            console.log('home no error');
             errorHandler();
         }
     }

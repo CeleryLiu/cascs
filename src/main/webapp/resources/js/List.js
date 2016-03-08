@@ -118,27 +118,10 @@ var List = {
         $('#listSe').scrollTop(0);
     },
     search: function (pageNum) {
-        //console.log("List.search() ======");
-        var wd = $(GlobalSearch._INPUT_SEL).typeahead('val');
+        console.log("List.search() ======");
+        var wd = GlobalSearch.getValue();
         if (!wd && wd == '') return;
-        var successCallback = function (data) {
-            var statuscode = data['statuscode'];
-            //（1）将data添加到sessionStorage.data
-            Session.set('data', data);
-            if (statuscode == 200) {
-                //console.log('List search succeed. statuscode == 200', data);
-                //(2.a)调用Sidebar的render方法，生成sidebar
-                Sidebar.render(data);
-                //(2.b)调用List的render方法，生成搜索结果页面
-                List.render(data);
-                //(3)隐藏no-data div
-                $('.no-data').hide();
-            } else if (statuscode == 204) {
-                noDataHandler(data);
-            } else {
-                errorHandler();
-            }
-        };
+        var successCallback = this.onSearchSucceed;
         var requestObj = {
             'url': Constant.LIST_SEARCH_URL,
             //'success': successCallback,
@@ -152,29 +135,17 @@ var List = {
     },
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
-        //（1）将data添加到sessionStorage.data
-        //Session.set('data', data);
         if (statuscode == 200) {
             //console.log('List search succeed. statuscode == 200', data);
-            //(2.a)调用Sidebar的render方法，生成sidebar
+            //(1)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
-            //(2.b)调用List的render方法，生成搜索结果页面
+            //(2)调用List的render方法，生成搜索结果页面
             List.render(data);
             //(3)隐藏no-data div
             $('.no-data').hide();
-            //(4)设置GlobalSearch的值
-            var dd = data ? data : Session.get('data');
-            var wd = dd.q ? dd.q : dd.wd;
-            var localWd = Session.get('wd');
-            if (dd) {
-                //console.log(wd,localWd);
-                //if (wd && localWd && wd.indexOf(localWd) != -1) {
-                if (wd && localWd) {
-                    GlobalSearch.setValue(localWd);
-                    HomeSearch.setValue(localWd);
-                }
-            }
-            //（5）滚动到顶部
+            //(4)设置result overview
+            ResultOverview.set(data);
+            //(5)滚动到顶部
             $(List._WRAPPER_SEL).animate({scrollTop: 0}, 'slow');
         } else if (statuscode == 204) {
             console.log('list no data');
@@ -182,6 +153,15 @@ var List = {
         } else {
             console.log('list error');
             errorHandler();
+        }
+    },
+    onLoad: function () {
+        $(Sidebar._WRAPPER_SEL).addClass('list');
+        var data = Session.get('data'), wd = Session.get('wd');
+        if (data && wd) {
+            GlobalSearch.setValue(wd);
+            HomeSearch.setValue(wd);
+            this.onSearchSucceed(data);
         }
     }
 };

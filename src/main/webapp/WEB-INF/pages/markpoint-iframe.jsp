@@ -34,7 +34,7 @@
 <div id="pointMain">
     <div id="pointLegend">
         <div class="item">
-            <a href="api/getDevices4Globe/monitor/all/2" data-toggle="collapse" data-target="#monitor"
+            <a href="search/markpoint/monitor/all/2" data-toggle="collapse" data-target="#monitor"
                id="monitorTitle">监控设备
                 <i class="fa fa-chevron-down monitor"></i>
             </a>
@@ -44,27 +44,27 @@
                 <ul>
                     <li>
                         <span class=" monitor-no-control"></span>
-                        <a href="api/getDevices4Globe/monitor/accessible/2"
+                        <a href="search/markpoint/monitor/accessible/2"
                            class="subItem">无控制权限</a>
                     </li>
                     <li>
                         <span class="monitor-with-picture"></span>
-                        <a href="api/getDevices4Globe/monitor/image_available/2"
+                        <a href="search/markpoint/monitor/image_available/2"
                            class="subItem">可查看监控画面</a></li>
                     <li>
                         <span class="monitor-control"></span>
-                        <a href="api/getDevices4Globe/monitor/controllable/2"
+                        <a href="search/markpoint/monitor/controllable/2"
                            class="subItem">可获取控制权限</a>
                     </li>
                     <li>
                         <span class="monitor-backdoor"></span>
-                        <a href="api/getDevices4Globe/monitor/implantable/2"
+                        <a href="search/markpoint/monitor/implantable/2"
                            class="subItem">可植入后门</a></li>
                 </ul>
             </div>
         </div>
         <div class="item">
-            <a href="api/getDevices4Globe/industry_control/all/2" data-toggle="collapse" data-target="#plc"
+            <a href="search/markpoint/industry_control/all/2" data-toggle="collapse" data-target="#plc"
                id="plcTitle">工控设备
                 <i class="fa fa-chevron-down pull-right plc"></i>
             </a>
@@ -74,27 +74,27 @@
                 <ul>
                     <li>
                         <span class="plc-no-control"></span>
-                        <a href="api/getDevices4Globe/industry_control/accessible/2"
+                        <a href="search/markpoint/industry_control/accessible/2"
                            class="subItem">无控制权限</a>
                     </li>
                     <li>
                         <span class="plc-with-picture"></span>
                         <a class="subItem"
-                           href="api/getDevices4Globe/industry_control/image_available/2">可查看监控画面</a></li>
+                           href="search/markpoint/industry_control/image_available/2">可查看监控画面</a></li>
                     <li>
                         <span class="plc-control"></span>
                         <a class="subItem"
-                           href="api/getDevices4Globe/industry_control/controllable/2">可获取控制权限</a>
+                           href="search/markpoint/industry_control/controllable/2">可获取控制权限</a>
                     </li>
                     <li>
                         <span class="plc-backdoor"></span>
                         <a class="subItem"
-                           href="api/getDevices4Globe/industry_control/implantable/2">可植入后门</a></li>
+                           href="search/markpoint/industry_control/implantable/2">可植入后门</a></li>
                 </ul>
             </div>
         </div>
         <div class=" item">
-            <a href="api/getDevices4Globe/security_matter/all/1" data-toggle="collapse" data-target="#secret"
+            <a href="search/markpoint/security_matter/all/1" data-toggle="collapse" data-target="#secret"
                id="secretTitle">涉密设备
                 <i class="fa fa-chevron-down pull-right secret"></i>
             </a>
@@ -105,26 +105,26 @@
                     <li>
                         <span class="secret-no-control"></span>
                         <a class="subItem"
-                           href="api/getDevices4Globe/security_matter/accessible/2">无控制权限</a>
+                           href="search/markpoint/security_matter/accessible/2">无控制权限</a>
                     </li>
                     <li>
                         <span class="secret-with-picture"></span>
-                        <a class="subItem" href="api/getDevices4Globe/security_matter/image_available/2">可查看监控画面</a>
+                        <a class="subItem" href="search/markpoint/security_matter/image_available/2">可查看监控画面</a>
                     </li>
                     <li>
                         <span class="secret-control"></span>
                         <a class="subItem"
-                           href="api/getDevices4Globe/security_matter/controllable/2">可获取控制权限</a>
+                           href="search/markpoint/security_matter/controllable/2">可获取控制权限</a>
                     </li>
                     <li>
                         <span class="secret-backdoor"></span>
-                        <a class="subItem" href="api/getDevices4Globe/security_matter/implantable/2">可植入后门</a>
+                        <a class="subItem" href="search/markpoint/security_matter/implantable/2">可植入后门</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="item">
-            <a href="api/getDevices4Globe/network_device/all/2" data-toggle="collapse" data-target="#netDevice"
+            <a href="search/markpoint/network_device/all/2" data-toggle="collapse" data-target="#netDevice"
                id="netWorkTitle">网络设备
                 <i class="fa fa-chevron-down pull-right net-device"></i>
             </a>
@@ -135,20 +135,20 @@
                     <li>
                         <span class="net-device-no-control"></span>
                         <a class="subItem"
-                           href="api/getDevices4Globe/network_device/accessible/2">无控制权限</a>
+                           href="search/markpoint/network_device/accessible/2">无控制权限</a>
                     </li>
                     <li>
                         <span class="net-device-with-picture"></span>
-                        <a class="subItem" href="api/getDevices4Globe/network_device/image_available/2">可查看监控画面</a>
+                        <a class="subItem" href="search/markpoint/network_device/image_available/2">可查看监控画面</a>
                     </li>
                     <li>
                         <span class="net-device-control"></span>
                         <a class="subItem"
-                           href="api/getDevices4Globe/network_device/controllable/2">可获取控制权限</a>
+                           href="search/markpoint/network_device/controllable/2">可获取控制权限</a>
                     </li>
                     <li>
                         <span class="net-device-backdoor"></span>
-                        <a href="api/getDevices4Globe/network_device/implantable/2" class="subItem">可植入后门</a>
+                        <a href="search/markpoint/network_device/implantable/2" class="subItem">可植入后门</a>
                     </li>
                 </ul>
             </div>

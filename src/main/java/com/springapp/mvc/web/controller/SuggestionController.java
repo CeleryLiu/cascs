@@ -51,7 +51,7 @@ public class SuggestionController {
     @RequestMapping(value = "/search/recommend")
     public String getRecommend() {
         logger.debug("SuggestionController.getRecommend starts-----------");
-        System.out.println("SuggestionController.getRecommend starts-----------");
+//        System.out.println("SuggestionController.getRecommend starts-----------");
         return suggestionService.getResponse4Recommend().toJSONString();
     }
 

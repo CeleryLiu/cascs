@@ -34,6 +34,7 @@ public class MarkpointController {
             @PathVariable("permitfilter") String permitfilter,
             @PathVariable("lossycompress") Integer lossycompress) {
         logger.debug("MarkpointController.markpoint() starts-----------");
+//        System.out.println("MarkpointController.markpoint() starts-----------");
         permitfilter = !"all".equals(permitfilter) ? permitfilter : "";
         SearchCriteria search = new SearchCriteria();
         search.setPermitfilter(permitfilter);

@@ -428,10 +428,7 @@ b {
     left: 0;
     display: block;
     width: 100%;
-    /*background-color: hsla(223, 16%, 29%, 1);*/
     padding: 1rem 0;
-    /*background: no-repeat t00op center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
-    /*background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
 }
 
 /* Style for pivots texts
@@ -439,13 +436,7 @@ b {
 .pivots-wrapper {
     display: none;
     z-index: 99;
-    margin-top: .5rem;
-    /*position: fixed;
-    top: 8rem;
-    left: 0;*/
-    /*width: 100%;*/
-    /*  background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));
-      background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
+    margin-top: 1rem;
     box-sizing: border-box;
 }
 
@@ -460,12 +451,14 @@ b {
     border-radius: 4px;
 }
 
+#header2.map .pivots li,
 .pivots.map li {
     /*background-color: rgba(224, 224, 224, .8);*/
     background: hsla(201, 100%, 77%, .9);
     box-shadow: -1px 1px 1px 1px #b4b4b4;;
 }
 
+#header2.map .pivots li.active,
 .pivots.map li.active,
 .pivots li.active {
     background: #666;
@@ -514,13 +507,19 @@ b {
 .result-overview {
     display: none;
     z-index: 99;
-    /*position: fixed;
-    top: 11rem;
-    left: 0;*/
     height: 1.6rem;
     line-height: 1.6rem;
     font-size: 1.5rem;
     color: #eee;;
+}
+
+#header2.map .result-overview p {
+    display: inline-block;
+    background: hsla(201, 100%, 77%, .9);
+    box-shadow: -1px 1px 1px 1px #b4b4b4;;
+    border-radius: 2px;
+    padding: 3px 8px;
+    color: #333;
 }
 
 .result-overview strong.badge {

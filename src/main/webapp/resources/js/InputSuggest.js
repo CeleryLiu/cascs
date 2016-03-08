@@ -121,7 +121,6 @@ var InputSuggest = {
                 var recommend = "";
                 var random = parseInt(Math.random() * length, 10);
                 if ($input.val() == "") {
-                    console.log($input.length, $input.val(), recommend);
                     recommend = dorks[random];
                     $input.attr("placeholder", recommend)
                 }
@@ -140,7 +139,7 @@ var InputSuggest = {
         if ($input.length) {
             setTimeout(function () {
                 recommendInput()
-            }, 1000);
+            }, 300);
         }
     }
 };

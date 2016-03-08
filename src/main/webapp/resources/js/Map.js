@@ -213,13 +213,21 @@ var ArcMap = {
     },
     onLoad: function () {
         $(Sidebar._WRAPPER_SEL).addClass('map');
-        $(Pivot._PIVOTS_UL_SEL).addClass('map');
-        //ResultOverview.hide();
+        //$(Pivot._PIVOTS_UL_SEL).addClass('map');
+        //$(ResultOverview._WRAPPER_SEL).addClass('map');
+        $('#header2').addClass('map');
+        var data = Session.get('data'), wd = Session.get('wd');
+        if (data && wd) {
+            GlobalSearch.setValue(wd);
+            HomeSearch.setValue(wd);
+            this.onSearchSucceed(data);
+        }
     },
     onLeave: function () {
         $(Sidebar._WRAPPER_SEL).removeClass('map');
-        $(Pivot._PIVOTS_UL_SEL).removeClass('map');
-
+        $('#header2').removeClass('map');
+        //$(Pivot._PIVOTS_UL_SEL).removeClass('map');
+        //$(ResultOverview._WRAPPER_SEL).removeClass('map');
     },
     render: function (data) {
         //console.log("ArcMap.render() ======",data.q);
@@ -253,28 +261,9 @@ var ArcMap = {
     },
     search: function (pageNum) {
         //console.log("ArcMap.search() ======");
-        var wd = $(GlobalSearch._INPUT_SEL).typeahead('val');
+        var wd = GlobalSearch.getValue();
         if (!wd && wd == '') return;
-        var successCallback = function (data) {
-            var statuscode = data['statuscode'];
-            //（1）将data添加到sessionStorage.data
-            Session.set('data', data);
-            if (statuscode == 200) {
-                //console.log('Map search succeed. statuscode == 200', data);
-                //(2.a)调用Sidebar的render方法，生成sidebar
-                Sidebar.render(data);
-                //(2.b)调用Map的render方法，生成搜索结果页面
-                ArcMap.render(data);
-                //(3)隐藏no-data div
-                $('.no-data').hide();
-                //(4)设置result overview
-                ResultOverview.set(data);
-            } else if (statuscode == 204) {
-                noDataHandler(data);
-            } else {
-                errorHandler();
-            }
-        };
+        var successCallback = this.onSearchSucceed;
         var requestObj = {
             'url': Constant.MAP_SEARCH_URL,
             //'success': successCallback,
@@ -468,29 +457,16 @@ var ArcMap = {
     },
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
-        //（1）将data添加到sessionStorage.data
-        //Session.set('data', data);
         ArcMap.v.data = data;
         if (statuscode == 200) {
             //console.log('Map search succeed. statuscode == 200', data);
-            //(2.a)调用Sidebar的render方法，生成sidebar
+            //(1)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
-            //(2.b)调用Map的render方法，生成搜索结果页面
+            //(2)调用Map的render方法，生成搜索结果页面
             ArcMap.render(data);
             //(3)隐藏no-data div
             $('.no-data').hide();
-            //(4)设置GlobalSearch的值
-            var dd = data ? data : Session.get('data');
-            var wd = dd.q ? dd.q : dd.wd;
-            var localWd = Session.get('wd');
-            if (dd) {
-                //if (wd && localWd && wd.indexOf(localWd) != -1) {
-                if (wd && localWd) {
-                    GlobalSearch.setValue(localWd);
-                    HomeSearch.setValue(localWd);
-                }
-            }
-            //(5)设置result overview
+            //(4)设置result overview
             ResultOverview.set(data);
         } else if (statuscode == 204) {
             noDataHandler(data);
@@ -790,7 +766,7 @@ var MyFeatureLayer = {
             'esri/symbols/Font'], function (Graphic, TextSymbol, Color, Font) {
             var label = new TextSymbol(
                 text,
-                new Font("15pt", Font.STYLE_ITALIC, Font.VARIANT_NORMAL, Font.WEIGHT_BOLDER, "Courier"),
+                new Font("12pt", Font.STYLE_ITALIC, Font.VARIANT_NORMAL, Font.WEIGHT_BOLDER, "Courier"),
                 new Color([60, 215, 60])
             );
             layer.add(new Graphic(graphic.geometry, label));

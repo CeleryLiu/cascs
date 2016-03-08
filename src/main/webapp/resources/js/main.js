@@ -3,7 +3,6 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 var currentPage = 1;
-var globalData;
 /*window.onpopstate = function (event) {
  console.log(event);
  console.log(event.state);
@@ -128,22 +127,14 @@ var initFullpage = function () {
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
 
             currentPage = index;
-            var data = Session.get('data');
             switch (index) {
                 case 1:
-                    //Session.reset('data');
                     break;
                 case 2:
-                    $(Sidebar._WRAPPER_SEL).addClass('list');
-                    if (data) {
-                        List.onSearchSucceed(data);
-                    }
+                    List.onLoad();
                     break;
                 case 3:
                     ArcMap.onLoad();
-                    if (data) {
-                        ArcMap.onSearchSucceed(data);
-                    }
                     break;
                 case 4:
                     Sidebar.hide();
@@ -169,20 +160,15 @@ var initFullpage = function () {
     });
 };
 $(function () {
-    Pace.ignore(function () {
-        ArcMap.initFeatureSets();
-        ArcMap.init();
-    });
-    InputSuggest.init();
-    HomeSearch.listen();
-    GlobalSearch.listen();
-    AdvSearch.listen();
-    User.listenerStarts();
-    initFullpage();//full page js
-    /*   history.pushState({
-     contentId: 1,
-     title: 'Welcome to CASCS',
-     q: '',
-     data: null
-     }, 'Welcome to CASCS', '');*/
-});
+        Pace.ignore(function () {
+            ArcMap.initFeatureSets();
+            ArcMap.init();
+        });
+        InputSuggest.init();
+        HomeSearch.listen();
+        GlobalSearch.listen();
+        AdvSearch.listen();
+        User.listenerStarts();
+        initFullpage();//full page js
+    }
+);

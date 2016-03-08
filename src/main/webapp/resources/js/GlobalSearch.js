@@ -13,11 +13,17 @@ var GlobalSearch = {
     }()),
     setValue: function (val) {
         //console.log('GlobalSearch.setValue(), val:' + val);
-        //$(this._INPUT_SEL).val(val);
-        $(this._INPUT_SEL).typeahead('val', val);
+        $(this._INPUT_SEL).val(val);
+        //$(this._INPUT_SEL).typeahead('val', val);
     },
     getValue: function () {
-        return $(this._INPUT_SEL).typeahead('val').replace(/\s{2,}/g, ' ').trim();
+        var $input = $(this._INPUT_SEL), val = $input.val();
+        if (val == "") {
+            val = $input.attr('placeholder');
+            $input.val(val)
+        }
+        return val;
+        //return $(this._INPUT_SEL).typeahead('val').replace(/\s{2,}/g, ' ').trim();
     },
     show: function () {
         //console.log('GlobalSearchForm.show() ======');

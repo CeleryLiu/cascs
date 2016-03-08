@@ -39,7 +39,6 @@ var LoadData = {
                 Pace.start();
             }
         }).success(function (data) {
-            globalData = data;
             Session.set('data', data);
             Session.set('wd', GlobalSearch.getValue() ? GlobalSearch.getValue() : HomeSearch.getValue());
             if (requestObj.success) {
