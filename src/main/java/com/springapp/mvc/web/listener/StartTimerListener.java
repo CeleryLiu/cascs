@@ -27,7 +27,6 @@ public class StartTimerListener implements ServletContextListener {
 //        System.out.println("--------------------------timer.init-----------------------");
         suggTimer = new SuggestionTimer();
         suggTimer.execute();
-//        System.out.println(NewSuggestions.getSuggestions());
     }
 
     /*

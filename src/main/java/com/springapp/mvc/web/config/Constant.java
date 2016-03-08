@@ -15,6 +15,7 @@ public class Constant {
     public static final String SE_ADVANCED_SEARCH_URL = SE_BASEPATH + "search/advanced?q={q}";//-高级搜索
     public static final String SE_MAP_SEARCH_URL = SE_BASEPATH + "search/map?q={q}";//-地图场景下的搜索
     public static final String SE_LIST_SEARCH_URL = SE_BASEPATH + "search?wd={wd}&page={page}";//-普通（文字）场景下的搜索
+    public static final String SE_LIST_SEARCH_2_URL = SE_BASEPATH + "search/map?q={q}";//-普通（文字）场景下的搜索
     public static final String SE_MARKPOINT_SEARCH_URL = SE_BASEPATH + "search/mapcluster?q={q}";//-3D设备展示场景下的搜索
     public static final String SE_HOTKEY_URL = SE_BASEPATH + "search/hotkey";//热搜数据。返回值：{"wd":{"freeom":2,"free":1,"time":1}}
 
@@ -45,5 +46,6 @@ public class Constant {
     public static final String provinceNameMappingArc_ES = "{\"安徽省\":\"安徽\",\"澳门特别行政区\":\"澳门\",\"北京市\":\"北京\",\"福建省\":\"福建\",\"甘肃省\":\"甘肃\",\"广东省\":\"广东\",\"广西壮族自治区\":\"广西\",\"贵州省\":\"贵州\",\"海南省\":\"海南\",\"河北省\":\"河北\",\"河南省\":\"河南\",\"黑龙江省\":\"黑龙江\",\"湖北省\":\"湖北\",\"湖南省\":\"湖南\",\"吉林省\":\"吉林\",\"江苏省\":\"江苏\",\"江西省\":\"江西\",\"辽宁省\":\"辽宁\",\"内蒙古自治区\":\"内蒙古\",\"宁夏回族自治区\":\"宁夏\",\"青海省\":\"青海\",\"山东省\":\"山东\",\"山西省\":\"山西\",\"陕西省\":\"陕西\",\"上海市\":\"上海\",\"四川省\":\"四川\",\"台湾省\":\"台湾\",\"天津市\":\"天津\",\"西藏自治区\":\"西藏\",\"香港特别行政区\":\"香港\",\"新疆维吾尔自治区\":\"新疆\",\"云南省\":\"云南\",\"浙江省\":\"浙江\",\"重庆市\":\"重庆\"}";
     //-注册用户的默认等级
     public static final int WUM_USER_LEVEL = 5;
+    public static final String RECOMMEND = "Camera Hikvision, ASUS RT-N66W FTP, Server Siemens Switzerland Ltd, HP Officejet Pro 8500 A910";
     //--------------------------------数据常量↑---------------------------//
 }

@@ -22,6 +22,7 @@ import java.util.Map;
 public class Device2Service {
     private static final Logger logger = LoggerFactory.getLogger(DeviceService.class);
     private static final String uri4List = Constant.SE_LIST_SEARCH_URL;
+    private static final String uri4List2 = Constant.SE_LIST_SEARCH_2_URL;
     private static final String uri4Map = Constant.SE_MAP_SEARCH_URL;
     private final Device2DAO dao;
 
@@ -30,6 +31,7 @@ public class Device2Service {
         this.dao = dao;
     }
 
+    //普通搜索，http请求的参数格式wd=*&prilevel=1&page=1&pagesize=10
     public String getResponse4List(SearchCriteria search) {
         logger.debug("DeviceSearch.getResponse4List() ======");
 //        System.out.println("DeviceSearch.getResponse4List() ======");
@@ -51,6 +53,28 @@ public class Device2Service {
         return result.toString();
     }
 
+    //新搜索，http请求的参数格式：json格式字符串q={we:"",filter:{},...}
+    public String getResponse4List2(SearchCriteria search) {
+        logger.debug("DeviceSearch.getResponse4List2() ======");
+//        System.out.println("DeviceSearch.getResponse4List2() ======");
+        JSONObject result;
+        if (isValidSearchCriteria(search)) {
+            Map<String, Object> criteria = new HashMap<String, Object>();
+            criteria.put("q", JSONObject.fromObject(search));
+            result = dao.getDeviceData(uri4List2, criteria);
+            if ("200".equals(result.getString("statuscode")) && result.getJSONArray("data").size() <= 0) {
+                result.put("statuscode", "204");
+                result.put("errmsg", "No related data!");
+            }
+        } else {
+            result = new JSONObject();
+            result.put("statuscode", "400");
+            result.put("errmsg", "Search criteria is empty!");
+        }
+        return result.toString();
+    }
+
+    //地图页面搜索查询，和getResponse4List2其实是一样的，只是url不一样，测试通过后，可以合并为一个方法
     public String getResponse4Map(SearchCriteria search) {
         logger.debug("DeviceSearch.getResponse4Map() ======");
 //        System.out.println("DeviceSearch.getResponse4Map() ======");
@@ -83,11 +107,17 @@ public class Device2Service {
         return valid;
     }
 
-   /* public static void main(String[] args) {
-        DeviceSearch ss = new DeviceSearch(new DeviceDAO());
+/*    public static void main(String[] args) {
+        Device2Service ss = new Device2Service(new Device2DAO());
         SearchCriteria criteria = new SearchCriteria();
         criteria.setWd("weak camera");
-        String r = ss.getResponse4Map(criteria);
+        Filter filter = new Filter();
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("北京");
+        list.add("上海");
+        filter.setCity(list);
+        criteria.setFilter(filter);
+        String r = ss.getResponse4List2(criteria);
         System.out.println(r);
     }*/
 }

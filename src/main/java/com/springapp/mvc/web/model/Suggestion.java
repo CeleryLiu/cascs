@@ -35,6 +35,10 @@ public class Suggestion {
         if (recommend == null || recommend.size() <= 0) {
             setSuggestionAndRecommend();
         }
+        String[] arr = Constant.RECOMMEND.split(",");
+        for (String s : arr) {
+            recommend.add(s);
+        }
         return recommend;
     }
 
@@ -44,7 +48,6 @@ public class Suggestion {
         JSONObject resp = JSONObject.parseObject(respStr);
         if ("200".equals(resp.getString("statuscode")) && resp.getJSONObject("data") != null) {
             JSONObject data = resp.getJSONObject("data");
-            System.out.println(data);
             Set<String> keys = data.keySet();
             for (String key : keys) {
                 JSONArray arrItem = data.getJSONArray(key);
@@ -58,7 +61,8 @@ public class Suggestion {
                     }
                     String item = getPrefix(key) + ":" + arrItem.getString(i);
                     suggestions.add(item);
-                    if (i < 10) {
+                    suggestions.add(arrItem.getString(i));
+                    if (i < 3) {
                         recommend.add(item);
                     }
                 }
@@ -80,14 +84,14 @@ public class Suggestion {
         return prefix;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         setSuggestionAndRecommend();
-        /*for (int i = 0; i < suggestions.size(); i++) {
+        for (int i = 0; i < suggestions.size(); i++) {
             System.out.println(suggestions.get(i));
         }
         for (int i = 0; i < recommend.size(); i++) {
             System.out.println(recommend.get(i));
-        }*/
-//        System.out.println(JSONObject.toJSON(suggestions));
-    }
+        }
+        System.out.println(JSONObject.toJSON(getRecommend()));
+    }*/
 }

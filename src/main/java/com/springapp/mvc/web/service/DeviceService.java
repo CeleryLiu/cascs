@@ -2,16 +2,14 @@ package com.springapp.mvc.web.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.springapp.mvc.web.daoLike.DeviceDAO;
-import com.springapp.mvc.web.model.*;
+import com.springapp.mvc.web.model.SearchCriteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,18 +36,6 @@ public class DeviceService {
             valid = false;
         }
         return valid;
-    }
-
-    private SearchResult devices2SearchResult(List<Device> devices) {
-        SearchResult result = new SearchResult();
-        //把获得的所有device的信息，转换为SearchResult形式
-        List<Filter.CountryEntity> countries = new ArrayList<Filter.CountryEntity>();
-        Filter.CountryEntity c = new Filter.CountryEntity("China", 34, new ArrayList<List<String>>());
-        countries.add(c);
-        Filter f = new Filter();
-        f.setCountry(countries);
-        result.setFilter(f);
-        return result;
     }
 
     //////

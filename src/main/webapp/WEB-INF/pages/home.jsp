@@ -19,7 +19,7 @@
             <input type="text" id="hsi"
                    class="form-control typeahead home-search-input"
                    role="combobox"
-                   placeholder="Search...">
+                   placeholder="webcam">
             <button type="submit" class="btn btn-primary" id="home_search_btn">搜索一下
             </button>
         </div>

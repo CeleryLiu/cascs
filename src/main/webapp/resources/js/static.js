@@ -30,6 +30,9 @@ var Constant = {
     LIST_SEARCH_URL: (function () {
         return 'search/list';
     }()),
+    LIST_SEARCH_2_URL: (function () {
+        return 'search/list2';
+    }()),
     LIST_PJAX_SEARCH_URL: (function () {
         return 'search/pjax/list';
     }()),
@@ -88,6 +91,6 @@ var Constant = {
         return 500;
     }()),
     KEY_MAPPING: (function () {
-        return '{"type":"device_type","brand":"device_brand","service":"device_service","vul":"vul_type"}';
+        return '{"type:":"device_type:","brand:":"device_brand:","service:":"device_service:","vul:":"vul_type:"}';
     }())
 };

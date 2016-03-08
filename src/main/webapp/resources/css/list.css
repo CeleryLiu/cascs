@@ -19,6 +19,10 @@
     padding: 1rem .5rem .5rem 1rem;
 }
 
+.result-container article h3 {
+    padding-left: 0;
+}
+
 /*------li.device begins here------*/
 .list-wrapper .device .tag {
     display: block;

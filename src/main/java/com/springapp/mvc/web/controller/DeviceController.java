@@ -28,12 +28,30 @@ public class DeviceController {
         this.deviceService = deviceService;
     }
 
+
+    //对应搜索平台普通搜索，参数形如：wd=*&prilevel=1&page=1&pagesize=10
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/search/list")
     public String listSearch(@RequestBody SearchCriteria search) {
         logger.debug("DeviceController.listSearch() ======" + JSONObject.fromObject(search));
 //        System.out.println("DeviceController.listSearch() ======" + JSONObject.fromObject(search));
         return deviceService.getResponse4List(search);
+    }
+
+    /*
+     * @function name:
+     * @param: 搜索条件
+     * @return: json字符串
+     * @description: 对应搜索平台使用json为参数的搜索接口
+     * @author: lyp
+     * @date: 2016-03-08
+     */
+    @JsonView(Views.Public.class)
+    @RequestMapping(value = "/search/list2")
+    public String listSearch2(@RequestBody SearchCriteria search) {
+        logger.debug("DeviceController.listSearch2() ======" + JSONObject.fromObject(search));
+//        System.out.println("DeviceController.listSearch2() ======" + JSONObject.fromObject(search));
+        return deviceService.getResponse4List2(search);
     }
 
     @JsonView(Views.Public.class)

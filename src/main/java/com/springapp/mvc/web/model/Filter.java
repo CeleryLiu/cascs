@@ -2,147 +2,121 @@ package com.springapp.mvc.web.model;
 
 import java.util.List;
 
+@com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
+
 /**
  * Created by lyp on 2015-12-14.
- * 用于分类导航
+ * 用于聚类
  */
 public class Filter {
 
     /**
-     * country : [{"name":"China","count":100,"cities":[["beijing",29],["shanghai",30]]},{"name":"Turkey","count":10,"cities":[["shanghai",30]]}]
-     * type : [{"name":"switch","count":2},{"name":"router","count":2}]
-     * os : [{"name":"Linux","count":49},{"name":"Mac","count":49}]
-     * app : [{"name":"apache","count":90}]
-     * port : [{"name":"80","count":10}]
-     * service : [{"name":"http","count":9}]
+     * city : ["北京"]
+     * port : ["80","81"]
+     * vul : ["vul1","vul2"]
+     * os : ["linux","ios"]
+     * province : ["广东","江苏"]
+     * country : ["中国","土耳其"]
+     * type : ["printer","camera"]
+     * service : ["http","ftp"]
+     * brand : ["hikvision","dahua"]
      */
 
-    private List<CountryEntity> country;
-    private List<FilterEntity> type;
-    private List<FilterEntity> os;
-    private List<FilterEntity> app;
-    private List<FilterEntity> port;
-    private List<FilterEntity> service;
+    private List<String> city;
+    private List<String> port;
+    private List<String> vul;
+    private List<String> os;
+    private List<String> province;
+    private List<String> country;
+    private List<String> type;
+    private List<String> service;
+    private List<String> brand;
 
-    public void setCountry(List<CountryEntity> country) {
-        this.country = country;
+    public void setCity(List<String> city) {
+        this.city = city;
     }
 
-    public void setApp(List<FilterEntity> app) {
-        this.app = app;
-    }
-
-    public List<CountryEntity> getCountry() {
-        return country;
-    }
-
-    public List<FilterEntity> getType() {
-        return type;
-    }
-
-    public void setType(List<FilterEntity> type) {
-        this.type = type;
-    }
-
-    public List<FilterEntity> getOs() {
-        return os;
-    }
-
-    public void setOs(List<FilterEntity> os) {
-        this.os = os;
-    }
-
-    public List<FilterEntity> getApp() {
-        return app;
-    }
-
-    public List<FilterEntity> getPort() {
-        return port;
-    }
-
-    public void setPort(List<FilterEntity> port) {
+    public void setPort(List<String> port) {
         this.port = port;
     }
 
-    public List<FilterEntity> getService() {
-        return service;
+    public void setVul(List<String> vul) {
+        this.vul = vul;
     }
 
-    public void setService(List<FilterEntity> service) {
+    public void setOs(List<String> os) {
+        this.os = os;
+    }
+
+    public void setProvince(List<String> province) {
+        this.province = province;
+    }
+
+    public void setCountry(List<String> country) {
+        this.country = country;
+    }
+
+    public void setType(List<String> type) {
+        this.type = type;
+    }
+
+    public void setService(List<String> service) {
         this.service = service;
     }
 
-    public static class CountryEntity {
-        /**
-         * name : China
-         * count : 100
-         * cities : [["beijing",29],["shanghai",30]]
-         */
-
-        private String name;
-        private int count;
-        private List<List<String>> cities;
-
-        public CountryEntity(String name, int count, List<List<String>> cities) {
-            this.name = name;
-            this.count = count;
-            this.cities = cities;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public void setCount(int count) {
-            this.count = count;
-        }
-
-        public void setCities(List<List<String>> cities) {
-            this.cities = cities;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getCount() {
-            return count;
-        }
-
-        public List<List<String>> getCities() {
-            return cities;
-        }
+    public void setBrand(List<String> brand) {
+        this.brand = brand;
     }
 
-    public static class FilterEntity {
-        /**
-         * name : apache
-         * count : 90
-         */
+    public List<String> getCity() {
+        return city;
+    }
 
-        private String name;
-        private int count;
+    public List<String> getPort() {
+        return port;
+    }
 
-        public FilterEntity(String name, int count) {
-            this.name = name;
-            this.count = count;
-        }
+    public List<String> getVul() {
+        return vul;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public List<String> getOs() {
+        return os;
+    }
 
-        public void setCount(int count) {
-            this.count = count;
-        }
+    public List<String> getProvince() {
+        return province;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public List<String> getCountry() {
+        return country;
+    }
 
-        public int getCount() {
-            return count;
-        }
+    public List<String> getType() {
+        return type;
+    }
+
+    public List<String> getService() {
+        return service;
+    }
+
+    public List<String> getBrand() {
+        return brand;
+    }
+
+    @Override
+    public String toString() {
+        return "Filter{" +
+                "city=" + city +
+                ", port=" + port +
+                ", vul=" + vul +
+                ", os=" + os +
+                ", province=" + province +
+                ", country=" + country +
+                ", type=" + type +
+                ", service=" + service +
+                ", brand=" + brand +
+                '}';
     }
 }
 

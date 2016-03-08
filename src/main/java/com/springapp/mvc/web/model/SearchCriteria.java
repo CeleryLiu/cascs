@@ -11,15 +11,26 @@ import java.util.Map;
  */
 public class SearchCriteria {
 
-    String wd;    //对应请求中的wd字段
+    String wd;    //对应请求中的wd字段，"用户手动输入的内容 city:北京 example:手动输入的过滤条件"
     String geo;//"polygon(lat1 lon1,lat2 lon2,lat3 lon3)", //地理过滤范围，为空则不过滤（全球），可使用polygon、circle
     String typefilter;//camera", //3D地球中的设备类型1级菜单过滤维度
     String permitfilter;// "control", //3D地球中的权限类型2级菜单过滤维度
     int zoomlevel = 6;//6, //当前的地图缩放级别，此参数决定聚类级别
     int lossycompress; // 0 //压缩级别，0为不压缩；1为去除部分无用字段；2为去除更多非必需字段，等等
     int page = 1;   //请求第几页，用于页面分页显示
-    int pagesize=10;
+    int pagesize = 10;
     int prilevel = 5;   //用户等级，默认值-1，表示游客
+    Filter filter;
+
+    @JSONField(name = "filter")
+    public Filter getFilter() {
+        return filter;
+    }
+
+    @JSONField(name = "filter")
+    public void setFilter(Filter filter) {
+        this.filter = filter;
+    }
 
     @JSONField(name = "pagesize")
     public int getPagesize() {
@@ -116,6 +127,14 @@ public class SearchCriteria {
         return wd + geo + typefilter + permitfilter + zoomlevel + lossycompress + page;
     }
 
+    /*
+     * @function name:
+     * @param:
+     * @return: Map<key,value>key为属性名，value为属性值
+     * @description: 将SearchCriteria装换为Map形式
+     * @author: lyp
+     * @date: 2016-03-08
+     */
     public Map<String, Object> toMap() {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("wd", wd);
@@ -127,6 +146,7 @@ public class SearchCriteria {
         result.put("page", page);
         result.put("pagesize", pagesize);
         result.put("prilevel", prilevel);
+        result.put("filter", filter);
         return result;
     }
 }
