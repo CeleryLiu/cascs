@@ -114,7 +114,8 @@
         <div class="widget-content content" id="search_history">
             <ul class="list-inline">
 
-                <li class="search-item" data-search-keyword="我搜索的1" data-option="1" title="我搜索的1">我搜索的1
+                <li class="search-item"
+                    data-search-keyword="我搜索的1" data-option="1" title="我搜索的1">我搜索的1
                     <button type="button" data-toggle="modal" data-target="confirm-model">&times;</button>
                 </li>
                 <li class="search-item" data-search-keyword="我搜索的2" data-option="1" title="我搜索的2">我搜索的2

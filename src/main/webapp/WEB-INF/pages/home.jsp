@@ -47,6 +47,33 @@
             </div>
         </form>
     </div>
+    <div class="latest-news hidden-xs search-tips">
+        <div class="block">
+            <h4>热门搜索</h4>
+            <ul class="list-inline">
+                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
+                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
+                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
+            </ul>
+        </div>
+        <div class="block">
+            <h4>系统推荐</h4>
+            <ul class="list-inline">
+                <li class="search-item" data-search-keyword="Camera Hikvision" data-option="0" title="Camera Hikvision">Camera Hikvision
+                </li>
+                <li class="search-item" data-search-keyword="ASUS RT-N66W FTP" data-option="0" title="ASUS RT-N66W FTP">ASUS RT-N66W FTP
+                </li>
+                <li class="search-item" data-search-keyword="Server: Siemens Switzerland Ltd" data-option="0"
+                    title="Server: Siemens Switzerland Ltd">Server: Siemens Switzerland Ltd
+                </li>
+                <li class="search-item" data-search-keyword="HP Officejet Pro 8500 A910 printer http config"
+                    data-option="0"
+                    title="HP Officejet Pro 8500 A910 printer http config">HP Officejet Pro 8500 A910 printer http
+                    config
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="latest-news hidden-xs">
         <div class="block">
             <h4><a href="/analysis" target="_blank">安全动态</a></h4>

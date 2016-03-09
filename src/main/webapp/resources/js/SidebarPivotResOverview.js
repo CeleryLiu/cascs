@@ -479,3 +479,44 @@ var ResultOverview = {
         overview.find('strong.page-num').text(currpage + ' / ' + (Math.floor(count / pagesize) + 1));
     }
 };
+
+var SearchTip = {
+    _WRAPPER_SEL: (function () {
+        return '#search_tips'
+    }()),
+
+    show: function () {
+        //console.log('SearchTip.show()');
+        $(this._WRAPPER_SEL).show(Constant.HIDE_SHOW_SPEED);
+    },
+    hide: function () {
+        //console.log('SearchTip.hide()');
+        $(this._WRAPPER_SEL).hide(Constant.HIDE_SHOW_SPEED);
+    },
+    isHidden: function () {
+        //console.log('SearchTip.isHidden()');
+        return $(this._WRAPPER_SEL).is(':hidden');
+    },
+    render: function (data) {
+        //console.log("SearchTip.render()");
+    },
+    listen: function () {
+        //推荐搜索、热门搜索、搜索历史相关事件
+        $('li.search-item').on('click', function (e) {
+            e.preventDefault();
+            var $this = $(this), wd = $this.attr('data-search-keyword');
+            var requestObj = {
+                'url': Constant.LIST_SEARCH_2_URL,
+                'data': {
+                    'wd': wd,
+                    'page': 1
+                }
+            };
+            LoadData.post(requestObj);
+        }).hover(function (e) {
+            $(this).addClass('hover');
+        }, function () {
+            $(this).removeClass('hover');
+        });
+    }
+};

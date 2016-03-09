@@ -35,6 +35,7 @@ var initFullpage = function () {
             }
             if (!Sidebar.isHidden()) {
                 Sidebar.hide();
+                SearchTip.hide();
             }
             if (!Pivot.isHidden()) {
                 Pivot.hide();
@@ -52,6 +53,7 @@ var initFullpage = function () {
             }
             if (Sidebar.isHidden()) {
                 Sidebar.show();
+                SearchTip.show();
             }
             if (Pivot.isHidden()) {
                 Pivot.show();
@@ -169,6 +171,7 @@ $(function () {
         GlobalSearch.listen();
         AdvSearch.listen();
         User.listenerStarts();
+        SearchTip.listen();
         initFullpage();//full page js
     }
 );

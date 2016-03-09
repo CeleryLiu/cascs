@@ -213,8 +213,7 @@ var ArcMap = {
     },
     onLoad: function () {
         $(Sidebar._WRAPPER_SEL).addClass('map');
-        //$(Pivot._PIVOTS_UL_SEL).addClass('map');
-        //$(ResultOverview._WRAPPER_SEL).addClass('map');
+        $(SearchTip._WRAPPER_SEL).addClass('map');
         $('#header2').addClass('map');
         var data = Session.get('data'), wd = Session.get('wd');
         if (data && wd) {
@@ -225,9 +224,8 @@ var ArcMap = {
     },
     onLeave: function () {
         $(Sidebar._WRAPPER_SEL).removeClass('map');
+        $(SearchTip._WRAPPER_SEL).removeClass('map');
         $('#header2').removeClass('map');
-        //$(Pivot._PIVOTS_UL_SEL).removeClass('map');
-        //$(ResultOverview._WRAPPER_SEL).removeClass('map');
     },
     render: function (data) {
         //console.log("ArcMap.render() ======",data.q);

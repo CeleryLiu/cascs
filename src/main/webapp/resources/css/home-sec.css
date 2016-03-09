@@ -18,6 +18,7 @@
 }
 
 .index-wrapper .logo {
+    display: none;
     max-width: 80%;
     text-align: center
 }
@@ -27,7 +28,7 @@
 }
 
 .latest-news {
-    /*color: #eee;*/
+    display: none;
     overflow: hidden;
     padding: 1rem 1.5rem;
     border-radius: 2px;
@@ -49,9 +50,9 @@
     font-weight: normal
 }
 
-
 .latest-news li {
     line-height: 1.8rem;
+    font-size: 1.6rem;
     text-align: left;
 }
 
@@ -70,17 +71,52 @@
     max-height: 2rem;
     overflow: hidden;
     vertical-align: middle;
-    color: #ccc;
+    color: #aaa;
     text-overflow: ellipsis;
     white-space: nowrap
 }
 
 .latest-news li a:hover {
-    text-decoration: underline
+    /*text-decoration: underline;*/
+    color: #f27f02;
 }
 
 .latest-news li time {
     float: right
+}
+
+.search-tips {
+    display: block;
+}
+
+.search-tips h4 {
+    color: #337ab7;
+}
+
+.search-tips ul {
+    text-align: left;
+    color: #ccc;
+}
+
+.search-tips ul li {
+    max-width: 100%;
+    margin-right: 2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.search-tips ul li:last-child {
+    margin-right: auto;
+}
+
+.search-tips ul li::before {
+    content: '';
+}
+
+.search-tips ul li:hover {
+    color: #f27f02;
 }
 
 /*--------从这以上都是新添加的-----------*/
