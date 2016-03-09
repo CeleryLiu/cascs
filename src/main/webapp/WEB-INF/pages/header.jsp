@@ -25,7 +25,7 @@
                         <%--<li><a href="resources/search_result_display/autoplay.html">数据分析</a></li>--%>
                         <li data-menuanchor="se6">
                             <a href="#se6" id="loginNav">登录</a>
-                            <a href="#" id="logout"><span></span> 退出</a>
+                            <a href="#" id="logout"><span></span> | 退出</a>
                         </li>
                     </ul>
                 </div>

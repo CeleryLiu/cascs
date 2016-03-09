@@ -29,7 +29,7 @@ public class MarkpointDAO {
         logger.debug("MarkpointDAO.getDevices starts =================");
         System.out.println("MarkpointDAO.getDevices starts, uri:" + uri + ", criteria:" + criteria);
         JSONObject result = JSON.parseObject(rc.get(uri, criteria));
-        System.out.println(result);
+//        System.out.println(result);
         if ("200".equals(result.getString("statuscode"))) {
             JSONArray data = result.getJSONArray("data");
             Map<String, List<Device4MapOrGlobe>> map;

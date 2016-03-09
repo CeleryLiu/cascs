@@ -46,14 +46,14 @@ var GlobalSearch = {
             if (criteria == '')return;
             //(1)清空Pivot
             Pivot.init();
-            //(2)搜索
+            //(2)设置首页搜索框的值
+            HomeSearch.setValue(criteria);
+            //(3)搜索
             if ($('#listSe').hasClass('active')) {
                 List.search(1);
             } else if ($('#mapSe').hasClass('active')) {
                 ArcMap.search(1);
             }
-            //(3)设置首页搜索框的值
-            HomeSearch.setValue(criteria);
         });
     }
 };

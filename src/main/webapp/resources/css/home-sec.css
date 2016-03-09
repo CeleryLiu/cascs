@@ -1,16 +1,95 @@
 @charset "UTF-8";
 /* Style for section (sectionAnchor = se_home)
   * --------------------------------------- */
-#home {
-    background: url("../img/login_bg.jpg") no-repeat center;
+.index-wrapper {
+    max-width: 768px
 }
 
+@media (max-width: 767px) {
+    .index-wrapper {
+        margin-top: -60px
+    }
+}
+
+@media (min-width: 768px) {
+    .index-wrapper {
+        margin-top: -100px
+    }
+}
+
+.index-wrapper .logo {
+    max-width: 80%;
+    text-align: center
+}
+
+.index-wrapper .logo img {
+    max-width: 100%
+}
+
+.latest-news {
+    /*color: #eee;*/
+    overflow: hidden;
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.1)
+}
+
+.latest-news .block {
+    float: left;
+    width: 48%
+}
+
+.latest-news .block:first-child {
+    margin-right: 4%
+}
+
+.latest-news h4 {
+    margin: 0 0 1rem;
+    font-size: 1.8rem;
+    font-weight: normal
+}
+
+
+.latest-news li {
+    line-height: 1.8rem;
+    text-align: left;
+}
+
+.latest-news li::before {
+    content: "\f105";
+    display: inline-block;
+    opacity: 0.5;
+    margin-right: .8rem;
+    font-family: fontawesome;
+    color: #9f9fa0
+}
+
+.latest-news li a {
+    display: inline-block;
+    max-width: 70%;
+    max-height: 2rem;
+    overflow: hidden;
+    vertical-align: middle;
+    color: #ccc;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.latest-news li a:hover {
+    text-decoration: underline
+}
+
+.latest-news li time {
+    float: right
+}
+
+/*--------从这以上都是新添加的-----------*/
 .home-search .home-search-form {
     display: inline-block;
     position: relative;
     height: 7rem;
     min-width: 30rem;
-    width: 50%;
+    width: 90%;
     line-height: 3rem;
     padding-bottom: 4rem;
     margin: 0 auto;
@@ -46,7 +125,7 @@
 }
 
 .home-search .advs-link {
-    font-size: 16px;
+    font-size: 1.6rem;
     padding-top: .5rem;
 
 }

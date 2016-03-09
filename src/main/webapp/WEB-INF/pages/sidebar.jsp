@@ -107,3 +107,67 @@
         </div>
     </div>
 </div>
+<div id="search_tips" class="col-lg-2 col-md-3 col-sm-3 hidden-xs sidebar-right">
+    <section id="widget-search-history">
+        <h4 class="orange">搜索历史</h4>
+
+        <div class="widget-content content" id="search_history">
+            <ul class="list-inline">
+
+                <li class="search-item" data-search-keyword="我搜索的1" data-option="1" title="我搜索的1">我搜索的1
+                    <button type="button" data-toggle="modal" data-target="confirm-model">&times;</button>
+                </li>
+                <li class="search-item" data-search-keyword="我搜索的2" data-option="1" title="我搜索的2">我搜索的2
+                    <button type="button" data-toggle="modal" data-target="confirm-model">&times;</button>
+                </li>
+            </ul>
+            <!-- Confirm Modal -->
+            <div class="modal fade confirm-model" tabindex="-1" role="dialog" aria-labelledby="confirmModel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            确定要删除<span>xxx</span>吗？
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="widget-popular-search">
+        <h4 class="orange">热门搜索</h4>
+
+        <div class="widget-content content">
+            <ul class="list-inline">
+                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
+                <li class="search-item" data-search-keyword="stag:中兴设备" data-option="0" title="stag:中兴设备">中兴设备</li>
+                <li class="search-item" data-search-keyword="stag:大华设备" data-option="0" title="stag:大华设备">大华设备</li>
+            </ul>
+        </div>
+    </section>
+    <section id="widget-sys-rec">
+        <h4 class="orange">系统推荐</h4>
+
+        <div class="widget-content content">
+            <ul class="list-inline">
+                <li class="search-item" data-search-keyword="Camera Hikvision" data-option="0" title="Camera Hikvision">
+                    Camera Hikvision
+                </li>
+                <li class="search-item" data-search-keyword="ASUS RT-N66W FTP" data-option="0" title="ASUS RT-N66W FTP">
+                    ASUS RT-N66W FTP
+                </li>
+                <li class="search-item" data-search-keyword="Server: Siemens Switzerland Ltd" data-option="0"
+                    title="Server: Siemens Switzerland Ltd">Server: Siemens Switzerland Ltd
+                </li>
+                <li class="search-item" data-search-keyword="HP Officejet Pro 8500 A910 printer http config"
+                    data-option="0"
+                    title="HP Officejet Pro 8500 A910 printer http config">HP Officejet Pro 8500 A910 printer http
+                    config
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>

@@ -113,7 +113,7 @@ var List = {
         }
         // (3)初始化分页插件
         paginator(total, pagesize, currpage, Constant.VISIBLE_PAGES, List.search);
-        // (4)返回顶部
+        // (4)返回顶部（貌似不起作用了，需要排查）
         $(this._WRAPPER_SEL).scrollTop(0);
         $('#listSe').scrollTop(0);
     },
@@ -123,12 +123,19 @@ var List = {
         if (!wd && wd == '') return;
         var successCallback = this.onSearchSucceed;
         var requestObj = {
-            'url': Constant.LIST_SEARCH_URL,
-            //'success': successCallback,
-            'error': errorHandler,
+            /* 'url': Constant.LIST_SEARCH_URL,
+             //'success': successCallback,
+             'error': errorHandler,
+             'data': {
+             'wd': wd + ' ' + Pivot.getFilterByPivots(),
+             'page': pageNum ? pageNum : 1
+             }*/
+            //2↓
+            'url': Constant.LIST_SEARCH_2_URL,
             'data': {
-                'wd': wd + ' ' + Pivot.getUserSelected(),
-                'page': pageNum ? pageNum : 1
+                'wd': wd,
+                'filter': Pivot.getFilterByPivots2(),
+                'page': 1
             }
         };
         LoadData.post(requestObj);

@@ -13,7 +13,7 @@
 <body>
 <div class="home-wrapper">
 --%>
-<div class="home-search">
+<%--<div class="home-search">
     <form class="home-search-form" id="home_search_form">
         <div class="input-group search-box-container">
             <input type="text" id="hsi"
@@ -27,7 +27,73 @@
             <a href="#" class="advs-link" id="advanced-search">精确搜索</a>
         </div>
     </form>
+</div>--%>
+<div class="index-wrapper center-block">
+    <div class="logo center-block">
+        <h1><a href="/" title="首页"><img src="">LOGO</a></h1>
+    </div>
+    <div class="home-search">
+        <form class="home-search-form" id="home_search_form">
+            <div class="input-group search-box-container">
+                <input type="text" id="hsi"
+                       class="form-control typeahead home-search-input"
+                       role="combobox"
+                       placeholder="webcam">
+                <button type="submit" class="btn btn-primary" id="home_search_btn">搜索一下
+                </button>
+            </div>
+            <div class="advs-link-wrapper">
+                <a href="#" class="advs-link" id="advanced-search">精确搜索</a>
+            </div>
+        </form>
+    </div>
+    <div class="latest-news hidden-xs">
+        <div class="block">
+            <h4><a href="/analysis" target="_blank">安全动态</a></h4>
+            <ul>
+                <li>
+                    <a href="/analysisdetail?condition=1018&type=new" target="_blank"
+                       title="joomla反序列命令执行">joomla反序列命令执行</a>
+
+                    <time>2015-12-17</time>
+                </li>
+
+                <li>
+                    <a href="/analysisdetail?condition=1017&type=new" target="_blank"
+                       title="Postgresql数据库弱口令">Postgresql数据库弱口令</a>
+
+                    <time>2015-12-04</time>
+                </li>
+
+                <li>
+                    <a href="/analysisdetail?condition=1016&type=new" target="_blank"
+                       title="Redis未授权访问">Redis未授权访问</a>
+
+                    <time>2015-11-11</time>
+                </li>
+
+            </ul>
+        </div>
+        <div class="block">
+            <h4><a href="/news" target="_blank">资讯</a></h4>
+            <ul>
+                <li>
+                    <a href="/newsshow?id=18083911" target="_blank" title="资讯1ssssssssss">资讯1ssssssssss</a>
+                    <time>2016-03-09</time>
+                </li>
+                <li>
+                    <a href="/newsshow?id=77226480" target="_blank" title="资讯2">资讯2</a>
+                    <time>2016-03-07</time>
+                </li>
+                <li>
+                    <a href="/newsshow?id=79206819" target="_blank" title="资讯3）">资讯3</a>
+                    <time>2016-03-07</time>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+
 
 <%--
 </div>

@@ -47,5 +47,6 @@ public class Constant {
     //-注册用户的默认等级
     public static final int WUM_USER_LEVEL = 5;
     public static final String RECOMMEND = "Camera Hikvision, ASUS RT-N66W FTP, Server Siemens Switzerland Ltd, HP Officejet Pro 8500 A910";
+    public static final String SYS_RECOMMEND = "Camera Hikvision port:80, ASUS RT-N66W FTP, Server: Siemens Switzerland Ltd, HP Officejet Pro 8500 A910,printer http config";
     //--------------------------------数据常量↑---------------------------//
 }

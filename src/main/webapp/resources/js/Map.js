@@ -269,7 +269,7 @@ var ArcMap = {
             //'success': successCallback,
             'error': errorHandler,
             'data': {
-                'wd': wd + ' ' + Pivot.getUserSelected(),
+                'wd': wd + ' ' + Pivot.getFilterByPivots(),
                 //"geo": getVisibleExtent(),
                 //"zoomlevel": ArcMap.v.map.getZoom(),
                 'pagesize': this.v.MAP_PAGE_SIZE,

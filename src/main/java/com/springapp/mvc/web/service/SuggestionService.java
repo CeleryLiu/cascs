@@ -26,7 +26,7 @@ public class SuggestionService {
 
 
     public JSONObject getResponse4Suggestion(String query) {
-        logger.debug("SuggestionService.getResponse4Suggestion starts ================");
+        logger.debug("SuggestionService.getResponse4Suggestion() starts ================");
         JSONObject result = new JSONObject();
         List<String> suggests = dao.getSuggestions(query);
         if (suggests.size() > 0) {
@@ -43,13 +43,13 @@ public class SuggestionService {
 
 
     public JSONObject getResponse4Recommend() {
-        logger.debug("SuggestionService.getResponse4Recommend starts ================");
+        logger.debug("SuggestionService.getResponse4Recommend() starts ================");
         JSONObject result = new JSONObject();
-        List<String> suggests = dao.getRecommend();
-        if (suggests.size() > 0) {
+        List<String> recommend = dao.getRecommend();
+        if (recommend.size() > 0) {
             result.put("statuscode", "200");
             result.put("errmsg", "");
-            result.put("data", suggests);
+            result.put("data", recommend);
         } else {
             result.put("statuscode", "204");
             result.put("errmsg", "");
