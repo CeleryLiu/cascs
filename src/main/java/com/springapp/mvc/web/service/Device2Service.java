@@ -8,6 +8,7 @@ package com.springapp.mvc.web.service;/*
 
 import com.springapp.mvc.web.config.Constant;
 import com.springapp.mvc.web.dao.Device2DAO;
+import com.springapp.mvc.web.model.Filter;
 import com.springapp.mvc.web.model.SearchCriteria;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;

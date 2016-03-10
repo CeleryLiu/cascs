@@ -38,22 +38,8 @@ var LoadData = {
                 disableButtons(true);
                 Pace.start();
             }
-        }).success(function (data) {
-            Session.set('data', data);
-            Session.set('wd', GlobalSearch.getValue() ? GlobalSearch.getValue() : HomeSearch.getValue());
-            if (requestObj.success) {
-                requestObj.success(data);
-            } else {
-                createView({
-                        q: GlobalSearch.getValue(),
-                        contentId: currentPage,
-                        title: 'Welcome to CASCS ' + currentPage,
-                        data: data
-                    },
-                    true
-                );
-            }
         })
+            .success(requestObj.success)
             .error(function (e) {
                 console.log("ajax error");
                 if (requestObj.error) {
@@ -87,53 +73,4 @@ var disableButtons = function (disable) {
         disableButton(globalSearchBtn, false);
         disableButton(advsBtn, false);
     }
-};
-var createView = function (stateObject, pushHistory) {
-    //console.log(stateObject, stateObject.data);
-    if (stateObject == null || !stateObject.data || stateObject.data == null)return;
-    var data = stateObject.data;
-    var statuscode = data['statuscode'];
-    // (1)Add data loaded from the server to sessionStorage
-    //Session.set('data', data);
-    if (statuscode == 200) {
-        // (2)Render page by using stateObject
-        switch (stateObject.contentId) {
-            case 1:
-                HomeSearch.onSearchSucceed(data);
-                break;
-            case 2:
-                //console.log('list');
-                List.onSearchSucceed(data);
-                GlobalSearch.setValue(stateObject.q);
-                break;
-            case 3:
-                //console.log('map');
-                ArcMap.onSearchSucceed(data);
-                GlobalSearch.setValue(stateObject.q);
-                break;
-            case 4:
-                //console.log('point');
-                break;
-            case 5:
-                //console.log('line');
-                break;
-            default :
-                //console.log(stateObject.contentId);
-                break;
-        }
-    } else if (statuscode == 204) {
-        noDataHandler(data);
-    } else {
-        errorHandler();
-    }
-    $.fn.fullpage.reBuild();
-    //(3) Save state on history stack
-    /** param {
-     *   firstOne: any object that will let you restore state
-     *   secondOne:　a title (not the page title, and not currently used)
-     *   thirdOne: the URL - this will appear in the browser address bar
-     * }
-     */
-    //if (pushHistory) history.pushState(stateObject, stateObject.title, '?q=' + stateObject.q);
-    //console.log("==========================");
 };

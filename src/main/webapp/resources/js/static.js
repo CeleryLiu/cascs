@@ -25,7 +25,7 @@ var Constant = {
 
     //↓urls
     HOT_TERMS_URL: (function () {
-        return 'getHotTerms';
+        return 'search/getHotTerms';
     }()),
     ADVS_SEARCH_RUL: (function () {
         return 'api/advancedSearch';

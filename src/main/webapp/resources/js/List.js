@@ -118,7 +118,7 @@ var List = {
         $('#listSe').scrollTop(0);
     },
     search: function (pageNum) {
-        console.log("List.search() ======");
+        //console.log("List.search() ======");
         var wd = GlobalSearch.getValue();
         if (!wd && wd == '') return;
         var successCallback = this.onSearchSucceed;
@@ -136,24 +136,27 @@ var List = {
                 'wd': wd,
                 'filter': Pivot.getFilterByPivots2(),
                 'page': 1
-            }
+            },
+            'success': successCallback,
+            'error': errorHandler
         };
         LoadData.post(requestObj);
     },
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
+        //(1)记录sessionStorage
+        Session.set('data', data);
+        //(2)设置result overview
+        ResultOverview.set(data);
         if (statuscode == 200) {
-            //console.log('List search succeed. statuscode == 200', data);
-            //(1)调用Sidebar的render方法，生成sidebar
+            //(3)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
-            //(2)调用List的render方法，生成搜索结果页面
+            //(4)调用List的render方法，生成搜索结果页面
             List.render(data);
-            //(3)隐藏no-data div
-            $('.no-data').hide();
-            //(4)设置result overview
-            ResultOverview.set(data);
             //(5)滚动到顶部
             $(List._WRAPPER_SEL).animate({scrollTop: 0}, 'slow');
+            //(6)隐藏no-data div
+            $('.no-data').hide();
         } else if (statuscode == 204) {
             console.log('list no data');
             noDataHandler(data);

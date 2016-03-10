@@ -31,7 +31,7 @@
     display: none;
     overflow: hidden;
     padding: 1rem 1.5rem;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.1)
 }
 
@@ -100,11 +100,14 @@
 
 .search-tips ul li {
     max-width: 100%;
-    margin-right: 2rem;
+    margin: 0 2rem .5rem 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-sizing: content-box;
+    border-radius: 3px;
 }
 
 .search-tips ul li:last-child {
@@ -113,6 +116,7 @@
 
 .search-tips ul li::before {
     content: '';
+    margin: 0;
 }
 
 .search-tips ul li:hover {

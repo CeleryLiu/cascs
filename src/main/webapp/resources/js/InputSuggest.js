@@ -126,14 +126,14 @@ var InputSuggest = {
                 }
                 setTimeout(function () {
                     randomInput()
-                }, 3e3)
+                }, 3e3);
             }
 
             $.getJSON(url, {}, function (data) {
                 dorks = data.data;
                 length = data.data.length;
                 randomInput()
-            })
+            });
         }
 
         if ($input.length) {

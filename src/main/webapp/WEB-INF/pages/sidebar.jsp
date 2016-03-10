@@ -111,19 +111,10 @@
     <section id="widget-search-history">
         <h4 class="orange">搜索历史</h4>
 
-        <div class="widget-content content" id="search_history">
-            <ul class="list-inline">
-
-                <li class="search-item"
-                    data-search-keyword="我搜索的1" data-option="1" title="我搜索的1">我搜索的1
-                    <button type="button" data-toggle="modal" data-target="confirm-model">&times;</button>
-                </li>
-                <li class="search-item" data-search-keyword="我搜索的2" data-option="1" title="我搜索的2">我搜索的2
-                    <button type="button" data-toggle="modal" data-target="confirm-model">&times;</button>
-                </li>
-            </ul>
-            <!-- Confirm Modal -->
-            <div class="modal fade confirm-model" tabindex="-1" role="dialog" aria-labelledby="confirmModel">
+        <div class="search-widget" id="search_history">
+            <ul class="list-inline search-history-list"></ul>
+            <!-- Confirm Modal,relatedTarget -->
+            <div class="modal fade confirm-model" tabindex="-1" role="dialog" id="confirmModal">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -141,32 +132,31 @@
     <section id="widget-popular-search">
         <h4 class="orange">热门搜索</h4>
 
-        <div class="widget-content content">
-            <ul class="list-inline">
-                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
-                <li class="search-item" data-search-keyword="stag:中兴设备" data-option="0" title="stag:中兴设备">中兴设备</li>
-                <li class="search-item" data-search-keyword="stag:大华设备" data-option="0" title="stag:大华设备">大华设备</li>
-            </ul>
+        <div class="search-widget">
+            <ul class="list-inline popular-search-list"></ul>
         </div>
     </section>
     <section id="widget-sys-rec">
         <h4 class="orange">系统推荐</h4>
 
-        <div class="widget-content content">
-            <ul class="list-inline">
-                <li class="search-item" data-search-keyword="Camera Hikvision" data-option="0" title="Camera Hikvision">
-                    Camera Hikvision
+        <div class="search-widget">
+            <ul class="list-inline sys-rec">
+                <li>
+                    <span class="search-item" data-search-keyword="Camera Hikvision" data-option="0"
+                          title="Camera Hikvision">Camera Hikvision</span>
                 </li>
-                <li class="search-item" data-search-keyword="ASUS RT-N66W FTP" data-option="0" title="ASUS RT-N66W FTP">
-                    ASUS RT-N66W FTP
+                <li>
+                    <span class="search-item" data-search-keyword="ASUS RT-N66W FTP" data-option="0"
+                          title="ASUS RT-N66W FTP">ASUS RT-N66W FTP</span>
                 </li>
-                <li class="search-item" data-search-keyword="Server: Siemens Switzerland Ltd" data-option="0"
-                    title="Server: Siemens Switzerland Ltd">Server: Siemens Switzerland Ltd
+                <li><span class="search-item" data-search-keyword="Server: Siemens Switzerland Ltd" data-option="0"
+                          title="Server: Siemens Switzerland Ltd">Server: Siemens Switzerland Ltd</span>
                 </li>
-                <li class="search-item" data-search-keyword="HP Officejet Pro 8500 A910 printer http config"
-                    data-option="0"
-                    title="HP Officejet Pro 8500 A910 printer http config">HP Officejet Pro 8500 A910 printer http
-                    config
+                <li>
+                    <span class="search-item" data-search-keyword="HP Officejet Pro 8500 A910 printer http config"
+                          data-option="0"
+                          title="HP Officejet Pro 8500 A910 printer http config">HP Officejet Pro 8500 A910 printer http
+                    config</span>
                 </li>
             </ul>
         </div>

@@ -202,13 +202,13 @@
 .sidebar-right {
     display: none;
     margin-top: 1rem;
-    right:4.2rem;
+    right: 4.2rem;
     overflow: hidden;
     font-size: 1.4rem;
 }
 
 .sidebar-right.map {
-    background-color: hsla(201, 100%, 77%, .9);
+    background-color: hsla(201, 100%, 77%, .95);
 }
 
 .sidebar-right section {
@@ -231,11 +231,11 @@
     list-style: none;
 }
 
-#search_tips .search-item {
-    position: relative;
-    width: 48%;
-    margin: .2rem 0;
-    padding: 2px 5px;
+#search_tips ul li {
+    /*position: relative;*/
+    /*width: 48%;*/
+    margin: .2rem;
+    padding-bottom: 3px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -247,39 +247,35 @@
     cursor: pointer;
 }
 
-#search_tips.map .search-item {
-    /*background: hsla(201, 100%, 77%, .9);*/
-    /*box-shadow: -1px 1px 1px 1px #b4b4b4;;*/
-}
-
-#search_tips ul .search-item:hover,
-#search_tips ul .search-item.hover,
-#search_tips li.search-item:focus {
+#search_tips ul li:hover,
+#search_tips ul li.hover,
+#search_tips li.search-widget ul li:focus {
     background: rgba(255, 255, 255, 0.6);
     /*color: #fff;*/
 }
 
-#search_tips .search-item button {
-    display: none;
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    padding: 0 5px;
-    z-index: 101;
+#search_tips ul li button {
+    visibility: hidden;
+    padding: 0 .3rem;
+    margin-left: .5rem;
     background: transparent;
     border: none;
-    border-radius: 10px;
-    float: right;
+    border-radius: .8rem;
+    /*float: right;*/
 }
 
-#search_tips .search-item.hover button {
-    display: inline-block;
+#search_tips ul li.hover button {
+    visibility: visible;
 }
 
-#search_tips .search-item button:hover {
+#search_tips ul li button:hover {
     background: #f27f02;
 }
 
-#widget-sys-rec .search-item {
+#widget-sys-rec ul li {
     width: 99%;
+}
+
+#search_history li span {
+    /*background-color: green;*/
 }

@@ -76,8 +76,6 @@
     <script src="${sha1Js}"></script>
     <spring:url value="resources/js/libs/jqPaginator.min.js" var="pagerJs"/>
     <script src="${pagerJs}"></script>
-    <spring:url value="resources/js/libs/jquery.pjax.js" var="pjaxJs"/>
-    <script src="${pjaxJs}"></script>
     <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
     <script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
             src="${paceJs}"></script>
@@ -95,6 +93,8 @@
     <script src="${sessionJs}"></script>
     <spring:url value="resources/js/InputSuggest.js" var="suggestJs"/>
     <script src="${suggestJs}"></script>
+    <spring:url value="resources/js/UserSearchHistory.js" var="sHistoryJs"/>
+    <script src="${sHistoryJs}"></script>
     <spring:url value="resources/js/List.js" var="listJs"/>
     <script src="${listJs}"></script>
     <spring:url value="resources/js/Map.js" var="mapJs"/>
@@ -126,7 +126,7 @@
     </div>
     <div class="section" data-anchor="se2" id="listSe">
         <div class="list-wrapper row-fluid" id="list_wrapper">
-            <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3">
+            <div class="result-col col-lg-offset-2 col-md-offset-3 col-sm-offset-3 col-lg-8 col-md-offset-6 col-sm-offset-6">
                 <div class="result-container">
                     <ul class="result devices"></ul>
                 </div>

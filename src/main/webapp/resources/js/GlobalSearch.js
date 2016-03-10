@@ -41,14 +41,16 @@ var GlobalSearch = {
         //console.log('GlobalSearchForm.listenerStart() ======');
         $(GlobalSearch._FORM_SEL).on('submit', function (e) {
             e.preventDefault();
-            var criteria = GlobalSearch.getValue();
+            var wd = GlobalSearch.getValue();
             $('.tt-menu').hide(300);
-            if (criteria == '')return;
-            //(1)清空Pivot
+            if (wd == '')return;
+            // (1)清空Pivot
             Pivot.init();
-            //(2)设置首页搜索框的值
-            HomeSearch.setValue(criteria);
-            //(3)搜索
+            // (2)设置首页搜索框的值
+            HomeSearch.setValue(wd);
+            // (3)将搜索条件添加到localStorage
+            UserSearchHistory.addItem(wd);
+            // (4)搜索
             if ($('#listSe').hasClass('active')) {
                 List.search(1);
             } else if ($('#mapSe').hasClass('active')) {

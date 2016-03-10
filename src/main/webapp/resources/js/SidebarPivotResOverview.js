@@ -502,21 +502,51 @@ var SearchTip = {
     },
     listen: function () {
         //推荐搜索、热门搜索、搜索历史相关事件
-        $('li.search-item').on('click', function (e) {
+        $('#search_tips li').hover(function () {
+            $(this).addClass('hover');
+        }, function () {
+            $(this).removeClass('hover');
+        });
+        $('.search-item').on('click', function (e) {
             e.preventDefault();
             var $this = $(this), wd = $this.attr('data-search-keyword');
+            var successCallback;
+            if (!wd) {
+                wd = $this.find('span').attr('data-search-keyword');
+            }
+            if ($('#listSe').hasClass('active')) {
+                successCallback = List.onSearchSucceed;
+            } else if ($('#mapSe').hasClass('active')) {
+                successCallback = ArcMap.onSearchSucceed;
+            }
             var requestObj = {
                 'url': Constant.LIST_SEARCH_2_URL,
                 'data': {
                     'wd': wd,
                     'page': 1
-                }
+                },
+                'success': successCallback
             };
+            UserSearchHistory.addItem(wd);
+            GlobalSearch.setValue(wd);
+            HomeSearch.setValue(wd);
             LoadData.post(requestObj);
-        }).hover(function (e) {
-            $(this).addClass('hover');
-        }, function () {
-            $(this).removeClass('hover');
+        });
+    },
+    init: function () {
+        //生成最初的dom节点
+        var popSearchList = $('.popular-search-list'), hisSearchList = $('.search-history-list');
+        // (1)生成热门搜索
+        $.getJSON(Constant.HOT_TERMS_URL, {}, function (data) {
+            for (var key in data['wd']) {
+                var popularLi = $('<li></li>');
+                var span = $('<span class="search-item">' + key + '</span>').attr({
+                    'data-search-keyword': key,
+                    'title': key
+                }).appendTo(popularLi);
+                popSearchList.append(popularLi);
+            }
+            SearchTip.listen();
         });
     }
 };

@@ -50,26 +50,27 @@
     <div class="latest-news hidden-xs search-tips">
         <div class="block">
             <h4>热门搜索</h4>
-            <ul class="list-inline">
-                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
-                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
-                <li class="search-item" data-search-keyword="camera" data-option="0" title="camera">camera</li>
-            </ul>
+            <ul class="list-inline popular-search-list"></ul>
         </div>
         <div class="block">
             <h4>系统推荐</h4>
-            <ul class="list-inline">
-                <li class="search-item" data-search-keyword="Camera Hikvision" data-option="0" title="Camera Hikvision">Camera Hikvision
+            <ul class="list-inline sys-rec">
+                <li>
+                    <span class="search-item" data-search-keyword="Camera Hikvision" data-option="0"
+                          title="Camera Hikvision">Camera Hikvision</span>
                 </li>
-                <li class="search-item" data-search-keyword="ASUS RT-N66W FTP" data-option="0" title="ASUS RT-N66W FTP">ASUS RT-N66W FTP
+                <li>
+                    <span class="search-item" data-search-keyword="ASUS RT-N66W FTP" data-option="0"
+                          title="ASUS RT-N66W FTP">ASUS RT-N66W FTP</span>
                 </li>
-                <li class="search-item" data-search-keyword="Server: Siemens Switzerland Ltd" data-option="0"
-                    title="Server: Siemens Switzerland Ltd">Server: Siemens Switzerland Ltd
+                <li><span class="search-item" data-search-keyword="Server: Siemens Switzerland Ltd" data-option="0"
+                          title="Server: Siemens Switzerland Ltd">Server: Siemens Switzerland Ltd</span>
                 </li>
-                <li class="search-item" data-search-keyword="HP Officejet Pro 8500 A910 printer http config"
-                    data-option="0"
-                    title="HP Officejet Pro 8500 A910 printer http config">HP Officejet Pro 8500 A910 printer http
-                    config
+                <li>
+                    <span class="search-item" data-search-keyword="HP Officejet Pro 8500 A910 printer http config"
+                          data-option="0"
+                          title="HP Officejet Pro 8500 A910 printer http config">HP Officejet Pro 8500 A910 printer http
+                    config</span>
                 </li>
             </ul>
         </div>

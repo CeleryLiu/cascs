@@ -129,14 +129,25 @@ var initFullpage = function () {
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
 
             currentPage = index;
+            var data = Session.get('data');
             switch (index) {
                 case 1:
                     break;
                 case 2:
                     List.onLoad();
+                    if (data) {
+                        GlobalSearch.setValue(JSON.parse(data['q'])['wd']);
+                        List.onSearchSucceed(data);
+                    }
+                    UserSearchHistory.init();
                     break;
                 case 3:
                     ArcMap.onLoad();
+                    if (data) {
+                        GlobalSearch.setValue(JSON.parse(data['q'])['wd']);
+                        ArcMap.onSearchSucceed(data);
+                    }
+                    UserSearchHistory.init();
                     break;
                 case 4:
                     Sidebar.hide();
@@ -167,11 +178,11 @@ $(function () {
             ArcMap.init();
         });
         InputSuggest.init();
+        SearchTip.init();
         HomeSearch.listen();
         GlobalSearch.listen();
         AdvSearch.listen();
         User.listenerStarts();
-        SearchTip.listen();
         initFullpage();//full page js
     }
 );

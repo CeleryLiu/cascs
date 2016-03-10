@@ -264,7 +264,7 @@ var ArcMap = {
         var successCallback = this.onSearchSucceed;
         var requestObj = {
             'url': Constant.MAP_SEARCH_URL,
-            //'success': successCallback,
+            'success': successCallback,
             'error': errorHandler,
             'data': {
                 'wd': wd + ' ' + Pivot.getFilterByPivots(),
@@ -456,16 +456,16 @@ var ArcMap = {
     onSearchSucceed: function (data) {
         var statuscode = data['statuscode'];
         ArcMap.v.data = data;
+        //(1)记录sessionStorage
+        Session.set('data', data);
+        //(2)设置result overview
+        ResultOverview.set(data);
         if (statuscode == 200) {
             //console.log('Map search succeed. statuscode == 200', data);
-            //(1)调用Sidebar的render方法，生成sidebar
+            //(3)生成sidebar
             Sidebar.render(data);
-            //(2)调用Map的render方法，生成搜索结果页面
+            //(4)生成搜索结果页面
             ArcMap.render(data);
-            //(3)隐藏no-data div
-            $('.no-data').hide();
-            //(4)设置result overview
-            ResultOverview.set(data);
         } else if (statuscode == 204) {
             noDataHandler(data);
         } else {
