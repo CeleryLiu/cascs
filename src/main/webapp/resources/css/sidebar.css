@@ -248,7 +248,7 @@
 }
 
 #search_tips ul li:hover,
-#search_tips ul li.hover,
+#search_tips ul li.active,
 #search_tips li.search-widget ul li:focus {
     background: rgba(255, 255, 255, 0.6);
     /*color: #fff;*/
@@ -264,12 +264,19 @@
     /*float: right;*/
 }
 
-#search_tips ul li.hover button {
+#search_tips ul li.hover button,
+#search_tips ul li.active button {
     visibility: visible;
 }
 
 #search_tips ul li button:hover {
     background: #f27f02;
+    color: #000 !important;
+    text-decoration: none;
+}
+
+#search_tips ul li a.btn {
+    padding: 2px 3px;
 }
 
 #widget-sys-rec ul li {

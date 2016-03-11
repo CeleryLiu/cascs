@@ -50,6 +50,7 @@
     <div class="latest-news hidden-xs search-tips">
         <div class="block">
             <h4>热门搜索</h4>
+
             <ul class="list-inline popular-search-list"></ul>
         </div>
         <div class="block">

@@ -102,78 +102,90 @@ public class WebPageController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        logger.debug("Inside index()----------------------");
-//        System.out.println("Inside index()----------------");
+        logger.debug("WebPageController.index()----------------------");
+//        System.out.println("WebPageController.index()----------------");
         return "index";
     }
 
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
     public String register() {
-        logger.debug("Inside register()----------------------");
-//        System.out.println("Inside register()----------------");
+        logger.debug("WebPageController.register()----------------------");
+//        System.out.println("WebPageController.register()----------------");
         return "user/register";
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.GET)
     public String login() {
-        logger.debug("Inside login()----------------------");
-//        System.out.println("Inside login()----------------");
+        logger.debug("WebPageController.login()----------------------");
+//        System.out.println("WebPageController.login()----------------");
         return "user/login";
     }
 
     @RequestMapping(value = "/user/pwdRetrieve", method = RequestMethod.GET)
     public String pwdRetrieve() {
-        logger.debug("Inside pwdRetrieve()----------------------");
-//        System.out.println("Inside pwdRetrieve()----------------");
+        logger.debug("WebPageController.pwdRetrieve()----------------------");
+//        System.out.println("WebPageController.pwdRetrieve()----------------");
         return "user/pwdRetrieve";
     }
 
     @RequestMapping(value = "/user/agreement", method = RequestMethod.GET)
     public String agreement() {
-        logger.debug("Inside agreement()----------------------");
-        System.out.println("Inside agreement()--------X--------");
+        logger.debug("WebPageController.agreement()----------------------");
+        System.out.println("WebPageController.agreement()--------X--------");
         return "user/agreement";
     }
 
     @RequestMapping(value = "/map", method = RequestMethod.GET)
     public String map() {
-        logger.debug("Inside map()----------------------");
-//        System.out.println("Inside map()----------------");
+        logger.debug("WebPageController.map()----------------------");
+//        System.out.println("WebPageController.map()----------------");
         return "map";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listt() {
-        logger.debug("Inside list()----------------------");
-//        System.out.println("Inside list()----------------");
+        logger.debug("WebPageController.list()----------------------");
+//        System.out.println("WebPageController.list()----------------");
         return "list";
     }
 
     @RequestMapping(value = "/markpoint", method = RequestMethod.GET)
     public String markpoint() {
-        logger.debug("Inside markpoint()----------------------");
-//        System.out.println("Inside markpoint()----------------");
+        logger.debug("WebPageController.markpoint()----------------------");
+//        System.out.println("WebPageController.markpoint()----------------");
         return "markpoint";
     }
 
     @RequestMapping(value = "/markline", method = RequestMethod.GET)
     public String markline() {
-        logger.debug("Inside markline()----------------------");
-//        System.out.println("Inside markline()----------------");
+        logger.debug("WebPageController.markline()----------------------");
+//        System.out.println("WebPageController.markline()----------------");
         return "markline";
     }
 
     @RequestMapping(value = "/markline-iframe", method = RequestMethod.GET)
     public String marklineIframe() {
-        logger.debug("Inside marklineIframe()----------------------");
-//        System.out.println("Inside marklineIframe()----------------++");
+        logger.debug("WebPageController.marklineIframe()----------------------");
+//        System.out.println("WebPageController.marklineIframe()----------------++");
         return "markline-iframe";
     }
 
     @RequestMapping(value = "/markpoint-iframe", method = RequestMethod.GET)
     public String markpointIframe() {
-        logger.debug("Inside markpoint-iframe()----------------------");
-//        System.out.println("Inside markpoint-iframe()----------------+++");
+        logger.debug("WebPageController.markpoint-iframe()----------------------");
+//        System.out.println("WebPageController.markpoint-iframe()----------------+++");
         return "markpoint-iframe";
+    }
+
+    @RequestMapping(value = "/manual", method = RequestMethod.GET)
+    public String manual() {
+        logger.debug("WebPageController.manual() ======");
+        return "manual";
+    }
+
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String about() {
+        logger.debug("WebPageController.about() ======");
+        return "about";
     }
 }

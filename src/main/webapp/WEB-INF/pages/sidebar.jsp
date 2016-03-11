@@ -113,20 +113,6 @@
 
         <div class="search-widget" id="search_history">
             <ul class="list-inline search-history-list"></ul>
-            <!-- Confirm Modal,relatedTarget -->
-            <div class="modal fade confirm-model" tabindex="-1" role="dialog" id="confirmModal">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            确定要删除<span>xxx</span>吗？
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary">确定</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <section id="widget-popular-search">

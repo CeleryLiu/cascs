@@ -507,6 +507,9 @@ var SearchTip = {
         }, function () {
             $(this).removeClass('hover');
         });
+        /*            .on('click', function () {
+         $(this).addClass('active');
+         });*/
         $('.search-item').on('click', function (e) {
             e.preventDefault();
             var $this = $(this), wd = $this.attr('data-search-keyword');
@@ -514,6 +517,7 @@ var SearchTip = {
             if (!wd) {
                 wd = $this.find('span').attr('data-search-keyword');
             }
+            $this.closest('li').addClass('active');
             if ($('#listSe').hasClass('active')) {
                 successCallback = List.onSearchSucceed;
             } else if ($('#mapSe').hasClass('active')) {

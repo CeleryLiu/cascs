@@ -77,29 +77,35 @@ var UserSearchHistory = {
                         'data-search-keyword': wd,
                         'title': wd
                     }).appendTo(hLi);
-                var removeBtn = $('<button type="button" data-toggle="modal" data-target="#confirmModal">&times;</button>')
-                    .appendTo(hLi)
-                    .on('click', function (e) {
-                        console.log('remove button is clicked------------');
-                        //弹出模态框
+                var removeBtn = $('<button class="btn" data-toggle="confirmation">&times;</button>').appendTo(hLi)
+                    .attr({
+                        'data-search-keyword': wd,
+                        'title': '确定要删除【' + wd + '】吗？'
                     });
                 $history.append(hLi);
             }
             SearchTip.listen();
+            $('[data-toggle="confirmation"]').confirmation({
+                'btnOkIcon': '',
+                'btnCancelIcon': '',
+                'btnOkClass': 'btn btn-sm btn-primary mr10',
+                'btnOkLabel': '确定',
+                'btnCancelLabel': '取消',
+                'onConfirm': function (event, element) {
+                    event.preventDefault();
+                    UserSearchHistory.deleteItem(element.attr('data-search-keyword'));
+                },
+                'onCancel': function (event, element) {
+                    element.closest('li').removeClass('active');
+                }
+            });
         }
-
-        // (2)启动确认对话框（模态框）的监听事件
-        $('#confirmModal').on('show.bs.modal', function (e) {
-            console.log(e.relatedTarget);
-            console.log('this-----------------', this);
-            //UserSearchHistory.deleteItem("");
-        })
     },
     init: function () {
         var searchHis = localStorage.getItem('searchHistory');
         if (searchHis && searchHis != null && searchHis != 'undefined') {
             this.generateDoms((JSON.parse(searchHis)));
-        }else{
+        } else {
             $(this._WRAPPER_SEL).hide();
         }
     }

@@ -118,7 +118,7 @@ var List = {
         $('#listSe').scrollTop(0);
     },
     search: function (pageNum) {
-        //console.log("List.search() ======");
+        console.log("List.search() ======");
         var wd = GlobalSearch.getValue();
         if (!wd && wd == '') return;
         var successCallback = this.onSearchSucceed;
@@ -149,7 +149,8 @@ var List = {
         //(2)设置result overview
         ResultOverview.set(data);
         if (statuscode == 200) {
-            //(3)调用Sidebar的render方法，生成sidebar
+            //console.log('List search succeed. statuscode == 200', data);
+            //(2)调用Sidebar的render方法，生成sidebar
             Sidebar.render(data);
             //(4)调用List的render方法，生成搜索结果页面
             List.render(data);

@@ -1,0 +1,206 @@
+@charset "UTF-8";
+a {
+    color: #f27f02;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f27f02;
+    text-decoration: underline;
+}
+
+.red {
+    color: red !important;
+}
+
+.gray {
+    color: #686868 !important;
+}
+
+.orange {
+    color: #f27f02 !important;
+}
+
+.green {
+    color: #79a605 !important;
+}
+
+.blue {
+    color: #0057b0 !important;
+}
+
+table {
+    border-spacing: 0;
+}
+
+body {
+    height: 100%;
+    padding-top: 4rem;
+}
+
+.fl {
+    float: left;
+    display: inline;
+}
+
+.fr {
+    float: right;
+    display: inline;
+}
+
+/* Fixed header and footer.
+* --------------------------------------- */
+.header, .footer {
+    z-index: 100;
+    position: fixed;
+    height: 4.6rem;
+    display: block;
+    width: 100%;
+    background: #333;
+    text-align: center;
+    color: #f2f2f2;
+    padding: .3rem 0 0 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+.header {
+    top: 0px;
+    background: rgba(51, 51, 51, 1);
+}
+
+.footer {
+    bottom: 0px;
+}
+
+/* Style for header texts
+  * --------------------------------------- */
+.header h1 {
+    line-height: 4rem;
+    font-weight: normal;
+    font-family: Microsoft YaHei, Verdana, Tahoma, Helvetica, Arial, sans-serif;
+    color: #fff;
+    border: none;
+}
+
+.header .nav {
+    padding-bottom: 3px;
+}
+
+.header .nav li {
+    box-sizing: border-box;
+}
+
+.header .nav li a {
+    font-size: 2rem;
+    text-decoration: none;
+    text-align: center;
+    color: #ccc;
+}
+
+.header .nav li a.current, .header .nav li a:hover,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > .active > a:hover {
+    background: transparent;
+    border-bottom: 3px solid #f27f02;
+    color: #fff;
+}
+
+.header .navbar-brand {
+    font-size: 3.6rem;
+    color: #ccc;
+}
+
+#logout {
+    display: none;
+}
+
+/* Style for footer texts
+  * --------------------------------------- */
+.footer {
+    height: 2.6rem;
+    padding: .4rem 10rem 0 10rem;
+    color: #ccc;
+}
+
+.container {
+    position: relative;
+    padding-bottom: 3rem;
+}
+
+.container section h3 {
+    margin-top: 3rem;
+}
+
+.container section h3:first-child {
+    margin-top: 0;
+}
+
+ul.nav-tabs {
+    width: 140px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+
+ul.nav-tabs li {
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+
+ul.nav-tabs li:first-child {
+    border-top: none;
+}
+
+ul.nav-tabs li a {
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+    color: #fff;
+    background: #0088cc;
+    border: 1px solid #0088cc;
+}
+
+ul.nav-tabs li:first-child a {
+    border-radius: 4px 4px 0 0;
+}
+
+ul.nav-tabs li:last-child a {
+    border-radius: 0 0 4px 4px;
+}
+
+ul.nav-tabs.affix {
+    top: 50px; /* Set the top position of pinned element */
+}
+
+#about .jumbotron {
+    /*background: url("../img/iie.png") no-repeat center;*/
+    /*background-size: 100% auto;*/
+}
+
+#about p {
+    text-indent: 28px;
+    font-size: 1.8rem;
+    font-family: "微软雅黑", "Hiragino Sans GB", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+}
+
+#about p:first-child {
+    margin-top: 2rem;
+}
+
+#about img {
+    width: 100%;
+    height: 100%;
+}
+
+img.blur {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+}
