@@ -3,14 +3,10 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 var currentPage = 1;
-/*window.onpopstate = function (event) {
- console.log(event);
- console.log(event.state);
- if (event.state == null || event.state.data == null)return;
- //Use false as the second argument below
- // - state will already be on the stack when going Back/Forwards
- //createView(event.state, false);
- };*/
+var marklineLoaded = false;
+var onMarklineLoad = function () {
+    marklineLoaded = true;
+};
 var initFullpage = function () {
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
@@ -94,7 +90,7 @@ var initFullpage = function () {
 
         //↓Scrolling
         autoScrolling: true,
-        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar,.advs-wrapper', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar,.advs-wrapper,#search_tips', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 
@@ -154,8 +150,12 @@ var initFullpage = function () {
                     break;
                 case 5:
                     Sidebar.hide();
-                    iLine.window.starts();
-                    break;
+                    var lineInterval = setInterval(function () {
+                        if (marklineLoaded) {
+                            iLine.window.starts();
+                            clearInterval(lineInterval);
+                        }
+                    }, 500);
                 case 6:
                     break;
             }
@@ -177,6 +177,7 @@ $(function () {
             ArcMap.initFeatureSets();
             ArcMap.init();
         });
+        //$('#lineSe').append(iframe); // add it to wherever you need it in the document
         InputSuggest.init();
         SearchTip.init();
         HomeSearch.listen();

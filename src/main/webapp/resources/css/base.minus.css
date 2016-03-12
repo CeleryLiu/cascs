@@ -48,6 +48,10 @@ body {
     display: inline;
 }
 
+.mt20 {
+    margin-top: 20px;
+}
+
 /* Fixed header and footer.
 * --------------------------------------- */
 .header, .footer {
@@ -126,19 +130,7 @@ body {
     color: #ccc;
 }
 
-.container {
-    position: relative;
-    padding-bottom: 3rem;
-}
-
-.container section h3 {
-    margin-top: 3rem;
-}
-
-.container section h3:first-child {
-    margin-top: 0;
-}
-
+/*custom style*/
 ul.nav-tabs {
     width: 140px;
     margin-top: 20px;
@@ -180,6 +172,26 @@ ul.nav-tabs.affix {
     top: 50px; /* Set the top position of pinned element */
 }
 
+.container {
+    position: relative;
+    padding-bottom: 3rem;
+}
+
+.container section h3 {
+    margin-top: 3rem;
+}
+
+.container section h3:first-child {
+    margin-top: 0;
+}
+
+/*style for manual*/
+#manual section h4 {
+    color: #0057b0;
+    margin-top: 3rem;
+}
+
+/*style for about*/
 #about .jumbotron {
     /*background: url("../img/iie.png") no-repeat center;*/
     /*background-size: 100% auto;*/

@@ -43,7 +43,7 @@
                 </button>
             </div>
             <div class="advs-link-wrapper">
-                <a href="#" class="advs-link" id="advanced-search">精确搜索</a>
+                <a href="#" class="advs-link" id="advanced-search">高级搜索</a>
             </div>
         </form>
     </div>
@@ -64,8 +64,8 @@
                     <span class="search-item" data-search-keyword="ASUS RT-N66W FTP" data-option="0"
                           title="ASUS RT-N66W FTP">ASUS RT-N66W FTP</span>
                 </li>
-                <li><span class="search-item" data-search-keyword="Server: Siemens Switzerland Ltd" data-option="0"
-                          title="Server: Siemens Switzerland Ltd">Server: Siemens Switzerland Ltd</span>
+                <li><span class="search-item" data-search-keyword="Siemens Switzerland Ltd" data-option="0"
+                          title="Siemens Switzerland Ltd">Siemens Switzerland Ltd</span>
                 </li>
                 <li>
                     <span class="search-item" data-search-keyword="HP Officejet Pro 8500 A910 printer http config"

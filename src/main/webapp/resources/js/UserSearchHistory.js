@@ -71,12 +71,20 @@ var UserSearchHistory = {
             var $history = $('.search-history-list').html(''), length = searchHistory.length;
             for (var i = 0; i < length && i < 10; i++) {
                 var wd = searchHistory.pop();
-                var hLi = $('<li></li>');
+                var hLi = $('<li></li>').hover(function () {
+                    $(this).addClass('hover');
+                }, function () {
+                    $(this).removeClass('hover');
+                });
                 var span = $('<span class="search-item">' + wd + '</span>')
                     .attr({
                         'data-search-keyword': wd,
                         'title': wd
-                    }).appendTo(hLi);
+                    }).appendTo(hLi).on('click', function (e) {
+                        e.preventDefault();
+                        $(this).closest('li').addClass('active');
+                        SearchTip.onClick(this);
+                    });
                 var removeBtn = $('<button class="btn" data-toggle="confirmation">&times;</button>').appendTo(hLi)
                     .attr({
                         'data-search-keyword': wd,
@@ -84,13 +92,13 @@ var UserSearchHistory = {
                     });
                 $history.append(hLi);
             }
-            SearchTip.listen();
             $('[data-toggle="confirmation"]').confirmation({
                 'btnOkIcon': '',
                 'btnCancelIcon': '',
                 'btnOkClass': 'btn btn-sm btn-primary mr10',
                 'btnOkLabel': '确定',
                 'btnCancelLabel': '取消',
+                'placement': 'bottom',
                 'onConfirm': function (event, element) {
                     event.preventDefault();
                     UserSearchHistory.deleteItem(element.attr('data-search-keyword'));

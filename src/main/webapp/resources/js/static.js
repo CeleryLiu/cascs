@@ -14,7 +14,7 @@ var Constant = {
         return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent'];
     }()),
     FIXED_ELEMENTS: (function () {
-        return '#header, #footer, #sidebar,#header2, #global_search_wrapper, #tool_wrapper, #advs_wrapper, .sidebar-right';
+        return '#header, #footer, #sidebar,#header2, #global_search_wrapper, #tool_wrapper, #advs_wrapper, #search_tips';
     }()),
     SLIDE_NAV_TOOLTIPS: (function () {
         return ['备用']

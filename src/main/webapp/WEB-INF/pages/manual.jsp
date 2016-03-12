@@ -25,17 +25,60 @@
     <div class="row">
         <div class="col-xs-3" id="myScrollspy">
             <ul class="nav nav-tabs nav-stacked" id="myNav">
-                <li class="active"><a href="#userManual">用户手册</a></li>
+                <li class="active"><a href="#manual">用户手册</a></li>
                 <li><a href="#api">API参考</a></li>
                 <li><a href="#data">数据格式</a></li>
                 <li><a href="#update">更新记录</a></li>
             </ul>
         </div>
         <div class="col-xs-9">
-            <section id="userManual">
+            <section id="manual">
                 <div class="page-header">
                     <h1>用户手册</h1>
                 </div>
+                <section id="section_1">
+                    <h4 class="blue">基于关键词的搜索</h4>
+
+                    <p>通过关键词搜索，如输入任意关键词： emweb，可以搜索包含该关键词的信息。</p>
+                </section>
+                <section id="section_2">
+                    <h4>搜索设备</h4>
+
+                    <p>搜索工业控制设备，如 海康摄像头，查询关键字为：camera hikvision</p>
+                </section>
+                <section id="section_3">
+                    <h4>基于地区范围索</h4>
+
+                    <p>搜索中国所有设备：country:中国 ，将搜索中国所有相关设备。</p>
+
+                    <p>搜索北京市内所有设备：country:中国 city:北京 ，将搜索北京市所有相关设备。</p>
+                </section>
+                <section id="section_4">
+                    <h4>基于特征值的搜索</h4>
+
+                    <p>通过输入系统特征，可搜索相应的设备信息，如：</p>
+                    <ul>
+                        <li>操作系统如：os:linux</li>
+                        <li>开放的端口：port:80</li>
+                        <li>提供的服务：service:http</li>
+                        <li>发现的漏洞：vul:缓冲区溢出</li>
+                    </ul>
+                </section>
+                <section id="section_5">
+                    <h4>复杂搜索</h4>
+
+                    <p>在输入框中，可以输入组合关键词，构造复杂搜索，多个关键词用空格分隔。如：ASUS RT-N66W FTP</p>
+                </section>
+                <section id="section_6">
+                    <h4>基于属性名搜索</h4>
+
+                    <p>在输入框中，可以输入要搜索关键词对应的完整属性名来搜索，属性名格式为<em>一级属性.二级属性....</em>，具体参考<a href="#data">属性说明</a>的相关说明。
+                        如：description.port_info.device_brand:hikvison，搜索品牌为海康威视的所有设备。</p>
+                </section>
+                <section id="section_7">
+                    <h4>高级搜索</h4>
+                    在页面点击<b>高级搜索</b>按钮，使用系统的高级搜索功能，根据提示在输入框中输入对应的关键词，即可按照所有输入条件来搜索。
+                </section>
             </section>
             <section id="api">
                 <div class="page-header">
@@ -68,7 +111,10 @@
                         <td>device_category</td>
                         <td>Array(String)</td>
                         <td>
-                            设备类型。数组元素当前可选值：monitor、industry_control、security_matter、network_device，分别对应监控设备、工控设备、涉密设备、网络设备。
+                            设备类型。数组元素当前可选值：<br>
+                            monitor、industry_control、security_matter、network_device，<br>
+                            分别对应：<br>
+                            监控设备、工控设备、涉密设备、网络设备。
                         </td>
                         <td>["monitor","industry_control"]</td>
                     </tr>
@@ -105,6 +151,7 @@
                     </tbody>
                 </table>
                 <h3 id="device_location">description.device_location</h3>
+                <p>说明：description.port_info.vps_location和description.vul_info.vps_location的结构与此一致。</p>
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -230,12 +277,14 @@
                         <td>banner</td>
                         <td>String</td>
                         <td>探测该端口时候返回的标语信息</td>
-                        <td><pre>HTTP/1.1 200 OK
-                            Server: nginx/1.1.19
-                            Date: Sat, 03 Oct 2015 06:09:24 GMT
-                            Content-Type: text/html; charset=utf-8
-                            Content-Length: 6466
-                            Connection: keep-alive</pre>
+                        <td>
+<pre>
+HTTP/1.1 200 OK
+Server: nginx/1.1.19
+Date: Sat, 03 Oct 2015 06:09:24 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 6466
+Connection: keep-alive</pre>
                         </td>
                     </tr>
                     <tr>
@@ -402,7 +451,7 @@
                         <td>vps_location</td>
                         <td>String</td>
                         <td>执行探测任务的vps的地址</td>
-                        <td>参考<a href="#device_location">device_location</a>></td>
+                        <td>参考<a href="#device_location">device_location</a></td>
                     </tr>
                     <tr>
                         <td>POC_ID</td>
@@ -426,7 +475,9 @@
                         <td>description</td>
                         <td>String</td>
                         <td>漏洞描述信息</td>
-                        <td>Hikvision DVR DS-7204中存在缓冲区溢出漏洞，该漏洞源于程序没有对用户提交的输入执行充分的边界检查……</td>
+                        <td>Hikvision DVR DS-7204中存在缓冲区溢出漏洞，<br>
+                            该漏洞源于程序没有对用户提交的输入执行充分的边界检查……
+                        </td>
                     </tr>
                     <tr>
                         <td>vul_type</td>
@@ -595,7 +646,7 @@
                 <div class="page-header">
                     <h1>更新记录</h1>
                 </div>
-                <p><em>V1.0</em>&nbsp;<b>2016-03-01</b></p>
+                <p>未上线</p>
             </section>
         </div>
     </div>

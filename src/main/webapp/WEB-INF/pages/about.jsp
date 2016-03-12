@@ -35,13 +35,13 @@
                 <div class="page-header">
                     <h1>关于我们</h1>
                 </div>
-                <img src="resources/img/iie.png" class="img-responsive img-rounded" alt="物联网重点科学实验室">
 
                 <div class="jumbotron orange">
                     <h2><cite class="orange">没有网络安全，就没有国家安全。</cite></h2>
 
                     <p><em class="pull-right orange">--习近平</em></p>
                 </div>
+                <img src="resources/img/iie.png" class="img-responsive img-rounded" alt="物联网重点科学实验室">
 
                 <div class="row">
                     <div class="col-xs-6">
@@ -60,13 +60,23 @@
                             在此背景下，物联网安全技术北京市重点实验室研发的《网络空间中联网设备的搜索发现与安全检测系统》，
                             为整个国家网络空间安全的科学研究和技术创新，提供了重要的基础保障和关键支撑！</p>
                     </div>
-                    <div class="col-xs-6"><img src="resources/img/lab-info.jpg"></div>
+                    <div class="col-xs-6"><img src="resources/img/labinfo.jpg" class="img-responsive img-rounded mt20">
+                    </div>
                 </div>
             </section>
             <section id="contact">
                 <div class="page-header">
                     <h1>联系我们</h1>
                 </div>
+                <div>
+                    <h3>中国科学院信息工程研究所</h3>
+                    <address>
+                        地址：北京市海淀区闵庄路甲89号<br>
+                        电话：(010)xxxxxxx<br>
+                        邮箱: xxx@iie.com.cn<br>
+                    </address>
+                </div>
+                <img src="resources/img/location.png">
             </section>
             <%-- <section id="project">
                  <div class="page-header">

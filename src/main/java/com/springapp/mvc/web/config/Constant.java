@@ -31,7 +31,7 @@ public class Constant {
     public static final String WUM_LOGIN_URL = WUM_BASEPATH + "login/validate.json"; //String nam，String psw（密码，前端应该先通过sha1加密一次）
     public static final String WUM_FORGET_PASSWORD = WUM_BASEPATH + "login/forgetpwd.json";  //发送找回密码邮件
 
-    //ArcGis地图相关URL（提供全球歌各国的区域、中国各省份区域、中国各城市区域的数据）
+    //ArcGis地图相关URL（提供全球各国的区域、中国各省份区域、中国各城市区域的数据）
     private static final String ARCGIS_BASEPATH = "http://10.10.2.81:6080/arcgis/rest/services/";
     public static final String countryFeatureSetURL = ARCGIS_BASEPATH + "world/MapServer/0/query?f=json&where='Shape'='面'&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=NAME,REGION&callback=";
     public static final String provinceFeatureSetURL = ARCGIS_BASEPATH + "sheng/MapServer/0/query?f=json&where='OBJECTID'>'0'&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&callback=";
@@ -46,7 +46,7 @@ public class Constant {
     public static final String provinceNameMappingArc_ES = "{\"安徽省\":\"安徽\",\"澳门特别行政区\":\"澳门\",\"北京市\":\"北京\",\"福建省\":\"福建\",\"甘肃省\":\"甘肃\",\"广东省\":\"广东\",\"广西壮族自治区\":\"广西\",\"贵州省\":\"贵州\",\"海南省\":\"海南\",\"河北省\":\"河北\",\"河南省\":\"河南\",\"黑龙江省\":\"黑龙江\",\"湖北省\":\"湖北\",\"湖南省\":\"湖南\",\"吉林省\":\"吉林\",\"江苏省\":\"江苏\",\"江西省\":\"江西\",\"辽宁省\":\"辽宁\",\"内蒙古自治区\":\"内蒙古\",\"宁夏回族自治区\":\"宁夏\",\"青海省\":\"青海\",\"山东省\":\"山东\",\"山西省\":\"山西\",\"陕西省\":\"陕西\",\"上海市\":\"上海\",\"四川省\":\"四川\",\"台湾省\":\"台湾\",\"天津市\":\"天津\",\"西藏自治区\":\"西藏\",\"香港特别行政区\":\"香港\",\"新疆维吾尔自治区\":\"新疆\",\"云南省\":\"云南\",\"浙江省\":\"浙江\",\"重庆市\":\"重庆\"}";
     //-注册用户的默认等级
     public static final int WUM_USER_LEVEL = 5;
-    public static final String RECOMMEND = "Camera Hikvision, ASUS RT-N66W FTP, Server Siemens Switzerland Ltd, HP Officejet Pro 8500 A910";
+    public static final String RECOMMEND = "Camera Hikvision, Siemens Switzerland Ltd";
     public static final String SYS_RECOMMEND = "Camera Hikvision port:80, ASUS RT-N66W FTP, Server: Siemens Switzerland Ltd, HP Officejet Pro 8500 A910,printer http config";
     //--------------------------------数据常量↑---------------------------//
 }

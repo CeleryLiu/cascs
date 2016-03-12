@@ -43,7 +43,7 @@ var HomeSearch = {
             UserSearchHistory.addItem(wd);
             // (4)跳转到list页面
             $.fn.fullpage.silentMoveTo('se2');
-            //(4)提交表单，搜索
+            //(5)提交表单，搜索
             LoadData.post(requestObj);
         });
     }

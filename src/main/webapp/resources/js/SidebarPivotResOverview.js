@@ -501,22 +501,16 @@ var SearchTip = {
         //console.log("SearchTip.render()");
     },
     listen: function () {
-        //推荐搜索、热门搜索、搜索历史相关事件
         $('#search_tips li').hover(function () {
             $(this).addClass('hover');
         }, function () {
             $(this).removeClass('hover');
         });
-        /*            .on('click', function () {
-         $(this).addClass('active');
-         });*/
         $('.search-item').on('click', function (e) {
             e.preventDefault();
             var $this = $(this), wd = $this.attr('data-search-keyword');
+            console.log(this);
             var successCallback;
-            if (!wd) {
-                wd = $this.find('span').attr('data-search-keyword');
-            }
             $this.closest('li').addClass('active');
             if ($('#listSe').hasClass('active')) {
                 successCallback = List.onSearchSucceed;
@@ -535,7 +529,37 @@ var SearchTip = {
             GlobalSearch.setValue(wd);
             HomeSearch.setValue(wd);
             LoadData.post(requestObj);
+            if (currentPage == 1) {
+                $.fn.fullpage.silentMoveTo(2);
+            }
         });
+    },
+    onClick: function (element) {
+        var $this = $(element), wd = $this.attr('data-search-keyword');
+        var successCallback;
+        if (currentPage == 2) {
+            successCallback = List.onSearchSucceed;
+        } else if (currentPage == 3) {
+            successCallback = ArcMap.onSearchSucceed;
+        } else if (currentPage == 1) {
+            successCallback = function (data) {
+                $.fn.fullpage.silentMoveTo('se2');
+                List.onSearchSucceed(data);
+            }
+        }
+        var requestObj = {
+            'url': Constant.LIST_SEARCH_2_URL,
+            'data': {
+                'wd': wd,
+                'page': 1
+            },
+            'success': successCallback
+        };
+        Pivot.init();
+        UserSearchHistory.addItem(wd);
+        GlobalSearch.setValue(wd);
+        HomeSearch.setValue(wd);
+        LoadData.post(requestObj);
     },
     init: function () {
         //生成最初的dom节点
@@ -548,9 +572,26 @@ var SearchTip = {
                     'data-search-keyword': key,
                     'title': key
                 }).appendTo(popularLi);
+                popularLi.hover(function () {
+                    $(this).addClass('hover');
+                }, function () {
+                    $(this).removeClass('hover');
+                });
+                span.on('click', function (e) {
+                    e.preventDefault();
+                    SearchTip.onClick(this);
+                });
                 popSearchList.append(popularLi);
             }
-            SearchTip.listen();
+        });
+        //(2)监听系统推荐事件
+        $('.sys-rec').find('li').hover(function () {
+            $(this).addClass('hover');
+        }, function () {
+            $(this).removeClass('hover');
+        }).find('span').on('click', function (e) {
+            e.preventDefault();
+            SearchTip.onClick(this);
         });
     }
 };
