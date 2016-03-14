@@ -4,8 +4,12 @@
  */
 var currentPage = 1;
 var marklineLoaded = false;
+var analysisOfflineLoad = false;
 var onMarklineLoad = function () {
     marklineLoaded = true;
+};
+var onOfflineAnalysisLode = function () {
+    analysisOfflineLoad = true;
 };
 var initFullpage = function () {
     //functions
@@ -21,7 +25,7 @@ var initFullpage = function () {
     };
     var toggleFixedElement = function (sectionIdx) {
         var hideIdxList = Constant.NO_SEARCH_SECTION_IDX;
-        if ($.inArray(sectionIdx, hideIdxList) > -1) {
+        if ($.inArray(sectionIdx, hideIdxList) == -1) {
             /*GlobalSearch.hide();
              Sidebar.hide();
              Pivot.hide();
@@ -146,17 +150,26 @@ var initFullpage = function () {
                     UserSearchHistory.init();
                     break;
                 case 4:
-                    Sidebar.hide();
+                    //Sidebar.hide();
                     break;
                 case 5:
-                    Sidebar.hide();
+                    //Sidebar.hide();
                     var lineInterval = setInterval(function () {
                         if (marklineLoaded) {
                             iLine.window.starts();
                             clearInterval(lineInterval);
                         }
                     }, 500);
+                    break;
                 case 6:
+                    break;
+                case 7:
+                    var offInterval = setInterval(function () {
+                        if (analysisOfflineLoad) {
+                            aOffline.window.AnalysisOffline.init();
+                            clearInterval(offInterval);
+                        }
+                    }, 500);
                     break;
             }
             $.fn.fullpage.reBuild();

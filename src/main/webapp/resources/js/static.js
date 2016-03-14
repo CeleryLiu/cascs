@@ -19,8 +19,8 @@ var Constant = {
     SLIDE_NAV_TOOLTIPS: (function () {
         return ['备用']
     }()),
-    NO_SEARCH_SECTION_IDX: (function () {
-        return [0, 1, 4, 5, 6]
+    SEARCH_SECTION_IDX: (function () {
+        return [2, 3]
     }()),
 
     //↓urls
@@ -77,6 +77,12 @@ var Constant = {
     }()),
     LOCAL_SUGGEST_URL: (function () {
         return 'resources/data/suggestions.json';
+    }()),
+    ANALYSIS_OFFLINE_SUMMARY_RUL: (function () {
+        return 'analysis/getSummary';
+    }()),
+    ANALYSIS_OFFLINE_LATEST_RUL: (function () {
+        return 'analysis/getLatestData';
     }()),
 
     //↓pagination

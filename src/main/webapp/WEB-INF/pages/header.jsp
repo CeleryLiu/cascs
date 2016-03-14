@@ -22,7 +22,16 @@
                         <li data-menuanchor="se3"><a href="#se3">定位</a></li>
                         <li data-menuanchor="se4"><a href="#se4">全球视觉</a></li>
                         <li data-menuanchor="se5"><a href="#se5">数据探测</a></li>
-                        <%--<li><a href="resources/search_result_display/autoplay.html">数据分析</a></li>--%>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                统计<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#se7/offline">离线统计</a></li>
+                                <li><a href="#se7/online">在线统计</a></li>
+                            </ul>
+                        </li>
                         <li data-menuanchor="se6">
                             <a href="#se6" id="loginNav">登录</a>
                             <a href="#" id="logout"><span></span> | 退出</a>

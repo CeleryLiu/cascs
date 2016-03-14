@@ -32,10 +32,10 @@
     <link rel="stylesheet" href="${awsFont}">
     <link rel="stylesheet" type="text/css"
           href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
-    <spring:url value="resources/css/app.min.css" var="appCss"/>
-    <link rel="stylesheet" href="${appCss}">
+    <%--    <spring:url value="resources/css/app.min.css" var="appCss"/>
+        <link rel="stylesheet" href="${appCss}">--%>
 
-   <%-- <spring:url value="resources/css/base.css" var="baseCss"/>
+    <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
     <spring:url value="resources/css/home-sec.css" var="homeCss"/>
     <link rel="stylesheet" href="${homeCss}">
@@ -52,7 +52,7 @@
     <spring:url value="resources/css/advs.css" var="advsCss"/>
     <link rel="stylesheet" href="${advsCss}">
     <spring:url value="resources/css/media.css" var="mediaCss"/>
-    <link rel="stylesheet" href="${mediaCss}">--%>
+    <link rel="stylesheet" href="${mediaCss}">
     <!--[if IE]>
     <script type="text/javascript">
         var console = {
@@ -85,11 +85,11 @@
     <script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
             src="${paceJs}"></script>
 
-    <spring:url value="resources/js/app.min.js" var="appJs"/>
-    <script src="${appJs}"></script>
+    <%--    <spring:url value="resources/js/app.min.js" var="appJs"/>
+        <script src="${appJs}"></script>--%>
 
 
-   <%-- <spring:url value="resources/js/static.js" var="staticJs"/>
+    <spring:url value="resources/js/static.js" var="staticJs"/>
     <script src="${staticJs}"></script>
     <spring:url value="resources/js/helper.js" var="helperJs"/>
     <script src="${helperJs}"></script>
@@ -118,7 +118,7 @@
     <spring:url value="resources/js/User.js" var="userJs"/>
     <script src="${userJs}"></script>
     <spring:url value="resources/js/main.js" var="mainJs"/>
-    <script src="${mainJs}"></script>--%>
+    <script src="${mainJs}"></script>
     <script type="text/javascript">
         var djConfig = {parseOnLoad: true}
     </script>
@@ -200,6 +200,13 @@
         </div>
         <div class="slide" data-anchor="se6_pwd" id="pwdRetrieveSl">
             <%@include file="user/pwdRetrieve.jsp" %>
+        </div>
+    </div>
+    <div class="section" data-anchor="se7" id="analysis">
+        <div class="slide" data-anchor="se7_offline" id="aOffline">
+            <iframe src="analysis-offline" onload="onOfflineAnalysisLode(this)" name="aOffline"></iframe>
+        </div>
+        <div class="slide" data-anchor="se7_online" id="aOnline">
         </div>
     </div>
 </div>

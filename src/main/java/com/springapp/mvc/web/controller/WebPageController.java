@@ -188,4 +188,16 @@ public class WebPageController {
         logger.debug("WebPageController.about() ======");
         return "about";
     }
+
+/*    @RequestMapping(value = "/analysis-online", method = RequestMethod.GET)
+    public String onlineAnalysis() {
+        logger.debug("WebPageController.onlineAnalysis() ======");
+        return "analysis-online";
+    }*/
+
+    @RequestMapping(value = "/news-security", method = RequestMethod.GET)
+    public String securityNews() {
+        logger.debug("WebPageController.securityNews() ======");
+        return "news-security";
+    }
 }
