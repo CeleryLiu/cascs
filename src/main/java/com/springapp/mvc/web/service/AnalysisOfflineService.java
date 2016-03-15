@@ -8,32 +8,23 @@ package com.springapp.mvc.web.service;/*
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.springapp.mvc.web.dao.AnalysisOfflineDAO;
+import com.springapp.mvc.web.config.Constant;
+import com.springapp.mvc.web.util.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AnalysisOfflineService {
     private static final Logger logger = LoggerFactory.getLogger(AnalysisOfflineService.class);
-    private final AnalysisOfflineDAO dao;
+    private RestClient rc = new RestClient();
 
-    @Autowired
-    public AnalysisOfflineService(AnalysisOfflineDAO dao) {
-        this.dao = dao;
-    }
-
-    public JSONObject getSummary() {
+    public JSONObject getSummary(String scale, String size) {
         logger.debug("AnalysisOfflineService.getSummary() ======");
-        System.out.println("AnalysisOfflineService.getSummary () ======");
-        JSONObject result = dao.getSummary();
-        JSONArray data = result.getJSONArray("data");
-        if (data.size() > 0) {
-            result.put("statuscode", "200");
-            result.put("errmsg", "");
-            result.put("data", data);
-        } else {
+//        System.out.println("AnalysisOfflineService.getSummary () ======");
+        String url = Constant.SE_OFFLINE_ANALYSIS_SUMMARY_URL + "?scale=" + scale + "&size=" + size;
+        JSONObject result = rc.getJSONObject(url);
+        if (result.getJSONArray("data").size() == 0) {
             result.put("statuscode", "204");
             result.put("errmsg", "");
             result.put("data", new JSONArray());
@@ -41,16 +32,12 @@ public class AnalysisOfflineService {
         return result;
     }
 
-    public JSONObject getLatest() {
+    public JSONObject getLatest(String size) {
         logger.debug("AnalysisOfflineService.getLatest() ======");
-        System.out.println("AnalysisOfflineService.getLatest() ======");
-        JSONObject result = dao.getLatestData();
-        JSONArray data = result.getJSONArray("data");
-        if (data.size() > 0) {
-            result.put("statuscode", "200");
-            result.put("errmsg", "");
-            result.put("data", data);
-        } else {
+//        System.out.println("AnalysisOfflineService.getLatest() ======");
+        String url = Constant.SE_OFFLINE_ANALYSIS_LATEST_URL + "/" + size;
+        JSONObject result = rc.getJSONObject(url);
+        if (result.getJSONArray("data").size() == 0) {
             result.put("statuscode", "204");
             result.put("errmsg", "");
             result.put("data", new JSONArray());

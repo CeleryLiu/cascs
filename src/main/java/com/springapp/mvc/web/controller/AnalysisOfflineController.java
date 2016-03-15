@@ -3,7 +3,7 @@ package com.springapp.mvc.web.controller;
  * Created by lyp on 2016-03-14.
  * @author lyp
  * @date 2016-03-14
- * @Description: 离线分析控制器
+ * @Description: 离线统计分析控制器
  * @Version: V1.0
  */
 
@@ -12,10 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class AnalysisOfflineController {
@@ -28,23 +26,22 @@ public class AnalysisOfflineController {
     }
 
     @RequestMapping(value = "/analysis/getLatestData")
-    public String getLatestData(@RequestParam(value = "scale") String scale) {
-        return service.getLatest().toJSONString();
+    //size为次数，即获取多少次扫描后的结果，默认为1
+    public String getLatestData(@RequestParam(value = "size", required = false, defaultValue = "1") String size) {
+        logger.debug("AnalysisOfflineController.getLatestData() ======");
+        return service.getLatest(size).toJSONString();
     }
 
     @RequestMapping(value = "/analysis/getSummary")
-    public String getSummary() {
-        return service.getSummary().toJSONString();
+    public String getSummary(@RequestParam(value = "scale") String scale,
+                             @RequestParam(value = "size") String size) {
+        logger.debug("AnalysisOfflineController.getSummary() ======");
+        return service.getSummary(scale, size).toJSONString();
     }
 
-    //返回离线分析页面view及页面渲染需要的所有数据model
-    @RequestMapping(value = "/analysis-offline", method = RequestMethod.GET)
-    public ModelAndView offlineAnalysis() {
-        logger.debug("offlineAnalysis.offlineAnalysis() ======");
-        System.out.println("offlineAnalysis.offlineAnalysis() ======");
-        ModelAndView mav = new ModelAndView("analysis-offline");
-        mav.addObject("summary", service.getSummary());
-        mav.addObject("latest", service.getLatest());
-        return mav;
-    }
+/*    public static void main(String[] args) {
+        AnalysisOfflineController aoc = new AnalysisOfflineController(new AnalysisOfflineService());
+        System.out.println(aoc.getLatestData("3"));
+        System.out.println(aoc.getSummary("Global", "10"));
+    }*/
 }

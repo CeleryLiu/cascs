@@ -246,10 +246,19 @@ b {
 }
 
 .header .nav li a {
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-decoration: none;
     text-align: center;
     color: #ccc;
+}
+
+.header .dropdown-menu {
+    background: #333;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus {
+    background: #333;
+    color: #fff;
 }
 
 .header .nav li a.current, .header .nav li a:hover,

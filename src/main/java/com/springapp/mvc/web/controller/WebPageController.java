@@ -195,6 +195,14 @@ public class WebPageController {
         return "analysis-online";
     }*/
 
+    //返回离线分析页面view及页面渲染需要的所有数据model
+    @RequestMapping(value = "/analysis-offline", method = RequestMethod.GET)
+    public String offlineAnalysis() {
+        logger.debug("offlineAnalysis.offlineAnalysis() ======");
+        System.out.println("offlineAnalysis.offlineAnalysis() ======");
+        return "analysis-offline";
+    }
+
     @RequestMapping(value = "/news-security", method = RequestMethod.GET)
     public String securityNews() {
         logger.debug("WebPageController.securityNews() ======");
