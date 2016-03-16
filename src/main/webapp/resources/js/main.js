@@ -4,12 +4,12 @@
  */
 var currentPage = 1;
 var marklineLoaded = false;
-var analysisOfflineLoad = false;
+var analysisOfflineLoaded = false;
 var onMarklineLoad = function () {
     marklineLoaded = true;
 };
 var onOfflineAnalysisLode = function () {
-    analysisOfflineLoad = true;
+    analysisOfflineLoaded = true;
 };
 var initFullpage = function () {
     //functions
@@ -165,7 +165,7 @@ var initFullpage = function () {
                     break;
                 case 7:
                     var offInterval = setInterval(function () {
-                        if (analysisOfflineLoad) {
+                        if (analysisOfflineLoaded) {
                             aOffline.window.AnalysisOffline.init();
                             clearInterval(offInterval);
                         }
