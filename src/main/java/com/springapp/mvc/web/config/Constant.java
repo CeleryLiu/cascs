@@ -18,9 +18,10 @@ public class Constant {
     public static final String SE_LIST_SEARCH_2_URL = SE_BASEPATH + "search?q={q}";//-普通（文字）场景下的搜索
     public static final String SE_MARKPOINT_SEARCH_URL = SE_BASEPATH + "search/mapcluster?q={q}";//-3D设备展示场景下的搜索
     public static final String SE_HOTKEY_URL = SE_BASEPATH + "search/hotkey";//热搜数据。返回值：{"wd":{"freeom":2,"free":1,"time":1}}
+    //http://10.10.2.143:8888/count?scale=Global&startTime=0&endTime=1539222405000或http://10.10.2.143:8888/count?scale=Global&size=1
     public static final String SE_OFFLINE_ANALYSIS_SUMMARY_URL = "http://10.10.2.143:8888/count";//离线分析
+    //http://10.10.2.143:8888/agg/n, n∈N+
     public static final String SE_OFFLINE_ANALYSIS_LATEST_URL = "http://10.10.2.143:8888/agg";//离线分析
-
     //↓逻辑平台相关URL（提供3D地图数据流展示数据的接口）
     private static final String LG_BASEPATH = "http://10.10.2.84:8082/";//裸机平台根目录
     public static final String LG_MARKLINE_SEARCH_URL = LG_BASEPATH + "devicescan/getLinesSegment?numPerPage=100&pageId=";

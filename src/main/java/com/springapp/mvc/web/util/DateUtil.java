@@ -6,6 +6,8 @@ package com.springapp.mvc.web.util;/*
  * @Version: V1.0
  */
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -94,36 +96,55 @@ public class DateUtil {
     }
 
     /*
-     * 将Unix时间戳转换成指定格式的日期
-     * @param timestampStr 字符串类型的unix时间戳
+     * 将时间戳转换成指定格式的日期
+     * @param timestampStr 字符串类型的时间戳
      * @param formats 日期格式
      * @return 指定格式的日期
      */
-    public static String unixTimestamp2Date(String timestampStr, String formats) {
-        Long timestamp = Long.parseLong(timestampStr) * 1000;
-        String date = new java.text.SimpleDateFormat(formats).format(new java.util.Date(timestamp));
-        return date;
+    public static String timestamp2Date(long timestamp, String formats) {
+        if (formats == null) {
+            formats = "yyyy-MM-dd";
+        }
+        return new java.text.SimpleDateFormat(formats).format(new java.util.Date(timestamp));
+    }
+
+
+    /*
+     * 获取时间戳所表示的年、月、日
+     * @param long 时间戳
+     * @return JSONObject{year:2015,month:03,day:01}
+     */
+    public static JSONObject getJsonDate(long timestamp) {
+        String formatted = timestamp2Date(timestamp, "yyyy-MM-dd");
+        String[] arr = formatted.split("-");
+        JSONObject result = new JSONObject();
+        result.put("date", formatted);
+        result.put("year", arr[0]);
+        result.put("month", arr[1]);
+        result.put("day", arr[2]);
+        return result;
     }
 
     /*
-     * 获取当前日期前六个月的第一天的unix时间戳
+     * 获取当前日期前n个月的第一天的unix时间戳（包含当前月）
      * @param
-     * @return 当前日期之前6个月第一天的unix时间戳
+     * @return 当前日期之前n个月第一天的时间戳
      */
-    public static long getFirstDayOfPrevious6Month() {
+    public static long getFirstDayOfPreviousNMonth(int n) {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, -5);   //获取当前时间的前6个月（包含当前月）
-        System.out.println(calendar.getTimeInMillis() / 1000);
-        return calendar.getTimeInMillis() / 1000;
+        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) - n + 1, 1);
+        return calendar.getTimeInMillis();
     }
 
-    public static void main(String[] args) {
-        getFirstDayOfPrevious6Month();
+/*    public static void main(String[] args) {
+        getFirstDayOfPreviousNMonth(6);
 //        System.out.println(getFirstDayOfMonth(new Date()));
 //        System.out.println(getFirstDayOfMonth(2015, 12));
 //        System.out.println(getLastDayOfMonth(new Date()));
 //        System.out.println(getLastDayOfMonth(2016, 1));
-//        System.out.println(unixTimestamp2Date(getFirstDayOfMonth(new Date()) + "", "yyyy-MM-dd"));
-
-    }
+//        System.out.println(timestamp2Date(Calendar.getInstance().getTimeInMillis() + "", "yyyy-MM-dd"));
+//        long timestamp = System.currentTimeMillis();
+//        System.out.println(timestamp);
+        System.out.println(getJsonDate(System.currentTimeMillis()));
+    }*/
 }
