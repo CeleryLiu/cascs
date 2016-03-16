@@ -165,7 +165,7 @@ var initFullpage = function () {
                     break;
                 case 7:
                     var offInterval = setInterval(function () {
-                        if (analysisOfflineLoaded) {
+                        if (aOffline.window.AnalysisOffline) {
                             aOffline.window.AnalysisOffline.init();
                             clearInterval(offInterval);
                         }
