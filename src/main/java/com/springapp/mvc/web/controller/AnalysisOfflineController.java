@@ -11,6 +11,7 @@ import com.springapp.mvc.web.service.AnalysisOfflineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,10 +35,17 @@ public class AnalysisOfflineController {
 
     @RequestMapping(value = "/analysis/getSummary")
     public String getSummary(@RequestParam(value = "scale") String scale,
-                             @RequestParam(value = "size") String size) {
+                             @RequestParam(value = "size") int size) {
         logger.debug("AnalysisOfflineController.getSummary() ======");
         return service.getSummary(scale, size).toJSONString();
     }
+
+    @RequestMapping(value = "/analysis/getNMonthSummary/{monthCount}")
+    public String getNMonthSummary(@PathVariable("monthCount") int monthCount) {
+        logger.debug("AnalysisOfflineController.getNMonthSummary() ======");
+        return service.getNMonthSummary(monthCount).toJSONString();
+    }
+
 
 /*    public static void main(String[] args) {
         AnalysisOfflineController aoc = new AnalysisOfflineController(new AnalysisOfflineService());

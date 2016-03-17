@@ -81,6 +81,12 @@ var Constant = {
     ANALYSIS_OFFLINE_SUMMARY_RUL: (function () {
         return 'analysis/getSummary';
     }()),
+    ANALYSIS_OFFLINE_N_SUMMARY_RUL: (function () {
+        return 'analysis/getNMonthSummary';
+    }()),
+    ANALYSIS_OFFLINE_N: (function () {
+        return 6;
+    }()),
     ANALYSIS_OFFLINE_LATEST_RUL: (function () {
         return 'analysis/getLatestData';
     }()),
