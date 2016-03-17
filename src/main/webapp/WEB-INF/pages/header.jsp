@@ -29,7 +29,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#se7/offline">离线统计</a></li>
-                                <li><a href="#se7/online">在线统计</a></li>
+                                <%--<li><a href="#se7/online">在线统计</a></li>--%>
                             </ul>
                         </li>
                         <li data-menuanchor="se6">

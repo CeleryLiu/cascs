@@ -8,7 +8,7 @@
 var Constant = {
     //↓fullPage.js
     SECTION_NAV_TOOLTIPS: (function () {
-        return ['首页', '搜索', '定位', '展示', '探测', '用户']
+        return ['首页', '搜索', '定位', '展示', '探测', '用户','分析']
     }()),
     SECTIONS_BG_COLOR: (function () {
         return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent'];

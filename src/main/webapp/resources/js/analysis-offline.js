@@ -712,7 +712,7 @@ var AnalysisOffline = {
                     //console.log('AnalysisOffline.genSummary() ======');
                     // ajax callback
                     var successCallback = function (data) {
-                        console.log(data);
+                        //console.log(data);
                         var dataMap = resp.data.dataMap;
                         var timeline = resp.data.dataTimeline;
                         //设置timeline

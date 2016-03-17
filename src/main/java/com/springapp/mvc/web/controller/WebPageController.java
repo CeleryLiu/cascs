@@ -208,4 +208,10 @@ public class WebPageController {
         logger.debug("WebPageController.securityNews() ======");
         return "news-security";
     }
+
+    @RequestMapping(value = "/news/{num}", method = RequestMethod.GET)
+    public String newsN(@PathVariable(value = "num") int num) {
+        logger.debug("WebPageController.newsN() ======");
+        return "news/news-" + num;
+    }
 }

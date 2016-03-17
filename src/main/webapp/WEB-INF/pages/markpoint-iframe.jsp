@@ -167,7 +167,7 @@
 <spring:url value="resources/js/helper.js" var="helperJs"/>
 <script src="${helperJs}"></script>
 <spring:url value="resources/js/device-globe.js" var="globeJs"/>
-<script src="${globeJs}"></script>--%>ter.jsp" %>--%>
+<script src="${globeJs}"></script>--%>
 
 
 <script src="resources/js/libs/jquery-1.11.3.min.js"></script>

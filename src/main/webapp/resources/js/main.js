@@ -3,6 +3,7 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 var currentPage = 1;
+/*
 var marklineLoaded = false;
 var analysisOfflineLoaded = false;
 var onMarklineLoad = function () {
@@ -10,7 +11,7 @@ var onMarklineLoad = function () {
 };
 var onOfflineAnalysisLode = function () {
     analysisOfflineLoaded = true;
-};
+};*/
 var initFullpage = function () {
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
@@ -155,7 +156,7 @@ var initFullpage = function () {
                 case 5:
                     //Sidebar.hide();
                     var lineInterval = setInterval(function () {
-                        if (marklineLoaded) {
+                        if (iLine.window) {
                             iLine.window.starts();
                             clearInterval(lineInterval);
                         }
@@ -164,6 +165,7 @@ var initFullpage = function () {
                 case 6:
                     break;
                 case 7:
+                    // 或者在iframe中添加onload="onOfflineAnalysisLode(this)"
                     var offInterval = setInterval(function () {
                         if (aOffline.window.AnalysisOffline) {
                             aOffline.window.AnalysisOffline.init();

@@ -88,7 +88,6 @@
     <%--    <spring:url value="resources/js/app.min.js" var="appJs"/>
         <script src="${appJs}"></script>--%>
 
-
     <spring:url value="resources/js/static.js" var="staticJs"/>
     <script src="${staticJs}"></script>
     <spring:url value="resources/js/helper.js" var="helperJs"/>
@@ -186,7 +185,7 @@
         <iframe src="markpoint-iframe" name="iPoint"></iframe>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
-        <iframe src="markline-iframe" name="iLine" onload="onMarklineLoad(this)"></iframe>
+        <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">
@@ -204,7 +203,7 @@
     </div>
     <div class="section" data-anchor="se7" id="analysis">
         <div class="slide" data-anchor="se7_offline" id="aOffline">
-            <iframe src="analysis-offline" onload="onOfflineAnalysisLode(this)" name="aOffline"></iframe>
+            <iframe src="analysis-offline" name="aOffline"></iframe>
         </div>
         <div class="slide" data-anchor="se7_online" id="aOnline">
         </div>

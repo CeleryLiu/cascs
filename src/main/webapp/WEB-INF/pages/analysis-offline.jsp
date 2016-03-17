@@ -35,8 +35,9 @@
 
         .chart-holder {
             height: 50rem;
-            min-height: 30rem;
+            min-height: 200px;
             margin-right: 4rem;
+            margin-left: 2rem;
             color: #ddd;
         }
 
