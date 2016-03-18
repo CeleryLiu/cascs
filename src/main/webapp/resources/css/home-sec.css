@@ -27,29 +27,34 @@
     max-width: 100%
 }
 
+.search-tips,
 .latest-news {
-    display: none;
+    /*display: none;*/
     overflow: hidden;
     padding: 1rem 1.5rem;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.1)
 }
 
+.search-tips .block,
 .latest-news .block {
     float: left;
     width: 48%
 }
 
+.search-tips .block:first-child,
 .latest-news .block:first-child {
     margin-right: 4%
 }
 
+.search-tips h4,
 .latest-news h4 {
     margin: 0 0 1rem;
     font-size: 1.8rem;
     font-weight: normal
 }
 
+.search-tips li,
 .latest-news li {
     line-height: 1.8rem;
     font-size: 1.6rem;
@@ -65,9 +70,10 @@
     color: #9f9fa0
 }
 
+.search-tips li a,
 .latest-news li a {
     display: inline-block;
-    max-width: 70%;
+    max-width: 68%;
     max-height: 2rem;
     overflow: hidden;
     vertical-align: middle;
@@ -76,6 +82,7 @@
     white-space: nowrap
 }
 
+.search-tips li:hover,
 .latest-news li a:hover {
     /*text-decoration: underline;*/
     color: #f27f02;
@@ -85,9 +92,14 @@
     float: right
 }
 
+.latest-news div.block:last-child {
+    display: none;
+}
+
+/*
 .search-tips {
     display: block;
-}
+}*/
 
 .search-tips h4 {
     color: #337ab7;
@@ -119,9 +131,10 @@
     margin: 0;
 }
 
+/*
 .search-tips ul li:hover {
     color: #f27f02;
-}
+}*/
 
 /*--------从这以上都是新添加的-----------*/
 .home-search .home-search-form {

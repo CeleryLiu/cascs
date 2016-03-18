@@ -151,6 +151,7 @@
                     </tbody>
                 </table>
                 <h3 id="device_location">description.device_location</h3>
+
                 <p>说明：description.port_info.vps_location和description.vul_info.vps_location的结构与此一致。</p>
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -664,7 +665,7 @@ Connection: keep-alive</pre>
                 top: -20
             }
         });
-        $('.header').find('a').on('click', function (e) {
+        $('.header a[href]').on('click', function (e) {
             e.preventDefault();
             window.location.href = basePath + $(this).attr('href');
         });

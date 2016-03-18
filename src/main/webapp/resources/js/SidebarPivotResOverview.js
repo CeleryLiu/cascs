@@ -16,7 +16,6 @@ var Sidebar = {
         $(this._WRAPPER_SEL).hide(Constant.HIDE_SHOW_SPEED);
     },
     isHidden: function () {
-        //console.log('Sidebar.isHidden()');
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     render: function (data) {

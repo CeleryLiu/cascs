@@ -23,13 +23,23 @@
                         <li data-menuanchor="se4"><a href="#se4">全球视觉</a></li>
                         <li data-menuanchor="se5"><a href="#se5">数据探测</a></li>
                         <li role="presentation" class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 统计<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#se7/offline">离线统计</a></li>
-                                <%--<li><a href="#se7/online">在线统计</a></li>--%>
+                                <li><a href="#se7/se7_offline">离线统计</a></li>
+                                <%--<li><a href="#se7/se7_online">在线统计</a></li>--%>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown"  role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                资讯<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#se8/se8_security">安全动态</a></li>
+                                <%--<li><a href="#se8/se8_info">新闻资讯</a></li>--%>
                             </ul>
                         </li>
                         <li data-menuanchor="se6">

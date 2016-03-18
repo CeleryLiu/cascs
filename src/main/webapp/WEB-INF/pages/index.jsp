@@ -187,6 +187,18 @@
     <div class="section" data-anchor="se5" id="lineSe">
         <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
+    <div class="section" data-anchor="se7" id="analysis">
+        <div class="slide" data-anchor="se7_offline" id="aOffline">
+            <iframe src="analysis-offline" onload="onOfflineLoaded(this)" name="aOffline"></iframe>
+        </div>
+        <%--<div class="slide" data-anchor="se7_online" id="aOnline"></div>--%>
+    </div>
+    <div class="section" data-anchor="se8" id="news">
+        <div class="slide" data-anchor="se8_security" id="security">
+            <%@include file="news-security.jsp" %>
+        </div>
+        <div class="slide" data-anchor="se8_info" id="info"></div>
+    </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">
             <%@include file="user/login.jsp" %>
@@ -199,13 +211,6 @@
         </div>
         <div class="slide" data-anchor="se6_pwd" id="pwdRetrieveSl">
             <%@include file="user/pwdRetrieve.jsp" %>
-        </div>
-    </div>
-    <div class="section" data-anchor="se7" id="analysis">
-        <div class="slide" data-anchor="se7_offline" id="aOffline">
-            <iframe src="analysis-offline" name="aOffline"></iframe>
-        </div>
-        <div class="slide" data-anchor="se7_online" id="aOnline">
         </div>
     </div>
 </div>

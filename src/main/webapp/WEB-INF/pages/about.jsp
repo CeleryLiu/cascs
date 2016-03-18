@@ -99,7 +99,7 @@
                 top: -20
             }
         });
-        $('.header').find('a').on('click', function (e) {
+        $('.header a[href]').on('click', function (e) {
             e.preventDefault();
             window.location.href = basePath + $(this).attr('href');
         });

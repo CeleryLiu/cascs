@@ -86,6 +86,8 @@ body {
     font-family: Microsoft YaHei, arial, helvetica, simsun, sans-serif;
     color: #333;
     color: rgba(0, 0, 0, 0.5);
+    /*background: url("../img/pc_bg.jpg") center no-repeat;*/
+    /*background-size: cover;*/
     background: lightgray;
     background: no-repeat top center fixed linear-gradient(#3f4657, #452525);
 }

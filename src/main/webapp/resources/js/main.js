@@ -3,15 +3,14 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 var currentPage = 1;
-/*
-var marklineLoaded = false;
-var analysisOfflineLoaded = false;
-var onMarklineLoad = function () {
-    marklineLoaded = true;
+var onOfflineLoaded = function () {
+    var offInterval = setInterval(function () {
+        if (aOffline.window.AnalysisOffline) {
+            aOffline.window.AnalysisOffline.init();
+            clearInterval(offInterval);
+        }
+    }, 500);
 };
-var onOfflineAnalysisLode = function () {
-    analysisOfflineLoaded = true;
-};*/
 var initFullpage = function () {
     //functions
     var addTooltip4Slides = function (slideNavTipList) {
@@ -166,12 +165,12 @@ var initFullpage = function () {
                     break;
                 case 7:
                     // 或者在iframe中添加onload="onOfflineAnalysisLode(this)"
-                    var offInterval = setInterval(function () {
-                        if (aOffline.window.AnalysisOffline) {
-                            aOffline.window.AnalysisOffline.init();
-                            clearInterval(offInterval);
-                        }
-                    }, 500);
+                    /*  var offInterval = setInterval(function () {
+                     if (aOffline.window.AnalysisOffline) {
+                     aOffline.window.AnalysisOffline.init();
+                     clearInterval(offInterval);
+                     }
+                     }, 500);*/
                     break;
             }
             $.fn.fullpage.reBuild();

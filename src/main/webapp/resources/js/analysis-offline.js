@@ -522,6 +522,7 @@ var AnalysisOffline = {
                             controlStyle: {
                                 normal: textStyle
                             },
+                            autoPlay : true,
                             playInterval: 1000,
                             currentIndex: 5
                         },

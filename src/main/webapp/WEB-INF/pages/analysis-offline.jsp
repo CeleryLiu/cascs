@@ -70,33 +70,33 @@
     <section class="row country">
         <h3 class="light-blue">按国家统计</h3>
 
-        <div class="col-xs-12 chart-holder pull-right" id="countryMap">countryMap</div>
+        <div class="col-xs-12 chart-holder pull-right" id="countryMap"></div>
     </section>
     <section class="row brand">
         <h3 class="light-blue">按品牌统计</h3>
 
-        <div class="col-xs-12 chart-holder pull-right" id="brandPie">brandPie</div>
+        <div class="col-xs-12 chart-holder pull-right" id="brandPie"></div>
     </section>
     <section class="row type">
         <h3 class="light-blue">按设备类型统计</h3>
 
-        <div class="col-xs-12 chart-holder pull-right" id="typePie">typePie</div>
+        <div class="col-xs-12 chart-holder pull-right" id="typePie"></div>
     </section>
     <section class="row port">
         <h3 class="light-blue">按端口统计</h3>
 
-        <div class="col-xs-12 chart-holder pull-right" id="portPie">portPie</div>
+        <div class="col-xs-12 chart-holder pull-right" id="portPie"></div>
     </section>
     <section class="row service">
         <h3 class="light-blue">按服务统计</h3>
 
-        <div class="col-xs-12 chart-holder pull-right" id="servicePie">servicePie</div>
+        <div class="col-xs-12 chart-holder pull-right" id="servicePie"></div>
     </section>
 </div>
 <spring:url value="resources/js/libs/jquery-1.11.3.min.js" var="jqJs"/>
 <script src="${jqJs}"></script>
 <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
-<script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
+<script data-pace-options='{"startOnPageLoad": true,"ajax":true }'
         src="${paceJs}"></script>
 <spring:url value="resources/plugins/echarts-2.2.7/build/dist/echarts.js" var="echarts"/>
 <script src="${echarts}"></script>

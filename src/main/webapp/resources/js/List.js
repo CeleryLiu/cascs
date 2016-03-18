@@ -172,6 +172,7 @@ var List = {
         if (data && wd) {
             GlobalSearch.setValue(wd);
             HomeSearch.setValue(wd);
+            Sidebar.show();
             this.onSearchSucceed(data);
         }
     }
