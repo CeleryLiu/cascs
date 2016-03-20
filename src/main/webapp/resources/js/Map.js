@@ -463,7 +463,7 @@ var ArcMap = {
         if (statuscode == 200) {
             //console.log('Map search succeed. statuscode == 200', data);
             //(3)生成sidebar
-            Sidebar.render(data);
+            Sidebar.render2(data);
             //(4)生成搜索结果页面
             ArcMap.render(data);
         } else if (statuscode == 204) {

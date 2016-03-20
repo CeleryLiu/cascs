@@ -13,7 +13,7 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>CASCS</title>
+    <title>Cyberspace Assets Search and Classification System</title>
     <meta name="author" content="LiuYanping"/>
     <meta name="description" content="index"/>
     <meta name="keywords" content="cyberspace,device,fingerprint,security,search engine,scan,web"/>
@@ -31,7 +31,9 @@
     <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
     <link rel="stylesheet" href="${awsFont}">
     <link rel="stylesheet" type="text/css"
-          href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+          href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+    <%--<link rel="stylesheet" type="text/css"--%>
+    <%--href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
     <%--    <spring:url value="resources/css/app.min.css" var="appCss"/>
         <link rel="stylesheet" href="${appCss}">--%>
 
@@ -122,8 +124,8 @@
         var djConfig = {parseOnLoad: true}
     </script>
     <%--arcgis lib and map js--%>
-    <script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
-    <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
+    <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
+    <script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
 </head>
 <body>
 <%@include file="header.jsp" %>

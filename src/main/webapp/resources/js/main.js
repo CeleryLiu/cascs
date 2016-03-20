@@ -30,6 +30,7 @@ var initFullpage = function () {
              Sidebar.hide();
              Pivot.hide();
              ResultOverview.hide();*/
+            $('#header2').hide();
             if (!GlobalSearch.isHidden()) {
                 GlobalSearch.hide();
             }
@@ -44,23 +45,24 @@ var initFullpage = function () {
                 ResultOverview.hide();
             }
         } else {
-            /*GlobalSearch.show();
+            $('#header2').show();
+            GlobalSearch.show();
+            Sidebar.show();
+            Pivot.show();
+            ResultOverview.show();
+            /*   if (GlobalSearch.isHidden()) {
+             GlobalSearch.show();
+             }
+             if (Sidebar.isHidden()) {
              Sidebar.show();
+             SearchTip.show();
+             }
+             if (Pivot.isHidden()) {
              Pivot.show();
-             ResultOverview.show();*/
-            if (GlobalSearch.isHidden()) {
-                GlobalSearch.show();
-            }
-            if (Sidebar.isHidden()) {
-                Sidebar.show();
-                SearchTip.show();
-            }
-            if (Pivot.isHidden()) {
-                Pivot.show();
-            }
-            if (ResultOverview.isHidden()) {
-                ResultOverview.show();
-            }
+             }
+             if (ResultOverview.isHidden()) {
+             ResultOverview.show();
+             }*/
         }
         if (sectionIdx == 3) {
             $('#tool_wrapper').show();
@@ -81,7 +83,7 @@ var initFullpage = function () {
         //↓Accessibility
         animateAnchor: false,//scroll with animation or will directly load on the given section; default to true
         keyboardScrolling: false,
-        //recordHistory: false,
+        recordHistory: true,
 
         //↓Design
         controlArrows: false,

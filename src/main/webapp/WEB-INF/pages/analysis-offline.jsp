@@ -61,8 +61,8 @@
         <h1 class="light-blue">网络设备统计</h1>
     </div>
     <h3 class="light-blue">设备扫描统计分析</h3>
+    <p>最近6个月，设备扫描统计</p>
     <section class="row summary">
-
         <div class="col-xs-12 chart-holder pull-right" id="summaryChart"></div>
     </section>
 

@@ -25,7 +25,7 @@ var LoadData = {
             });
     },
     post: function (requestObj) {
-        //console.log("LoadData.post() ======, requestObj = ");
+        //console.log("LoadData.post() ======, requestObj = ",requestObj.data);
         //Pace.start();
         $.ajax({
             url: requestObj.url,

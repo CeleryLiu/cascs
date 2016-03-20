@@ -19,7 +19,7 @@ var Constant = {
     SLIDE_NAV_TOOLTIPS: (function () {
         return ['备用']
     }()),
-    SEARCH_SECTION_IDX: (function () {
+    NO_SEARCH_SECTION_IDX: (function () {
         return [2, 3]
     }()),
 
