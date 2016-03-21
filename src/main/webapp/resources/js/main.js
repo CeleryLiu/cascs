@@ -189,6 +189,11 @@ var initFullpage = function () {
     });
 };
 $(function () {
+        $.scrollUp({
+            scrollText: '回到顶部'
+        });
+        $('.cite-item').matchHeight();
+        $('.news-item').matchHeight();
         Pace.ignore(function () {
             ArcMap.initFeatureSets();
             ArcMap.init();

@@ -542,22 +542,26 @@ b {
 
 .news-wrapper .news-item {
     display: inline-block;
-    width: 30%;
-    height: 18rem;
+    height: 20rem;
 }
 
 .news-item .news-bg {
     position: relative;
-    /*width: 185px;*/
     padding: 1rem 1rem .5rem 1rem;
     text-align: left;
-    height: 13.5rem;
+    height: 16.5rem;
     border-left: 1px dashed #a88970;
     border-right: 1px dashed #a88970;
     background-color: #a88970;
     font-size: 1.6rem;
     background-clip: padding-box;
     color: #fff;
+}
+
+@media screen and (max-width: 498px) {
+    .news-item .news-bg {
+        font-size: 1rem;
+    }
 }
 
 .news-item .news-bg h3 {

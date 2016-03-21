@@ -22,7 +22,7 @@
                         <li data-menuanchor="se3"><a href="#se3">定位</a></li>
                         <li data-menuanchor="se4"><a href="#se4">全球视觉</a></li>
                         <li data-menuanchor="se5"><a href="#se5">数据探测</a></li>
-                        <li role="presentation" class="dropdown">
+                        <li data-menuanchor="se7" role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 统计<span class="caret"></span>
@@ -32,7 +32,7 @@
                                 <%--<li><a href="#se7/se7_online">在线统计</a></li>--%>
                             </ul>
                         </li>
-                        <li role="presentation" class="dropdown">
+                        <li data-menuanchor="se8" role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown"  role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 资讯<span class="caret"></span>
@@ -42,6 +42,7 @@
                                 <%--<li><a href="#se8/se8_info">新闻资讯</a></li>--%>
                             </ul>
                         </li>
+                        <li data-menuanchor="se9"><a href="#se">数据探测</a></li>
                         <li data-menuanchor="se6">
                             <a href="#se6" id="loginNav">登录</a>
                             <a href="#" id="logout"><span></span> | 退出</a>

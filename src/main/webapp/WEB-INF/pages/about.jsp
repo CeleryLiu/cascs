@@ -21,16 +21,90 @@
 </head>
 <body data-spy="scroll" data-target="#myScrollspy">
 <%@include file="header.jsp" %>
-<div class="container">
+<div class="container about">
     <div class="row">
         <div class="col-xs-3" id="myScrollspy">
             <ul class="nav nav-tabs nav-stacked" id="myNav">
-                <li class="active"><a href="#about">关于我们</a></li>
+                <li class="active"><a href="#project">系统简介</a></li>
+                <li><a href="#about">关于我们</a></li>
                 <li><a href="#contact">联系我们</a></li>
-                <%--<li><a href="#project">项目简介</a></li>--%>
             </ul>
         </div>
         <div class="col-xs-9">
+            <section id="project">
+                <div class="page-header">
+                    <h1>网络空间设备搜索与检测系统简介</h1>
+                </div>
+                <section>
+                    <h4 class="red"><strong>系统功能描述</strong></h4>
+
+                    <p>本系统在网络空间中发现设备如camera、NVR、DVR、路由器、交换机等，并对其进行安全检测。</p>
+                </section>
+                <section>
+                    <h4 class="red"><strong>系统架构</strong></h4>
+
+                    <img src="resources/img/system-1.png" class="img-responsive" title="系统架构图" alt="系统架构图">
+                </section>
+                <section>
+                    <h4 class="red"><strong>部署图</strong></h4>
+                    <img src="resources/img/system-2.png" class="img-responsive" title="系统部署图" alt="系统部署图">
+                </section>
+                <section>
+                    <h4 class="red"><strong>关键技术</strong></h4>
+
+                    <ul>
+                        <li>自动化特征提取与指纹生成技术</li>
+                        <li>嵌入式设备漏洞挖掘技术与脆弱性分析技术</li>
+                        <li>快速精细化探测扫描技术</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4 class="red"><strong>系统应用成果展示</strong></h4>
+
+                    <p class="achievement">监控设备搜索成果</p>
+                    <ul>
+                        <li>全球搜索发现监控设备达141多万个</li>
+                        <li>全国搜索发现监控设备达19多万个</li>
+                        <li>搜索结果超过zoomeye/shodan</li>
+                        <li>全国搜索到打印机12808个</li>
+                    </ul>
+
+                    <p class="achievement">工控设备搜索成果</p>
+                    <ul>
+                        <li>对Siemens S7 PLC工控设备，全球搜索4085个</li>
+                        <li>对Modbus设备全球搜索到1.9万个</li>
+                        <li>分析和提取了DNP3、modbus、BACnet、IEC61850、Profinet、Siemens、EtherNet/IP等工控协议特征</li>
+                        <li>研究了包括西门子、施耐德、浙大中控、和利时等知名企业的PLC等工控设备</li>
+                        <li>研究了SCADA、HMI等上位机系统软件</li>
+                        <li>漏洞挖掘成果</li>
+                        <li>信工所自己挖掘漏洞验证，2015年挖掘漏洞9个，占CNVD收录监控漏洞的一半</li>
+                    </ul>
+
+                    <p class="achievement">工控设备渗透成果</p>
+
+                    <p>发现56个存在安全隐患的系统，覆盖能源、制造、水利、电力、楼宇等各个领域。</p>
+                    <img src="resources/img/system-3.png" class="img-responsive" title="工控设备渗透成功" alt="工控设备渗透成果">
+
+                    <p class="achievement">安保工作成果</p>
+                    <ul>
+                        <li>
+                            抗战胜利70周年纪念活动（9.3阅兵）<br>
+                            扫描阅兵现场及周边区域监控点位，确保阅兵现场影像不外泄（尤其是非授权外媒）阅兵重要保障部门工作状态影像不外泄，荣获BM局先进集体表扬和个人嘉奖
+                        </li>
+                        <li>
+                            青岛航母基地周边监控设备专项检查<br>
+                            对青岛航母基地周边及军港城市进行了视频监控设备的搜索与安全检查，搜索到青岛航母基地周边441个、青岛市围内3530个，发现大量监控设备存在弱密钥等可利用漏洞问题，上报保密局
+                        </li>
+                        <li>
+                            十八届五中全会及其他重要活动<br>京西宾馆等重点敏感场所周边的安全保障工作
+                        </li>
+                        <li>上海合作组织总理会议<br>郑州上合组织峰会期间 视频监控设备专项安全保障工作</li>
+                        <li>
+                            国家安全机关相关工作<br>为四川省信息安全测评中心开展联网视频监控设备专项检测
+                        </li>
+                    </ul>
+                </section>
+            </section>
             <section id="about">
                 <div class="page-header">
                     <h1>关于我们</h1>
@@ -78,11 +152,6 @@
                 </div>
                 <img src="resources/img/location.png">
             </section>
-            <%-- <section id="project">
-                 <div class="page-header">
-                     <h1>项目简介</h1>
-                 </div>
-             </section>--%>
         </div>
     </div>
 </div>

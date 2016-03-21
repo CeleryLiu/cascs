@@ -55,6 +55,8 @@
     <link rel="stylesheet" href="${advsCss}">
     <spring:url value="resources/css/media.css" var="mediaCss"/>
     <link rel="stylesheet" href="${mediaCss}">
+    <spring:url value="resources/css/cites.css" var="citesCss"/>
+    <link rel="stylesheet" href="${citesCss}">
     <!--[if IE]>
     <script type="text/javascript">
         var console = {
@@ -86,6 +88,12 @@
     <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
     <script data-pace-options='{"startOnPageLoad": false,"ajax":true }'
             src="${paceJs}"></script>
+    <spring:url value="resources/js/libs/jquery.matchHeight-min.js" var="matchHeightJs"/>
+    <script src="${matchHeightJs}"></script>
+    <spring:url value="resources/js/libs/jquery.scrollUp.min.js" var="scrollUpJs"/>
+    <script src="${scrollUpJs}"></script>
+    <spring:url value="resources/js/libs/jquery.unveil.js" var="unveilJs"/>
+    <script src="${unveilJs}"></script>
 
     <%--    <spring:url value="resources/js/app.min.js" var="appJs"/>
         <script src="${appJs}"></script>--%>
@@ -200,6 +208,9 @@
             <%@include file="news-security.jsp" %>
         </div>
         <div class="slide" data-anchor="se8_info" id="info"></div>
+    </div>
+    <div class="section" data-anchor="se9" id="cites">
+        <%@include file="cites.jsp" %>
     </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">
