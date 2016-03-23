@@ -8,10 +8,10 @@
 var Constant = {
     //↓fullPage.js
     SECTION_NAV_TOOLTIPS: (function () {
-        return ['首页', '搜索', '定位', '展示', '探测', '用户','分析', '资讯']
+        return ['首页', '搜索', '定位', '全球视角', '数据探测', '统计', '资讯', '实例', '工控', '用户']
     }()),
     SECTIONS_BG_COLOR: (function () {
-        return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent'];
+        return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent','transparent', 'transparent','#fff'];
     }()),
     FIXED_ELEMENTS: (function () {
         return '#header, #footer, #sidebar,#header2, #global_search_wrapper, #tool_wrapper, #advs_wrapper, #search_tips';

@@ -189,8 +189,8 @@
         <div class="col-sm-6 col-md-4 col-lg-3 cite-item">
             <div class="thumbnail">
                 <a href="http://213.200.226.137/" title="Power Measurement" target="_blank">
-                    <img class="lazy" src="resources/img/cites-logo/pm.jpg"
-                         data-src="resources/img/cites-logo/pm.jpg" alt="Power Measurement">
+                    <img class="lazy" src="resources/img/cites-logo/pm.png"
+                         data-src="resources/img/cites-logo/pm.png" alt="Power Measurement">
                 </a>
             </div>
             <div class="caption">

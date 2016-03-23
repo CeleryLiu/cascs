@@ -657,6 +657,7 @@ var MyFeatureLayer = {
         }
 
         function renderFeatureLayer(layer, min, max) {
+
             require([
                 "esri/graphic",
                 "esri/renderers/SimpleRenderer", "esri/Color",
@@ -670,8 +671,10 @@ var MyFeatureLayer = {
                     minDataValue: min,
                     maxDataValue: max,
                     colors: [
-                        new Color([221, 200, 225, 0.75]),
-                        new Color([121, 37, 135, 0.7])
+                        new Color([235, 222, 237, 0.75]),
+                        new Color([176,126,184,0.75]),
+                        new Color([121,38,135,0.75]),
+                        new Color([108, 36, 120, 0.7])
                     ]
                 });
                 layer.setRenderer(renderer);

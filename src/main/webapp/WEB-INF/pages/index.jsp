@@ -212,6 +212,12 @@
     <div class="section" data-anchor="se9" id="cites">
         <%@include file="cites.jsp" %>
     </div>
+<%--    <div class="section" data-anchor="se10" id="vision">
+        <iframe src="vision" name="vision"></iframe>
+    </div>--%>
+    <div class="section" data-anchor="se11" id="patch">
+        <%@include file="patch.jsp" %>
+    </div>
     <div class="section" data-anchor="se6" id="user">
         <div class="slide" data-anchor="se6_login" id="loginSl">
             <%@include file="user/login.jsp" %>

@@ -131,7 +131,7 @@ public class WebPageController {
     @RequestMapping(value = "/user/agreement", method = RequestMethod.GET)
     public String agreement() {
         logger.debug("WebPageController.agreement()----------------------");
-        System.out.println("WebPageController.agreement()--------X--------");
+//        System.out.println("WebPageController.agreement()--------X--------");
         return "user/agreement";
     }
 
@@ -199,7 +199,7 @@ public class WebPageController {
     @RequestMapping(value = "/analysis-offline", method = RequestMethod.GET)
     public String offlineAnalysis() {
         logger.debug("WebPageController.offlineAnalysis() ======");
-        System.out.println("WebPageController.offlineAnalysis() ======");
+//        System.out.println("WebPageController.offlineAnalysis() ======");
         return "analysis-offline";
     }
 
@@ -213,5 +213,12 @@ public class WebPageController {
     public String newsN(@PathVariable(value = "num") int num) {
         logger.debug("WebPageController.newsN() ======");
         return "news/news-" + num;
+    }
+
+
+    @RequestMapping(value = "/vision", method = RequestMethod.GET)
+    public String vision() {
+        logger.debug("WebPageController.vision() ======");
+        return "vision";
     }
 }

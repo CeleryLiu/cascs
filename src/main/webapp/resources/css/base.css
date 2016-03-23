@@ -347,7 +347,6 @@ b {
     height: 3.2rem;
     padding-left: .5rem;
     text-align: left;
-    background-color: hsla(223, 16%, 29%, 1);
     /*background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
     /*background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
 }
@@ -441,8 +440,11 @@ b {
     width: 100%;
     padding: 1rem 0;
     /*background: lightgray;*/
-    background: no-repeat top center fixed linear-gradient(#3f4657, #452525);
     /*background-color: red;*/
+}
+
+.list-header {
+    background: no-repeat top center fixed linear-gradient(#3f4657, #452525);
 }
 
 /* Style for pivots texts
@@ -582,4 +584,63 @@ b {
     font-size: 1.4rem;
     text-align: center;
     line-height: 2rem;
+}
+
+#patch {
+    font-size: 150%;
+    color: #000;
+    background: url("../img/pc_bg.jpg") no-repeat center;
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='scale.jpg', sizingMethod=scale);
+    /*filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5;*/
+}
+
+#patch p {
+    text-indent: 2rem;
+    text-align: left;
+    font-size: 1.8rem;
+    line-height: 2;
+    margin-bottom: 1rem;
+}
+
+#patch p:first-child {
+    margin-top: 2rem;
+}
+
+#patch table {
+    color: #000;
+    border: 2px solid rgba(221, 221, 221, 0.5);
+}
+
+#patch .table > tbody > tr > td {
+    border-top: 1px solid rgba(221, 221, 221, 0.17);
+}
+
+#patch .table > thead > tr > th {
+    border-bottom: 1px solid #ddd;
+}
+
+#patch table th, #patch table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#patch .table-bordered > thead > tr > th {
+    font-weight: bold;
+    border-bottom-width: 1px;
+}
+
+.table-hover > tbody > tr:hover > td.iv,
+#patch .table > thead > tr > th.iv {
+    color: red !important;
+}
+
+.table-hover > tbody > tr:hover > td.ze,
+#patch .table > thead > tr > th.ze {
+    color: #0000ff !important;
+}
+
+.table-hover > tbody > tr:hover > td.sd,
+#patch .table > thead > tr > th.sd {
+    color: purple !important;
 }

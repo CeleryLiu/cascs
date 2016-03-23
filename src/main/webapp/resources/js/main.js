@@ -96,7 +96,7 @@ var initFullpage = function () {
 
         //↓Scrolling
         autoScrolling: true,
-        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar,.advs-wrapper,#search_tips', //avoid the auto scroll when scrolling over map
+        normalScrollElements: '#mapHolder,#list_wrapper,#sidebar,.advs-wrapper,#search_tips,#patch', //avoid the auto scroll when scrolling over map
         normalScrollElementTouchThreshold: 3,
         scrollOverflow: true,
 
@@ -132,6 +132,9 @@ var initFullpage = function () {
 
             currentPage = index;
             var data = Session.get('data');
+            if (index != 2) {
+                List.onLeave();
+            }
             switch (index) {
                 case 1:
                     break;

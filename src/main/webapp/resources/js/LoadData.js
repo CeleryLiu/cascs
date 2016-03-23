@@ -8,7 +8,7 @@
  */
 var LoadData = {
     get: function (requestObj) {
-        //console.log("LoadData.get() ======, requestObj = ", requestObj);
+        console.log("LoadData.get() ======, requestObj = ", requestObj);
         $.ajax({
             url: requestObj.url,
             type: "get",
@@ -51,6 +51,7 @@ var LoadData = {
             .complete(function (jqXHR, textStatus) {
                 disableButtons(false);
                 Pace.stop();
+                //$.fn.fullpage.reBuild();
             });
     }
 };

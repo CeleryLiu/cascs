@@ -1,0 +1,295 @@
+@charset "UTF-8";
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: "microsoft yahei", Verdana, Tahoma, Helvetica, Arial, sans-serif;
+}
+
+body {
+    padding-right: 3rem;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+
+.container-fluid, .row-fluid, .row, .col-sm-1, .col-xs-10, .col-sm-11, .col-sx-2, .col-xs-2, .col-xs-10 {
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid {
+    height: 100%;
+}
+
+#main {
+    height: 82%;
+    /*height: calc(100% - 13rem);*/
+}
+
+#sidebar {
+    height: 100%;
+    border-left: solid 2px #e1e1e1;
+}
+
+#sidebar .nav-right li {
+    text-align: center;
+}
+
+#sidebar .nav-right li:hover {
+    background-color: #e1e1e1;
+}
+
+#sidebar .nav-right li:not(:last-child) {
+    border-bottom: 2px solid #e1e1e1;
+}
+
+#sidebar .nav-right a {
+    text-decoration: none;
+}
+
+#sidebar .nav-right a:before {
+    content: "";
+    display: inline-block;
+    height: 8.7%;
+    /*height: calc(9% - 4px);*/
+    vertical-align: middle;
+}
+
+#sidebar .nav-right li:focus a,
+#sidebar .nav-right li:hover a {
+    font-weight: bold;
+}
+
+#mapHolder {
+    height: 100%;
+}
+
+#selectBox {
+    height: 100%;
+    border: solid 1px #000000;
+}
+
+#gallery {
+    width: 100%;
+    padding: 5px 30px;
+    background: #e1eef5;
+}
+
+.ad-gallery {
+    width: 100%;
+}
+
+.ad-gallery .ad-image-wrapper {
+    z-index: 111;
+    width: 30rem;
+    height: 50rem;
+    margin-bottom: 10px;
+    position: fixed;
+    bottom: 13rem;
+    left: 0;
+    overflow: hidden;
+    background-color: #CCC;
+}
+
+.ad-gallery .ad-image-wrapper .ad-loader {
+    position: absolute;
+    z-index: 10;
+    top: 48%;
+    left: 48%;
+    border: 1px solid #CCC;
+}
+
+.ad-gallery .ad-image-wrapper .ad-next {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    cursor: pointer;
+    display: block;
+}
+
+.ad-gallery .ad-image-wrapper .ad-prev {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    cursor: pointer;
+    display: block;
+    z-index: 100;
+}
+
+.ad-gallery .ad-image-wrapper .ad-prev .ad-prev-image, .ad-gallery .ad-image-wrapper .ad-next .ad-next-image {
+    background: url(../img/ad_prev.png);
+    width: 30px;
+    height: 30px;
+    display: none;
+    position: absolute;
+    top: 47%;
+    left: 0;
+    z-index: 101;
+}
+
+.ad-gallery .ad-image-wrapper .ad-next .ad-next-image {
+    background: url(../img/ad_next.png);
+    width: 30px;
+    height: 30px;
+    right: 0;
+    left: auto;
+}
+
+.ad-gallery .ad-image-wrapper .ad-image {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 109;
+}
+
+.ad-gallery .ad-image-wrapper .ad-image a img {
+    border: 0;
+}
+
+.ad-gallery .ad-image-wrapper .ad-image .ad-image-description {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 7px;
+    text-align: left;
+    width: 100%;
+    z-index: 2;
+    background: url(../img/opa75.png);
+    color: #000;
+}
+
+* html .ad-gallery .ad-image-wrapper .ad-image .ad-image-description {
+    background: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='opa75.png', sizingMethod=scale);
+}
+
+.ad-gallery .ad-image-wrapper .ad-image .ad-image-description .ad-description-title {
+    display: block;
+}
+
+.ad-gallery .ad-controls {
+    height: 1rem;
+}
+
+.ad-gallery .ad-info {
+    float: left;
+}
+
+.ad-gallery .ad-slideshow-controls {
+    float: right;
+}
+
+.ad-gallery .ad-slideshow-controls .ad-slideshow-start,
+.ad-gallery .ad-slideshow-controls .ad-slideshow-stop {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.ad-gallery .ad-slideshow-controls .ad-slideshow-countdown {
+    padding-left: 5px;
+    font-size: 0.9em;
+}
+
+.ad-gallery .ad-slideshow-running .ad-slideshow-start {
+    cursor: default;
+    font-style: italic;
+}
+
+.ad-gallery .ad-nav {
+    width: 100%;
+    position: relative;
+}
+
+.ad-gallery .ad-forward, .ad-gallery .ad-back {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+}
+
+/* IE 6 doesn't like height: 100% */
+/** html .ad-gallery .ad-forward, .ad-gallery .ad-back {
+    height: 10rem;
+}*/
+
+.ad-gallery .ad-back {
+    cursor: pointer;
+    left: -20px;
+    width: 13px;
+    display: block;
+    background: url(../img/ad_scroll_back.png) 0px 5rem no-repeat;
+}
+
+.ad-gallery .ad-forward {
+    cursor: pointer;
+    display: block;
+    right: -20px;
+    width: 13px;
+    background: url(../img/ad_scroll_forward.png) 0px 5rem no-repeat;
+}
+
+.ad-gallery .ad-nav .ad-thumbs {
+    overflow: hidden;
+    width: 100%;
+}
+
+.ad-gallery .ad-thumbs .ad-thumb-list {
+    float: left;
+    width: 9000px;
+    list-style: none;
+}
+
+.ad-gallery .ad-thumbs li {
+    float: left;
+    padding-right: 5px;
+}
+
+.ad-gallery .ad-thumbs li a {
+    display: block;
+}
+
+.ad-gallery .ad-thumbs li a img {
+    height: 10rem;
+    border: 3px solid #CCC;
+    display: block;
+}
+
+.ad-gallery .ad-thumbs li a.ad-active img {
+    border: 3px solid #616161;
+}
+
+/* Can't do display none, since Opera won't load the images then */
+.ad-preloads {
+    position: absolute;
+    left: -9000px;
+    top: -9000px;
+}
+
+#descriptions {
+    position: relative;
+    height: 50px;
+    background: #EEE;
+    margin-top: 10px;
+    width: 640px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#descriptions .ad-image-description {
+    position: absolute;
+}
+
+#descriptions .ad-image-description .ad-description-title {
+    display: block;
+}

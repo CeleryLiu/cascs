@@ -166,9 +166,12 @@ var List = {
             console.log('list error');
             errorHandler();
         }
+        $.fn.fullpage.reBuild();
     },
     onLoad: function () {
         $(Sidebar._WRAPPER_SEL).addClass('list');
+        $('#header2').addClass('list-header');
+        $('.global-search-wrapper').addClass('list-header');
         var data = Session.get('data'), wd = Session.get('wd');
         if (data && wd) {
             GlobalSearch.setValue(wd);
@@ -176,6 +179,11 @@ var List = {
             Sidebar.show();
             this.onSearchSucceed(data);
         }
+    },
+    onLeave: function () {
+        $(Sidebar._WRAPPER_SEL).removeClass('list');
+        $('#header2').removeClass('list-header');
+        $('.global-search-wrapper').removeClass('list-header');
     }
 };
 

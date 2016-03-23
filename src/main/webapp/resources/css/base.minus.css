@@ -255,3 +255,29 @@ img.blur {
     font-size: 1.4rem;
     padding: 3px 8px;
 }
+
+@media (max-width: 1200px) and (min-width: 996px) {
+    .header .nav li a {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 996px) and (min-width: 886px) {
+    .header .nav li a {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 886px) and (min-width: 798px) {
+    .header .nav li a {
+        padding: 10px 8px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 798px)  {
+    .header .nav li a {
+        padding: 10px 6px;
+        font-size: 1.2rem;
+    }
+}

@@ -29,7 +29,7 @@ var paginator = function (totalCounts, pageSize, currentPageNum, visiblePages, o
         //设置页码的Html结构,其中可以使用{{page}}代表当前页，{{totalPages}}代表总页数，{{totalCounts}}代表总条目数
         onPageChange: function (num, type) { //num: 目标页；type:“init”（初始化），“change”（点击分页）
             if (type == 'change') {
-                onChangeFunc(num);
+                List.search(num);
             }
         }
     })
