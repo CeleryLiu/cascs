@@ -52,9 +52,35 @@
         <div class="col-xs-10 col-sm-11">
             <div class="row" id="main">
                 <div id="selectBox" class="col-xs-2"></div>
-                <div id="mapHolder" class="col-xs-10"></div>
+                <div id="mapHolder" class="col-xs-10" style="background-color: peachpuff"></div>
+                <span class="show-control"><i class="fa fa-caret-right" title="显示"></i></span>
             </div>
-            <div class="ad-image-wrapper"></div>
+            <div class="row active-image-wrapper">
+                <div class="col-xs-offset-2" id="active_image">
+                    <div class="left">
+                        <p>title</p>
+
+                        <div class="thumbnail">
+                            <img src="resources/img/vision/police/58.118.157.61.jpg" alt="xxx" class="img-rounded">
+
+                            <div class="caption">
+                                <p>
+                                    IP地址：1.1.1.1<br>
+                                    经度：1，纬度：2<br>
+                                    国家：澳大利亚，城市：墨尔本
+                                </p>
+
+                                <p><a href="#" class="btn btn-danger" role="button">Go Live</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <p>title</p>
+                        <img src="resources/img/vision/police/58.118.157.61.jpg">
+                    </div>
+                    <div class="hide-control"><i class="fa fa-caret-left" title="隐藏"></i></div>
+                </div>
+            </div>
             <div class="row ad-gallery" id="gallery">
                 <div class="ad-controls"></div>
                 <div class="ad-nav">
@@ -174,33 +200,8 @@
 <script src="${fontJs}"></script>
 <spring:url value="resources/js/libs/jquery.ad-gallery.js" var="gaJs"/>
 <script src="${gaJs}"></script>
-<script type="text/javascript">
-    $(function () {
-        $('.nav-right a').fontFlex(16, 24, 60);//字体自适应
-        var galleries = $('.ad-gallery').adGallery();
-        $('#switch-effect').change(
-                function () {
-                    galleries[0].settings.effect = $(this).val();
-                    return false;
-                }
-        );
-        $('#toggle-slideshow').click(
-                function () {
-                    galleries[0].slideshow.toggle();
-                    return false;
-                }
-        );
-        $('#toggle-description').click(
-                function () {
-                    if (!galleries[0].settings.description_wrapper) {
-                        galleries[0].settings.description_wrapper = $('#descriptions');
-                    } else {
-                        galleries[0].settings.description_wrapper = false;
-                    }
-                    return false;
-                }
-        );
-    });
-</script>
+<spring:url value="resources/js/vision.js" var="vJs"/>
+<script src="${vJs}"></script>
+
 </body>
 </html>

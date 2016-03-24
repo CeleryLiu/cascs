@@ -15,7 +15,7 @@ public class Constant {
     public static final String SE_ADVANCED_SEARCH_URL = SE_BASEPATH + "search/advanced?q={q}";//-高级搜索
     public static final String SE_MAP_SEARCH_URL = SE_BASEPATH + "search/map?q={q}";//-地图场景下的搜索
     public static final String SE_LIST_SEARCH_URL = SE_BASEPATH + "search?wd={wd}&page={page}";//-普通（文字）场景下的搜索
-    public static final String SE_LIST_SEARCH_2_URL = SE_BASEPATH + "search?q={q}";//-普通（文字）场景下的搜索
+    public static final String SE_LIST_SEARCH_2_URL = SE_BASEPATH + "search?q={q}";//-普通（文字）场景下的搜索2
     public static final String SE_MARKPOINT_SEARCH_URL = SE_BASEPATH + "search/mapcluster?q={q}";//-3D设备展示场景下的搜索
     public static final String SE_HOTKEY_URL = SE_BASEPATH + "search/hotkey";//热搜数据。返回值：{"wd":{"freeom":2,"free":1,"time":1}}
     //http://10.10.2.143:8888/count?scale=Global&startTime=0&endTime=1539222405000或http://10.10.2.143:8888/count?scale=Global&size=1

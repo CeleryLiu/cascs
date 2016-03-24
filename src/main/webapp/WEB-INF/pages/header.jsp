@@ -13,7 +13,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="">CASCS</a>
+                    <a class="navbar-brand" href="#"><img src="">InfraView(CAS)</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right" id="menu">
@@ -43,8 +43,8 @@
                             </ul>
                         </li>
                         <li data-menuanchor="se9"><a href="#se9">实例</a></li>
+                        <li data-menuanchor="se10"><a href="#se10">看世界</a></li>
                         <li data-menuanchor="se11"><a href="#se11">工控</a></li>
-                        <%--<li data-menuanchor="se10"><a href="#se10">看世界</a></li>--%>
                         <li data-menuanchor="se6">
                             <a href="#se6" id="loginNav">登录</a>
                             <a href="#" id="logout"><span></span> | 退出</a>
