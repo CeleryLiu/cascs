@@ -91,24 +91,7 @@
                 <div class="ad-controls"></div>
                 <div class="ad-nav">
                     <div class="ad-thumbs">
-                        <ul class="ad-thumb-list">
-                            <li>
-                                <a href="resources/img/vision/picture20160327/1.51.204.144_1435161600000.jpg">
-                                    <img src="resources/img/vision/picture20160327/1.51.204.144_1435161600000.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/picture20160327/1.51.218.68_1435161600000.jpg">
-                                    <img src="resources/img/vision/picture20160327/1.51.218.68_1435161600000.jpg"
-                                         data-ip="123"
-                                         data-country="中国"
-                                         data-city="北京"
-                                         data-time="2016-03-25"
-                                         data-lng="132.5"
-                                         data-lat="132.6">
-                                </a>
-                            </li>
-                        </ul>
+                        <ul class="ad-thumb-list"></ul>
                     </div>
                 </div>
             </div>

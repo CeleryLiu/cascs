@@ -93,5 +93,6 @@ var init = function () {
     });
     $('.nav-right').find('a').on('click', function () {
         console.log($(this).text());
+        initPictures($(this).text());
     });
 };
