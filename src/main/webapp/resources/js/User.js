@@ -3,14 +3,14 @@
  */
 var User = {
     setNavUsername: function (name) {
-        var $usermenus = $('#menu').find('li[data-menuanchor="se6"]');
+        var $usermenus = $('#menu').find('li[data-menuanchor="se11"]');
         var $logout = $('#logout');
         $usermenus.find('a').hide();
         $logout
             .on('click', function (e) {
                 e.preventDefault();
                 Session.reset('username');
-                $usermenus.find('a[href="#se6/se6_login"]').show();
+                $usermenus.find('a[href="#se11/se11_login"]').show();
                 $logout.hide().find('span').text('');
             })
             .show().css('display', 'inline-block')
@@ -148,8 +148,8 @@ var User = {
                 $.Showmsg("邮件发送成功！");
                 setTimeout(function () {
                     $.Hidemsg();
-                    //$.fn.fullpage.silentMoveTo('se6', 'se6_login');
-                    window.location.href = getRootPath() + '#se6/se6_pwd';
+                    //$.fn.fullpage.silentMoveTo('se11', 'se11_login');
+                    window.location.href = getRootPath() + '#se11/se11_pwd';
                 }, 3000);
             } else if (data.reason) {
                 console.log("code != 1");

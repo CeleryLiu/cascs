@@ -44,41 +44,47 @@
         </script>--%>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
     <style type="text/css">
+
     </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-10 col-sm-11">
+        <div class="col-xs-10 col-lg-11">
             <div class="row" id="main">
                 <div id="selectBox" class="col-xs-2"></div>
                 <div id="mapHolder" class="col-xs-10" style="background-color: peachpuff"></div>
-                <span class="show-control"><i class="fa fa-caret-right" title="显示"></i></span>
+                <span class="show-control" title="显示"><i class="fa fa-caret-right"></i></span>
             </div>
             <div class="row active-image-wrapper">
-                <div class="col-xs-offset-2" id="active_image">
-                    <div class="left">
-                        <p>title</p>
+                <div id="active_image">
+                    <div class="col-xs-2 col-sm-1 hide-control" title="隐藏">
+                        <%--<i class="fa fa-caret-left"></i>--%>
+                        <div id="triangle-left"></div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 left">
+                        <p>CAMERA INFO</p>
 
-                        <div class="thumbnail">
-                            <img src="resources/img/vision/police/58.118.157.61.jpg" alt="xxx" class="img-rounded">
+                        <div class="thumbnail" id="image_container">
+                            <img src="" alt="xxx" class="img-rounded">
 
                             <div class="caption">
                                 <p>
                                     IP地址：1.1.1.1<br>
-                                    经度：1，纬度：2<br>
-                                    国家：澳大利亚，城市：墨尔本
+                                    经纬度：2<br>
+                                    国家：澳大利亚<br>
+                                    城市：墨尔本<br>
+                                    时间：2011-1-1
                                 </p>
 
                                 <p><a href="#" class="btn btn-danger" role="button">Go Live</a></p>
                             </div>
                         </div>
                     </div>
-                    <div class="right">
-                        <p>title</p>
-                        <img src="resources/img/vision/police/58.118.157.61.jpg">
+                    <div class="col-xs-7 col-sm-8 right">
+                        <p>CAMERA TIMELAPSE</p>
+                        <img src="" id="img_right" class="img img-rounded">
                     </div>
-                    <div class="hide-control"><i class="fa fa-caret-left" title="隐藏"></i></div>
                 </div>
             </div>
             <div class="row ad-gallery" id="gallery">
@@ -87,86 +93,19 @@
                     <div class="ad-thumbs">
                         <ul class="ad-thumb-list">
                             <li>
-                                <a href="resources/img/vision/police/58.118.157.61.jpg">
-                                    <img src="resources/img/vision/police/58.118.157.61.jpg">
+                                <a href="resources/img/vision/picture20160327/1.51.204.144_1435161600000.jpg">
+                                    <img src="resources/img/vision/picture20160327/1.51.204.144_1435161600000.jpg">
                                 </a>
                             </li>
                             <li>
-                                <a href="resources/img/vision/police/61.164.83.133.jpg">
-                                    <img src="resources/img/vision/police/61.164.83.133.jpg" title="A title for 10.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 10.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/police/61.164.83.146.jpg">
-                                    <img src="resources/img/vision/police/61.164.83.146.jpg" title="A title for 11.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 11.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/police/112.5.123.80.jpg">
-                                    <img src="resources/img/vision/police/112.5.123.80.jpg" title="A title for 12.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 12.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/police/120.68.14.97.jpg">
-                                    <img src="resources/img/vision/police/120.68.14.97.jpg" title="A title for 13.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 13.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/police/183.196.3.219.jpg">
-                                    <img src="resources/img/vision/police/183.196.3.219.jpg" title="A title for 14.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 14.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/police/218.9.65.147.jpg">
-                                    <img src="resources/img/vision/police/218.9.65.147.jpg" title="A title for 2.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 2.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/school/58.116.138.133.jpg">
-                                    <img src="resources/img/vision/school/58.116.138.133.jpg" title="A title for 3.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 3.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/school/58.116.100.252.jpg">
-                                    <img src="resources/img/vision/school/58.116.100.252.jpg" title="A title for 4.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 4.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/school/58.116.138.141.jpg">
-                                    <img src="resources/img/vision/school/58.116.138.141.jpg" title="A title for 5.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 5.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/school/58.117.142.232.jpg">
-                                    <img src="resources/img/vision/school/58.117.142.232.jpg" title="A title for 6.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 6.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/school/58.118.241.190.jpg">
-                                    <img src="resources/img/vision/school/58.118.241.190.jpg" title="A title for 7.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 7.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/school/117.117.208.15.jpg">
-                                    <img src="resources/img/vision/school/117.117.208.15.jpg" title="A title for 8.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 8.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="resources/img/vision/school/117.117.208.19.jpg">
-                                    <img src="resources/img/vision/school/117.117.208.19.jpg" title="A title for 9.jpg"
-                                         alt="This is a nice, and incredibly descriptive, description of the image 9.jpg">
+                                <a href="resources/img/vision/picture20160327/1.51.218.68_1435161600000.jpg">
+                                    <img src="resources/img/vision/picture20160327/1.51.218.68_1435161600000.jpg"
+                                         data-ip="123"
+                                         data-country="中国"
+                                         data-city="北京"
+                                         data-time="2016-03-25"
+                                         data-lng="132.5"
+                                         data-lat="132.6">
                                 </a>
                             </li>
                         </ul>
@@ -174,19 +113,25 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-2 col-sm-1" id="sidebar">
+        <div class="col-xs-2 col-lg-1" id="sidebar">
             <ul class="nav-right">
-                <li><a href="/vision/secret">保密部门</a></li>
-                <li><a href="/vision/police">公安部门</a></li>
-                <li><a href="/vision/org">政府机关</a></li>
-                <li><a href="/vision/bridge">大型桥梁</a></li>
-                <li><a href="/vision/facility">基础设施</a></li>
-                <li><a href="/vision/factory">工厂设备</a></li>
-                <li><a href="/vision/network">网络机房</a></li>
-                <li><a href="/vision/house">居民家中</a></li>
-                <li><a href="/vision/office">办公场所</a></li>
-                <li><a href="/vision/indoor">国外室外</a></li>
-                <li><a href="/vision/outdoor">国外室内</a></li>
+                <li class="active"><a href="javascript:void(0)">保密部门</a></li>
+                <li><a href="javascript:void(0)">公安部门</a></li>
+                <li><a href="javascript:void(0)">政府机关</a></li>
+                <li><a href="javascript:void(0)">基础设施</a></li>
+                <li><a href="javascript:void(0)">工厂设备</a></li>
+                <li><a href="javascript:void(0)">网络机房</a></li>
+                <li><a href="javascript:void(0)">居民家中</a></li>
+                <li><a href="javascript:void(0)">办公场所</a></li>
+                <li><a href="javascript:void(0)">交通设施</a></li>
+                <li><a href="javascript:void(0)">营业场所</a></li>
+                <li><a href="javascript:void(0)">银行金融</a></li>
+                <li><a href="javascript:void(0)">公安部门</a></li>
+                <li><a href="javascript:void(0)">室内</a></li>
+                <li><a href="javascript:void(0)">室外</a></li>
+                <li><a href="javascript:void(0)">景区</a></li>
+                <li><a href="javascript:void(0)">学校</a></li>
+                <li><a href="javascript:void(0)">医院</a></li>
             </ul>
         </div>
     </div>
@@ -200,6 +145,12 @@
 <script src="${fontJs}"></script>
 <spring:url value="resources/js/libs/jquery.ad-gallery.js" var="gaJs"/>
 <script src="${gaJs}"></script>
+<spring:url value="resources/js/static.js" var="staticJs"/>
+<script src="${staticJs}"></script>
+<spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
+<script src="${paceJs}"></script>
+<spring:url value="resources/js/LoadData.js" var="ajax"/>
+<script src="${ajax}"></script>
 <spring:url value="resources/js/vision.js" var="vJs"/>
 <script src="${vJs}"></script>
 

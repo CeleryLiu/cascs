@@ -8,10 +8,10 @@
 var Constant = {
     //↓fullPage.js
     SECTION_NAV_TOOLTIPS: (function () {
-        return ['首页', '搜索', '定位', '全球视角', '探测', '统计', '资讯', '实例', '看世界','工控', '用户']
+        return ['首页', '搜索', '定位', '全球视角', '探测', '统计', '资讯', '实例', '看世界', '工控', '用户']
     }()),
     SECTIONS_BG_COLOR: (function () {
-        return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent','transparent', 'transparent','#fff'];
+        return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#fff'];
     }()),
     FIXED_ELEMENTS: (function () {
         return '#header, #footer, #sidebar,#header2, #global_search_wrapper, #tool_wrapper, #advs_wrapper, #search_tips';
@@ -90,7 +90,9 @@ var Constant = {
     ANALYSIS_OFFLINE_LATEST_RUL: (function () {
         return 'analysis/getLatestData';
     }()),
-
+    VISION_URL: (function () {
+        return 'vision/getPictures/';
+    }()),
     //↓pagination
     PAGE_SIZE: (function () {
         //每一页的条目数

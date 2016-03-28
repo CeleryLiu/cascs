@@ -1,6 +1,8 @@
 package com.springapp.mvc.web.listener;
 
+import com.springapp.mvc.web.model.CachedData;
 import com.springapp.mvc.web.timer.SuggestionTimer;
+import com.springapp.mvc.web.timer.VisionTimer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -11,6 +13,7 @@ import javax.servlet.ServletContextListener;
  */
 public class StartTimerListener implements ServletContextListener {
     SuggestionTimer suggTimer = null;
+    VisionTimer visionTimer = null;
 
     /**
      * 创建一个初始化监听器对象，一般有容器调用
@@ -27,6 +30,9 @@ public class StartTimerListener implements ServletContextListener {
 //        System.out.println("--------------------------timer.init-----------------------");
         suggTimer = new SuggestionTimer();
         suggTimer.execute();
+
+        visionTimer = new VisionTimer();
+        visionTimer.execute();
     }
 
     /*

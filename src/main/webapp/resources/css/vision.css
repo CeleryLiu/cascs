@@ -9,13 +9,13 @@ html, body {
     font-family: "microsoft yahei", Verdana, Tahoma, Helvetica, Arial, sans-serif;
 }
 
-body {
-    padding-right: 3rem;
-}
-
 ul {
     list-style: none;
     margin: 0;
+}
+
+p{
+    margin: 0 0 3px;
 }
 
 .container-fluid, .row-fluid, .row, .col-sm-1, .col-xs-10, .col-sm-11, .col-sx-2, .col-xs-2, .col-xs-10 {
@@ -40,10 +40,12 @@ ul {
 }
 
 #sidebar .nav-right li {
+    padding-right: 3rem;
     text-align: center;
 }
 
-#sidebar .nav-right li:hover {
+#sidebar .nav-right li:hover,
+#sidebar .nav-right li.active {
     background-color: #e1e1e1;
 }
 
@@ -53,13 +55,14 @@ ul {
 
 #sidebar .nav-right a {
     text-decoration: none;
+    text-align: justify;
 }
 
 #sidebar .nav-right a:before {
     content: "";
     display: inline-block;
-    height: 8.7%;
-    /*height: calc(9% - 4px);*/
+    height: 5.7%;
+    height: calc(6% - 3px);
     vertical-align: middle;
 }
 
@@ -181,11 +184,16 @@ ul {
 }
 
 .ad-gallery .ad-controls {
-    height: 1rem;
+    height: 16px;
+}
+
+.ad-gallery .my-ad-controls {
+    height: 16px;
 }
 
 .ad-gallery .ad-info {
     float: left;
+    margin: 0;
 }
 
 .ad-gallery .ad-slideshow-controls {
@@ -230,7 +238,7 @@ ul {
     left: -20px;
     width: 13px;
     display: block;
-    background: url(../img/ad_scroll_back.png) 0px 24rem no-repeat;
+    background: url(../img/ad_scroll_back.png) 0px 50px no-repeat;
 }
 
 .ad-gallery .ad-forward {
@@ -238,12 +246,13 @@ ul {
     display: block;
     right: -20px;
     width: 13px;
-    background: url(../img/ad_scroll_forward.png) 0px 24rem no-repeat;
+    background: url(../img/ad_scroll_forward.png) 0px 50px no-repeat;
 }
 
 .ad-gallery .ad-nav .ad-thumbs {
     overflow: hidden;
     width: 100%;
+    height: 120px;
 }
 
 .ad-gallery .ad-thumbs .ad-thumb-list {
@@ -279,15 +288,12 @@ ul {
 }
 
 .active-image-wrapper {
+    display: none;
     z-index: 100;
-    position: fixed;
-    bottom: 160px;
+    position: absolute;
+    /*bottom: 160px;*/
+    bottom: 146px;
     left: 0;
-    width: 90%;
-}
-
-.active-image-wrapper .col-xs-offset-2 {
-    position: relative;
     height: 36rem;
     padding: .5rem;
     background: #e1eef5;
@@ -295,75 +301,55 @@ ul {
 
 .active-image-wrapper .left,
 .active-image-wrapper .right {
-    width: 30%;
+    /*width: 30%;*/
     height: 100%;
-    float: left;
+    /*float: left;*/
+    padding: 0;
     text-align: center;
     overflow: hidden;
     /*↓折角效果*/
     background: #000;
-    background: linear-gradient(45deg, transparent 1.4rem, #000 0);
+    /*background: linear-gradient(40deg, transparent 1.5rem, #000 0);*/
     border-bottom-right-radius: 4px;
+}
+
+.active-image-wrapper .right {
+    background: linear-gradient(-20deg, transparent 1.5rem, #000 0);
+    border-left: 5px solid #e1eef5;
 }
 
 .active-image-wrapper .left > p,
 .active-image-wrapper .right > p {
-    height: 1.9rem;
+    height: 2rem;
     color: #ddd;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: bold;
-    padding: 5px 1rem;
+    padding: 5px 1rem 0 1rem;
     text-align: left;
     background: #000;
-    background: linear-gradient(-135deg, #e1eef5 1.4rem, #000 0);
+    background: linear-gradient(-135deg, #e1eef5 1.5rem, #000 0);
     border-top-left-radius: 4px;
-}
-
-.active-image-wrapper .right {
-    width: 65.5%;
-    width: calc(68% - 2rem);
-    background: linear-gradient(-20deg, transparent 1.6rem, #000 0);
-    border-left: 5px solid #e1eef5;
 }
 
 .active-image-wrapper .right > p {
     padding-left: 6rem;
-    background: linear-gradient(160deg, #e1eef5 1.6rem, #000 0);
+    height: 1.8rem;
+    background: linear-gradient(160deg, #e1eef5 1.5rem, #000 0);
     border-top-left-radius: 0;
     border-bottom-right-radius: 4px;
 }
 
 .active-image-wrapper .right img {
-    height: 30rem;
-    margin: .5rem 1rem;
+    max-height: 31.5rem;
+    /*margin: .5rem auto;*/
+    padding: .5rem auto;
     max-width: 100%;
-}
-
-@media screen and (max-width: 1010px) {
-    .active-image-wrapper .right {
-        width: 62.5%;
-        width: calc(67% - 3rem);
-    }
-}
-
-@media screen and (max-width: 867px) {
-    .active-image-wrapper .right {
-        width: 61%;
-        width: calc(66.5% - 3rem);
-    }
-}
-
-@media screen and (max-width: 770px) {
-    .active-image-wrapper .right {
-        width: 50%;
-    }
+    overflow: hidden;
 }
 
 .active-image-wrapper .hide-control {
     display: inline-block;
-    /*height: 100%;*/
-    margin-top: 14rem;
-    width: 2rem;
+    /*margin-top: 14rem;*/
     font-size: 10rem;
     text-align: right;
     cursor: pointer;
@@ -464,16 +450,39 @@ ul {
 }
 
 .active-image-wrapper .thumbnail {
-    margin: .5rem;
-    /*padding: 0;*/
+    position: relative;
+    height: 100%;
+    padding: .5rem;
     border: none;
     background-color: #000;
+    background: linear-gradient(45deg, #e1eef5 3.5rem, #000 0);
+}
+
+.active-image-wrapper .thumbnail > img {
+    z-index: 300;
 }
 
 .active-image-wrapper .thumbnail p:first-child {
-    margin: 1rem auto 2rem;
+    margin: 1rem auto;
     text-align: left;
     color: #ddd;
+}
+
+.active-image-wrapper .thumbnail .caption {
+    z-index: 301;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 1rem;
+    height: 17.5rem;
+}
+
+.active-image-wrapper .caption p:first-child {
+    padding: 3px 8px;
+    background: url(../img/opa75.png);
+    color: #000;
+    border-radius: 4px;
 }
 
 #main .show-control {
@@ -481,7 +490,57 @@ ul {
     position: absolute;
     bottom: -5px;
     padding-left: 2px;
-    left: 0;
+    left: 1rem;
     font-size: 4rem;
     cursor: pointer;
+}
+
+#triangle-left {
+    width: 0;
+    height: 0;
+    margin: 5rem auto auto .5rem;
+    border-top: 13rem solid transparent;
+    border-right: 7rem solid lightgray;
+    border-bottom: 13rem solid transparent;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1330px) {
+    .nav-right a {
+        font-size: 14px !important;
+    }
+
+    #triangle-left {
+        border-right: 5.5rem solid lightgray;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+    #triangle-left {
+        border-right: 5rem solid lightgray;
+    }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1000px) {
+    #triangle-left {
+        border-right: 4.5rem solid lightgray;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 900px) {
+    #triangle-left {
+        border-right: 4rem solid lightgray;
+    }
+}
+
+@media screen and (min-width: 644px) and (max-width: 768px) {
+    #triangle-left {
+        border-right: 6rem solid lightgray;
+    }
+}
+
+@media screen and (max-width: 664px) {
+    #triangle-left {
+        border-right: 5rem solid lightgray;
+        margin-left: 5px;
+    }
 }

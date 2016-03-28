@@ -22,8 +22,12 @@ public class Constant {
     public static final String SE_OFFLINE_ANALYSIS_SUMMARY_URL = "http://10.10.2.143:8888/count";//离线分析
     //http://10.10.2.143:8888/agg/n, n∈N+
     public static final String SE_OFFLINE_ANALYSIS_LATEST_URL = "http://10.10.2.143:8888/agg";//离线分析
+    public static final String SE_VISION_URL = SE_BASEPATH + "search?";//看世界
+    //“看世界”，参数pagesize和page的取值固定
+    public static final String SE_VISION_STATIC_URL = "http://10.10.2.143:8083/se/search?pagesize=9999&page=1&wd=description.other.pictureTags:";
+
     //↓逻辑平台相关URL（提供3D地图数据流展示数据的接口）
-    private static final String LG_BASEPATH = "http://10.10.2.84:8082/";//裸机平台根目录
+    private static final String LG_BASEPATH = "http://10.10.2.84:8082/";//逻辑平台根目录
     public static final String LG_MARKLINE_SEARCH_URL = LG_BASEPATH + "devicescan/getLinesSegment?numPerPage=100&pageId=";
 
     //↓用户管理平台相关URL（提供用户登录注册服务的相关接口），以下各接口地址的参数和返回值信息参见 http://10.10.2.24:4567/LoginRegistAPI
@@ -50,6 +54,6 @@ public class Constant {
     //-注册用户的默认等级
     public static final int WUM_USER_LEVEL = 5;
     public static final String RECOMMEND = "Camera Hikvision, Siemens Switzerland Ltd";
-    public static final String SYS_RECOMMEND = "Camera Hikvision port:80, ASUS RT-N66W FTP, Server: Siemens Switzerland Ltd, HP Officejet Pro 8500 A910,printer http config";
+    public static final String VISION_PICTURE_TAGS = "交通设施,学校,办公场所,政府机构,营业场所,基础设施,室内,景区,室外,银行金融,保密部门,网络机房,居民家中,医院,工厂设备,公安部门";
     //--------------------------------数据常量↑---------------------------//
 }

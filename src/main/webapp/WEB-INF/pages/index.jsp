@@ -197,38 +197,38 @@
     <div class="section" data-anchor="se5" id="lineSe">
         <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
-    <div class="section" data-anchor="se7" id="analysis">
-        <div class="slide" data-anchor="se7_offline" id="aOffline">
-            <iframe src="analysis-offline" onload="onOfflineLoaded(this)" name="aOffline"></iframe>
+    <div class="section" data-anchor="se6" id="analysis">
+        <div class="slide" data-anchor="se6_offline" id="aOffline">
+            <iframe src="analysis-offline" name="aOffline"></iframe>
         </div>
-        <%--<div class="slide" data-anchor="se7_online" id="aOnline"></div>--%>
+        <%--<div class="slide" data-anchor="se6_online" id="aOnline"></div>--%>
     </div>
-    <div class="section" data-anchor="se8" id="news">
-        <div class="slide" data-anchor="se8_security" id="security">
+    <div class="section" data-anchor="se7" id="news">
+        <div class="slide" data-anchor="se7_security" id="security">
             <%@include file="news-security.jsp" %>
         </div>
-        <div class="slide" data-anchor="se8_info" id="info"></div>
+        <div class="slide" data-anchor="se7_info" id="info"></div>
     </div>
-    <div class="section" data-anchor="se9" id="cites">
+    <div class="section" data-anchor="se8" id="cites">
         <%@include file="cites.jsp" %>
     </div>
-    <div class="section" data-anchor="se10" id="vision">
+    <div class="section" data-anchor="se9" id="vision">
         <iframe src="vision" name="vision"></iframe>
     </div>
-    <div class="section" data-anchor="se11" id="patch">
+    <div class="section" data-anchor="se10" id="patch">
         <%@include file="patch.jsp" %>
     </div>
-    <div class="section" data-anchor="se6" id="user">
-        <div class="slide" data-anchor="se6_login" id="loginSl">
+    <div class="section" data-anchor="se11" id="user">
+        <div class="slide" data-anchor="se11_login" id="loginSl">
             <%@include file="user/login.jsp" %>
         </div>
-        <div class="slide" data-anchor="se6_reg" id="regSl">
+        <div class="slide" data-anchor="se11_reg" id="regSl">
             <%@include file="user/register.jsp" %>
         </div>
-        <div class="slide" data-anchor="se6_agreement" id="agreementSl">
+        <div class="slide" data-anchor="se11_agreement" id="agreementSl">
             <%@include file="user/agreement.jsp" %>
         </div>
-        <div class="slide" data-anchor="se6_pwd" id="pwdRetrieveSl">
+        <div class="slide" data-anchor="se11_pwd" id="pwdRetrieveSl">
             <%@include file="user/pwdRetrieve.jsp" %>
         </div>
     </div>

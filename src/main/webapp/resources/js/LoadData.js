@@ -8,7 +8,7 @@
  */
 var LoadData = {
     get: function (requestObj) {
-        console.log("LoadData.get() ======, requestObj = ", requestObj);
+        //console.log("LoadData.get() ======, requestObj = ", requestObj);
         $.ajax({
             url: requestObj.url,
             type: "get",
@@ -25,7 +25,7 @@ var LoadData = {
             });
     },
     post: function (requestObj) {
-        //console.log("LoadData.post() ======, requestObj = ",requestObj.data);
+        //console.log("LoadData.post() ======, requestObj = ", requestObj.url);
         //Pace.start();
         $.ajax({
             url: requestObj.url,

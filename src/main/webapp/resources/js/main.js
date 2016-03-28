@@ -136,8 +136,6 @@ var initFullpage = function () {
                 List.onLeave();
             }
             switch (index) {
-                case 1:
-                    break;
                 case 2:
                     List.onLoad();
                     if (data) {
@@ -154,28 +152,29 @@ var initFullpage = function () {
                     }
                     UserSearchHistory.init();
                     break;
-                case 4:
-                    //Sidebar.hide();
-                    break;
                 case 5:
-                    //Sidebar.hide();
                     var lineInterval = setInterval(function () {
-                        if (iLine.window) {
+                        if (iLine.window && typeof iLine.window.starts == 'function') {
                             iLine.window.starts();
                             clearInterval(lineInterval);
                         }
                     }, 500);
                     break;
                 case 6:
+                    var offInterval = setInterval(function () {
+                        if (aOffline.window.AnalysisOffline && typeof aOffline.window.AnalysisOffline.init == 'function') {
+                            aOffline.window.AnalysisOffline.init();
+                            clearInterval(offInterval);
+                        }
+                    }, 500);
                     break;
-                case 7:
-                    // 或者在iframe中添加onload="onOfflineAnalysisLode(this)"
-                    /*  var offInterval = setInterval(function () {
-                     if (aOffline.window.AnalysisOffline) {
-                     aOffline.window.AnalysisOffline.init();
-                     clearInterval(offInterval);
-                     }
-                     }, 500);*/
+                case 9:
+                    var visionInterval = setInterval(function () {
+                        if (vision.window && typeof vision.window.init == 'function') {
+                            vision.window.init();
+                            clearInterval(visionInterval);
+                        }
+                    }, 500);
                     break;
             }
             $.fn.fullpage.reBuild();

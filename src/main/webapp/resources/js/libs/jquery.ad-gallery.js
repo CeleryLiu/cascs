@@ -310,7 +310,7 @@
                     link.addClass('ad-thumb' + i);
                     link.click(
                         function () {
-                            console.log('link.click', document.getElementsByClassName('ad-thumb' + (i - 1))[0].href);
+                            showActiveImag();
                             context.showImage(i);
                             context.slideshow.stop();
                             return false;
@@ -346,10 +346,50 @@
                     } else if (thumb.attr('title') && thumb.attr('title').length) {
                         title = thumb.attr('title');
                     }
+                    var ip = false;
+                    if (thumb.attr('data-ip') && thumb.attr('data-ip').length) {
+                        ip = thumb.attr('data-ip');
+                    }
+                    var lng = false;
+                    if (thumb.attr('data-lng') && thumb.attr('data-lng').length) {
+                        lng = thumb.attr('data-lng');
+                    }
+                    var lat = false;
+                    if (thumb.attr('data-lat') && thumb.attr('data-lat').length) {
+                        lat = thumb.attr('data-lat');
+                    }
+                    var country = false;
+                    if (thumb.attr('data-country') && thumb.attr('data-country').length) {
+                        country = thumb.attr('data-country');
+                    }
+                    var city = false;
+                    if (thumb.attr('data-city') && thumb.attr('data-city').length) {
+                        city = thumb.attr('data-city');
+                    }
+                    var host = false;
+                    if (thumb.attr('data-host') && thumb.attr('data-host').length) {
+                        host = thumb.attr('data-host');
+                    }
+                    var time = false;
+                    if (thumb.attr('data-time') && thumb.attr('data-time').length) {
+                        time = new Date(parseInt(thumb.attr('data-time'))).toLocaleDateString();
+                    }
                     context.images[i] = {
-                        thumb: thumb.attr('src'), image: image_src, error: false,
-                        preloaded: false, desc: desc, title: title, size: false,
-                        link: link
+                        thumb: thumb.attr('src'),
+                        image: image_src,
+                        error: false,
+                        preloaded: false,
+                        desc: desc,
+                        title: title,
+                        size: false,
+                        link: link,
+                        ip: ip,
+                        lng: lng,
+                        lat: lat,
+                        country: country,
+                        city: city,
+                        host: host,
+                        time: time
                     };
                 }
             );
@@ -545,7 +585,9 @@
          *                          and it's animation has finished
          */
         showImage: function (index, callback) {
-            if (this.images[index] && !this.in_transition) {
+            //console.log(this.images);
+            //if (this.images[index] && !this.in_transition) {
+            if (this.images[index]) {
                 var context = this;
                 var image = this.images[index];
                 this.in_transition = true;
@@ -553,10 +595,12 @@
                     this.loading(true);
                     this.preloadImage(index, function () {
                         context.loading(false);
-                        context._showWhenLoaded(index, callback);
+                        context._myShowWhenLoaded(index, callback);
+                        //context._showWhenLoaded(index, callback);
                     });
                 } else {
-                    this._showWhenLoaded(index, callback);
+                    this._myShowWhenLoaded(index, callback);
+                    //this._showWhenLoaded(index, callback);
                 }
             }
         },
@@ -564,6 +608,65 @@
          * @param function callback Gets fired when the image has loaded, is displaying
          *                          and it's animation has finished
          */
+        _myShowWhenLoaded: function (index, callback) {
+            if (this.images[index]) {
+                var context = this;
+                var image = this.images[index];
+                //var img_container = $(document.createElement('div')).addClass('ad-image');
+                var img_container = $('#image_container');
+                img_container.find('img').attr('src', image.image);
+                $('#img_right').attr('src', image.image);
+                var caption = img_container.find('.caption p:first-child');
+                caption.empty();
+                var captionTxt = "";
+                if (image.ip) {
+                    captionTxt += 'IP地址：' + image.ip + '<br>'
+                }
+                if (image.lng && image.lat) {
+                    captionTxt += '经纬度：' + image.lng + ',&nbsp; ' + image.lat + '<br>'
+                }
+                if (image.country) {
+                    captionTxt += '国家：' + image.country + '<br>'
+                }
+                if (image.city) {
+                    captionTxt += '城市：' + image.city + '<br>'
+                }
+                if (image.host) {
+                    captionTxt += '主机名：' + image.host + '<br>'
+                }
+                if (image.time) {
+                    captionTxt += '时间：' + image.time + '<br>'
+                }
+
+                caption.html(captionTxt);
+                this.highLightThumb(this.nav.find('.ad-thumb' + index));
+
+                var direction = 'right';
+                if (this.current_index < index) {
+                    direction = 'left';
+                }
+                this.fireCallback(this.settings.callbacks.beforeImageVisible);
+                if (this.current_image || this.settings.animate_first_image) {
+                    var animation_speed = this.settings.animation_speed;
+                    var easing = 'swing';
+                    var animation = this.animations[this.settings.effect].call(this, img_container, direction, "");
+                    if (typeof animation.speed != 'undefined') {
+                        animation_speed = animation.speed;
+                    }
+
+                    if (typeof animation.easing != 'undefined') {
+                        easing = animation.easing;
+                    }
+                } else {
+                    this.current_index = index;
+                    this.current_image = img_container;
+                    this.in_transition = false;
+                    context._afterShow();
+                    this.fireCallback(callback);
+                }
+                $('.ad-info').html((index + 1) + ' / ' + this.images.length);
+            }
+        },
         _showWhenLoaded: function (index, callback) {
             if (this.images[index]) {
                 var context = this;
@@ -771,8 +874,8 @@
             this.stop_link = $('<span class="ad-slideshow-stop">' + this.settings.stop_label + '</span>');
             this.countdown = $('<span class="ad-slideshow-countdown"></span>');
             this.controls = $('<div class="ad-slideshow-controls"></div>');
-            this.controls.append(this.start_link).append(this.stop_link).append(this.countdown);
-            this.countdown.hide();
+            //this.controls.append(this.start_link).append(this.stop_link).append(this.countdown);
+            //this.countdown.hide();
 
             var context = this;
             this.start_link.click(
