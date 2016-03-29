@@ -21,8 +21,6 @@ import org.springframework.stereotype.Service;
 public class VisionService {
     private static final Logger logger = LoggerFactory.getLogger(VisionService.class);
     private final VisionDAO dao;
-    private int pagesize = 9999;
-    private int page = 1;
 
     @Autowired
     public VisionService(VisionDAO dao) {
@@ -39,7 +37,6 @@ public class VisionService {
      */
     public JSONObject getVisionResponse(String pictureTag) {
         logger.debug("VisionService.getVisionResponse() ======");
-//        System.out.println("VisionService.getVisionResponse() ======");
         JSONObject result;
         String uri;
         if (StringUtils.isNotBlank(pictureTag)) {

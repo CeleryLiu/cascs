@@ -570,6 +570,7 @@ b {
 @media (max-width: 1200px) and (min-width: 996px) {
     .header .nav li a {
         font-size: 1.8rem;
+        padding: 10px 6px;
     }
 }
 

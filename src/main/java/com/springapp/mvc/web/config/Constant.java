@@ -24,7 +24,7 @@ public class Constant {
     public static final String SE_OFFLINE_ANALYSIS_LATEST_URL = "http://10.10.2.143:8888/agg";//离线分析
     public static final String SE_VISION_URL = SE_BASEPATH + "search?";//看世界
     //“看世界”，参数pagesize和page的取值固定
-    public static final String SE_VISION_STATIC_URL = "http://10.10.2.143:8083/se/search?pagesize=9999&page=1&wd=description.other.pictureTags:";
+    public static final String SE_VISION_STATIC_URL = "http://10.10.2.143:8083/se/search?pagesize=9999&page=1&wd=pictureTags:";
 
     //↓逻辑平台相关URL（提供3D地图数据流展示数据的接口）
     private static final String LG_BASEPATH = "http://10.10.2.84:8082/";//逻辑平台根目录

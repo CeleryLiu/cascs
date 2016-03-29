@@ -38,6 +38,6 @@ public class VisionController {
 
 /*    public static void main(String[] args) {
         VisionController vc = new VisionController(new VisionService(new VisionDAO()));
-        System.out.println(vc.getPictures("all"));
+        System.out.println(vc.getPictures("学校"));
     }*/
 }

@@ -64,10 +64,10 @@ public class VisionDAO {
                 JSONObject desc = oldObj.getJSONObject("description");
                 JSONObject location = desc.getJSONObject("device_location");
                 JSONObject other = desc.getJSONObject("other");
-
+                String ip = desc.getString("ip");
                 //images
                 JSONObject newObj = new JSONObject();
-                newObj.put("ip", desc.getString("ip"));//ip
+                newObj.put("ip", ip);//ip
                 newObj.put("lng", location.getDoubleValue("lon"));//longitude
                 newObj.put("lat", location.getDoubleValue("lat"));    //latitude
                 if (StringUtils.isNotBlank(location.getString("country"))) {
@@ -87,7 +87,9 @@ public class VisionDAO {
                 JSONArray filePath = other.getJSONArray("filePath");
                 newObj.put("src", filePath.getString(filePath.size() - 1));   //image file path (src)
                 if (StringUtils.isNotBlank(other.getString("pictureUrl"))) {
-                    newObj.put("pictureUrl", other.getString("pictureUrl"));
+                    String pictureUrl = other.getString("pictureUrl");
+                    pictureUrl = pictureUrl.replace("{_ip_DS_}", ip);
+                    newObj.put("pictureUrl", pictureUrl);
                 }
                 if (StringUtils.isNotBlank(other.getString("videoUrl"))) {
                     newObj.put("videoUrl", other.getString("videoUrl"));

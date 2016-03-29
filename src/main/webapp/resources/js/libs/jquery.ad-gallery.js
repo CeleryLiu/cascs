@@ -85,10 +85,10 @@
         var current_left = parseInt(img_container.css('left'), 10);
         if (direction == 'left') {
             var old_image_left = '-' + this.image_wrapper_width + 'px';
-            img_container.css('left', this.image_wrapper_width + 'px');
+            //img_container.css('left', this.image_wrapper_width + 'px');
         } else {
             var old_image_left = this.image_wrapper_width + 'px';
-            img_container.css('left', '-' + this.image_wrapper_width + 'px');
+            //img_container.css('left', '-' + this.image_wrapper_width + 'px');
         }
         if (desc) {
             desc.css('bottom', '-' + desc[0].offsetHeight + 'px');
@@ -109,10 +109,10 @@
         var current_left = parseInt(img_container.css('left'), 10);
         var current_top = parseInt(img_container.css('top'), 10);
         img_container.css({
-            width: 0,
-            height: 0,
-            top: this.image_wrapper_height / 2,
-            left: this.image_wrapper_width / 2
+            //width: 0,
+            //height: 0,
+            //top: this.image_wrapper_height / 2,
+            //left: this.image_wrapper_width / 2
         });
         return {
             old_image: {
@@ -254,7 +254,7 @@
             };
         },
         setupElements: function () {
-            this.controls = this.wrapper.find('.ad-controls');
+            this.controls = this.wrapper.find('.ad-controls').empty();
             this.gallery_info = $('<p class="ad-info"></p>');
             this.controls.append(this.gallery_info);
             this.image_wrapper = $('.thumbnail').find('img');
@@ -310,7 +310,7 @@
                     link.addClass('ad-thumb' + i);
                     link.click(
                         function () {
-                            showActiveImag();
+                            toggleActiveImg();
                             context.showImage(i);
                             context.slideshow.stop();
                             return false;
@@ -374,6 +374,10 @@
                     if (thumb.attr('data-time') && thumb.attr('data-time').length) {
                         time = new Date(parseInt(thumb.attr('data-time'))).toLocaleDateString();
                     }
+                    var pictureUrl = false;
+                    if (thumb.attr('data-pictureUrl') && thumb.attr('data-pictureUrl').length) {
+                        pictureUrl = thumb.attr('data-pictureUrl');
+                    }
                     context.images[i] = {
                         thumb: thumb.attr('src'),
                         image: image_src,
@@ -389,7 +393,8 @@
                         country: country,
                         city: city,
                         host: host,
-                        time: time
+                        time: time,
+                        pictureUrl: pictureUrl
                     };
                 }
             );
@@ -622,8 +627,11 @@
                 if (image.ip) {
                     captionTxt += 'IP地址：' + image.ip + '<br>'
                 }
-                if (image.lng && image.lat) {
-                    captionTxt += '经纬度：' + image.lng + ',&nbsp; ' + image.lat + '<br>'
+                if (image.lng) {
+                    captionTxt += '经度：' + image.lng + '<br>'
+                }
+                if (image.lat) {
+                    captionTxt += '经度：' + image.lat + '<br>'
                 }
                 if (image.country) {
                     captionTxt += '国家：' + image.country + '<br>'
@@ -636,6 +644,14 @@
                 }
                 if (image.time) {
                     captionTxt += '时间：' + image.time + '<br>'
+                }
+                if (image.pictureUrl) {
+                    $('#goLive')
+                        .removeClass('disabled')
+                        .attr('href', image.pictureUrl);
+                } else {
+                    $('#goLive').addClass('disabled').text('Go Live').removeClass('running');
+                    clearInterval(goLiveInterval);
                 }
 
                 caption.html(captionTxt);

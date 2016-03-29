@@ -26,9 +26,10 @@
     <link rel="stylesheet" href="${paceCss}">
     <spring:url value="resources/css/vision.css" var="visionCss"/>
     <link rel="stylesheet" href="${visionCss}">
+    <%--    <link rel="stylesheet" type="text/css"
+              href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
     <%--  <link rel="stylesheet" type="text/css"
-    <%--  <link rel="stylesheet" type="text/css"
-            href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
+            href="http://localhost:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
     <!--[if IE]>
     <script type="text/javascript">
         var console = {
@@ -39,20 +40,21 @@
     </script>
     <![endif]-->
     <%--arcgis lib and map js--%>
-    <%--    <script type="text/javascript">
-            var djConfig = {parseOnLoad: true}
-        </script>--%>
+    <%--<script type="text/javascript" src="http://localhost:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
     <%--<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
-    <style type="text/css">
-
-    </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-10 col-lg-11">
             <div class="row" id="main">
-                <div id="selectBox" class="col-xs-2"></div>
+                <div id="selectBox" class="col-xs-2">
+                    <input id="search_hideseek" name="search" placeholder="筛选国家" type="text"
+                           data-list=".list"
+                           onkeypress=""
+                           autocomplete="off">
+                    <ul class="list"></ul>
+                </div>
                 <div id="mapHolder" class="col-xs-10" style="background-color: peachpuff"></div>
                 <span class="show-control" title="显示"><i class="fa fa-caret-right"></i></span>
             </div>
@@ -66,29 +68,23 @@
                         <p>CAMERA INFO</p>
 
                         <div class="thumbnail" id="image_container">
-                            <img src="" alt="xxx" class="img-rounded">
+                            <img src="" class="img-rounded">
 
                             <div class="caption">
-                                <p>
-                                    IP地址：1.1.1.1<br>
-                                    经纬度：2<br>
-                                    国家：澳大利亚<br>
-                                    城市：墨尔本<br>
-                                    时间：2011-1-1
-                                </p>
+                                <p></p>
 
-                                <p><a href="#" class="btn btn-danger" role="button">Go Live</a></p>
+                                <p><a href="#" class="btn btn-danger disabled" role="button" id="goLive">Go Live</a></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-7 col-sm-8 right">
                         <p>CAMERA TIMELAPSE</p>
-                        <img src="" id="img_right" class="img img-rounded">
+                        <img src="" alt="暂时无法获取实时图片" id="img_right" class="img img-rounded">
                     </div>
                 </div>
             </div>
             <div class="row ad-gallery" id="gallery">
-                <div class="ad-controls"></div>
+                <%--<div class="ad-controls"></div>--%>
                 <div class="ad-nav">
                     <div class="ad-thumbs">
                         <ul class="ad-thumb-list"></ul>
@@ -128,6 +124,8 @@
 <script src="${fontJs}"></script>
 <spring:url value="resources/js/libs/jquery.ad-gallery.js" var="gaJs"/>
 <script src="${gaJs}"></script>
+<spring:url value="resources/js/libs/jquery.hideseek.min.js" var="hideseek"/>
+<script src="${hideseek}"></script>
 <spring:url value="resources/js/static.js" var="staticJs"/>
 <script src="${staticJs}"></script>
 <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
@@ -136,6 +134,5 @@
 <script src="${ajax}"></script>
 <spring:url value="resources/js/vision.js" var="vJs"/>
 <script src="${vJs}"></script>
-
 </body>
 </html>
