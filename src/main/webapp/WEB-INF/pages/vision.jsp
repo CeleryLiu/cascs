@@ -140,6 +140,10 @@
     $(function () {
         var initMap = function () {
             require(["esri/map", "esri/geometry/Extent", "esri/SpatialReference", "dojo/domReady!"], function (Map, Extent, SpatialReference) {
+                var myExt = {
+                    ymin: -20000000,//bottom
+                    ymax: 20000000  //top
+                };
                 var initExtent = new Extent({
                     "xmin": -13638620,
                     "ymin": 4541429,
@@ -198,7 +202,7 @@
                 map.on('zoom-end', function (e) {
                     var ext = map.extent;
                     console.log(map.getLevel());
-                    console.log(ext);
+//                    console.log(ext);
                     /*baseExtent.xmin = ext.xmin;
                      baseExtent.xmax = ext.xmax;
                      if (ext.ymin < baseExtent.ymin) {
@@ -213,6 +217,7 @@
                 map.on('click', function (e) {
 //                    console.log(map.extent);
                     console.log(e.mapPoint);
+                    console.log(map.extent);
                 });
             });
         };
