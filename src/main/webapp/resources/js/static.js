@@ -90,9 +90,6 @@ var Constant = {
     ANALYSIS_OFFLINE_LATEST_RUL: (function () {
         return 'analysis/getLatestData';
     }()),
-    VISION_URL: (function () {
-        return 'vision/getPictures/';
-    }()),
     //↓pagination
     PAGE_SIZE: (function () {
         //每一页的条目数

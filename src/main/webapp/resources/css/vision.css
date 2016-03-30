@@ -595,3 +595,7 @@ p {
         font-size: 12px;
     }
 }
+
+.esriControlsBR {
+    display: none !important;
+}

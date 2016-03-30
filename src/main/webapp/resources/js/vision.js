@@ -4,13 +4,16 @@
  * @module name
  * @description 看世界
  */
+
 var map, goLiveInterval;
 var toggleActiveImg = function (opt) {
     var wrapper = $('.active-image-wrapper');
     switch (opt) {
         case 'show':
+            if (wrapper.is(':hidden')) {
+                wrapper.show();
+            }
             wrapper.animate({
-                //opacity: '0.5',
                 width: '100%'
             }, 'slow', function () {
                 $('#active_image').show('fast');
@@ -19,7 +22,6 @@ var toggleActiveImg = function (opt) {
             break;
         case 'hide':
             wrapper.animate({
-                //opacity: '0.5',
                 width: '0'
             }, 'slow', function () {
                 $('#active_image').hide();
@@ -32,30 +34,7 @@ var toggleActiveImg = function (opt) {
 };
 var init = function () {
     //初始化地图
-    var initMap = function () {
-        require(
-            [
-                "esri/map",
-                "esri/layers/GraphicsLayer",
-                "esri/InfoTemplate",
-                "esri/symbols/SimpleLineSymbol",
-                "esri/symbols/SimpleFillSymbol",
-                "esri/Color",
-                "dojo/domReady!"
-            ],
-            function (Map, GraphicsLayer, InfoTemplate, SimpleLineSymbol, SimpleFillSymbol, Color) {
-                //Create map and add layers
-                map = new Map("mapHolder", {
-                    basemap: 'gray',
-                    center: [114.25, 24.1167],
-                    minZoom: 3,
-                    maxZoom: 8,
-                    zoom: 4,
-                    sliderPosition: "top-right",
-                    logo: false
-                });
-            });
-    };
+
     //选择某个国家后的处理方法
     var onCountrySelected = function (countryName) {
         var showImgAfterSelected = function (image) {
@@ -175,15 +154,13 @@ var init = function () {
                 galleries[0].slideshow.toggle();
                 return false;
             });
-            $('.active-image-wrapper').slideUp('slow', function () {
-                $('.active-image-wrapper').show('fast');
-            });
+            $('.active-image-wrapper').slideUp('slow');
         };
         var errorCallback = function () {
             console.log('vision ajax error-');
         };
         LoadData.post({
-            url: Constant.VISION_URL + tag,
+            url: 'vision/getPictures/' + tag,
             success: successCallback,
             error: errorCallback
         });

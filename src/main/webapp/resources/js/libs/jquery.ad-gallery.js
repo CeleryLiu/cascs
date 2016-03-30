@@ -310,7 +310,7 @@
                     link.addClass('ad-thumb' + i);
                     link.click(
                         function () {
-                            toggleActiveImg();
+                            toggleActiveImg('show');
                             context.showImage(i);
                             context.slideshow.stop();
                             return false;
