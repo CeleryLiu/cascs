@@ -590,7 +590,6 @@
          *                          and it's animation has finished
          */
         showImage: function (index, callback) {
-            //console.log(this.images);
             //if (this.images[index] && !this.in_transition) {
             if (this.images[index]) {
                 var context = this;
@@ -606,6 +605,9 @@
                 } else {
                     this._myShowWhenLoaded(index, callback);
                     //this._showWhenLoaded(index, callback);
+                }
+                if (!firstLoad) {
+                    MyMap.centerAt(image);
                 }
             }
         },
