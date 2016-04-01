@@ -176,6 +176,7 @@ var Sidebar = {
 
             //country listener
             coLabelContainer.on('click', function () {
+                $('div.panel-collapse.collapse.in').removeClass('in');
                 $(this).next().collapse('toggle');
             });
 
@@ -259,7 +260,7 @@ var Sidebar = {
             $('a[href="#' + id + '"]').find('small.total').text('【' + totalCount + '】');
         });
 
-        //(2)根据filter设置复选框的选中状态【并添加对应的pivot，目前这里不需要，因为pivot是不刷新的，所以暂时注释掉】
+        //(2)根据filter设置复选框的选中状态
         $('div.panel-collapse.collapse').removeClass('in');
         if (filter && !isEmptyObject(filter)) {
             for (var key in filter) {

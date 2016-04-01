@@ -4,7 +4,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="countryTitle">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse"
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#facet"
                        href="#countryList" aria-expanded="false" aria-controls="countryList">
                         国家
                         <small class="total"></small>
@@ -22,7 +22,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="serviceTitle">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse"
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#facet"
                        href="#serviceList" aria-expanded="false" aria-controls="serviceList">
                         服务
                         <small class="total"></small>
@@ -40,7 +40,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="portTitle">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse"
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#facet"
                        href="#portList" aria-expanded="false" aria-controls="portList">
                         端口
                         <small class="total"></small>
@@ -57,7 +57,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="typeTitle">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse"
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#facet"
                        href="#typeList" aria-expanded="false" aria-controls="typeList">
                         类型
                         <small class="total"></small>
@@ -75,7 +75,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="vulTitle">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse"
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#facet"
                        href="#vulList" aria-expanded="false" aria-controls="vulList">
                         漏洞
                         <small class="total"></small>
@@ -92,7 +92,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="osTitle">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse"
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#facet"
                        href="#osList" aria-expanded="false" aria-controls="osList">
                         操作系统
                         <small class="total"></small>

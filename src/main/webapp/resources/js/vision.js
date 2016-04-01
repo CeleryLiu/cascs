@@ -14,6 +14,7 @@ $(function () {
             });
         }()),
         init: function () {
+            //console.log('MyMap.init() ======');
             require(["esri/map", "esri/geometry/Extent", "dojo/domReady!"], function (Map, Extent) {
                 var baseExtent, buffer = 10000000;
                 map = new Map("mapHolder", {
@@ -21,8 +22,8 @@ $(function () {
                     zoom: 3,
                     minZoom: 3,
                     maxZoom: 3,
-                    basemap: "gray",
-                    //basemap: "dark-gray",
+                    //basemap: "gray",
+                    basemap: "dark-gray",
                     slider: false,
                     logo: false
                 });
@@ -30,7 +31,6 @@ $(function () {
                     var ext = map.extent;
                     MyMap.sr = map.spatialReference;
                     baseExtent = new Extent(ext.xmin, ext.ymin - buffer, ext.xmax, ext.ymax + buffer, MyMap.sr);
-                    console.log(ext, baseExtent);
                 });
                 map.on('pan-end', function (e) {
                     if (map.extent.ymin < baseExtent.ymin || map.extent.ymax > baseExtent.ymax) {
@@ -115,6 +115,8 @@ var toggleActiveImg = function (opt) {
 };
 
 var init = function () {
+    MyMap.init();
+
     //选择某个国家后的处理方法
     var onCountrySelected = function (countryName) {
         var showImgAfterSelected = function (image) {
@@ -170,7 +172,6 @@ var init = function () {
         var image, found = false;
         $('#search_hideseek').val(countryName);
         selectBox.find('a.active').removeClass('active');
-        console.log();
         selectBox.find('a[data-country=' + countryName + ']').addClass('active');
         $.each(imgList, function (idx, li) {
             var imgLi = $(li);
@@ -229,9 +230,9 @@ var init = function () {
                 //countries
                 var countries = resp['countries'];
                 var $countries = $('#selectBox').find('ul').empty();
-                $countries.append('<li><a class="active" data-country="all" href="#">全部（' + resp['total'] + '）</a></li>');
+                $countries.append('<li><a class="active" data-country="all" href="#">全部 (' + resp['total'] + ')</a></li>');
                 for (var k in countries) {
-                    var $a = $('<a>' + k + '（' + countries[k] + '）</a>')
+                    var $a = $('<a>' + k + ' (' + countries[k] + ')</a>')
                         .attr({
                             'data-country': k,
                             'href': '#'
@@ -264,7 +265,6 @@ var init = function () {
     };
     //starts -----------
     $('.nav-right a').fontFlex(14, 18, 60);//字体自适应
-    MyMap.init();                           //地图初始化
     initPictures();                         //获取所有图片，生成列表
     $('.hide-control').click(function () {
         toggleActiveImg('hide');
@@ -315,27 +315,28 @@ var init = function () {
         $this.addClass('running');
         $('#img_right')
             .attr('src', $('#goLive').attr('href'))
-            .error(function () {
+            .error(function (data, status, error) {
+                console.log('aaaaaaaaaaaaaaaaaaaaa', data, status, error);
                 clearInterval(goLiveInterval);
                 $(this).attr('src', 'resources/img/vision/thumb_no.jpg')
             });
 
-/*
-        // Function that refreshes image
-        function refresh(image, imageSrc) {
-            var timestamp = new Date().getTime();
-            image.attr('src', imageSrc + '?' + timestamp);
-        }
+        /*
+         // Function that refreshes image
+         function refresh(image, imageSrc) {
+         var timestamp = new Date().getTime();
+         image.attr('src', imageSrc + '?' + timestamp);
+         }
 
-        // Refresh image every N seconds
-        goLiveTimeout = setTimeout(function () {
-            refresh($('#img_right'), $('#goLive').attr('href'));
-        }, N * 1000);
-*/
+         // Refresh image every N seconds
+         goLiveTimeout = setTimeout(function () {
+         refresh($('#img_right'), $('#goLive').attr('href'));
+         }, N * 1000);
+         */
 
         goLiveInterval = setInterval(function () {
-            $('#img_right').attr('src', $('#goLive').attr('href') + '?t=' + new Date().getTime());
-        }, 1000);
+            $('#img_right').attr('src', $('#goLive').attr('href') + '?t=' + new Date().getTime())+'&y=11';
+        }, 2000);
         $this.text('Stop');
     });
     firstLoad = false;
