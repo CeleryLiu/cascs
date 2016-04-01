@@ -7,8 +7,8 @@ package com.springapp.mvc.web.controller;/*
  */
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.springapp.mvc.web.daoLike.SuggestionDAO;
 import com.springapp.mvc.web.jsonView.Views;
+import com.springapp.mvc.web.model.Suggestion;
 import com.springapp.mvc.web.service.SuggestionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +36,7 @@ public class SuggestionController {
     @RequestMapping(value = "/search/getSuggestions")
     public String getSuggestions(@RequestParam(value = "search") String search) {
         logger.debug("DataApiController advancedSearch starts-----------");
+//        System.out.println("DataApiController advancedSearch starts-----------" + search);
         return suggestionService.getResponse4Suggestion(search).toString();
     }
 
@@ -55,8 +56,9 @@ public class SuggestionController {
         return suggestionService.getResponse4Recommend().toJSONString();
     }
 
-   /* public static void main(String[] args) {
-        SuggestionController sc = new SuggestionController(new SuggestionService(new SuggestionDAO()));
-        System.out.println(sc.getRecommend());
+/*    public static void main(String[] args) {
+//        SuggestionController sc = new SuggestionController(new SuggestionService(new SuggestionDAO()));
+//        System.out.println(sc.getSuggestions("A"));
+        System.out.println(Suggestion.getSuggestions());
     }*/
 }

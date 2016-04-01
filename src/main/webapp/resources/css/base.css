@@ -209,7 +209,7 @@ b {
 .header, .footer {
     z-index: 10000;
     position: fixed;
-    height: 4.6rem;
+    height: 4.5rem;
     display: block;
     width: 100%;
     background: #333;
@@ -237,10 +237,6 @@ b {
     font-family: Microsoft YaHei, Verdana, Tahoma, Helvetica, Arial, sans-serif;
     color: #fff;
     border: none;
-}
-
-.header .nav {
-    padding-bottom: 3px;
 }
 
 .header .nav li {
@@ -339,14 +335,13 @@ b {
  * --------------------------------------- */
 .global-search-wrapper {
     display: none;
-    /*z-index: 100;*/
     position: absolute;
-    top: 4.8rem;
+    top: 4.6rem;
     left: 0;
     width: 100%;
     /*width: calc(100% - 28rem);*/
-    height: 3.2rem;
-    padding-left: .5rem;
+    height: 3.5rem;
+    padding: 1rem 0 0 .5rem;
     text-align: left;
     /*background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
     /*background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
@@ -591,6 +586,7 @@ b {
 @media (max-width: 798px) {
     .header .nav li a {
         padding: 10px 4px;
+        font-size: 1.3rem;
     }
 }
 

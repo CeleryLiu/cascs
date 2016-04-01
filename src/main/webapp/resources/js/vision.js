@@ -308,7 +308,6 @@ var init = function () {
         if ($this.hasClass('disabled'))return;
         if ($this.hasClass('running')) {
             clearInterval(goLiveInterval);
-            clearTimeout(goLiveTimeout);
             $this.removeClass('running');
             $this.text('Go Live');
             return;
@@ -318,10 +317,10 @@ var init = function () {
             .attr('src', $('#goLive').attr('href'))
             .error(function () {
                 clearInterval(goLiveInterval);
-                clearTimeout(goLiveTimeout);
                 $(this).attr('src', 'resources/img/vision/thumb_no.jpg')
             });
 
+/*
         // Function that refreshes image
         function refresh(image, imageSrc) {
             var timestamp = new Date().getTime();
@@ -332,10 +331,11 @@ var init = function () {
         goLiveTimeout = setTimeout(function () {
             refresh($('#img_right'), $('#goLive').attr('href'));
         }, N * 1000);
+*/
 
-/*        goLiveInterval = setInterval(function () {
+        goLiveInterval = setInterval(function () {
             $('#img_right').attr('src', $('#goLive').attr('href') + '?t=' + new Date().getTime());
-        }, 1000);*/
+        }, 1000);
         $this.text('Stop');
     });
     firstLoad = false;

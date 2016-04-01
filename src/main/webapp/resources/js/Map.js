@@ -74,7 +74,7 @@ var ArcMap = {
                     minZoom: 3,
                     maxZoom: 8,
                     zoom: 4,
-                    sliderPosition: "top-right",
+                    sliderPosition: "bottom-right",
                     logo: false
                 });
                 //（1）添加底图
@@ -88,19 +88,25 @@ var ArcMap = {
                     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([230, 255, 0]), 2), new Color([121, 37, 135, 0.7]));
                 featureLayer = new GraphicsLayer(featureLayerInfoTemplate);
                 featureLayer.on('click', function (evt) {
-                    var attr = evt.graphic.attributes;
-                    var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
-                    $('.f-country').text(name);
-                    $('.f-count').text(attr.count);
+                    /* var attr = evt.graphic.attributes;
+                     var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
+                     $('.f-country').text(name);
+                     $('.f-count').text(attr.count);*/
                 });
                 //FOR OUTLINE
                 featureLayer.on('mouse-over', function (evt) {
                     //console.log('on mouse over', evt.graphic);
                     evt.graphic.setSymbol(flOutline);
+                    var attr = evt.graphic.attributes;
+                    var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
+                    $('.f-country').text(name);
+                    $('.f-count').text(attr.count);
                 });
                 featureLayer.on('mouse-out', function (evt) {
                     //console.log('on mouse out');
                     evt.graphic.setSymbol(null);
+                    $('.f-country').text('');
+                    $('.f-count').text('');
                 });
                 map.addLayer(featureLayer);
 
@@ -121,9 +127,6 @@ var ArcMap = {
                     //（4）添加城市featureLayer
                     Pace.ignore(    //不显示进度条
                         function () {
-                            /*ArcMap.v.cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
-                             outFields: ["*"]
-                             });*/
                             ArcMap.v.cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
                         }
                     );
@@ -574,8 +577,14 @@ var MyFeatureLayer = {
             }
             function render(provinces, features) {
                 var min = Number.MAX_VALUE, max = 0;
-                require(["esri/graphic", "esri/symbols/TextSymbol", "esri/Color",
-                    'esri/symbols/Font'], function (Graphic, TextSymbol, Color, Font) {
+                require([
+                    "esri/graphic",
+                    "esri/geometry/Point",
+                    "esri/symbols/TextSymbol",
+                    "esri/Color",
+                    'esri/symbols/Font'
+                ], function (Graphic, Point, TextSymbol, Color, Font) {
+                    var found = false;
                     for (var key in features) {
                         if (provinces.hasOwnProperty(key)) {
                             var g = features[key];
@@ -585,6 +594,11 @@ var MyFeatureLayer = {
                             featureLayer.add(newGraphic);
                             MyFeatureLayer.addLabel(labelLayer, newGraphic, count);//add text to labelLayer
                             setMinMax(count);
+                            if (!found) {
+                                var lnglat = g.geometry.rings[g.geometry.rings.length - 1][0];
+                                ArcMap.centerAt(map, {lon: lnglat[0], lat: lnglat[1]});
+                                found = true;
+                            }
                         }
                     }
                     renderFeatureLayer(featureLayer, min, max);
@@ -611,6 +625,7 @@ var MyFeatureLayer = {
                     break;
                 }
             }
+            console.log(cities, cityLayer.graphics);
             if (isEmptyObject(cities))return;
             if (cityLayer.graphics && cityLayer.graphics.length > 0) {
                 render(cities, cityLayer.graphics);
@@ -628,7 +643,7 @@ var MyFeatureLayer = {
             function render(cities, features) {
                 //console.log("cityLayer rendering ...feature:", features);
                 var min = Number.MAX_VALUE, max = 0;
-                //console.log('aaaa');
+                var found = false;
                 for (var key in cities) {
                     for (var i = 0; i < features.length; i++) {
                         if (features[i].attributes['Name_CHN'].indexOf(key) >= 0) {
@@ -639,6 +654,12 @@ var MyFeatureLayer = {
                             MyFeatureLayer.addLabel(labelLayer, g, count);//add text to labelLayer
                             setMinMax(count);
                             MyFeatureLayer.featuresDisplayed[key] = count;
+                            if (!found) {
+                                console.log(g);
+                                var lnglat = g.geometry.rings[g.geometry.rings.length - 1][0];
+                                ArcMap.centerAt(map, {lon: lnglat[0], lat: lnglat[1]});
+                                found = true;
+                            }
                         }
                     }
                 }
@@ -672,8 +693,8 @@ var MyFeatureLayer = {
                     maxDataValue: max,
                     colors: [
                         new Color([235, 222, 237, 0.75]),
-                        new Color([176,126,184,0.75]),
-                        new Color([121,38,135,0.75]),
+                        new Color([176, 126, 184, 0.75]),
+                        new Color([121, 38, 135, 0.75]),
                         new Color([108, 36, 120, 0.7])
                     ]
                 });

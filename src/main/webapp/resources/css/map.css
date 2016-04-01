@@ -146,18 +146,14 @@
     /*display: none;*/
     position: absolute;
     bottom: 3rem;
-    right: .5rem;
+    right: 5rem;
     z-index: 50;
     min-width: 14.5rem;
     padding: .5rem;
     margin: .5rem;
     font-size: 1.5rem;
     text-align: left;
-    background-color: rgba(222, 222, 222, 0.8);
-    /*   -webkit-box-shadow: -3px 3px 3px 3px #b4b4b4;;
-       -moz-box-shadow: -3px 3px 3px 3px #b4b4b4;;
-       box-shadow: -3px 3px 3px 3px #b4b4b4;;*/
-    /*overflow: auto;*/
+    background-color: rgba(222, 222, 222, 0.9);
     -webkit-transition: all .6s;
     transition: all .6s;
     border-radius: 3px;

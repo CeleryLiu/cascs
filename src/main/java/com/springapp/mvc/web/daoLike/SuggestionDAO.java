@@ -15,14 +15,20 @@ public class SuggestionDAO {
     public List<String> getSuggestions(String query) {
         List<String> suggestions = Suggestion.getSuggestions();
         List<String> result = new ArrayList<String>();
-        String[] queryList = query.split(" ");
+        String lQuery = query.toLowerCase();
+        for (String s : suggestions) { //精确匹配用户输入
+            if (s.toLowerCase().contains(lQuery)) {
+                result.add(s);
+            }
+        }
+              /*  String[] queryList = lQuery.split(" ");    //按空格分隔查询条件
         for (int i = 0; i < queryList.length; i++) {
             for (String s : suggestions) {
                 if (s.contains(queryList[i])) {
                     result.add(s);
                 }
             }
-        }
+        }*/
         return result;
     }
 

@@ -5,13 +5,11 @@
     display: none;
     z-index: 99;
     position: fixed;
-    top: 8rem;
+    top: 9rem;
     padding-right: 1rem;
     max-height: 100%;
     float: left;
     overflow: auto;
-    /*background: no-repeat top center -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
-    /*background: no-repeat top center linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));*/
     box-sizing: border-box;
     border-radius: 4px;
 }
@@ -74,6 +72,11 @@
     font-weight: bold;
     line-height: 2.2rem;
     letter-spacing: .5rem;
+}
+
+#facet .panel-title small {
+    letter-spacing: normal;
+    color: inherit;
 }
 
 #facet .panel-heading {
@@ -292,6 +295,6 @@
 
 #search_history li .popover {
     left: 1.5rem !important;
-    word-wrap:break-word !important;
+    word-wrap: break-word !important;
     max-width: 15rem;
 }

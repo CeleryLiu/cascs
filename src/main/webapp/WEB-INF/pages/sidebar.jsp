@@ -7,7 +7,8 @@
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#countryList" aria-expanded="false" aria-controls="countryList">
                         国家
-                        <span class="fa fa-chevron-right"></span>
+                        <small class="total"></small>
+                        <span class="fa fa-chevron-right pull-right"></span>
                         <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
                     </a>
                 </h4>
@@ -19,18 +20,18 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="device_serviceTitle">
+            <div class="panel-heading" role="tab" id="serviceTitle">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
-                       href="#device_serviceList" aria-expanded="false" aria-controls="device_serviceList">
+                       href="#serviceList" aria-expanded="false" aria-controls="serviceList">
                         服务
-                        <span class="fa fa-chevron-right"></span>
-                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
+                        <small class="total"></small>
+                        <span class="fa fa-chevron-right pull-right"></span>
                     </a>
                 </h4>
             </div>
-            <div id="device_serviceList" class="panel-collapse collapse" role="tabpanel"
-                 aria-labelledby="device_serviceTitle">
+            <div id="serviceList" class="panel-collapse collapse" role="tabpanel"
+                 aria-labelledby="serviceTitle">
                 <div class="panel-body">
                     <ol class="facet-values"></ol>
                 </div>
@@ -42,8 +43,8 @@
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#portList" aria-expanded="false" aria-controls="portList">
                         端口
-                        <span class="fa fa-chevron-right"></span>
-                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
+                        <small class="total"></small>
+                        <span class="fa fa-chevron-right pull-right"></span>
                     </a>
                 </h4>
             </div>
@@ -54,18 +55,18 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="device_typeTitle">
+            <div class="panel-heading" role="tab" id="typeTitle">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse"
-                       href="#device_typeList" aria-expanded="false" aria-controls="device_typeList">
+                       href="#typeList" aria-expanded="false" aria-controls="typeList">
                         类型
-                        <span class="fa fa-chevron-right"></span>
-                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
+                        <small class="total"></small>
+                        <span class="fa fa-chevron-right pull-right"></span>
                     </a>
                 </h4>
             </div>
-            <div id="device_typeList" class="panel-collapse collapse" role="tabpanel"
-                 aria-labelledby="device_typeTitle">
+            <div id="typeList" class="panel-collapse collapse" role="tabpanel"
+                 aria-labelledby="typeTitle">
                 <div class="panel-body">
                     <ol class="facet-values"></ol>
                 </div>
@@ -77,8 +78,8 @@
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#vulList" aria-expanded="false" aria-controls="vulList">
                         漏洞
-                        <span class="fa fa-chevron-right"></span>
-                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
+                        <small class="total"></small>
+                        <span class="fa fa-chevron-right pull-right"></span>
                     </a>
                 </h4>
             </div>
@@ -94,8 +95,8 @@
                     <a class="collapsed" role="button" data-toggle="collapse"
                        href="#osList" aria-expanded="false" aria-controls="osList">
                         操作系统
-                        <span class="fa fa-chevron-right"></span>
-                        <%--<span class="glyphicon glyphicon-menu-down pull-right"></span>--%>
+                        <small class="total"></small>
+                        <span class="fa fa-chevron-right pull-right"></span>
                     </a>
                 </h4>
             </div>

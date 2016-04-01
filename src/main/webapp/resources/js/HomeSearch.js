@@ -35,6 +35,7 @@ var HomeSearch = {
                     'page': 1
                 }
             };
+            $(this).find('input').typeahead('close');
             // (1)清空Pivot
             Pivot.init();
             // (2)为GlobalSearch赋值

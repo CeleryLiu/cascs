@@ -21,7 +21,6 @@ var Sidebar = {
     render: function (data) {
         console.log("Sidebar.render()", data);
         var agg = data['aggregation'], wd = data['wd'] ? data['wd'] : data['q']['wd'];
-        //param countryObj={en:englishName,count:totalCount,cities:cityObjList}
         var genSidebarCountryLi = function (countryName, countryObj) {
             //coXX=countryXX,ciYY=cityYY
             //country
@@ -137,47 +136,14 @@ var Sidebar = {
 
         //(2)根据filter设置复选框的选中状态并添加对应的pivot
         $('div.panel-collapse.collapse').removeClass('in');
-        /* if (wd && wd != '') {
-         var wdList = wd.split(' ');
-         for (var i = 0; i < wdList.length; i++) {
-         var item = wdList[i];
-         if (item.indexOf(':') > 0) {
-         var dKey = item.split(':')[0],
-         dValue = item.split(':')[1],
-         $input = $(Sidebar._WRAPPER_SEL + ' input[data-value="' + dValue + '"]'),
-         value;
-         if ($input && $input.attr('data-key') == dKey) {
-         value = $input.val();
-         //选中复选框
-         $input.prop('checked', true);
-         if (dKey == 'country') {
-         //该国家下所有的城市都被选中，并移除Pivot中对应的城市
-         var siblings = $input.closest('li').siblings("li");
-         siblings.each(function (index, item) {
-         var i = $(item).find('input').prop('checked', true).attr('disabled', 'disabled');
-         Pivot.remove({'dKye': dKey, 'dValue': dValue});
-         });
-         }
-
-         //展开被选中复选框所在的面板
-         $input.closest('div.collapse').addClass('in');
-         if (dKey == 'city' || dKey == 'country') {
-         $('#countryList').addClass('in');
-         }
-         //添加pivot
-         Pivot.add(dKey, dValue, value);
-         }
-         }
-         }
-         }*/
 
         //(3)监听折叠面板的状态
         $('.panel-title a').on('click', function () {
             var $this = $(this);
-            if ($this.attr('aria-expanded') == 'false') {   //这里竟然是字符串，不是boolean
-                $this.find('span').addClass('glyphicon-menu-right').removeClass('glyphicon-menu-down');
+            if ($this.attr('aria-expanded') == 'false') {   //这里竟然是字符串，不是boolean.
+                $this.find('.fa-chevron-right').addClass('fa-chevron-down');
             } else {
-                $this.find('span').addClass('glyphicon-menu-down').removeClass('glyphicon-menu-right');
+                $this.find('.fa-chevron-down').removeClass('fa-chevron-down');
             }
         });
     },
@@ -185,7 +151,6 @@ var Sidebar = {
         //console.log("Sidebar.render2() ======",JSON.parse(data['q']));
         var q = JSON.parse(data['q']);
         var agg = data['aggregation'], wd = q['wd'], filter = q['filter'];
-        //param countryObj={en:englishName,count:totalCount,cities:cityObjList}
         var genSidebarCountryLi = function (countryName, countryObj) {
             //coXX=countryXX,ciYY=cityYY
             //country
@@ -264,6 +229,10 @@ var Sidebar = {
 
         //(1)生成并初始化dom节点
         $.each(agg, function (key, value) {
+            var totalCount = 0;
+            if (key.indexOf('device_') != -1) {
+                key = key.replace('device_', '');
+            }
             var id = key != 'country@%city' ? (key + 'List') : 'countryList';
             var $ol = $('#' + id).find('ol.facet-values').html('');//清空以前的数据
             if (!isEmptyObject(value)) {
@@ -274,18 +243,20 @@ var Sidebar = {
                 if (!isEmptyObject(value)) {
                     $.each(value, function (countryName, countryObj) {
                         $ol.append(genSidebarCountryLi(countryName, countryObj));
+                        totalCount += countryObj.count;
                     });
                 }
             } else {
                 if (!isEmptyObject(value)) {
                     $.each(value, function (name, count) {
-                        if (key.indexOf('device_') != -1) {
-                            key = key.replace('device_', '');
+                        if (name != '') {
+                            $ol.append(genSidebarLi(key, name, count)).closest('div.panel').show();
+                            totalCount += count;
                         }
-                        $ol.append(genSidebarLi(key, name, count)).closest('div.panel').show();
                     });
                 }
             }
+            $('a[href="#' + id + '"]').find('small.total').text('【' + totalCount + '】');
         });
 
         //(2)根据filter设置复选框的选中状态【并添加对应的pivot，目前这里不需要，因为pivot是不刷新的，所以暂时注释掉】
@@ -322,9 +293,9 @@ var Sidebar = {
         $('.panel-title a').on('click', function () {
             var $this = $(this);
             if ($this.attr('aria-expanded') == 'false') {   //这里竟然是字符串，不是boolean
-                $this.find('span').addClass('glyphicon-menu-right').removeClass('glyphicon-menu-down');
+                $this.find('span.fa-chevron-right').addClass('fa-chevron-down');
             } else {
-                $this.find('span').addClass('glyphicon-menu-down').removeClass('glyphicon-menu-right');
+                $this.find('span.fa-chevron-down').removeClass('fa-chevron-down');
             }
         });
     },

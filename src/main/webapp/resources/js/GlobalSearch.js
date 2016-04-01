@@ -42,7 +42,7 @@ var GlobalSearch = {
         $(GlobalSearch._FORM_SEL).on('submit', function (e) {
             e.preventDefault();
             var wd = GlobalSearch.getValue();
-            $('.tt-menu').hide(300);
+            $(this).find('input').typeahead('close');
             if (wd == '')return;
             // (1)清空Pivot
             Pivot.init();

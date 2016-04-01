@@ -24,9 +24,9 @@ var InputSuggest = {
                 prefetch: {
                     url: Constant.LOCAL_SUGGEST_URL,
                     //url: dataSource,
-                    limit: 10,
                     //ttl: 10000,//The time (in milliseconds) the prefetched data should be cached in local storage. Defaults to 86400000 (1 day).
                     filter: function (resp) {
+                        console.log(resp);
                         if (resp[$input.attr('id')]) {
                             return $.map(resp[$input.attr('id')], function (item) {
                                 return $.isArray(item) && item.length == 2 ? {
@@ -85,6 +85,7 @@ var InputSuggest = {
                 limit: 10,
                 templates: {
                     suggestion: function (data) {
+                        //console.log(data);
                         var result = data.title;
                         if (data.desc) {
                             result += '<span class="muted pull-right">' + data.desc + '</span>'
@@ -93,12 +94,8 @@ var InputSuggest = {
                     }
                 }
             }).on("typeahead:selected", function (event, suggestion) {
-                //console.log("suggestion", suggestion);
                 $form.submit();
             }).on("keypress keydown keyup paste change", function (evt) {
-                /*if (evt.keyCode == 13) {
-                 $form.submit();
-                 }*/
             }).filter(".home-search .flex-text").focus()
         }
     },
