@@ -5,88 +5,86 @@
  * @description 看世界
  */
 
-var map, goLiveInterval, goLiveTimeout, firstLoad = true, MyMap;
-$(function () {
-    MyMap = {
-        sr: (function () {
-            require(["esri/SpatialReference"], function (SR) {
-                return new SR({wkid: 102100});
+var map, goLiveInterval, firstLoad = true;
+var MyMap = {
+    sr: (function () {
+        require(["esri/SpatialReference"], function (SR) {
+            return new SR({wkid: 102100});
+        });
+    }()),
+    init: function () {
+        //console.log('MyMap.init() ======');
+        require(["esri/map", "esri/geometry/Extent", "dojo/domReady!"], function (Map, Extent) {
+            var baseExtent, buffer = 10000000;
+            map = new Map("mapHolder", {
+                center: [-189.323, 34.355],
+                zoom: 3,
+                minZoom: 3,
+                maxZoom: 3,
+                //basemap: "gray",
+                basemap: "dark-gray",
+                slider: false,
+                logo: false
             });
-        }()),
-        init: function () {
-            //console.log('MyMap.init() ======');
-            require(["esri/map", "esri/geometry/Extent", "dojo/domReady!"], function (Map, Extent) {
-                var baseExtent, buffer = 10000000;
-                map = new Map("mapHolder", {
-                    center: [-189.323, 34.355],
-                    zoom: 3,
-                    minZoom: 3,
-                    maxZoom: 3,
-                    //basemap: "gray",
-                    basemap: "dark-gray",
-                    slider: false,
-                    logo: false
-                });
-                map.on('load', function () {
-                    var ext = map.extent;
-                    MyMap.sr = map.spatialReference;
-                    baseExtent = new Extent(ext.xmin, ext.ymin - buffer, ext.xmax, ext.ymax + buffer, MyMap.sr);
-                });
-                map.on('pan-end', function (e) {
-                    if (map.extent.ymin < baseExtent.ymin || map.extent.ymax > baseExtent.ymax) {
-                        baseExtent.xmin = map.extent.xmin;
-                        baseExtent.xmax = map.extent.xmax;
-                        map.setExtent(baseExtent);
-                    }
-                });
-                map.on('click', function (e) {
-                    //console.log(map.toScreen(e.mapPoint));
-                });
+            map.on('load', function () {
+                var ext = map.extent;
+                MyMap.sr = map.spatialReference;
+                baseExtent = new Extent(ext.xmin, ext.ymin - buffer, ext.xmax, ext.ymax + buffer, MyMap.sr);
             });
-        },
-        centerAt: function (device) {
-            if (map && map != null) {
-                require([
-                    "esri/geometry/Point",
-                    "esri/symbols/PictureMarkerSymbol",
-                    "esri/graphic",
-                    "esri/InfoTemplate",
-                    "esri/geometry/webMercatorUtils"
-                ], function (Point, PictureMarkerSymbol, Graphic, InfoTemplate, MercatorUtils) {
-                    var x = parseFloat(device.lng), y = parseFloat(device.lat);
-                    var lnglat = new Point(x, y, MyMap.sr);
-                    var point = MercatorUtils.geographicToWebMercator(lnglat);
-                    var symbol = new PictureMarkerSymbol('resources/img/location.gif', 40, 40);
-                    var attr = {
-                        "ip": device.ip,
-                        "lng": x,
-                        "lat": y,
-                        "country": device.country,
-                        "city": device.city,
-                        "time": device.time
-                    };
-                    /* var template = new InfoTemplate("")
-                     .setContent("IP：${ip}<br>经度：${lng}<br>纬度：${lat}<br>国家：${country}<br>城市：${city}<br>时间：${time}");*/
-                    var graphic = new Graphic(point, symbol, attr);
-                    if (map.graphics != null) {
-                        map.graphics.clear();
-                        map.graphics.add(graphic);
-                    }
-                    //var extent = map.extent;
-                    //var adjustedY = parseFloat(point.y - Math.abs(Math.abs(extent.ymax) - Math.abs(extent.ymin)) / 3);
-                    var adjustedY = point.y - 4076570;
-                    map.centerAndZoom(new Point(point.x, adjustedY, MyMap.sr), 3);
-                });
-            }
-        },
-        clear: function () {
-            if (map && map.graphics != null) {
-                //console.log('MyMap.clear() ======');
-                map.graphics.clear();
-            }
+            map.on('pan-end', function (e) {
+                if (map.extent.ymin < baseExtent.ymin || map.extent.ymax > baseExtent.ymax) {
+                    baseExtent.xmin = map.extent.xmin;
+                    baseExtent.xmax = map.extent.xmax;
+                    map.setExtent(baseExtent);
+                }
+            });
+            map.on('click', function (e) {
+                //console.log(map.toScreen(e.mapPoint));
+            });
+        });
+    },
+    centerAt: function (device) {
+        if (map && map != null) {
+            require([
+                "esri/geometry/Point",
+                "esri/symbols/PictureMarkerSymbol",
+                "esri/graphic",
+                "esri/InfoTemplate",
+                "esri/geometry/webMercatorUtils"
+            ], function (Point, PictureMarkerSymbol, Graphic, InfoTemplate, MercatorUtils) {
+                var x = parseFloat(device.lng), y = parseFloat(device.lat);
+                var lnglat = new Point(x, y, MyMap.sr);
+                var point = MercatorUtils.geographicToWebMercator(lnglat);
+                var symbol = new PictureMarkerSymbol('resources/img/location.gif', 40, 40);
+                var attr = {
+                    "ip": device.ip,
+                    "lng": x,
+                    "lat": y,
+                    "country": device.country,
+                    "city": device.city,
+                    "time": device.time
+                };
+                /* var template = new InfoTemplate("")
+                 .setContent("IP：${ip}<br>经度：${lng}<br>纬度：${lat}<br>国家：${country}<br>城市：${city}<br>时间：${time}");*/
+                var graphic = new Graphic(point, symbol, attr);
+                if (map.graphics != null) {
+                    map.graphics.clear();
+                    map.graphics.add(graphic);
+                }
+                //var extent = map.extent;
+                //var adjustedY = parseFloat(point.y - Math.abs(Math.abs(extent.ymax) - Math.abs(extent.ymin)) / 3);
+                var adjustedY = point.y - 4076570;
+                map.centerAndZoom(new Point(point.x, adjustedY, MyMap.sr), 3);
+            });
         }
-    };
-});
+    },
+    clear: function () {
+        if (map && map.graphics != null) {
+            //console.log('MyMap.clear() ======');
+            map.graphics.clear();
+        }
+    }
+};
 var toggleActiveImg = function (opt) {
     var wrapper = $('.active-image-wrapper');
     switch (opt) {
@@ -113,10 +111,8 @@ var toggleActiveImg = function (opt) {
             break;
     }
 };
-
 var init = function () {
     MyMap.init();
-
     //选择某个国家后的处理方法
     var onCountrySelected = function (countryName) {
         var showImgAfterSelected = function (image) {
@@ -335,7 +331,7 @@ var init = function () {
          */
 
         goLiveInterval = setInterval(function () {
-            $('#img_right').attr('src', $('#goLive').attr('href') + '?t=' + new Date().getTime())+'&y=11';
+            $('#img_right').attr('src', $('#goLive').attr('href') + '?t=' + new Date().getTime()) + '&y=11';
         }, 2000);
         $this.text('Stop');
     });

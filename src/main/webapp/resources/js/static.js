@@ -78,16 +78,16 @@ var Constant = {
     LOCAL_SUGGEST_URL: (function () {
         return 'resources/data/suggestions.json';
     }()),
-    ANALYSIS_OFFLINE_SUMMARY_RUL: (function () {
+    ANALYSIS_OFFLINE_SUMMARY_URL: (function () {
         return 'analysis/getSummary';
     }()),
-    ANALYSIS_OFFLINE_N_SUMMARY_RUL: (function () {
+    ANALYSIS_OFFLINE_N_SUMMARY_URL: (function () {
         return 'analysis/getNMonthSummary';
     }()),
     ANALYSIS_OFFLINE_N: (function () {
         return 6;
     }()),
-    ANALYSIS_OFFLINE_LATEST_RUL: (function () {
+    ANALYSIS_OFFLINE_LATEST_URL: (function () {
         return 'analysis/getLatestData';
     }()),
     //↓pagination

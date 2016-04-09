@@ -221,4 +221,10 @@ public class WebPageController {
         logger.debug("WebPageController.vision() ======");
         return "vision";
     }
+
+    @RequestMapping(value = "/showcase", method = RequestMethod.GET)
+    public String showcase() {
+        logger.debug("WebPageController.show() ======");
+        return "showcase";
+    }
 }

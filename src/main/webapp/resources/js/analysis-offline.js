@@ -522,7 +522,7 @@ var AnalysisOffline = {
                             controlStyle: {
                                 normal: textStyle
                             },
-                            autoPlay : false,
+                            autoPlay: false,
                             playInterval: 1000,
                             currentIndex: 5
                         },
@@ -745,7 +745,7 @@ var AnalysisOffline = {
                         console.log("Ajax error!");
                     };
                     LoadData.post({
-                        'url': Constant.ANALYSIS_OFFLINE_N_SUMMARY_RUL + '/' + Constant.ANALYSIS_OFFLINE_N,
+                        'url': Constant.ANALYSIS_OFFLINE_N_SUMMARY_URL + '/' + Constant.ANALYSIS_OFFLINE_N,
                         'success': successCallback,
                         'error': errorCallback
                     });
@@ -796,7 +796,7 @@ var AnalysisOffline = {
                     };
                     // (1)ajax getting data...............
                     LoadData.post({
-                        'url': Constant.ANALYSIS_OFFLINE_LATEST_RUL,
+                        'url': Constant.ANALYSIS_OFFLINE_LATEST_URL,
                         'success': successCallback,
                         'error': errorCallback,
                         'data': {

@@ -18,7 +18,7 @@
     <meta name="description" content="index"/>
     <meta name="keywords" content="cyberspace,device,fingerprint,security,search engine,scan,web"/>
     <%--↓basic css--%>
-    <spring:url value="resources/css/jquery.fullpage.css" var="fpCss"/>
+    <spring:url value="resources/css/jquery.fullpage.min.css" var="fpCss"/>
     <link rel="stylesheet" href="${fpCss}">
     <spring:url value="resources/css/validform.css" var="vfCss"/>
     <link rel="stylesheet" href="${vfCss}">
