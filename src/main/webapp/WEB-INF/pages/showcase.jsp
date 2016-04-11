@@ -35,22 +35,43 @@
                 <li></li>
             </ul>
         </div>
-        <%--<div class="wavewarp commenwave">--%>
-        <%--<div class="allwave" style="display: none;">--%>
-        <%--<div class="wavebom"><p></p></div>--%>
-        <%--<div class="wavetop"><p></p></div>--%>
-        <%--</div>--%>
-        <%--<canvas id="wave"></canvas>--%>
-        <%--</div>--%>
     </div>
     <div class="section black-bg" id="page2">
+        <div class="inner">
+            <div class="map-bg"></div>
+            <div class="point"></div>
+        </div>
+    </div>
+    <div class="section black-bg" id="page3">
         <div id="scrollcombidy2d" class="full-height p60 mb50"></div>
         <div id="map" class="full-height mb50"></div>
         <div id="multilevelpie" class="full-height p60" style="display: none"></div>
         <div id="pie3Ds" class="p60"></div>
     </div>
-    <div class="section" id="page3">
-        <div class="inner">视频墙</div>
+    <div class="section" id="page4">
+        <div class="slide">
+            <ul class="img-nav">
+                <li>1</li>
+                <li>2</li>
+            </ul>
+            <div class="container">
+                <a href="#"><img src="resources/img/vision/picture20160327/1.51.204.144_1435161600000.jpg"/></a>
+                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.65_1435161600000.jpg"/></a>
+                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.66_1435161600000.jpg"/></a>
+                <br>
+                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.67_1435161600000.jpg"/></a>
+                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.68_1435161600000.jpg"/></a>
+                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.69_1435161600000.jpg"/></a>
+            </div>
+            <%--            <div class="wavewarp commenwave stick-bottom">
+                            <div class="allwave">
+                                <div class="wavebom"><p></p></div>
+                                <div class="wavetop"><p></p></div>
+                            </div>
+                            <canvas id="wave"></canvas>
+                        </div>--%>
+        </div>
+        <div class="slide">第二屏</div>
     </div>
 </div>
 <script src="resources/js/libs/jquery-1.11.3.min.js"></script>

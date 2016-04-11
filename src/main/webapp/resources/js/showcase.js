@@ -31,16 +31,15 @@ $(function () {
             'dataSource': {
                 'chart': {
                     'caption': '设备扫描结果分类统计',
+                    'captionFontSize': '32',
                     'xAxisname': '日期',
                     'yAxisName': '设备数量',
-                    //'plotFillAlpha': '80',
+                    'plotFillAlpha': '80',
                     'paletteColors': '#8e0000,#1aaf5d,#0075c2',
                     //#0075c2,#1aaf5d,#f2c500,#f45b00,#8e0000
                     'baseFontColor': '#ffffff',
                     'baseFont': 'Helvetica Neue,Arial',
-                    'captionFontSize': '14',
-                    'subcaptionFontSize': '14',
-                    'subcaptionFontBold': '0',
+                    'baseFontSize': '14',
                     'showBorder': '0',
                     'bgColor': '#333333',
                     "bgAlpha": "100",
@@ -66,11 +65,15 @@ $(function () {
                     'legendBgAlpha': '0',
                     'legendBorderAlpha': '0',
                     'legendShadow': '0',
-                    'legendItemFontSize': '12',
+                    'legendItemFontSize': '14',
+                    'legendPosition': 'right',
                     //'legendItemFontColor': '#666666',
                     "showValues": "1",
                     "numVisiblePlot": "12",
                     "flatScrollBars": "1",
+                    "toolTipBorderColor": "#545454",
+                    "toolTipBgColor": "#545454",
+                    "toolTipBgAlpha": "80",
                     "scrollheight": "10"
                 },
                 'categories': [
@@ -130,16 +133,16 @@ $(function () {
                         'seriesname': '类型3',
                         'data': [
                             {
-                                'value': '25400'
-                            },
-                            {
-                                'value': '29800'
+                                'value': '22400'
                             },
                             {
                                 'value': '21800'
                             },
                             {
-                                'value': '26800'
+                                'value': '31800'
+                            },
+                            {
+                                'value': '20800'
                             }
                         ]
                     }
@@ -148,101 +151,100 @@ $(function () {
         });
         //2) 生成最近一次扫描的设备统计图（地图和饼状图）
         var genLatestCharts = function (data, textStatus, jqXHR) {
-            var genPies = function (obj) {
-                var basicPieOption = {
-                    'type': 'pie3d',
-                    'width': '48%',
-                    'height': '400',
-                    'dataFormat': 'json',
-                    'dataSource': {
-                        'chart': {
-                            'caption': '',
-                            'bgColor': '#333333',
-                            'baseFontColor': '#ffffff',
-                            'use3DLighting': '0',
-                            'showShadow': '1',
-                            'enableSmartLabels': '1',
-                            'startingAngle': '0',
-                            'showPercentValues': '1',
-                            'showPercentInTooltip': '1',
-                            'decimals': '1',
-                            'captionFontSize': '14',
-                            'toolTipColor': '#ffffff',
-                            'toolTipBorderThickness': '0',
-                            'toolTipBgColor': '#000000',
-                            'toolTipBgAlpha': '80',
-                            'toolTipBorderRadius': '2',
-                            'toolTipPadding': '5',
-                            "plottooltext": "$label, $value, $percentValue",
-                            'showHoverEffect': '1',
-                            'showLegend': '0',
-                            'legendBgColor': '#ffffff',
-                            'legendBorderAlpha': '0',
-                            'legendShadow': '0',
-                            'legendItemFontSize': '10',
-                            'legendItemFontColor': '#666666',
-                            'useDataPlotColorForLabels': '1',
-                            'enableMultiSlicing': 1,
-                            'labelDistance':"20"
-                        },
-                        'data': []
-                    }
-                };
-                var basicMapOption = {
-                    type: 'maps/worldwithcountries',
-                    width: '100%',
-                    height: '100%',
-                    dataFormat: 'json',
-                    dataSource: {
-                        "chart": {
-                            "caption": "",
-                            "theme": "fint",
-                            "bgColor": "#333333",
-                            "bgAlpha": "100",
-                            'baseFontColor': '#ffffff',
-                            "formatNumberScale": "0",
-                            "nullEntityColor": "#C2C2D6",
-                            "nullEntityAlpha": "50",
-                            "hoverOnNull": "0",
-                            "showLabels": "0"
-                        },
-                        "colorrange": {
-                            "minvalue": "0",
-                            //"startlabel": "Low",
-                            //"endlabel": "High",
-                            "code": "#FF4411",
-                            "gradient": "1",
-                            "color": [{
-                                "maxvalue": "500000",
-                                "code": "#6baa01"
-                                //"displayValue": "Median"
-                            }, {
-                                "maxvalue": "2000000",
-                                "code": "#FFDD44"
-                            }]
-                        },
-                        "data": []
-                    }
-                };
-                var $pies = $('#pie3Ds'), $map = $('#map');
-                for (var key in obj) {
-                    if (key == 'country') {
-                        var mapOpt = $.extend(true, {}, basicMapOption);
-                        var maxvalue = obj[key]['max'];
-                        mapOpt.dataSource.chart.caption = dataMapping[key];
-                        mapOpt.dataSource.data = obj[key]['data'];
-                        mapOpt.dataSource.colorrange.color[0].maxvalue = maxvalue / 2;
-                        mapOpt.dataSource.colorrange.color[1].maxvalue = maxvalue;
-                        $map.insertFusionCharts(mapOpt);
-                    } else{
-                        var opt = $.extend(true, {}, basicPieOption);//$.extend(true,{}, json);//深克隆
-                        opt.dataSource.chart.caption = dataMapping[key];
-                        opt.dataSource.data = obj[key]['data'];
-                        $pies.appendFusionCharts(opt);
-                    }
+            var obj = data.data;
+            var basicPieOption = {
+                'type': 'pie3d',
+                'width': '48%',
+                'height': '400',
+                'dataFormat': 'json',
+                'dataSource': {
+                    'chart': {
+                        'caption': '',
+                        'bgColor': '#333333',
+                        'baseFontColor': '#ffffff',
+                        'use3DLighting': '0',
+                        'showShadow': '1',
+                        'enableSmartLabels': '1',
+                        'startingAngle': '0',
+                        'showPercentValues': '1',
+                        'showPercentInTooltip': '1',
+                        'decimals': '1',
+                        'captionFontSize': '32',
+                        'toolTipColor': '#ffffff',
+                        'toolTipBorderThickness': '0',
+                        'toolTipBgColor': '#000000',
+                        'toolTipBgAlpha': '80',
+                        'toolTipBorderRadius': '2',
+                        'toolTipPadding': '5',
+                        "plottooltext": "$label, $value, $percentValue",
+                        'showHoverEffect': '1',
+                        'showLegend': '0',
+                        'legendBgColor': '#ffffff',
+                        'legendBorderAlpha': '0',
+                        'legendShadow': '0',
+                        'legendItemFontSize': '10',
+                        'legendItemFontColor': '#666666',
+                        'useDataPlotColorForLabels': '1',
+                        'enableMultiSlicing': 1,
+                        'labelDistance': "20"
+                    },
+                    'data': []
                 }
             };
-            genPies(data.data);
+            var basicMapOption = {
+                type: 'maps/worldwithcountries',
+                width: '100%',
+                height: '100%',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption": "",
+                        'captionFontSize': '32',
+                        "theme": "fint",
+                        "bgColor": "#333333",
+                        "bgAlpha": "100",
+                        'baseFontColor': '#ffffff',
+                        "formatNumberScale": "0",
+                        "nullEntityColor": "#C2C2D6",
+                        "nullEntityAlpha": "50",
+                        "hoverOnNull": "0",
+                        "showLabels": "0"
+                    },
+                    "colorrange": {
+                        "minvalue": "0",
+                        //"startlabel": "Low",
+                        //"endlabel": "High",
+                        "code": "#FF4411",
+                        "gradient": "1",
+                        "color": [{
+                            "maxvalue": "500000",
+                            "code": "#6baa01"
+                            //"displayValue": "Median"
+                        }, {
+                            "maxvalue": "2000000",
+                            "code": "#FFDD44"
+                        }]
+                    },
+                    "data": []
+                }
+            };
+            var $pies = $('#pie3Ds'), $map = $('#map');
+            for (var key in obj) {
+                if (key == 'country') {
+                    var mapOpt = $.extend(true, {}, basicMapOption);
+                    var maxvalue = obj[key]['max'];
+                    mapOpt.dataSource.chart.caption = dataMapping[key];
+                    mapOpt.dataSource.data = obj[key]['data'];
+                    mapOpt.dataSource.colorrange.color[0].maxvalue = maxvalue / 2;
+                    mapOpt.dataSource.colorrange.color[1].maxvalue = maxvalue;
+                    $map.insertFusionCharts(mapOpt);
+                } else {
+                    var opt = $.extend(true, {}, basicPieOption);//$.extend(true,{}, json);//深克隆
+                    opt.dataSource.chart.caption = dataMapping[key];
+                    opt.dataSource.data = obj[key]['data'];
+                    $pies.appendFusionCharts(opt);
+                }
+            }
             /*$('#multilevelpie').insertFusionCharts({
              type: 'multilevelpie',
              width: '400',
@@ -251,6 +253,7 @@ $(function () {
              dataSource: {
              "chart": {
              "caption": "xxxxxxxxx",
+             'captionFontSize': '32',
              "showPlotBorder": "1",
              "piefillalpha": "60",
              "pieborderthickness": "2",
@@ -365,11 +368,40 @@ $(function () {
         });
     };
     genCharts();
+    var scanOnMap = function () {
+        var mapH = $(window).height() - 120;
+        $('.map-bg').insertFusionCharts({
+            type: 'maps/worldwithcountries',
+            width: '100%',
+            height: mapH,
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    "caption": "Scan",
+                    'captionFontSize': '32',
+                    "theme": "fint",
+                    "bgColor": "#333333",
+                    "bgAlpha": "100",
+                    'baseFontColor': '#ffffff',
+                    //"formatNumberScale": "0",
+                    //"nullEntityColor": "#C2C2D6",
+                    //"nullEntityAlpha": "50",
+                    //"hoverOnNull": "0",
+                    "showLabels": "0",
+                    'labelFontSize': '8'
+                }
+            }
+        });
+    };
+    scanOnMap();
     //2.全屏滚动初始化
     $('#pagewrapper').fullpage({
-        anchors: ['system', 'charts', 'videos'],
-        navigation: true,
+        anchors: ['who-we-are', 'we-are-doing', 'we-have-done', 'we-provide'],
+        navigation: false,
+//<div class="fp-controlArrow fp-prev" style="border-color: transparent rgb(0, 0, 0) transparent transparent; display: block;"></div>
+        controlArrowColor: '#000',
         navigationPosition: 'right',
+        navigationTooltips: ['我们是..', '正在做...', '已完成...', '提供您...'],
         scrollOverflow: true,
         animateAnchor: false,
         //autoScrolling: false,
@@ -377,10 +409,14 @@ $(function () {
         resize: true,
         verticalCentered: false,
         //normalScrollElements:'#page2',
-        //events
         onLeave: function (index, nextIndex, direction) {
         },
         afterLoad: function (anchorLink, index) {
+            if (anchorLink == 'we-are-doing' || anchorLink == 'we-have-done') {
+                $('#fp-nav').addClass('white');
+            } else {
+                $('#fp-nav').removeClass('white');
+            }
         },
         afterRender: function () {
             //$.fn.fullpage.reBuild();
@@ -400,12 +436,6 @@ $(function () {
             tag.scrollLeft(tag.scrollLeft() + 1);
             setTimeout(waveAnimate, 200)
         }
-
-        waving();
-        function waving() {
-            $(".page_1").addClass("animate")
-        }
-
         function SiriWave(opt) {
             this.opt = opt || {};
             this.K = 1;
@@ -427,7 +457,6 @@ $(function () {
             this.ctx = this.canvas.getContext("2d");
             this.run = false
         }
-
         SiriWave.prototype = {
             _globalAttenuationFn: function (x) {
                 return Math.pow(this.K * 4 / (this.K * 4 + Math.pow(x, 4)), this.K * 2)

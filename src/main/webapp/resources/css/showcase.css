@@ -1,10 +1,26 @@
 @charset "UTF-8";
-/*----------------------system↓--------------------------*/
-.section {
+ul {
+    list-style: none;
+}
+
+/*----------------------fullpage↓--------------------------*/
+#page1,
+#page4 div.slide {
     background: url("../img/showcase/wallpaper2_small.jpg") fixed;
     background-size: cover;
 }
 
+#fp-nav.white ul li a span, .fp-slidesNav.white ul li a span {
+    background: #fff;
+}
+
+#fp-nav ul li .fp-tooltip {
+    background: rgba(0, 0, 0, .6);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/*----------------------system↓--------------------------*/
 #page1 {
     position: relative;
     overflow: hidden;
@@ -183,12 +199,83 @@
     }
 }
 
+/*----------------------scan on map-----------------------*/
+#page2 .inner {
+    position: relative;
+    height: 100%;
+}
+
+.map-bg {
+    z-index: 20;
+}
+
+.point {
+    z-index: 21;
+    position: absolute;
+    top: 0;
+    width: 880px;
+    height: 880px;
+    margin-left: -440px;
+    left: 50%;
+    background: url(../img/showcase/rada_440.png) no-repeat;
+    _border: #000 solid 1px;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.addAnimation .point {
+    -webkit-animation: pointAnimations 5s linear infinite;
+    -moz-animation: pointAnimations 5s linear infinite;
+    -ms-animation: pointAnimations 5s linear infinite;
+    animation: pointAnimations 5s linear infinite
+}
+
+@-webkit-keyframes pointAnimations {
+    0% {
+        -webkit-transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@-moz-keyframes pointAnimations {
+    0% {
+        -moz-transform: rotate(0deg)
+    }
+    100% {
+        -moz-transform: rotate(360deg)
+    }
+}
+
+@-ms-keyframes pointAnimations {
+    0% {
+        -ms-transform: rotate(0deg)
+    }
+    100% {
+        -ms-transform: rotate(360deg)
+    }
+}
+
+@keyframes pointAnimations {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
 /*----------------------charts↓--------------------------*/
 .p60 {
     padding: 60px;
 }
 
-.mb50{
+.mb50 {
     margin-bottom: 50px;
 }
 
@@ -200,39 +287,116 @@
     background-color: #333;
 }
 
-/*----------------------videos↓--------------------------*/
-#page3 {
+/*----------------------videos/images↓--------------------------*/
+
+.img-nav {
+    text-align: center;
 }
 
-/*↓wave animation*/
-/*
-.sys_bg {
-    width: 1092px;
-    height: calc(100% - 99px);
-    background: url(../img/showcase/iphone_bg.png) no-repeat center #ff0000;
-    margin: -246px auto -278px;
-    z-index: 15;
+.img-nav li {
+    float: left;
+    padding: 5px 10px;
+    background-color: red;
+}
+
+.container {
+    margin: 8% auto;
     position: relative;
-    opacity: 0.1;
-    -webkit-transition: all .95s;
-    -ms-transition: all .95s;
-    -moz-transition: all .95s;
-    transition: all .95s
+    text-align: center;
 }
 
+.container a {
+    max-height: 40%;
+    min-height: 400px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.container img {
+    width: 20%;
+    /*height: 40%;*/
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 3px rgba(50, 50, 50, .4);
+    /*position: absolute;*/
+    z-index: 1;
+    background: #fff;
+}
+
+.container img:hover {
+    -webkit-transform: rotate(0deg) scale(1.5);
+    -ms-transform: rotate(0deg) scale(1.5);
+    transform: rotate(0deg) scale(1.5);
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+    z-index: 2;
+}
+
+/*.container img:nth-child(1) {
+    left: 0px;
+    top: 0px;
+    -webkit-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+
+.container img:nth-child(2) {
+    left: 31%;
+    top: 0px;
+    -webkit-transform: rotate(4deg);
+    -ms-transform: rotate(4deg);
+    transform: rotate(4deg);
+}
+
+.container img:nth-child(3) {
+    left: 62%;
+    top: 0;
+    -webkit-transform: rotate(-6deg);
+    -ms-transform: rotate(-6deg);
+    transform: rotate(-6deg);
+}
+
+.container img:nth-child(4) {
+    left: 0px;
+    top: 200px;
+    -webkit-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+}
+
+.container img:nth-child(5) {
+    left: 410px;
+    top: 200px;
+    -webkit-transform: rotate(-20deg);
+    -ms-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+
+.container img:nth-child(6) {
+    left: 800px;
+    top: 200px;
+    -webkit-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+}*/
+
+/*↓波浪动画*/
 .wavewarp {
     width: 100%;
     height: 99px;
     overflow: hidden;
     position: relative;
-    left: 50%;
-    margin-left: -965px
+    /*left: 50%;*/
+    /*margin-left: -965px*/
 }
 
 .commenwave {
     width: 100%;
     height: 99px;
-    position: static;
+    /*position: static;*/
+    position: fixed;
+    bottom: 0;
+    left: 0;
     margin: 0
 }
 
@@ -256,4 +420,34 @@
 .wave img {
     position: absolute;
     pointer-events: none
-}*/
+}
+
+/*--------------------------------闪烁动画-------------------------*/
+.flicker {
+    -webkit-animation: twinkling 1s infinite ease-in-out
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+@-webkit-keyframes twinkling {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes twinkling {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
