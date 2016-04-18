@@ -7,14 +7,16 @@
 
 var map, goLiveInterval, firstLoad = true;
 var MyMap = {
-    sr: (function () {
-        require(["esri/SpatialReference"], function (SR) {
-            return new SR({wkid: 102100});
-        });
-    }()),
+    /*    sr: (function () {
+     require(["esri/SpatialReference"], function (SR) {
+     return new SR({wkid: 102100});
+     });
+     }()),*/
+    sr: {},
     init: function () {
         //console.log('MyMap.init() ======');
-        require(["esri/map", "esri/geometry/Extent", "dojo/domReady!"], function (Map, Extent) {
+        require(["esri/map", "esri/geometry/Extent", "esri/SpatialReference", "dojo/domReady!"], function (Map, Extent, SR) {
+            MyMap.sr = new SR({wkid: 102100});
             var baseExtent, buffer = 10000000;
             map = new Map("mapHolder", {
                 center: [-189.323, 34.355],
@@ -312,7 +314,6 @@ var init = function () {
         $('#img_right')
             .attr('src', $('#goLive').attr('href'))
             .error(function (data, status, error) {
-                console.log('aaaaaaaaaaaaaaaaaaaaa', data, status, error);
                 clearInterval(goLiveInterval);
                 $(this).attr('src', 'resources/img/vision/thumb_no.jpg')
             });

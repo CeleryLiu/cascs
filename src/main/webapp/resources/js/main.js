@@ -127,7 +127,7 @@ var initFullpage = function () {
             }
         },
         afterLoad: function (anchorLink, index) {
-            //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
+            console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
 
             currentPage = index;
@@ -152,7 +152,7 @@ var initFullpage = function () {
                     }
                     UserSearchHistory.init();
                     break;
-                case 5:
+                case 10:
                     var lineInterval = setInterval(function () {
                         if (iLine.window && typeof iLine.window.starts == 'function') {
                             iLine.window.starts();
@@ -160,7 +160,7 @@ var initFullpage = function () {
                         }
                     }, 500);
                     break;
-                case 6:
+                case 4:
                     var offInterval = setInterval(function () {
                         if (aOffline.window.AnalysisOffline && typeof aOffline.window.AnalysisOffline.init == 'function') {
                             aOffline.window.AnalysisOffline.init();
@@ -168,7 +168,7 @@ var initFullpage = function () {
                         }
                     }, 500);
                     break;
-                case 9:
+                case 7:
                     var visionInterval = setInterval(function () {
                         if (vision.window && typeof vision.window.init == 'function') {
                             vision.window.init();

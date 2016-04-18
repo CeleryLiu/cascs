@@ -61,10 +61,11 @@
     text-align: left;
 }
 
-.latest-news li::before {
+.latest-news li:before {
     content: "\f105";
     display: inline-block;
     opacity: 0.5;
+    filter: alpha(opacity=50);
     margin-right: .8rem;
     font-family: fontawesome;
     color: #9f9fa0
@@ -126,7 +127,7 @@
     margin-right: auto;
 }
 
-.search-tips ul li::before {
+.search-tips ul li:before {
     content: '';
     margin: 0;
 }

@@ -40,6 +40,19 @@
         <div class="inner">
             <div class="map-bg"></div>
             <div class="point"></div>
+            <div id="earth" style="display: none"></div>
+            <div class="radar">
+                <div class="circle">
+                    <div class="scan"></div>
+                    <div class="dot dot1"></div>
+                    <div class="dot dot2"></div>
+                    <div class="dot dot3"></div>
+                    <div class="dot dot4"></div>
+                </div>
+                <%--                <div class="icon">
+                                    <div class="hotspot"></div>
+                                </div>--%>
+            </div>
         </div>
     </div>
     <div class="section black-bg" id="page3">
@@ -49,29 +62,83 @@
         <div id="pie3Ds" class="p60"></div>
     </div>
     <div class="section" id="page4">
-        <div class="slide">
-            <ul class="img-nav">
-                <li>1</li>
-                <li>2</li>
-            </ul>
-            <div class="container">
-                <a href="#"><img src="resources/img/vision/picture20160327/1.51.204.144_1435161600000.jpg"/></a>
-                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.65_1435161600000.jpg"/></a>
-                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.66_1435161600000.jpg"/></a>
-                <br>
-                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.67_1435161600000.jpg"/></a>
-                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.68_1435161600000.jpg"/></a>
-                <a href="#"><img src="resources/img/vision/picture20160327/1.51.218.69_1435161600000.jpg"/></a>
+        <div class="inner">
+            <ul class="img-nav"></ul>
+            <div class="img-container">
+                <img src="">
+                <img src="">
+                <img src="">
+                <img src="">
+                <img src="">
+                <img src="">
             </div>
-            <%--            <div class="wavewarp commenwave stick-bottom">
-                            <div class="allwave">
-                                <div class="wavebom"><p></p></div>
-                                <div class="wavetop"><p></p></div>
-                            </div>
-                            <canvas id="wave"></canvas>
-                        </div>--%>
         </div>
-        <div class="slide">第二屏</div>
+        <div class="real-time-img-wrapper">
+            <img src="">
+
+            <div class="real-img-footer">
+                <section class="playContainer">
+                    <li class="playBtn">
+                        <a href="#" title="start">Start</a>
+                    </li>
+                    <li class="pauseBtn">
+                        <a href="#" title="pause">Pause</a>
+                    </li>
+                </section>
+                <section class="ip-wrapper">
+                    IP：<br> <span class="ip"></span>
+                </section>
+                <section class="attack-text">
+                    <textarea disabled></textarea>
+                </section>
+            </div>
+            <div class="close-win">
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="page5">
+        <div class="section-inner">
+            <header>
+                <h1>成就</h1>
+            </header>
+            <section id="dg-container" class="dg-container">
+                <div class="dg-wrapper">
+                    <a href="#"><img src="resources/img/showcase/ct/2014-12-01.png" alt="2014-12-01">
+
+                        <div>原创漏洞证明 2014-12-01</div>
+                    </a>
+                    <a href="#"><img src="resources/img/showcase/ct/2014-12-09.png" alt="2014-12-09">
+
+                        <div>原创漏洞证明 2014-12-09</div>
+                    </a>
+                    <a href="#"><img src="resources/img/showcase/ct/2015-04-11.png" alt="2015-04-11">
+
+                        <div>原创漏洞证明 2015-04-11</div>
+                    </a>
+                    <a href="#"><img src="resources/img/showcase/ct/2015-04-13.png" alt="2015-04-13">
+
+                        <div>原创漏洞证明 2015-04-13</div>
+                    </a>
+                    <a href="#"><img src="resources/img/showcase/ct/2015-04-23.png" alt="2015-04-23">
+
+                        <div>原创漏洞证明 2015-04-23</div>
+                    </a>
+                    <a href="#"><img src="resources/img/showcase/ct/2015-05-07.png" alt="2015-05-07">
+
+                        <div>原创漏洞证明 2015-05-07</div>
+                    </a>
+                    <a href="#"><img src="resources/img/showcase/ct/2015-06-04.png" alt="2015-06-04">
+
+                        <div>原创漏洞证明 2015-06-04</div>
+                    </a>
+                    <a href="#"><img src="resources/img/showcase/ct/2015-07-23.png" alt="2015-07-23">
+
+                        <div>原创漏洞证明 2015-07-23</div>
+                    </a>
+                </div>
+            </section>
+        </div>
     </div>
 </div>
 <script src="resources/js/libs/jquery-1.11.3.min.js"></script>
@@ -82,6 +149,7 @@
 <script src="resources/js/libs/fusioncharts/fusioncharts.maps.js"></script>
 <script src="resources/js/libs/fusioncharts/fusioncharts.powercharts.js"></script>
 <script src="resources/js/libs/fusioncharts/fusioncharts-jquery-plugin.js"></script>
+<script src="resources/js/libs/jquery.gallery.js"></script>
 <script src="resources/js/libs/jquery.fullpage.min.js"></script>
 <script src="resources/js/showcase.js"></script>
 </body>

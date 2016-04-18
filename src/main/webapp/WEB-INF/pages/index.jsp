@@ -191,12 +191,6 @@
     <div class="section" data-anchor="se3" id="mapSe">
         <%@include file="map.jsp" %>
     </div>
-    <div class="section" data-anchor="se4" id="pointSe">
-        <iframe src="markpoint-iframe" name="iPoint"></iframe>
-    </div>
-    <div class="section" data-anchor="se5" id="lineSe">
-        <iframe src="markline-iframe" name="iLine"></iframe>
-    </div>
     <div class="section" data-anchor="se6" id="analysis">
         <div class="slide" data-anchor="se6_offline" id="aOffline">
             <iframe src="analysis-offline" name="aOffline"></iframe>
@@ -217,6 +211,12 @@
     </div>
     <div class="section" data-anchor="se10" id="patch">
         <%@include file="patch.jsp" %>
+    </div>
+    <div class="section" data-anchor="se4" id="pointSe">
+        <iframe src="markpoint-iframe" name="iPoint"></iframe>
+    </div>
+    <div class="section" data-anchor="se5" id="lineSe">
+        <iframe src="markline-iframe" name="iLine"></iframe>
     </div>
     <div class="section" data-anchor="se11" id="user">
         <div class="slide" data-anchor="se11_login" id="loginSl">

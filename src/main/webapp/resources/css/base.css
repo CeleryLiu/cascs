@@ -89,6 +89,7 @@ body {
     /*background: url("../img/pc_bg.jpg") center no-repeat;*/
     /*background-size: cover;*/
     background: lightgray;
+    background: no-repeat top center fixed -webkit-linear-gradient(#3f4657, #452525);
     background: no-repeat top center fixed linear-gradient(#3f4657, #452525);
 }
 
@@ -440,6 +441,7 @@ b {
 }
 
 .list-header {
+    background: no-repeat top center fixed -webkit-linear-gradient(#3f4657, #452525);
     background: no-repeat top center fixed linear-gradient(#3f4657, #452525);
 }
 
@@ -459,7 +461,6 @@ b {
     color: #000;
     background: lightgray;
     background: rgba(255, 255, 255, 0.5);
-    -webkit-border-radius: 4px;
     border-radius: 4px;
 }
 

@@ -17,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.io.File;
+import java.net.URL;
 import java.util.Iterator;
 
 @Repository
@@ -159,8 +161,9 @@ public class StatisticDAO {
         resp.put("data", data);
         return resp;
     }
-/*
-    public static void main(String[] args) {
+
+
+/*    public static void main(String[] args) {
         StatisticDAO dao = new StatisticDAO();
 //        System.out.println(dao.getSummary("Global", 10));
 //        System.out.println(dao.getNMonthSummaryAll(3));
@@ -168,6 +171,6 @@ public class StatisticDAO {
 //        test.put("test", "1");
 //        System.out.println(test.containsKey("test"));
 //        System.out.println(test.containsKey("abc"));
-        System.out.println(dao.getLatest4FusionCharts());
+//        System.out.println(dao.getLatest4FusionCharts());
     }*/
 }

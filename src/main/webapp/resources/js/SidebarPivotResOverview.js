@@ -47,9 +47,9 @@ var Sidebar = {
             //country listener
             //coInput.css('display', 'none');
             coLabelContainer.on('click', function () {
+                console.log($(this).next());
                 $(this).next().collapse('toggle');
             });
-
             return coLi;
         };
 
@@ -176,8 +176,9 @@ var Sidebar = {
 
             //country listener
             coLabelContainer.on('click', function () {
-                $('div.panel-collapse.collapse.in').removeClass('in');
-                $(this).next().collapse('toggle');
+                //$('div.panel-collapse.collapse.in').removeClass('in');
+                var opened = $(this).parents().find('div.collapse.in [data-country]').removeClass('in');
+                $(this).next('div.collapse').addClass('in');
             });
 
             return coLi;

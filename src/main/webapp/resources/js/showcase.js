@@ -4,8 +4,13 @@
  * @module name showcase
  * @description
  */
+var globalVar = {
+    imgNavAnimInterval: 0,
+    imgRefreshInterval: 0
+};
 $(function () {
-    //1.图表初始化
+    var winHeight = $(window).height();
+    //图表初始化
     var genCharts = function () {
         var dataMapping = {
             'country': '国家',
@@ -16,11 +21,10 @@ $(function () {
         };
         //高度设置为100%
         $('.full-height').css({
-            'height': $(window).height() - 120
+            'height': winHeight - 120
         });
         //生成所有扫描数据的统计图（柱状图）
         var genTotalScanChart = function (data, textStatus, jqXHR) {
-            console.log(data);
         };
         //$.post('analysis/getNMonthSummary/2', {}, genTotalScanChart);
         $('#scrollcombidy2d').insertFusionCharts({
@@ -34,8 +38,8 @@ $(function () {
                     'captionFontSize': '32',
                     'xAxisname': '日期',
                     'yAxisName': '设备数量',
-                    'plotFillAlpha': '80',
-                    'paletteColors': '#8e0000,#1aaf5d,#0075c2',
+                    'plotFillAlpha': '60',
+                    'paletteColors': '#8e0000,#0075c2,#f2c500,#1aaf5d,#f45b00',
                     //#0075c2,#1aaf5d,#f2c500,#f45b00,#8e0000
                     'baseFontColor': '#ffffff',
                     'baseFont': 'Helvetica Neue,Arial',
@@ -69,34 +73,34 @@ $(function () {
                     'legendPosition': 'right',
                     //'legendItemFontColor': '#666666',
                     "showValues": "1",
-                    "numVisiblePlot": "12",
+                    "numVisiblePlot": "60",
                     "flatScrollBars": "1",
                     "toolTipBorderColor": "#545454",
                     "toolTipBgColor": "#545454",
                     "toolTipBgAlpha": "80",
-                    "scrollheight": "10"
+                    "scrollheight": "8"
                 },
                 'categories': [
                     {
                         'category': [
                             {
-                                'label': 'Sep 2016'
+                                'label': '2016-01'
                             },
                             {
-                                'label': 'Oct 2016'
+                                'label': '2016-02'
                             },
                             {
-                                'label': 'Nov 2016'
+                                'label': '2016-03'
                             },
                             {
-                                'label': 'Dec 2016'
+                                'label': '2016-04'
                             }
                         ]
                     }
                 ],
                 'dataset': [
                     {
-                        'seriesname': '类型1',
+                        'seriesname': '监控设备',
                         'data': [
                             {
                                 'value': '10000'
@@ -113,7 +117,7 @@ $(function () {
                         ]
                     },
                     {
-                        'seriesname': '类型2',
+                        'seriesname': '工控设备',
                         'data': [
                             {
                                 'value': '25400'
@@ -130,7 +134,7 @@ $(function () {
                         ]
                     },
                     {
-                        'seriesname': '类型3',
+                        'seriesname': '办公设备',
                         'data': [
                             {
                                 'value': '22400'
@@ -143,6 +147,40 @@ $(function () {
                             },
                             {
                                 'value': '20800'
+                            }
+                        ]
+                    },
+                    {
+                        'seriesname': '智能硬件',
+                        'data': [
+                            {
+                                'value': '2540'
+                            },
+                            {
+                                'value': '29300'
+                            },
+                            {
+                                'value': '21800'
+                            },
+                            {
+                                'value': '26100'
+                            }
+                        ]
+                    },
+                    {
+                        'seriesname': '网络设备',
+                        'data': [
+                            {
+                                'value': '10100'
+                            },
+                            {
+                                'value': '11200'
+                            },
+                            {
+                                'value': '12900'
+                            },
+                            {
+                                'value': '15000'
                             }
                         ]
                     }
@@ -367,59 +405,274 @@ $(function () {
             success: genLatestCharts
         });
     };
-    genCharts();
+
+    //设备扫描模拟
     var scanOnMap = function () {
-        var mapH = $(window).height() - 120;
-        $('.map-bg').insertFusionCharts({
+        var mapBgChart = $('.map-bg').insertFusionCharts({
             type: 'maps/worldwithcountries',
             width: '100%',
-            height: mapH,
+            height: winHeight,
             dataFormat: 'json',
             dataSource: {
                 "chart": {
-                    "caption": "Scan",
+                    "caption": "设备扫描",
                     'captionFontSize': '32',
                     "theme": "fint",
                     "bgColor": "#333333",
                     "bgAlpha": "100",
                     'baseFontColor': '#ffffff',
-                    //"formatNumberScale": "0",
                     //"nullEntityColor": "#C2C2D6",
                     //"nullEntityAlpha": "50",
-                    //"hoverOnNull": "0",
+                    "hoverOnNull": "1",
                     "showLabels": "0",
-                    'labelFontSize': '8'
+                    'labelFontSize': '3'
                 }
             }
         });
+        $('.scan').css({
+            width: winHeight,
+            height: winHeight,
+            'transform-origin': winHeight + ' ' + winHeight
+        });
+        //显示分布
+        setTimeout(function () {
+            console.log('a');
+            mapBgChart.updateFusionCharts({
+                dataSource: {
+                    "chart": {
+                        "caption": "扫描结果",
+                        'captionFontSize': '32',
+                        "theme": "fint",
+                        "bgColor": "#333333",
+                        "bgAlpha": "100",
+                        'baseFontColor': '#ffffff',
+                        "hoverOnNull": "1",
+                        "showLabels": "0",
+                        'labelFontSize': '3'
+                    }
+                }
+            });
+        }, 4000);
     };
-    scanOnMap();
-    //2.全屏滚动初始化
+
+    //照片墙-初始化
+    var initImages = function (data) {
+        var $imgNav = $('.img-nav'), imgContainer = $('.img-container');
+        var count = 2; //让左右两边各留出1个li的空白
+        globalVar.images = data;
+        for (var k in data) {
+            //generate nav
+            $imgNav.append($('<li class="img-nav-item">' + k + '</li>'));
+            count++;
+        }
+        var imgCaty = $imgNav.find('li:first-child').addClass('current').text();
+        showImages(data, imgCaty);
+        $imgNav.find('li')
+            .css('width', (100 / count) + '%')
+            .hover(function () {
+                clearInterval(globalVar.imgNavAnimInterval);
+                if ($(this).hasClass('active') || $(this).hasClass('current'))return;
+                if (!realTimeImage.isHidden())return;
+                $('.img-nav li.active').removeClass('active');
+                $('.img-nav li.current').removeClass('current');
+                $(this).addClass('current');
+                showImages(globalVar.images, $(this).text());
+            }, function () {
+                if (!$(this).siblings('.active')) {
+                    imgNavAnimate.start($(this).index());
+                }
+            })
+            .on('click', function (e) {
+                clearInterval(globalVar.imgNavAnimInterval);
+                if ($(this).hasClass('active'))return;
+                $('.img-nav li.active').removeClass('active');
+                $('.img-nav li.current').removeClass('current');
+                $(this).addClass('active');
+                showImages(globalVar.images, $(this).text());
+            })
+            .fontFlex(14, 20, 65);//字体自适应
+
+        imgContainer.find('img').on('click', function (e) {
+            e.preventDefault();
+            clearInterval(globalVar.imgNavAnimInterval);
+            var src = $(this).attr('src');
+            var location = this.getBoundingClientRect();//返回对象的大小及其相对于视口的位置
+            realTimeImage.show(src, location);
+        });
+    };
+//照片墙-自动切换图片
+    var imgNavAnimate = {
+        start: function (idx) {
+            //找到当前显示的图片对应的导航
+            var ii = idx ? idx : 0;//当前导航项
+            var t = $('.img-nav li').length;   //导航项个数
+            globalVar.imgNavAnimInterval = setInterval(function () {
+                if (t == 0) t = $('.img-nav li').length;
+                $('.img-nav li.current').removeClass('current');
+                var curLi = $('.img-nav li').eq(ii > t - 1 ? ii = 0 : ii++).addClass('current');
+                showImages(globalVar.images, curLi.text());
+            }, 8000);
+        }, stop: function () {
+            clearInterval(globalVar.imgNavAnimInterval);
+        }
+    };
+
+//显示指定导航对应的图片，imgCategory是图片分类也是导航的text
+    var showImages = function (images, imgCategory) {
+        var baseSrc = 'resources/img/showcase/monitor/' + imgCategory + '/';
+        if (images && images[imgCategory]) {
+            var $imgs = $('.img-container img');
+            $imgs.each(function (idx, item) {
+                $(this).attr('src', baseSrc + images[imgCategory][idx]);
+            });
+        }
+    };
+
+    var realTimeImage = {
+        _wrapper_sel: '.real-time-img-wrapper',
+        interval: 0,
+        isHidden: function () {
+            //参考http://www.oschina.net/code/snippet_933023_24100
+            var flag = false;
+            var rect = document.getElementsByClassName('real-time-img-wrapper')[0].getBoundingClientRect();
+            if (rect.bottom - rect.top == 0) {
+                flag = true;
+            }
+            return flag;
+        },
+        show: function (src, location) {
+            clearInterval(globalVar.imgNavAnimInterval);
+            clearInterval(globalVar.imgRefreshInterval);
+            var ip = src.substring(src.lastIndexOf('/') + 1, src.lastIndexOf('.jpg'));
+            var $wrapper = $(this._wrapper_sel), wrapperH = $wrapper.height(), wrapperW = $wrapper.width();
+            //将当前图片到到实时图片框
+            $wrapper.find('img').attr({
+                'src': src,
+                'data-ip': ip
+            });
+            //显示实时图片框
+            if (realTimeImage.isHidden()) {
+                $wrapper.show().css({
+                    left: location.left + location.width / 2 - wrapperW / 2,
+                    top: location.top + location.height / 2 - wrapperH / 2
+                }).addClass('scaleAndCenter');
+            }
+            //设置ip
+            $wrapper.find('.ip').text(ip);
+            //播放按钮改为暂停并监听
+            $wrapper.find('.playContainer').addClass('playing');
+            //获取设备信息
+            $wrapper.find('textarea').text("\n开始执行漏洞攻击......");
+            /*            $.ajax({
+             url: 'search/list2',
+             type: 'POST',
+             contentType: 'application/json',
+             dataType: 'json',
+             data: JSON.stringify({
+             wd: ip,
+             page: 1
+             }),
+             success: function (data) {
+             if (data.data.length > 0) {
+
+             }
+             }
+             });*/
+            //实时刷新图片
+            this.refresh();
+        }, hide: function () {
+            //$(this._wrapper_sel).hide('slow');
+            clearInterval(globalVar.imgRefreshInterval);
+            $(realTimeImage._wrapper_sel).hide('slow');
+        }, refresh: function () {
+            clearInterval(globalVar.imgRefreshInterval);
+            var wrapper = $(realTimeImage._wrapper_sel);
+            globalVar.imgRefreshInterval = setInterval(function () {
+                var img = wrapper.find('img');
+                var url = 'http://' + img.attr('data-ip') + '/onvif/snapshot?' + Math.random() * 100;
+                img.attr('src', url);
+            }, 2000);
+        }
+    };
+
+//全屏滚动设置
+    var fpNav = $('#fp-nav');
+    var sysImg = $('.img-wrapper').find("img").removeClass('rotate');
     $('#pagewrapper').fullpage({
-        anchors: ['who-we-are', 'we-are-doing', 'we-have-done', 'we-provide'],
+        resize: true,
+        anchors: ['who-we-are', 'we-are-doing', 'we-have-done', 'we-provide', 'achievement'],
         navigation: false,
-//<div class="fp-controlArrow fp-prev" style="border-color: transparent rgb(0, 0, 0) transparent transparent; display: block;"></div>
-        controlArrowColor: '#000',
         navigationPosition: 'right',
-        navigationTooltips: ['我们是..', '正在做...', '已完成...', '提供您...'],
+        navigationTooltips: ['系统', '扫描', '图表', '视频', '成就'],
         scrollOverflow: true,
         animateAnchor: false,
         //autoScrolling: false,
         //recordHistory: true,
-        resize: true,
         verticalCentered: false,
         //normalScrollElements:'#page2',
         onLeave: function (index, nextIndex, direction) {
+            switch (index) {
+                case 1:
+                    break;
+                case 2:
+                    fpNav.removeClass('white');
+                    $('.radar').hide();
+                    break;
+                case 3:
+                    fpNav.removeClass('white');
+                    $('#scrollcombidy2d').removeClass('appear').removeClass('appear-animated');
+                    break;
+                case 4:
+                    clearInterval(globalVar.imgNavAnimInterval);
+                    clearInterval(globalVar.imgRefreshInterval);
+                    break;
+                case 5:
+                    break;
+                default :
+                    break;
+            }
         },
         afterLoad: function (anchorLink, index) {
-            if (anchorLink == 'we-are-doing' || anchorLink == 'we-have-done') {
-                $('#fp-nav').addClass('white');
-            } else {
-                $('#fp-nav').removeClass('white');
+            switch (index) {
+                case 1:
+                    //sysImg.addClass('rotate');
+                    break;
+                case 2:
+                    fpNav.addClass('white');
+                    $('.radar').show();
+                    break;
+                case 3:
+                    //fpNav.addClass('white');
+                    $('#scrollcombidy2d').addClass('appear').addClass('appear-animated');
+                    break;
+                case 4:
+                    var imgs = $('.img-container img').addClass('scale');
+                    setTimeout(function () {
+                        imgs.addClass('border');
+                    }, 1000);
+                    imgNavAnimate.start(0);
+                    break;
+                case 5:
+                    break;
+                default :
+                    break;
             }
         },
         afterRender: function () {
-            //$.fn.fullpage.reBuild();
+            sysImg.addClass('rotate');
+            genCharts();
+            //scanOnMap();
+            $.ajax({
+                url: 'showcase/getImageNames',
+                type: 'get',
+                contentType: "application/json",
+                dataType: "json",
+                success: initImages
+            });
+            $('#dg-container').gallery({
+                autoplay: true
+            });
+            $.fn.fullpage.reBuild();
         },
         afterResize: function () {
         },
@@ -428,90 +681,78 @@ $(function () {
         onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
         }
     });
-    //3. 视频墙初始化
-    //4. 界面动画初始化
-    var animateAll = function () {
-        function waveAnimate() {
-            var tag = $(".wavewarp");
-            tag.scrollLeft(tag.scrollLeft() + 1);
-            setTimeout(waveAnimate, 200)
+
+//启动监听器
+    //点击除实时图片/已列出的图片之外的地方隐藏实时图片
+    $('#page4').on('click', function (e) {
+        if ($(e.target).parents(".real-time-img-wrapper").length == 0 && $(e.target).parents('.img-container').length == 0) {
+            realTimeImage.hide();
         }
-        function SiriWave(opt) {
-            this.opt = opt || {};
-            this.K = 1;
-            this.F = 15;
-            this.speed = this.opt.speed || 0.1;
-            this.noise = this.opt.noise || 30;
-            this.phase = this.opt.phase || 0;
-            if (!window.devicePixelRatio) {
-                devicePixelRatio = 1
-            }
-            this.width = devicePixelRatio * (this.opt.width || 320);
-            this.height = devicePixelRatio * (this.opt.height || 100);
-            this.MAX = (this.height / 2) - 4;
-            this.canvas = $("#wave")[0];
-            this.canvas.width = this.width;
-            this.canvas.height = this.height;
-            this.canvas.style.width = (this.width / devicePixelRatio) + "px";
-            this.canvas.style.height = (this.height / devicePixelRatio) + "px";
-            this.ctx = this.canvas.getContext("2d");
-            this.run = false
+    });
+    $('.playContainer').on('click', function () {
+        if ($(this).hasClass('playing')) {
+            clearInterval(globalVar.imgRefreshInterval);
+        } else {
+            realTimeImage.refresh();
         }
-        SiriWave.prototype = {
-            _globalAttenuationFn: function (x) {
-                return Math.pow(this.K * 4 / (this.K * 4 + Math.pow(x, 4)), this.K * 2)
-            }, _drawLine: function (attenuation, color, width, noise, F) {
-                this.ctx.moveTo(0, 0);
-                this.ctx.beginPath();
-                this.ctx.strokeStyle = color;
-                this.ctx.lineWidth = width || 1;
-                var x, y;
-                F = F || this.F;
-                noise = noise * this.MAX || this.noise;
-                for (var i = -this.K; i <= this.K; i += 0.01) {
-                    i = parseFloat(parseFloat(i).toFixed(2));
-                    x = this.width * ((i + this.K) / (this.K * 2));
-                    y = this.height / 2 + noise * Math.pow(Math.sin(i * 10 * attenuation), 1) * Math.sin(F * i - this.phase);
-                    this.ctx.lineTo(x, y)
-                }
-                this.ctx.lineTo(this.width, this.height);
-                this.ctx.lineTo(0, this.height);
-                this.ctx.fillStyle = color;
-                this.ctx.fill()
-            }, _clear: function () {
-                this.ctx.globalCompositeOperation = "destination-out";
-                this.ctx.fillRect(0, 0, this.width, this.height);
-                this.ctx.globalCompositeOperation = "source-over"
-            }, _draw: function () {
-                if (!this.run) {
-                    return
-                }
-                this.phase = (this.phase + this.speed) % (Math.PI * 64);
-                this._clear();
-                this._drawLine(0.5, "rgba(120,255,212,0.5)", 1, 0.35, 6);
-                this._drawLine(1, "rgba(0,188,62,0.5)", 1, 0.25, 6);
-                clearAnimationFrame = requestAnimationFrame(this._draw.bind(this), 1000)
-            }, start: function () {
-                this.phase = 0;
-                this.run = true;
-                this._draw()
-            }, stop: function () {
-                this.run = false;
-                this._clear()
-            }, setNoise: function (v) {
-                this.noise = Math.min(v, 1) * this.MAX
-            }, setSpeed: function (v) {
-                this.speed = v
-            }, set: function (noise, speed) {
-                this.setNoise(noise);
-                this.setSpeed(speed)
-            }, bl: function (val) {
-                return 1920 / 15
-            }
-        };
-        var SW = new SiriWave({width: $(window).width(), height: 200, container: $(".wavewarp")[1]});
-        SW.setSpeed(0.01);
-        SW.start();
-    };
-    //animateAll();
+        $(this).toggleClass('playing');
+    });
+    var text = $('.attack-text textarea');
+    $(realTimeImage._wrapper_sel).find('img').error(function (data, status, error) {
+        clearInterval(globalVar.imgRefreshInterval);
+        text.append('\n!!!获取视频画面失败，该漏洞已修复!!!').scrollTop(text[0].scrollHeight);
+    }).load(function (data) {
+        if (text[0].scrollHeight > 1000) {
+            text.text('\n......\n......');
+        }
+        text.append('\n\n正在获取视频画面......')
+            .scrollTop(text[0].scrollHeight)
+            .append('\n获取成功...' + (new Date).pattern("yyyy-MM-dd hh:mm:ss"))
+            .scrollTop(text[0].scrollHeight);
+    });
 });
+
+/**
+ * 对Date的扩展，将 Date 转化为指定格式的String
+ * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符
+ * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+ * eg:
+ * (new Date()).pattern("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+ * (new Date()).pattern("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04
+ * (new Date()).pattern("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04
+ * (new Date()).pattern("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04
+ * (new Date()).pattern("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
+ */
+Date.prototype.pattern = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时
+        "H+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    var week = {
+        "0": "/u65e5",
+        "1": "/u4e00",
+        "2": "/u4e8c",
+        "3": "/u4e09",
+        "4": "/u56db",
+        "5": "/u4e94",
+        "6": "/u516d"
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    if (/(E+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "/u661f/u671f" : "/u5468") : "") + week[this.getDay() + ""]);
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+}

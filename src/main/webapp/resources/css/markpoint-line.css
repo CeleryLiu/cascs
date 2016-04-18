@@ -1,7 +1,7 @@
 @charset "UTF-8";
 #globe4LineHolder, /* Style for MarkLine (3d) */
-#markpointHolder /* Style for MarkPoint (3d)*/
-  {
+#markpointHolder
+  /* Style for MarkPoint (3d)*/ {
     height: 100%;
     width: 100%;
 }

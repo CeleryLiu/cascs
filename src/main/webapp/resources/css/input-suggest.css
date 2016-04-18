@@ -5,8 +5,6 @@
 }
 
 .tt-query {
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
@@ -20,13 +18,10 @@
     padding: .5rem;
     text-align: left;
     color: #eee;
+    background: no-repeat top center fixed -webkit-linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));
     background: no-repeat top center fixed linear-gradient(hsla(223, 16%, 29%, 1), hsla(0, 30%, 21%, 1));
     border: 1px solid rgba(0, 0, 0, 0.2);
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     overflow-y: auto;
 }
