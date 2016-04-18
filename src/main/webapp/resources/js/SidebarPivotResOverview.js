@@ -178,7 +178,8 @@ var Sidebar = {
             coLabelContainer.on('click', function () {
                 //$('div.panel-collapse.collapse.in').removeClass('in');
                 var opened = $(this).parents().find('div.collapse.in [data-country]').removeClass('in');
-                $(this).next('div.collapse').addClass('in');
+                //$(this).next('div.collapse').addClass('in');
+                $(this).next().collapse('toggle');
             });
 
             return coLi;
