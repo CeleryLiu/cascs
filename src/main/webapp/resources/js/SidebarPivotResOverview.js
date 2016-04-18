@@ -176,12 +176,17 @@ var Sidebar = {
 
             //country listener
             coLabelContainer.on('click', function () {
-                //$('div.panel-collapse.collapse.in').removeClass('in');
-                var opened = $(this).parents().find('div.collapse.in [data-country]').removeClass('in');
-                //$(this).next('div.collapse').addClass('in');
-                $(this).next().collapse('toggle');
+                var $this = $(this);
+                var opened = $this.parents().find('div.collapse.in [data-country]');
+                $.each(opened, function (idx, item) {
+                    console.log($(this).attr('data-country'));
+                    if ($(this).attr('data-country') != $this.next().attr('data-country')) {
+                        $(this).removeClass('in');
+                    } else {
+                        $(this).collapse('toggle');
+                    }
+                });
             });
-
             return coLi;
         };
 
