@@ -57,6 +57,7 @@
     </div>
     <div class="section black-bg" id="page3">
         <div id="scrollcombidy2d" class="full-height p60 mb50"></div>
+        <h1>最近一次设备扫描统计结果</h1>
         <div id="map" class="full-height mb50"></div>
         <div id="multilevelpie" class="full-height p60" style="display: none"></div>
         <div id="pie3Ds" class="p60"></div>

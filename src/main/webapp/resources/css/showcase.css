@@ -8,6 +8,11 @@ ul {
     list-style: none;
 }
 
+h1 {
+    color: #0075c2;
+    text-align: center;
+}
+
 .p60 {
     padding: 60px;
 }

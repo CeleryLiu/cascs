@@ -13,11 +13,11 @@ $(function () {
     //图表初始化
     var genCharts = function () {
         var dataMapping = {
-            'country': '国家',
-            'brand': '品牌',
-            'type': '类型',
-            'service': '服务',
-            'port': '端口'
+            'country': '按国家统计',
+            'brand': '按品牌统计',
+            'type': '按类型统计',
+            'service': '按服务统计',
+            'port': '按端口统计'
         };
         //高度设置为100%
         $('.full-height').css({
