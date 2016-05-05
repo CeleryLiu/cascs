@@ -3,6 +3,7 @@
  * !!IMPORTANT never use fonts of bootstrap, which do not compatible with the fullpagejs
  */
 var currentPage = 1;
+var firstLoad = true;
 var onOfflineLoaded = function () {
     var offInterval = setInterval(function () {
         if (aOffline.window.AnalysisOffline) {
@@ -127,7 +128,7 @@ var initFullpage = function () {
             }
         },
         afterLoad: function (anchorLink, index) {
-            console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
+            //console.log('fullPage.afterLoad() ======, anchorLink: ' + anchorLink + ', index: ' + index);
             toggleFixedElement(index);//↓如果此section不是搜索界面/或是首页，则隐藏全局搜索框、侧边栏和Pivot
 
             currentPage = index;
@@ -136,20 +137,18 @@ var initFullpage = function () {
                 List.onLeave();
             }
             switch (index) {
-                case 2:
-                    List.onLoad();
+                case 1:
                     if (data) {
-                        GlobalSearch.setValue(JSON.parse(data['q'])['wd']);
-                        List.onSearchSucceed(data);
+                        HomeSearch.setValue(JSON.parse(data['q'])['wd']);
+                        //GlobalSearch.setValue(JSON.parse(data['q'])['wd']);
                     }
+                    break;
+                case 2:
+                    List.onLoad(data);
                     UserSearchHistory.init();
                     break;
                 case 3:
-                    ArcMap.onLoad();
-                    if (data) {
-                        GlobalSearch.setValue(JSON.parse(data['q'])['wd']);
-                        ArcMap.onSearchSucceed(data);
-                    }
+                    ArcMap.onLoad(data);
                     UserSearchHistory.init();
                     break;
                 case 10:
@@ -191,22 +190,22 @@ var initFullpage = function () {
     });
 };
 $(function () {
-        $.scrollUp({
-            scrollText: '回到顶部'
-        });
-        $('.cite-item').matchHeight();
-        $('.news-item').matchHeight();
-        Pace.ignore(function () {
-            ArcMap.initFeatureSets();
-            ArcMap.init();
-        });
-        //$('#lineSe').append(iframe); // add it to wherever you need it in the document
-        InputSuggest.init();
-        SearchTip.init();
-        HomeSearch.listen();
-        GlobalSearch.listen();
-        AdvSearch.listen();
-        User.listenerStarts();
-        initFullpage();//full page js
-    }
-);
+    $.scrollUp({
+        scrollText: '回到顶部'
+    });
+    $('.cite-item').matchHeight();
+    $('.news-item').matchHeight();
+    Pace.ignore(function () {
+        ArcMap.initFeatureSets();
+        ArcMap.init();
+    });
+    //$('#lineSe').append(iframe); // add it to wherever you need it in the document
+    InputSuggest.init();
+    SearchTip.init();
+    HomeSearch.listen();
+    GlobalSearch.listen();
+    AdvSearch.listen();
+    User.listenerStarts();
+    initFullpage();//full page js
+    firstLoad = false;
+});

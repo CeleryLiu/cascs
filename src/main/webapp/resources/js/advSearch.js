@@ -113,8 +113,10 @@ var AdvSearch = {
 
         if (!noInputTag) {
             GlobalSearch.setValue(inputStr.replace(/\s+/g, ' ').trim());
+            HomeSearch.setValue(inputStr.replace(/\s+/g, ' ').trim());
         } else {//如果用户未输入，则不提交
             GlobalSearch.setValue('');
+            HomeSearch.setValue('');
             $('#must').focus();
             return;
         }

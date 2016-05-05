@@ -214,15 +214,15 @@ var ArcMap = {
                 });
             });
     },
-    onLoad: function () {
+    onLoad: function (data) {
         $(Sidebar._WRAPPER_SEL).addClass('map');
         $(SearchTip._WRAPPER_SEL).addClass('map');
         $('#header2').addClass('map');
-        var data = Session.get('data'), wd = Session.get('wd');
-        if (data && wd) {
+        if (data) {
+            var wd = JSON.parse(data['q'])['wd'];
             GlobalSearch.setValue(wd);
             HomeSearch.setValue(wd);
-            this.onSearchSucceed(data);
+            ArcMap.onSearchSucceed(data);
         }
     },
     onLeave: function () {

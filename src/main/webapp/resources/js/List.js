@@ -48,12 +48,16 @@ var List = {
                 '<span class="fa fa-map-marker"></span> ' + loc + ' </a></span>').appendTo($location);
             }
             //time
-            /* var time = d.timestamp;
-             if (time && time != '') {
-             var $time = $('<div class="tag time"></div>').appendTo(facets);
-             $('<span class="label label-primary"><a href="#' + time + '">' +
-             '<span class="fa fa-times"></span> ' + time + ' </a></span>').appendTo($time);
-             }*/
+            var time = d.timestamp;
+            var $time = $('<div class="tag time"></div>').appendTo(facets);
+
+            if (!time || time == '' || time == '0') {
+                $('<span class="label label-primary"><a href="javascript:void()">' +
+                '<span class="fa fa-clock-o"></span>&nbsp;未知</a></span>').appendTo($time);
+            } else {
+                $('<span class="label label-primary"><a href="#' + time + '">' +
+                '<span class="fa fa-clock-o"></span> ' + dateLocalize(time) + ' </a></span>').appendTo($time);
+            }
 
             facets.find('a').on('click', function (e) {
                 e.preventDefault();
@@ -149,6 +153,7 @@ var List = {
         Session.set('data', data);
         //(2)设置result overview
         ResultOverview.set(data);
+        GlobalSearch.setValue(JSON.parse(data['q'])['wd']);
         if (statuscode == 200) {
             //console.log('List search succeed. statuscode == 200', data);
             //(2)调用Sidebar的render方法，生成sidebar
@@ -168,12 +173,12 @@ var List = {
         }
         $.fn.fullpage.reBuild();
     },
-    onLoad: function () {
+    onLoad: function (data) {
         $(Sidebar._WRAPPER_SEL).addClass('list');
         $('#header2').addClass('list-header');
         $('.global-search-wrapper').addClass('list-header');
-        var data = Session.get('data'), wd = Session.get('wd');
-        if (data && wd) {
+        if (data) {
+            var wd = JSON.parse(data['q'])['wd'];
             GlobalSearch.setValue(wd);
             HomeSearch.setValue(wd);
             Sidebar.show();

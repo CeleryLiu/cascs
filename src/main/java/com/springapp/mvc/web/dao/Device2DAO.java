@@ -6,7 +6,6 @@ package com.springapp.mvc.web.dao;/*
  * @Version: V1.0
  */
 
-import com.springapp.mvc.web.config.Constant;
 import com.springapp.mvc.web.model.NewDevice;
 import com.springapp.mvc.web.util.RestClient;
 import com.springapp.mvc.web.util.Tool;
@@ -40,6 +39,7 @@ public class Device2DAO {
         if ("200".equals(result.getString("statuscode"))) {
             result = convertData(result);
         }
+//        System.out.println(result);
         return result;
     }
 
@@ -93,7 +93,7 @@ public class Device2DAO {
                     cityName = "Unknown";
                 } else if (key.startsWith("@%")) {//国家名为空，则国家设为unknown
                     countryName = "Unknown";
-                    cityName =key;
+                    cityName = key;
                 } else {
                     countryName = key.split("@%")[0];
                     cityName = key.split("@%")[1];
@@ -142,7 +142,7 @@ public class Device2DAO {
             JSONArray vul_info = desc.getJSONArray("vul_info");
             JSONArray port_info = desc.getJSONArray("port_info");
             JSONObject os_info = desc.getJSONObject("os_info");
-
+            String latestTime = d.getString("lastModified");//(8)timestamp
             //(1.a)tags
             List<String> tags = new ArrayList<String>();
             //(2)ip
@@ -167,6 +167,7 @@ public class Device2DAO {
                 location += ", " + city;
             }
             device.setLocation(location);
+
             //(6)ports
             if (port_info.size() > 0) {
                 List<Map<String, String>> ports = new ArrayList<Map<String, String>>();
@@ -197,6 +198,13 @@ public class Device2DAO {
                     if (StringUtils.isNotBlank(model) && !contains(tags, model)) {
                         tags.add(model);
                     }
+                    //(8)timestamp，获取离当前最近的时间
+                    if ((StringUtils.isBlank(latestTime) || StringUtils.equals(latestTime, "0")) && item.containsKey("timestamp_received")) {
+                        String tmpTime = item.getString("timestamp_received");
+                        if (latestTime.compareTo(tmpTime) < 0) {
+                            latestTime = tmpTime;
+                        }
+                    }
                 }
                 device.setPorts(ports);
             }
@@ -223,12 +231,19 @@ public class Device2DAO {
                     vulValue.setImgURL(item.getString("get_picture"));
                     vul.put(vulKey, vulValue);
                     vuls.add(vul);
+                    //(8)timestamp，获取离当前最近的时间
+                    if ((StringUtils.isBlank(latestTime) || StringUtils.equals(latestTime, "0")) && item.containsKey("timestamp_update")) {
+                        String tmpTime = item.getString("timestamp_update");
+                        if (latestTime.compareTo(tmpTime) < 0) {
+                            latestTime = tmpTime;
+                        }
+                    }
                 }
                 device.setVuls(vuls);
             }
 
             //(8)lastModified (timestamp)
-            device.setTimestamp(d.getString("lastModified"));
+            device.setTimestamp(latestTime);
             //(1.f)
             device.setTags(tags);
             result.add(device);
@@ -270,12 +285,10 @@ public class Device2DAO {
         }
         return result;
     }
-
-
-    /*public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Device2DAO dd = new Device2DAO();
         Map<String, Object> criteria = new HashMap<String, Object>();
-        criteria.put("wd", "abc");
+        criteria.put("wd", "camera port:80");
         criteria.put("page", 1);
         dd.getDeviceData(Constant.SE_LIST_SEARCH_URL, criteria);
     }*/

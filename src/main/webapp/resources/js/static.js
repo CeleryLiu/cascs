@@ -102,7 +102,7 @@ var Constant = {
 
     //others
     HIDE_SHOW_SPEED: (function () {
-        return 500;
+        return 300;
     }()),
     KEY_MAPPING: (function () {
         return '{"type:":"device_type:","brand:":"device_brand:","service:":"device_service:","vul:":"vul_type:"}';
