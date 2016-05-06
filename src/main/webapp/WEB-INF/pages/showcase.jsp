@@ -15,10 +15,10 @@
     <div class="section" id="page1">
         <div class="banner sys-banner">
             <div class="am-container">
-                <h2><span></span><span>系统架构</span></h2>
+                <h2><span></span><span>网络空间物联网设备安全态势感知系统</span></h2>
 
                 <div class="img-wrapper">
-                    <img src="resources/img/showcase/sys_2_gray.png">
+                    <img src="resources/img/showcase/sys_2_gray.png" id="sysImg">
                 </div>
             </div>
             <!-- 背景square -->
@@ -36,34 +36,22 @@
             </ul>
         </div>
     </div>
-    <div class="section black-bg" id="page2">
-        <div class="inner">
-            <div class="map-bg"></div>
-            <div class="point"></div>
-            <div id="earth" style="display: none"></div>
-            <div class="radar">
-                <div class="circle">
-                    <div class="scan"></div>
-                    <div class="dot dot1"></div>
-                    <div class="dot dot2"></div>
-                    <div class="dot dot3"></div>
-                    <div class="dot dot4"></div>
-                </div>
-                <%--                <div class="icon">
-                                    <div class="hotspot"></div>
-                                </div>--%>
-            </div>
-        </div>
+    <div class="section black-bg" id="page3_1">
+        <div id="scrollcombidy2d"></div>
     </div>
-    <div class="section black-bg" id="page3">
-        <div id="scrollcombidy2d" class="full-height p60 mb50"></div>
-        <h1>最近一次设备扫描统计结果</h1>
-        <div id="map" class="full-height mb50"></div>
-        <div id="multilevelpie" class="full-height p60" style="display: none"></div>
-        <div id="pie3Ds" class="p60"></div>
+    <div class="section black-bg" id="page3_2">
+        <h1>最近一次设备扫描结果</h1>
+
+        <div id="map"></div>
+        <%--<div id="multilevelpie" class="full-height p60" style="display: none"></div>--%>
     </div>
-    <div class="section" id="page4">
-        <div class="inner">
+    <div class="section black-bg" id="page3_3">
+        <h1>最近一次设备扫描结果</h1>
+
+        <div id="pie3Ds"></div>
+    </div>
+    <div class="section black-bg" id="page4">
+        <div class="inner transparent">
             <ul class="img-nav"></ul>
             <div class="img-container">
                 <img src="">
@@ -98,7 +86,7 @@
             </div>
         </div>
     </div>
-    <div class="section" id="page5">
+    <div class="section black-bg" id="page5">
         <div class="section-inner">
             <header>
                 <h1>成就</h1>

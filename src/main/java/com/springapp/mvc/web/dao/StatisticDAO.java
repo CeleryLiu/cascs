@@ -126,7 +126,6 @@ public class StatisticDAO {
 
     public JSONObject getLatest4FusionCharts() {
         String url = Constant.SE_GET_LATEST_STATISTIC_URL + "/1";
-        ;
         JSONObject resp = rc.getJSONObject(url);
         JSONObject data = new JSONObject();
         JSONObject agg = resp.getJSONArray("data").getJSONObject(0).getJSONObject("aggregations");

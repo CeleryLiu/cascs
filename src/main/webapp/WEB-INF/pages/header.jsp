@@ -19,7 +19,7 @@
                     <ul class="nav navbar-nav navbar-right" id="menu">
                         <li data-menuanchor="se1"><a href="#se1">首页</a></li>
                         <li data-menuanchor="se2"><a href="#se2">搜索</a></li>
-                        <li data-menuanchor="se3"><a href="#se3">定位</a></li>
+                        <li data-menuanchor="se3"><a href="#se3">分布</a></li>
                         <li data-menuanchor="se6" role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">

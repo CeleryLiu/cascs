@@ -9,7 +9,6 @@ var globalVar = {
     imgRefreshInterval: 0
 };
 $(function () {
-    var winHeight = $(window).height();
     //图表初始化
     var genCharts = function () {
         var dataMapping = {
@@ -19,10 +18,6 @@ $(function () {
             'service': '按服务统计',
             'port': '按端口统计'
         };
-        //高度设置为100%
-        $('.full-height').css({
-            'height': winHeight - 120
-        });
         //生成所有扫描数据的统计图（柱状图）
         var genTotalScanChart = function (data, textStatus, jqXHR) {
         };
@@ -34,7 +29,7 @@ $(function () {
             'dataFormat': 'json',
             'dataSource': {
                 'chart': {
-                    'caption': '设备扫描结果分类统计',
+                    'caption': '设备扫描分类统计',
                     'captionFontSize': '32',
                     'xAxisname': '日期',
                     'yAxisName': '设备数量',
@@ -61,7 +56,7 @@ $(function () {
                     'valueFontColor': '#ffffff',
                     'placeValuesInside': '1',
                     'showHoverEffect': '1',
-                    'rotateValues': '1',
+                    'rotateValues': '0',
                     'showXAxisLine': '1',
                     'xAxisLineThickness': '1',
                     'xAxisLineColor': '#999999',
@@ -73,7 +68,8 @@ $(function () {
                     'legendPosition': 'right',
                     //'legendItemFontColor': '#666666',
                     "showValues": "1",
-                    "numVisiblePlot": "60",
+                    "numVisiblePlot": "9",
+                    "formatNumberScale": '0',
                     "flatScrollBars": "1",
                     "toolTipBorderColor": "#545454",
                     "toolTipBgColor": "#545454",
@@ -84,16 +80,16 @@ $(function () {
                     {
                         'category': [
                             {
-                                'label': '2016-01'
+                                'label': '2015-12-25'
                             },
                             {
-                                'label': '2016-02'
+                                'label': '2016-01-17'
                             },
                             {
-                                'label': '2016-03'
+                                'label': '2016-02-15'
                             },
                             {
-                                'label': '2016-04'
+                                'label': '2016-04-13'
                             }
                         ]
                     }
@@ -103,33 +99,16 @@ $(function () {
                         'seriesname': '监控设备',
                         'data': [
                             {
-                                'value': '10000'
+                                'value': '1373451'
                             },
                             {
-                                'value': '11500'
+                                'value': '1588579'
                             },
                             {
-                                'value': '12500'
+                                'value': '1773435'
                             },
                             {
-                                'value': '15000'
-                            }
-                        ]
-                    },
-                    {
-                        'seriesname': '工控设备',
-                        'data': [
-                            {
-                                'value': '25400'
-                            },
-                            {
-                                'value': '29800'
-                            },
-                            {
-                                'value': '21800'
-                            },
-                            {
-                                'value': '26800'
+                                'value': '2343451'
                             }
                         ]
                     },
@@ -137,50 +116,33 @@ $(function () {
                         'seriesname': '办公设备',
                         'data': [
                             {
-                                'value': '22400'
+                                'value': '846463'
                             },
                             {
-                                'value': '21800'
+                                'value': '964839'
                             },
                             {
-                                'value': '31800'
+                                'value': '978202'
                             },
                             {
-                                'value': '20800'
+                                'value': '1080221'
                             }
                         ]
                     },
                     {
-                        'seriesname': '智能硬件',
+                        'seriesname': '工控设备',
                         'data': [
                             {
-                                'value': '2540'
+                                'value': '121008'
                             },
                             {
-                                'value': '29300'
+                                'value': '129309'
                             },
                             {
-                                'value': '21800'
+                                'value': '131028'
                             },
                             {
-                                'value': '26100'
-                            }
-                        ]
-                    },
-                    {
-                        'seriesname': '网络设备',
-                        'data': [
-                            {
-                                'value': '10100'
-                            },
-                            {
-                                'value': '11200'
-                            },
-                            {
-                                'value': '12900'
-                            },
-                            {
-                                'value': '15000'
+                                'value': '142821'
                             }
                         ]
                     }
@@ -197,14 +159,14 @@ $(function () {
                 'dataFormat': 'json',
                 'dataSource': {
                     'chart': {
-                        'caption': '',
+                        'caption': '最近一次设备扫描结果',
                         'bgColor': '#333333',
                         'baseFontColor': '#ffffff',
                         'use3DLighting': '0',
                         'showShadow': '1',
                         'enableSmartLabels': '1',
                         'startingAngle': '0',
-                        'showPercentValues': '1',
+                        'showPercentValues': '0',
                         'showPercentInTooltip': '1',
                         'decimals': '1',
                         'captionFontSize': '32',
@@ -214,8 +176,9 @@ $(function () {
                         'toolTipBgAlpha': '80',
                         'toolTipBorderRadius': '2',
                         'toolTipPadding': '5',
-                        "plottooltext": "$label, $value, $percentValue",
+                        //"plottooltext": "$label, $value, $percentValue",
                         'showHoverEffect': '1',
+                        'formatNumberScale': '0',
                         'showLegend': '0',
                         'legendBgColor': '#ffffff',
                         'legendBorderAlpha': '0',
@@ -236,7 +199,7 @@ $(function () {
                 dataFormat: 'json',
                 dataSource: {
                     "chart": {
-                        "caption": "",
+                        "caption": "最近一次设备扫描结果",
                         'captionFontSize': '32',
                         "theme": "fint",
                         "bgColor": "#333333",
@@ -270,9 +233,9 @@ $(function () {
             for (var key in obj) {
                 if (key == 'country') {
                     var mapOpt = $.extend(true, {}, basicMapOption);
-                    var maxvalue = obj[key]['max'];
+                    var maxvalue = obj['country']['max'];
                     mapOpt.dataSource.chart.caption = dataMapping[key];
-                    mapOpt.dataSource.data = obj[key]['data'];
+                    mapOpt.dataSource.data = obj['country']['data'];
                     mapOpt.dataSource.colorrange.color[0].maxvalue = maxvalue / 2;
                     mapOpt.dataSource.colorrange.color[1].maxvalue = maxvalue;
                     $map.insertFusionCharts(mapOpt);
@@ -283,115 +246,6 @@ $(function () {
                     $pies.appendFusionCharts(opt);
                 }
             }
-            /*$('#multilevelpie').insertFusionCharts({
-             type: 'multilevelpie',
-             width: '400',
-             height: '400',
-             dataFormat: 'json',
-             dataSource: {
-             "chart": {
-             "caption": "xxxxxxxxx",
-             'captionFontSize': '32',
-             "showPlotBorder": "1",
-             "piefillalpha": "60",
-             "pieborderthickness": "2",
-             "piebordercolor": "#FFFFFF",
-             "hoverfillcolor": "#CCCCCC",
-             'bgColor': '#333333',
-             "bgAlpha": "100",
-             "numberprefix": "$",
-             'baseFontColor': '#ffffff',
-             "plottooltext": "$label, $$valueK, $percentValue",
-             "theme": "fint"
-             },
-             "category": [{
-             "label": "Products",
-             "color": "#ffffff",
-             "value": "150",
-             "category": [{
-             "label": "Food & {br}Beverages",
-             "color": "#f8bd19",
-             "value": "55.5",
-             "tooltext": "Food & Beverages, $$valueK, $percentValue",
-             "category": [{
-             "label": "Breads",
-             "color": "#f8bd19",
-             "value": "11.1"
-             }, {
-             "label": "Juice",
-             "color": "#f8bd19",
-             "value": "27.75"
-             }, {
-             "label": "Noodles",
-             "color": "#f8bd19",
-             "value": "9.99"
-             }, {
-             "label": "Seafood",
-             "color": "#f8bd19",
-             "value": "6.66"
-             }]
-             }, {
-             "label": "Apparel &{br}Accessories",
-             "color": "#33ccff",
-             "value": "42",
-             "tooltext": "Apparel & Accessories, $$valueK, $percentValue",
-             "category": [{
-             "label": "Sun Glasses",
-             "color": "#33ccff",
-             "value": "10.08"
-             }, {
-             "label": "Clothing",
-             "color": "#33ccff",
-             "value": "18.9"
-             }, {
-             "label": "Handbags",
-             "color": "#33ccff",
-             "value": "6.3"
-             }, {
-             "label": "Shoes",
-             "color": "#33ccff",
-             "value": "6.72"
-             }]
-             }, {
-             "label": "Baby {br}Products",
-             "color": "#ffcccc",
-             "value": "22.5",
-             "tooltext": "Baby Products, $$valueK, $percentValue",
-             "category": [{
-             "label": "Bath &{br}Grooming",
-             "color": "#ffcccc",
-             "value": "9.45",
-             "tooltext": "Bath & Grooming, $$valueK, $percentValue"
-             }, {
-             "label": "Food",
-             "color": "#ffcccc",
-             "value": "6.3"
-             }, {
-             "label": "Diapers",
-             "color": "#ffcccc",
-             "value": "6.75"
-             }]
-             }, {
-             "label": "Electronics",
-             "color": "#ccff66",
-             "value": "30",
-             "category": [{
-             "label": "Laptops",
-             "color": "#ccff66",
-             "value": "8.1"
-             }, {
-             "label": "Televisions",
-             "color": "#ccff66",
-             "value": "10.5"
-             }, {
-             "label": "SmartPhones",
-             "color": "#ccff66",
-             "value": "11.4"
-             }]
-             }]
-             }]
-             }
-             });*///按类型>品牌
         };
         $.ajax({
             url: 'statistic/getLatestData',
@@ -405,64 +259,14 @@ $(function () {
             success: genLatestCharts
         });
     };
-
-    //设备扫描模拟
-    var scanOnMap = function () {
-        var mapBgChart = $('.map-bg').insertFusionCharts({
-            type: 'maps/worldwithcountries',
-            width: '100%',
-            height: winHeight,
-            dataFormat: 'json',
-            dataSource: {
-                "chart": {
-                    "caption": "设备扫描",
-                    'captionFontSize': '32',
-                    "theme": "fint",
-                    "bgColor": "#333333",
-                    "bgAlpha": "100",
-                    'baseFontColor': '#ffffff',
-                    //"nullEntityColor": "#C2C2D6",
-                    //"nullEntityAlpha": "50",
-                    "hoverOnNull": "1",
-                    "showLabels": "0",
-                    'labelFontSize': '3'
-                }
-            }
-        });
-        $('.scan').css({
-            width: winHeight,
-            height: winHeight,
-            'transform-origin': winHeight + ' ' + winHeight
-        });
-        //显示分布
-        setTimeout(function () {
-            console.log('a');
-            mapBgChart.updateFusionCharts({
-                dataSource: {
-                    "chart": {
-                        "caption": "扫描结果",
-                        'captionFontSize': '32',
-                        "theme": "fint",
-                        "bgColor": "#333333",
-                        "bgAlpha": "100",
-                        'baseFontColor': '#ffffff',
-                        "hoverOnNull": "1",
-                        "showLabels": "0",
-                        'labelFontSize': '3'
-                    }
-                }
-            });
-        }, 4000);
-    };
-
-    //照片墙-初始化
+    //照片墙初始化
     var initImages = function (data) {
         var $imgNav = $('.img-nav'), imgContainer = $('.img-container');
         var count = 2; //让左右两边各留出1个li的空白
         globalVar.images = data;
         for (var k in data) {
             //generate nav
-            $imgNav.append($('<li class="img-nav-item">' + k + '</li>'));
+            $imgNav.prepend($('<li class="img-nav-item">' + k + '</li>'));
             count++;
         }
         var imgCaty = $imgNav.find('li:first-child').addClass('current').text();
@@ -500,7 +304,7 @@ $(function () {
             realTimeImage.show(src, location);
         });
     };
-//照片墙-自动切换图片
+    //照片墙-自动切换图片
     var imgNavAnimate = {
         start: function (idx) {
             //找到当前显示的图片对应的导航
@@ -516,8 +320,7 @@ $(function () {
             clearInterval(globalVar.imgNavAnimInterval);
         }
     };
-
-//显示指定导航对应的图片，imgCategory是图片分类也是导航的text
+    //显示指定导航对应的图片，imgCategory是图片分类也是导航的text
     var showImages = function (images, imgCategory) {
         var baseSrc = 'resources/img/showcase/monitor/' + imgCategory + '/';
         if (images && images[imgCategory]) {
@@ -527,7 +330,6 @@ $(function () {
             });
         }
     };
-
     var realTimeImage = {
         _wrapper_sel: '.real-time-img-wrapper',
         interval: 0,
@@ -558,26 +360,11 @@ $(function () {
                 }).addClass('scaleAndCenter');
             }
             //设置ip
-            $wrapper.find('.ip').text(ip);
+            $wrapper.find('.ip').text(ip.replace('_9989', ''));
             //播放按钮改为暂停并监听
             $wrapper.find('.playContainer').addClass('playing');
             //获取设备信息
             $wrapper.find('textarea').text("\n开始执行漏洞攻击......");
-            /*            $.ajax({
-             url: 'search/list2',
-             type: 'POST',
-             contentType: 'application/json',
-             dataType: 'json',
-             data: JSON.stringify({
-             wd: ip,
-             page: 1
-             }),
-             success: function (data) {
-             if (data.data.length > 0) {
-
-             }
-             }
-             });*/
             //实时刷新图片
             this.refresh();
         }, hide: function () {
@@ -589,44 +376,49 @@ $(function () {
             var wrapper = $(realTimeImage._wrapper_sel);
             globalVar.imgRefreshInterval = setInterval(function () {
                 var img = wrapper.find('img');
+                var ip = img.attr('data-ip');
                 var url = 'http://' + img.attr('data-ip') + '/onvif/snapshot?' + Math.random() * 100;
+                if (ip.indexOf('_9989') >= 0) {
+                    url = 'http://' + ip.replace('_', ':') + '/?' + Math.random() * 100;
+                }
                 img.attr('src', url);
             }, 2000);
         }
     };
 
-//全屏滚动设置
-    var fpNav = $('#fp-nav');
-    var sysImg = $('.img-wrapper').find("img").removeClass('rotate');
+    //全屏滚动设置
+    var sysImg = $('#sysImg');
     $('#pagewrapper').fullpage({
         resize: true,
-        anchors: ['who-we-are', 'we-are-doing', 'we-have-done', 'we-provide', 'achievement'],
+        anchors: ['system', 'barchart', 'mapchart', 'piechart', 'picture', 'achievement'],
         navigation: false,
         navigationPosition: 'right',
-        navigationTooltips: ['系统', '扫描', '图表', '视频', '成就'],
+        //navigationTooltips: ['系统', '扫描', '图表', '视频', '成就'],
         scrollOverflow: true,
         animateAnchor: false,
         //autoScrolling: false,
-        //recordHistory: true,
+        recordHistory: true,
         verticalCentered: false,
         //normalScrollElements:'#page2',
         onLeave: function (index, nextIndex, direction) {
             switch (index) {
-                case 1:
+                case  1:
+                    sysImg.removeClass('rotate');
                     break;
                 case 2:
-                    fpNav.removeClass('white');
-                    $('.radar').hide();
-                    break;
-                case 3:
-                    fpNav.removeClass('white');
                     $('#scrollcombidy2d').removeClass('appear').removeClass('appear-animated');
                     break;
+                case 3:
+                    $('#map').removeClass('appear').removeClass('appear-animated');
+                    break;
                 case 4:
-                    clearInterval(globalVar.imgNavAnimInterval);
-                    clearInterval(globalVar.imgRefreshInterval);
+                    $('#pie3Ds').removeClass('appear').removeClass('appear-animated');
                     break;
                 case 5:
+                    clearInterval(globalVar.imgNavAnimInterval);
+                    clearInterval(globalVar.imgRefreshInterval);
+                    $('.img-container img').removeClass('scale');
+                    $('#page4 .inner').addClass('transparent');
                     break;
                 default :
                     break;
@@ -634,34 +426,35 @@ $(function () {
         },
         afterLoad: function (anchorLink, index) {
             switch (index) {
-                case 1:
-                    //sysImg.addClass('rotate');
+                case  1:
+                    sysImg.addClass('rotate');
                     break;
                 case 2:
-                    fpNav.addClass('white');
-                    $('.radar').show();
-                    break;
-                case 3:
-                    //fpNav.addClass('white');
                     $('#scrollcombidy2d').addClass('appear').addClass('appear-animated');
                     break;
+                case 3:
+                    $('#map').addClass('appear').addClass('appear-animated');
+                    break;
                 case 4:
+                    $('#pie3Ds').addClass('appear').addClass('appear-animated');
+                    break;
+                case 5:
+                    $('#page4 .inner').removeClass('transparent');
                     var imgs = $('.img-container img').addClass('scale');
                     setTimeout(function () {
                         imgs.addClass('border');
                     }, 1000);
                     imgNavAnimate.start(0);
                     break;
-                case 5:
+                case 6:
+                    $('.section-inner').addClass('appear').addClass('appear-animated');
                     break;
                 default :
                     break;
             }
         },
         afterRender: function () {
-            sysImg.addClass('rotate');
             genCharts();
-            //scanOnMap();
             $.ajax({
                 url: 'showcase/getImageNames',
                 type: 'get',
@@ -682,8 +475,8 @@ $(function () {
         }
     });
 
-//启动监听器
-    //点击除实时图片/已列出的图片之外的地方隐藏实时图片
+    //启动监听器
+    //点击除实时图片/已列出的图片之外的地方, 隐藏实时图片
     $('#page4').on('click', function (e) {
         if ($(e.target).parents(".real-time-img-wrapper").length == 0 && $(e.target).parents('.img-container').length == 0) {
             realTimeImage.hide();
@@ -705,9 +498,9 @@ $(function () {
         if (text[0].scrollHeight > 1000) {
             text.text('\n......\n......');
         }
-        text.append('\n\n正在获取视频画面......')
+        text.append('\n\n正在获取视频画面......' + (new Date()).pattern("yyyy-MM-dd hh:mm:ss"))
             .scrollTop(text[0].scrollHeight)
-            .append('\n获取成功...' + (new Date).pattern("yyyy-MM-dd hh:mm:ss"))
+            //.append('\n获取成功...' + (new Date()).pattern("yyyy-MM-dd hh:mm:ss"))
             .scrollTop(text[0].scrollHeight);
     });
 });
