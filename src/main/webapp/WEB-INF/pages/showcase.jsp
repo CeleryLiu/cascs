@@ -20,14 +20,19 @@
 <body>
 <div id="pagewrapper">
     <div class="section" id="page1">
-        <div class="banner sys-banner">
-            <div class="am-container">
-                <h2><span></span><span>网络空间物联网设备安全态势感知系统</span></h2>
+        <div class="section-inner">
+            <h1>网络空间物联网设备安全态势感知系统</h1>
 
-                <div class="img-wrapper">
-                    <img src="resources/img/showcase/sys_2_gray.png" id="sysImg">
-                </div>
-            </div>
+            <main>
+                <img src="resources/img/showcase/system.png">
+            </main>
+            <%-- <div class="am-container">
+                 <h2><span></span><span>网络空间物联网设备安全态势感知系统</span></h2>
+
+                 <div class="img-wrapper">
+                     <img src="resources/img/showcase/sys_2_gray.png" id="sysImg">
+                 </div>
+             </div>--%>
             <!-- 背景square -->
             <ul class="bg-bubbles">
                 <li></li>
@@ -43,30 +48,30 @@
             </ul>
         </div>
     </div>
-    <div class="section " id="page3_1">
-        <div id="scrollcombidy2d"></div>
+    <div class="section" id="page3_1">
+        <div class="section-inner">
+                <div id="scrollcombidy2d"></div>
+        </div>
     </div>
-    <div class="section " id="page3_2">
-        <h1>最近一次设备扫描结果</h1>
+    <div class="section" id="page3_2">
+        <div class="section-inner">
+            <h1>最近一次设备扫描结果</h1>
 
-        <div id="map"></div>
-        <%--<div id="multilevelpie" class="full-height p60" style="display: none"></div>--%>
+            <main>
+                <div id="map"></div>
+            </main>
+        </div>
     </div>
-    <div class="section " id="page3_3">
-        <%--<h1>最近一次设备扫描结果</h1>--%>
-
-        <div id="pie3Ds"></div>
+    <div class="section" id="page3_3">
+        <div class="section-inner">
+            <div id="pie3Ds"></div>
+        </div>
     </div>
-    <div class="section " id="page4">
-        <div class="inner">
+    <div class="section" id="page4">
+        <div class="section-inner">
             <ul class="img-nav"></ul>
             <div class="img-container">
-                <img src="">
-                <img src="">
-                <img src="">
-                <img src="">
-                <img src="">
-                <img src="">
+                <img src=""><img src=""><img src=""><img src=""><img src=""><img src="">
             </div>
         </div>
         <div class="real-time-img-wrapper">
@@ -94,10 +99,8 @@
         </div>
     </div>
     <div class="section" id="page5">
-        <div class="section-inner" style="display: none;">
-            <header>
-                <h1>成就</h1>
-            </header>
+        <div class="section-inner">
+            <header><h1>成就</h1></header>
             <section id="dg-container" class="dg-container">
                 <div class="dg-wrapper">
                     <a href="#"><img src="resources/img/showcase/ct/2014-12-01.png" alt="2014-12-01">
