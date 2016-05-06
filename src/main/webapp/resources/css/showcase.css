@@ -25,14 +25,14 @@ h1 {
     padding: 40px auto;
 }
 
-.black-bg {
+.black-bg, body {
     background-color: #333;
 }
 
 /*----------------------fullpage↓--------------------------*/
 #page1 {
-    background: url("../img/showcase/wallpaper2_small.jpg") fixed;
-    background-size: cover;
+    /*background: url("../img/showcase/wallpaper2_small.jpg") fixed;*/
+    /*background-size: cover;*/
 }
 
 #fp-nav.white ul li a span, .fp-slidesNav.white ul li a span {
@@ -79,10 +79,11 @@ h1 {
 
 .am-container .img-wrapper {
     position: fixed;
-    background: url("../img/showcase/pc_bg.png") no-repeat center;
+    background: url("../img/showcase/pc_bg_nomouse.png") no-repeat center;
     width: 100%;
     height: 750px;
-    bottom: 8.5%;
+    /*bottom: 8.5%;*/
+    bottom: 2%;
     text-align: center;
     -webkit-transform: scaleZ(3) rotateX(30deg);
     -ms-transform: scaleZ(3) rotateX(30deg);
@@ -92,8 +93,8 @@ h1 {
 .img-wrapper img {
     margin-top: 20px;
     border-radius: 5px;
-    -webkit-transform: perspective(2000px) rotateY(20deg);
-    transform: perspective(2000px) rotateY(20deg);
+    /*-webkit-transform: perspective(2000px) rotateY(20deg);*/
+    /*transform: perspective(2000px) rotateY(20deg);*/
 }
 
 .bg-bubbles {
@@ -508,10 +509,12 @@ h1 {
     margin: 0;
 }
 
-#scrollcombidy2d, #map, #pie3Ds, #page4 .inner.transparent,#page5 .section-inner {
+/*
+#scrollcombidy2d, #map, #pie3Ds, #page4 .inner.transparent, #page5 .section-inner {
     opacity: 0;
     filter: alpha(opacity=0);
 }
+*/
 
 #scrollcombidy2d, #map {
     height: 100%;
@@ -847,6 +850,7 @@ h1 {
 
 #page5 .section-inner {
     width: 100%;
+    height: 100%;
     position: relative;
     text-align: center;
 }
@@ -893,7 +897,7 @@ h1 {
     position: relative;
 }
 
-.dg-container.appear{
+.dg-container.appear {
     visibility: visible;
 }
 
@@ -948,6 +952,22 @@ h1 {
 
 .dg-wrapper a.dg-center div {
     display: block;
+}
+
+#page5 .goto {
+    z-index: 998;
+    position: absolute;
+    bottom:0;
+    right: 0;
+    width: 40px;
+    height: 29px;
+    background: url("../img/showcase/goto2.png");
+    background-size: 100%;
+    opacity: .5;
+}
+
+#page5 .goto:hover{
+    opacity: 1;
 }
 
 /*-----------------------↓波浪动画-----------------------*/

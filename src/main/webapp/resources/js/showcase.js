@@ -403,22 +403,22 @@ $(function () {
         onLeave: function (index, nextIndex, direction) {
             switch (index) {
                 case  1:
-                    sysImg.removeClass('rotate');
+                    //sysImg.removeClass('rotate');
                     break;
                 case 2:
-                    $('#scrollcombidy2d').removeClass('appear').removeClass('appear-animated');
+                    //$('#scrollcombidy2d').removeClass('appear').removeClass('appear-animated');
                     break;
                 case 3:
-                    $('#map').removeClass('appear').removeClass('appear-animated');
+                    //$('#map').removeClass('appear').removeClass('appear-animated');
                     break;
                 case 4:
-                    $('#pie3Ds').removeClass('appear').removeClass('appear-animated');
+                    //$('#pie3Ds').removeClass('appear').removeClass('appear-animated');
                     break;
                 case 5:
                     clearInterval(globalVar.imgNavAnimInterval);
                     clearInterval(globalVar.imgRefreshInterval);
-                    $('.img-container img').removeClass('scale');
-                    $('#page4 .inner').addClass('transparent');
+                    //$('.img-container img').removeClass('scale');
+                    //$('#page4 .inner').addClass('transparent');
                     break;
                 default :
                     break;
@@ -427,27 +427,32 @@ $(function () {
         afterLoad: function (anchorLink, index) {
             switch (index) {
                 case  1:
-                    sysImg.addClass('rotate');
+                    //sysImg.addClass('rotate');
                     break;
                 case 2:
-                    $('#scrollcombidy2d').addClass('appear').addClass('appear-animated');
+                    //$('#scrollcombidy2d').addClass('appear').addClass('appear-animated');
                     break;
                 case 3:
-                    $('#map').addClass('appear').addClass('appear-animated');
+                    //$('#map').addClass('appear').addClass('appear-animated');
                     break;
                 case 4:
-                    $('#pie3Ds').addClass('appear').addClass('appear-animated');
+                    //$('#pie3Ds').addClass('appear').addClass('appear-animated');
                     break;
                 case 5:
-                    $('#page4 .inner').removeClass('transparent');
-                    var imgs = $('.img-container img').addClass('scale');
+                    //$('#page4 .inner').removeClass('transparent');
+                    //var imgs = $('.img-container img').addClass('scale');
+                    var imgs = $('.img-container img');
                     setTimeout(function () {
                         imgs.addClass('border');
                     }, 1000);
                     imgNavAnimate.start(0);
                     break;
                 case 6:
-                    $('.section-inner').addClass('appear').addClass('appear-animated');
+                    //$('.section-inner').addClass('appear').addClass('appear-animated');
+                    $('#page5 .section-inner').show();
+                    $('#dg-container').gallery({
+                        autoplay: true
+                    });
                     break;
                 default :
                     break;
@@ -461,9 +466,6 @@ $(function () {
                 contentType: "application/json",
                 dataType: "json",
                 success: initImages
-            });
-            $('#dg-container').gallery({
-                autoplay: true
             });
             $.fn.fullpage.reBuild();
         },
@@ -548,4 +550,4 @@ Date.prototype.pattern = function (fmt) {
         }
     }
     return fmt;
-}
+};

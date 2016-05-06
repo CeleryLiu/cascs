@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+    pageContext.setAttribute("basePath", basePath);// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。
+%>
 <!DOCTYPE html>
 <html lang="zh-CN" class="no-js">
 <head>
@@ -36,22 +43,22 @@
             </ul>
         </div>
     </div>
-    <div class="section black-bg" id="page3_1">
+    <div class="section " id="page3_1">
         <div id="scrollcombidy2d"></div>
     </div>
-    <div class="section black-bg" id="page3_2">
+    <div class="section " id="page3_2">
         <h1>最近一次设备扫描结果</h1>
 
         <div id="map"></div>
         <%--<div id="multilevelpie" class="full-height p60" style="display: none"></div>--%>
     </div>
-    <div class="section black-bg" id="page3_3">
-        <h1>最近一次设备扫描结果</h1>
+    <div class="section " id="page3_3">
+        <%--<h1>最近一次设备扫描结果</h1>--%>
 
         <div id="pie3Ds"></div>
     </div>
-    <div class="section black-bg" id="page4">
-        <div class="inner transparent">
+    <div class="section " id="page4">
+        <div class="inner">
             <ul class="img-nav"></ul>
             <div class="img-container">
                 <img src="">
@@ -86,8 +93,8 @@
             </div>
         </div>
     </div>
-    <div class="section black-bg" id="page5">
-        <div class="section-inner">
+    <div class="section" id="page5">
+        <div class="section-inner" style="display: none;">
             <header>
                 <h1>成就</h1>
             </header>
@@ -127,6 +134,7 @@
                     </a>
                 </div>
             </section>
+            <a class="goto" href="<%=basePath%>#se1"></a>
         </div>
     </div>
 </div>
