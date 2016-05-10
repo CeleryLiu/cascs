@@ -50,16 +50,28 @@
     </div>
     <div class="section" id="page3_1">
         <div class="section-inner">
-                <div id="scrollcombidy2d"></div>
+            <div id="scrollcombidy2d"></div>
         </div>
     </div>
     <div class="section" id="page3_2">
         <div class="section-inner">
-            <h1>最近一次设备扫描结果</h1>
+            <%--<h1>最近一次设备扫描结果</h1>--%>
 
             <main>
                 <div id="map"></div>
             </main>
+            <div id="top10" class="shine-blue">
+                <table class="table table-striped table-hover ">
+                    <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>国家</th>
+                        <th>数量</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="section" id="page3_3">
@@ -100,7 +112,7 @@
     </div>
     <div class="section" id="page5">
         <div class="section-inner">
-            <header><h1>成就</h1></header>
+            <header><h1>成果</h1></header>
             <section id="dg-container" class="dg-container">
                 <div class="dg-wrapper">
                     <a href="#"><img src="resources/img/showcase/ct/2014-12-01.png" alt="2014-12-01">

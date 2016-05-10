@@ -5,8 +5,8 @@
  * @description
  */
 var globalVar = {
-    imgNavAnimInterval: 0,
-    imgRefreshInterval: 0
+    imgNavAnimInterval: -1,
+    imgRefreshInterval: -1
 };
 $(function () {
     //图表初始化
@@ -151,6 +151,7 @@ $(function () {
         });
         //2) 生成最近一次扫描的设备统计图（地图和饼状图）
         var genLatestCharts = function (data, textStatus, jqXHR) {
+            //console.log(data);
             var obj = data.data;
             var basicPieOption = {
                 'type': 'pie3d',
@@ -201,44 +202,68 @@ $(function () {
                     "chart": {
                         "caption": "最近一次设备扫描结果",
                         'captionFontSize': '32',
+                        'captionFontColor': '#ffffff',
                         "theme": "fint",
                         "bgColor": "#333333",
                         "bgAlpha": "100",
-                        'baseFontColor': '#ffffff',
+                        'baseFontColor': '#ff0000',
                         "formatNumberScale": "0",
-                        "nullEntityColor": "#C2C2D6",
-                        "nullEntityAlpha": "50",
+                        "nullEntityColor": "#f0ffff",
+                        "nullEntityAlpha": "100",
                         "hoverOnNull": "0",
-                        "showLabels": "0"
+                        "showLabels": "0",
+                        "legendPosition": "right"
                     },
                     "colorrange": {
                         "minvalue": "0",
                         //"startlabel": "Low",
                         //"endlabel": "High",
-                        "code": "#FF4411",
+                        "code": "#f0ffff",
                         "gradient": "1",
                         "color": [{
-                            "maxvalue": "500000",
-                            "code": "#6baa01"
-                            //"displayValue": "Median"
+                            "maxvalue": "10000",
+                            "code": "#96cfff"
+                        }, {
+                            "maxvalue": "100000",
+                            "code": "#8dc8ff"
+                        }, {
+                            "maxvalue": "1000000",
+                            "code": "#369dff"
                         }, {
                             "maxvalue": "2000000",
-                            "code": "#FFDD44"
+                            "code": "#1e90ff"
                         }]
                     },
                     "data": []
                 }
             };
-            var $pies = $('#pie3Ds'), $map = $('#map');
+            var $pies = $('#pie3Ds'), $map = $('#map'), mapChart;
             for (var key in obj) {
                 if (key == 'country') {
+                    var countryList = obj['country']['data'];
                     var mapOpt = $.extend(true, {}, basicMapOption);
                     var maxvalue = obj['country']['max'];
+                    var minvalue = obj['country']['min'];
                     mapOpt.dataSource.chart.caption = dataMapping[key];
-                    mapOpt.dataSource.data = obj['country']['data'];
-                    mapOpt.dataSource.colorrange.color[0].maxvalue = maxvalue / 2;
-                    mapOpt.dataSource.colorrange.color[1].maxvalue = maxvalue;
-                    $map.insertFusionCharts(mapOpt);
+                    mapOpt.dataSource.data = countryList;
+                    mapOpt.dataSource.colorrange.color[basicMapOption.dataSource.colorrange.color.length - 1].maxvalue = maxvalue;
+                    mapOpt.dataSource.colorrange.minvalue = minvalue;
+                    mapChart = $map.insertFusionCharts(mapOpt);
+                    var $top10 = $('#top10').find('tbody').empty();
+                    var chinaIdx = obj['country']['chinaIdx'];
+                    for (var i = 0; i < 10 && i < countryList.length; i++) {
+                        var tr = $('<tr data-id="' + countryList[i].id + '"></tr>').appendTo($top10);
+                        tr.append('<td>' + (i + 1) + '</td>')
+                            .append('<td><img src="resources/img/flags/' + countryList[i].id + '.png">' + countryList[i].displayValue + '</td>')
+                            .append('<td>' + countryList[i].value + '</td>');
+                        if (i == chinaIdx) {
+                            tr.addClass('china');
+                        }
+                    }
+                    if (chinaIdx >= 10) {
+                        $top10.append('<tr><td>11</td><td>中国</td><td>' + countryList[chinaIdx].value + '</td></tr>');
+                    }
+
                 } else {
                     var opt = $.extend(true, {}, basicPieOption);//$.extend(true,{}, json);//深克隆
                     opt.dataSource.chart.caption = dataMapping[key];
@@ -274,7 +299,7 @@ $(function () {
         $imgNav.find('li')
             .css('width', (100 / count) + '%')
             .hover(function () {
-                clearInterval(globalVar.imgNavAnimInterval);
+                imgNavAnimate.stop();
                 if ($(this).hasClass('active') || $(this).hasClass('current'))return;
                 if (!realTimeImage.isHidden())return;
                 $('.img-nav li.active').removeClass('active');
@@ -287,7 +312,7 @@ $(function () {
                 }
             })
             .on('click', function (e) {
-                clearInterval(globalVar.imgNavAnimInterval);
+                imgNavAnimate.stop();
                 if ($(this).hasClass('active'))return;
                 $('.img-nav li.active').removeClass('active');
                 $('.img-nav li.current').removeClass('current');
@@ -298,7 +323,8 @@ $(function () {
 
         imgContainer.find('img').on('click', function (e) {
             e.preventDefault();
-            clearInterval(globalVar.imgNavAnimInterval);
+            imgNavAnimate.stop();
+            console.log(globalVar.imgNavAnimInterval);
             var src = $(this).attr('src');
             var location = this.getBoundingClientRect();//返回对象的大小及其相对于视口的位置
             realTimeImage.show(src, location);
@@ -343,7 +369,7 @@ $(function () {
             return flag;
         },
         show: function (src, location) {
-            clearInterval(globalVar.imgNavAnimInterval);
+            imgNavAnimate.stop();
             clearInterval(globalVar.imgRefreshInterval);
             var ip = src.substring(src.lastIndexOf('/') + 1, src.lastIndexOf('.jpg'));
             var $wrapper = $(this._wrapper_sel), wrapperH = $wrapper.height(), wrapperW = $wrapper.width();
@@ -415,7 +441,7 @@ $(function () {
                     //$('#pie3Ds').removeClass('appear').removeClass('appear-animated');
                     break;
                 case 5:
-                    clearInterval(globalVar.imgNavAnimInterval);
+                    imgNavAnimate.stop();
                     clearInterval(globalVar.imgRefreshInterval);
                     //$('.img-container img').removeClass('scale');
                     //$('#page4 .inner').addClass('transparent');

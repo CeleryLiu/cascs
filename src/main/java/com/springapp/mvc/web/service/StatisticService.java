@@ -68,6 +68,7 @@ public class StatisticService {
 
     public JSONObject getLatest4FusionCharts() {
         logger.debug("StatisticService.getLatest4FusionCharts() ======");
-        return dao.getLatest4FusionCharts();
+//        return dao.getLatest4FusionCharts();
+        return dao.getAll4FusionCharts();
     }
 }

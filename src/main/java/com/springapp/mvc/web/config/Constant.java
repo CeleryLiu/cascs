@@ -21,7 +21,8 @@ public class Constant {
     //http://10.10.2.143:8888/count?scale=Global&startTime=0&endTime=1539222405000或http://10.10.2.143:8888/count?scale=Global&size=1
     public static final String SE_GET_SUMMARY_STATISTIC_URL = "http://10.10.2.143:8888/count";//离线分析
     //http://10.10.2.143:8888/agg/n, n∈N+
-    public static final String SE_GET_LATEST_STATISTIC_URL = "http://10.10.2.143:8888/agg";//离线分析
+    public static final String SE_GET_LATEST_STATISTIC_URL = "http://10.10.2.143:8888/agg";//离线分析最近一次扫描聚类
+    public static final String SE_GET_ALL_STATISTIC_4_FUSIONCHARTS_URL = "http://10.10.2.143:8888/aggall";//离线分析所有扫描聚类
     public static final String SE_VISION_URL = SE_BASEPATH + "search?";//看世界
     //“看世界”，参数pagesize和page的取值固定
     public static final String SE_VISION_STATIC_URL_OLD = SE_BASEPATH + "search?pagesize=9999&page=1&wd=pictureTags:";

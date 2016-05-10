@@ -17,8 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
-import java.net.URL;
 import java.util.Iterator;
 
 @Repository
@@ -141,7 +139,8 @@ public class StatisticDAO {
                 JSONObject mapping = JSONObject.parseObject(Constant.Country_FusionId_Mapping);
                 for (int i = 0; i < buckets.size(); i++) {
                     JSONObject country = buckets.getJSONObject(i);
-                    String id = mapping.getString(country.getString("displayValue"));
+                    String countryName = country.getString("displayValue");
+                    String id = mapping.getString(countryName);
                     if (StringUtils.isNotBlank(id)) {
                         buckets.getJSONObject(i).put("id", id);
                         buckets.getJSONObject(i).put("showLabel", "1");
@@ -149,8 +148,59 @@ public class StatisticDAO {
                     if (country.getIntValue("value") > max) {
                         max = country.getIntValue("value");
                     }
+                    if (StringUtils.equals("中国", countryName)) {
+                        value.put("chinaIdx", i);
+                    }
                 }
                 value.put("max", max);
+            } else {
+                buckets = JSONArray.parseArray(bucketsStr.replace("key", "label").replace("doc_count", "value"));
+            }
+            value.put("data", buckets);
+            data.put(key, value);
+        }
+        resp.put("data", data);
+        return resp;
+    }
+
+    public JSONObject getAll4FusionCharts() {
+        String url = Constant.SE_GET_ALL_STATISTIC_4_FUSIONCHARTS_URL;
+        JSONObject resp = rc.getJSONObject(url);
+        JSONObject data = new JSONObject();
+        JSONObject agg = resp.getJSONArray("data").getJSONObject(0).getJSONObject("aggregations");
+        Iterator<String> it = agg.keySet().iterator();
+        while (it.hasNext()) {
+            String key = it.next();
+            JSONObject value = new JSONObject();
+            String bucketsStr = agg.getJSONObject(key).getString("buckets");
+            JSONArray buckets;
+            if (StringUtils.equals("country", key)) {
+                int max = 0, min = Integer.MAX_VALUE;
+                buckets = JSONArray.parseArray(bucketsStr.replace("key", "displayValue").replace("doc_count", "value"));
+                JSONObject mapping = JSONObject.parseObject(Constant.Country_FusionId_Mapping);
+                for (int i = 0; i < buckets.size(); i++) {
+                    JSONObject country = buckets.getJSONObject(i);
+                    String countryName = country.getString("displayValue");
+                    String id = mapping.getString(countryName);
+                    int v = country.getIntValue("value");
+                    if (StringUtils.isNotBlank(id)) {
+                        buckets.getJSONObject(i).put("id", id);
+                        if (v > 10000) {
+                            buckets.getJSONObject(i).put("showLabel", "1");
+                        }
+                    }
+                    if (v > max) {
+                        max = v;
+                    }
+                    if (v < min) {
+                        min = v;
+                    }
+                    if (StringUtils.equals("中国", countryName)) {
+                        value.put("chinaIdx", i);
+                    }
+                }
+                value.put("max", max);
+                value.put("min", min);
             } else {
                 buckets = JSONArray.parseArray(bucketsStr.replace("key", "label").replace("doc_count", "value"));
             }
