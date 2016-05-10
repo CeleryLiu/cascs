@@ -156,13 +156,14 @@ $(function () {
             var basicPieOption = {
                 'type': 'pie3d',
                 'width': '48%',
-                'height': '400',
+                'height': '48%',
                 'dataFormat': 'json',
                 'dataSource': {
                     'chart': {
                         'caption': '最近一次设备扫描结果',
                         'bgColor': '#333333',
                         'baseFontColor': '#ffffff',
+                        'chartTopMargin': "80",
                         'use3DLighting': '0',
                         'showShadow': '1',
                         'enableSmartLabels': '1',

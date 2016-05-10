@@ -583,7 +583,7 @@ h1 {
     padding-right: 8px;
 }
 
-#top10 tr td:nth-child(2){
+#top10 tr td:nth-child(2) {
     text-align: left;
 }
 
@@ -620,7 +620,7 @@ h1 {
     }
 }
 
-#scrollcombidy2d, #map {
+#scrollcombidy2d, #map, #pie3Ds {
     height: 100%;
 }
 
