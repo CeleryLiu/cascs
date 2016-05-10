@@ -288,7 +288,7 @@ $(function () {
     //照片墙初始化
     var initImages = function (data) {
         var $imgNav = $('.img-nav'), imgContainer = $('.img-container');
-        var count = 2; //让左右两边各留出1个li的空白
+        var count = 1; //让左右两边各留出半个li的空白
         globalVar.images = data;
         for (var k in data) {
             //generate nav
