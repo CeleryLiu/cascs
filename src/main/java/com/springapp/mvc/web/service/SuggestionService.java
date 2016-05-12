@@ -57,8 +57,9 @@ public class SuggestionService {
         }
         return result;
     }
-   /* public static void main(String[] args) {
+
+/*    public static void main(String[] args) {
         SuggestionService ss = new SuggestionService(new SuggestionDAO());
-        System.out.println(ss.getResponse4Suggestion("l 2"));
+        System.out.println(ss.getResponse4Recommend());
     }*/
 }

@@ -2,6 +2,7 @@ package com.springapp.mvc.web.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.springapp.mvc.web.config.Constant;
+import com.springapp.mvc.web.model.User;
 import com.springapp.mvc.web.util.RestClient;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +35,9 @@ public class LoginService {
         }
         return response;
     }
+
+ /*   public static void main(String[] args) {
+        LoginService ls=new LoginService();
+        System.out.println(ls.login( "nam=1234"  + "&" + "psw=45ddd6789" ));
+    }*/
 }

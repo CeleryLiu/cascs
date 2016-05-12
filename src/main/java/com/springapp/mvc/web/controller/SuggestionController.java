@@ -28,7 +28,7 @@ public class SuggestionController {
     }
 
     /*
-    * @function 高级搜索，接收高级搜索传入的查询对象
+    * @function 搜索自动补全，接收高级搜索传入的查询对象
     * @param advancedSearch，用户输入的搜索条件
     * @result String，查询结果
     */

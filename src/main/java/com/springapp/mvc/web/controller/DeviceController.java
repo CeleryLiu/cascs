@@ -34,7 +34,6 @@ public class DeviceController {
     @RequestMapping(value = "/search/list")
     public String listSearch(@RequestBody SearchCriteria search) {
         logger.debug("DeviceController.listSearch() ======" + JSONObject.fromObject(search));
-//        System.out.println("DeviceController.listSearch() ======" + JSONObject.fromObject(search));
         return deviceService.getResponse4List(search);
     }
 
@@ -50,7 +49,6 @@ public class DeviceController {
     @RequestMapping(value = "/search/list2")
     public String listSearch2(@RequestBody SearchCriteria search) {
         logger.debug("DeviceController.listSearch2() ======" + JSONObject.fromObject(search));
-//        System.out.println("DeviceController.listSearch2() ======" + JSONObject.fromObject(search));
         return deviceService.getResponse4List2(search);
     }
 

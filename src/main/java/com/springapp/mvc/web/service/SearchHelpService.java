@@ -22,4 +22,9 @@ public class SearchHelpService {
         //没有做其他业务处理
         return rc.get(Constant.SE_HOTKEY_URL);
     }
+
+/*    public static void main(String[] args) {
+        SearchHelpService s=new SearchHelpService();
+        System.out.println(s.getResponse4HotSearch());
+    }*/
 }

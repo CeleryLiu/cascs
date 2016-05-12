@@ -18,7 +18,6 @@ public class FileUtil {
         File file = new File(path);
         // get the folder list
         File[] array = file.listFiles();
-
         for (int i = 0; i < array.length; i++) {
             if (array[i].isDirectory()) {
                 files.put(array[i].getName(), getFileNamesFromFolder(array[i].getPath()));
@@ -36,7 +35,6 @@ public class FileUtil {
                 // only take file name
                 result.set(i, array[i].getName());
                 // take file path and name
-//                System.out.println("*****" + array[i].getPath());
             }
         }
         return result;

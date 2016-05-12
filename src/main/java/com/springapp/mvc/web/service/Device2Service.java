@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -115,10 +116,10 @@ public class Device2Service {
         Filter filter = new Filter();
         ArrayList<String> list = new ArrayList<String>();
         list.add("北京");
-        list.add("上海");
+//        list.add("上海");
         filter.setCity(list);
         criteria.setFilter(filter);
-        String r = ss.getResponse4List2(criteria);
+        String r = ss.getResponse4List(criteria);
         System.out.println(r);
     }*/
 }

@@ -7,6 +7,7 @@ package com.springapp.mvc.web.controller;/*
  */
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.springapp.mvc.web.dao.MarkpointDAO;
 import com.springapp.mvc.web.jsonView.Views;
 import com.springapp.mvc.web.model.SearchCriteria;
 import com.springapp.mvc.web.service.MarkpointService;
@@ -44,9 +45,4 @@ public class MarkpointController {
 //        System.out.println(result);
         return result;
     }
-
-   /* public static void main(String[] args) {
-        MarkpointController mc = new MarkpointController(new MarkpointService(new MarkpointDAO()));
-        mc.markpointSearch("monitor", "all", 1);
-    }*/
 }

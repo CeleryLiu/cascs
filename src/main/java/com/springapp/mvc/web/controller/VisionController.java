@@ -35,9 +35,9 @@ public class VisionController {
 //        System.out.println("DeviceController.listSearch() ====== pictureTag: " + pictureTag);
         return service.getVisionResponse(pictureTag).toJSONString();
     }
-
-/*    public static void main(String[] args) {
+/*
+    public static void main(String[] args) {
         VisionController vc = new VisionController(new VisionService(new VisionDAO()));
-        System.out.println(vc.getPictures("学校"));
+        System.out.println(vc.getPictures("公安部门"));
     }*/
 }

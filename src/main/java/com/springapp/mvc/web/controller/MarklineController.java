@@ -36,7 +36,7 @@ public class MarklineController {
         return marklineService.getResponse(pageId);
     }
 
-   /* public static void main(String[] args) {
+/*    public static void main(String[] args) {
         MarklineController mc = new MarklineController(new MarklineService(new MarklineDAO()));
         System.out.println(JSONObject.toJSON(mc.marklineSearch("1")));
     }*/
