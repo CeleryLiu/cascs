@@ -86,12 +86,12 @@ public class MarkpointDAO {
         return result;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         MarkpointDAO m=new MarkpointDAO();
         SearchCriteria sc=new SearchCriteria();
         sc.setTypefilter("monitor");
         sc.setPermitfilter("controllable");
 
         System.out.println(m.getDevices(Constant.SE_MARKPOINT_SEARCH_URL,JSONObject.toJSON(sc).toString()));
-    }
+    }*/
 }
