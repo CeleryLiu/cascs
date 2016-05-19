@@ -6,7 +6,7 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
     pageContext.setAttribute("basePath", basePath);// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。
-    String basePathNoPort = request.getScheme() + "://" + request.getServerName();
+    String basePathWithoutContextPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 %>
 <base href="<%=basePath%>">
 <!DOCTYPE html>
@@ -31,11 +31,7 @@
     <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
     <link rel="stylesheet" href="${awsFont}">
     <link rel="stylesheet" type="text/css"
-          href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
-    <%--<link rel="stylesheet" type="text/css"--%>
-    <%--href="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
-    <%--    <spring:url value="resources/css/app.min.css" var="appCss"/>
-        <link rel="stylesheet" href="${appCss}">--%>
+          href="<%=basePathWithoutContextPath%>/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
 
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
@@ -132,8 +128,9 @@
         var djConfig = {parseOnLoad: true}
     </script>
     <%--arcgis lib and map js--%>
-    <%--<script type="text/javascript" src="http://10.10.2.174:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
-    <script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+    <%--<script type="text/javascript" src="http://10.10.2.174/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
+    <script type="text/javascript"
+            src="<%=basePathWithoutContextPath%>/arcgis_js_api/library/3.15/3.15/init.js"></script>
 </head>
 <body>
 <%@include file="header.jsp" %>
@@ -191,12 +188,12 @@
     <div class="section" data-anchor="se3" id="mapSe">
         <%@include file="map.jsp" %>
     </div>
-    <div class="section" data-anchor="se6" id="analysis">
+<%--    <div class="section" data-anchor="se6" id="analysis">
         <div class="slide" data-anchor="se6_offline" id="aOffline">
             <iframe src="analysis-offline" name="aOffline"></iframe>
         </div>
-        <%--<div class="slide" data-anchor="se6_online" id="aOnline"></div>--%>
-    </div>
+        &lt;%&ndash;<div class="slide" data-anchor="se6_online" id="aOnline"></div>&ndash;%&gt;
+    </div>--%>
     <div class="section" data-anchor="se7" id="news">
         <div class="slide" data-anchor="se7_security" id="security">
             <%@include file="news-security.jsp" %>
@@ -212,12 +209,12 @@
     <div class="section" data-anchor="se10" id="patch">
         <%@include file="patch.jsp" %>
     </div>
-    <div class="section" data-anchor="se4" id="pointSe">
+   <%-- <div class="section" data-anchor="se4" id="pointSe">
         <iframe src="markpoint-iframe" name="iPoint"></iframe>
     </div>
     <div class="section" data-anchor="se5" id="lineSe">
         <iframe src="markline-iframe" name="iLine"></iframe>
-    </div>
+    </div>--%>
     <div class="section" data-anchor="se11" id="user">
         <div class="slide" data-anchor="se11_login" id="loginSl">
             <%@include file="user/login.jsp" %>

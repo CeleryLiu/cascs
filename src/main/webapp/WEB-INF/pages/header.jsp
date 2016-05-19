@@ -20,16 +20,16 @@
                         <li data-menuanchor="se1"><a href="#se1">首页</a></li>
                         <li data-menuanchor="se2"><a href="#se2">搜索</a></li>
                         <li data-menuanchor="se3"><a href="#se3">分布</a></li>
-                        <li data-menuanchor="se6" role="presentation" class="dropdown">
+                   <%--     <li data-menuanchor="se6" role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 统计<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#se6/se6_offline">离线统计</a></li>
-                                <%--<li><a href="#se6/se6_online">在线统计</a></li>--%>
+                                &lt;%&ndash;<li><a href="#se6/se6_online">在线统计</a></li>&ndash;%&gt;
                             </ul>
-                        </li>
+                        </li>--%>
                         <li data-menuanchor="se7" role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
@@ -43,8 +43,8 @@
                         <li data-menuanchor="se8"><a href="#se8">实例</a></li>
                         <li data-menuanchor="se9"><a href="#se9">看世界</a></li>
                         <li data-menuanchor="se10"><a href="#se10">工控</a></li>
-                        <li data-menuanchor="se4"><a href="#se4">全球视角</a></li>
-                        <li data-menuanchor="se5"><a href="#se5">探测</a></li>
+                        <%--<li data-menuanchor="se4"><a href="#se4">全球视角</a></li>--%>
+                        <%--<li data-menuanchor="se5"><a href="#se5">探测</a></li>--%>
                         <li id="showcase"><a href="showcase">演示</a></li>
                         <li data-menuanchor="se11">
                             <a href="#se11" id="loginNav">登录</a>

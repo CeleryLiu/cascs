@@ -6,7 +6,7 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
     pageContext.setAttribute("basePath", basePath);// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。
-    String basePathNoPort = request.getScheme() + "://" + request.getServerName();
+    String basePathWithoutContextPath =  request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 %>
 <base href="<%=basePath%>">
 <!DOCTYPE html>
@@ -27,9 +27,9 @@
     <spring:url value="resources/css/vision.css" var="visionCss"/>
     <link rel="stylesheet" href="${visionCss}">
     <%--  <link rel="stylesheet" type="text/css"
-            href="http://localhost:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
+            href="http://localhost/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>--%>
     <link rel="stylesheet" type="text/css"
-          href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+          href="<%=basePathWithoutContextPath%>/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
     <!--[if IE]>
     <script type="text/javascript">
         var console = {
@@ -127,9 +127,9 @@
 <script type="text/javascript">
     var djConfig = {parseOnLoad: true}
 </script>
-<%--<script type="text/javascript" src="http://localhost:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
+<%--<script type="text/javascript" src="http://localhost/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
 <script defer type="text/javascript"
-        src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+        src="<%=basePathWithoutContextPath%>/arcgis_js_api/library/3.15/3.15/init.js"></script>
 <spring:url value="resources/js/libs/pace.min.js" var="paceJs"/>
 <script src="${paceJs}"></script>
 <spring:url value="resources/js/LoadData.js" var="ajax"/>

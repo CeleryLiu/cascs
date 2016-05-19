@@ -19,7 +19,7 @@ var Sidebar = {
         return $(this._WRAPPER_SEL).is(':hidden');
     },
     render: function (data) {
-        console.log("Sidebar.render()", data);
+        //console.log("Sidebar.render()", data);
         var agg = data['aggregation'], wd = data['wd'] ? data['wd'] : data['q']['wd'];
         var genSidebarCountryLi = function (countryName, countryObj) {
             //coXX=countryXX,ciYY=cityYY
@@ -47,7 +47,7 @@ var Sidebar = {
             //country listener
             //coInput.css('display', 'none');
             coLabelContainer.on('click', function () {
-                console.log($(this).next());
+                //console.log($(this).next());
                 $(this).next().collapse('toggle');
             });
             return coLi;
@@ -135,7 +135,7 @@ var Sidebar = {
         });
 
         //(2)根据filter设置复选框的选中状态并添加对应的pivot
-        $('div.panel-collapse.collapse').removeClass('in');
+        //$('div.panel-collapse.collapse').removeClass('in');
 
         //(3)监听折叠面板的状态
         $('.panel-title a').on('click', function () {
@@ -175,15 +175,16 @@ var Sidebar = {
             coLi.append(coInput).append(coLabelContainer).append(citiesContainer);
 
             //country listener
-            coLabelContainer.on('click', function () {
+            coLabelContainer.on('click', function (e) {
                 var $this = $(this);
-                var opened = $this.parents().find('div.collapse.in [data-country]');
+                var opened = $('#countryList').find('.facet-values li');
                 $.each(opened, function (idx, item) {
-                    console.log($(this).attr('data-country'));
-                    if ($(this).attr('data-country') != $this.next().attr('data-country')) {
-                        $(this).removeClass('in');
+                    //console.log($(this).attr('data-country'));
+                    var coll = $(this).find('div.collapse');
+                    if (coll.attr('data-country') != $this.next().attr('data-country')) {
+                        coll.removeClass('in');
                     } else {
-                        $(this).collapse('toggle');
+                        coll.collapse('toggle');
                     }
                 });
             });
@@ -268,7 +269,7 @@ var Sidebar = {
         });
 
         //(2)根据filter设置复选框的选中状态
-        $('div.panel-collapse.collapse').removeClass('in');
+        //$('div.panel-collapse.collapse').removeClass('in');
         if (filter && !isEmptyObject(filter)) {
             for (var key in filter) {
                 var filterItemList = filter[key];
@@ -287,10 +288,10 @@ var Sidebar = {
                         }
                     }
                     // (2.2)展开被选中复选框所在的panel
-                    $input.closest('div.collapse').addClass('in');
-                    if (key == 'city' || key == 'country') {
+                    //$input.closest('div.collapse').addClass('in');
+                   /* if (key == 'city' || key == 'country') {
                         $('#countryList').addClass('in');
-                    }
+                    }*/
                     // (2.3)生成pivot（如果没有的话）
                     Pivot.add(key, value, value);
                 });
@@ -298,13 +299,18 @@ var Sidebar = {
         }
 
         //(3)监听折叠面板的状态
-        $('.panel-title a').on('click', function () {
-            var $this = $(this);
-            if ($this.attr('aria-expanded') == 'false') {   //这里竟然是字符串，不是boolean
-                $this.find('span.fa-chevron-right').addClass('fa-chevron-down');
-            } else {
-                $this.find('span.fa-chevron-down').removeClass('fa-chevron-down');
-            }
+        $('.panel-title a').on('click', function (e) {
+            e.preventDefault();
+            $('.panel-title a').each(function (i, item) {
+                    var $this = $(this);
+                    if (!$($this.attr('href')).hasClass('in')) {   //这里竟然是字符串，不是boolean
+                        //if ($this.attr('aria-expanded') == 'false') {   //这里竟然是字符串，不是boolean
+                        $this.find('span.fa-chevron-right').addClass('fa-chevron-down');
+                    } else {
+                        $this.find('span.fa-chevron-down').removeClass('fa-chevron-down');
+                    }
+                }
+            );
         });
     },
     searchOnChange: function () {

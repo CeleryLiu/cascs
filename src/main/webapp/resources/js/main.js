@@ -119,10 +119,10 @@ var initFullpage = function () {
                 case 3:
                     ArcMap.onLeave();
                     break;
-                case 5:
+                /*case 9:
                     iLine.window.destroy();
                     clearTimeout(iLine.window.timeout);
-                    break;
+                    break;*/
                 default:
                     break;
             }
@@ -151,23 +151,23 @@ var initFullpage = function () {
                     ArcMap.onLoad(data);
                     UserSearchHistory.init();
                     break;
-                case 10:
+            /*    case 9:
                     var lineInterval = setInterval(function () {
                         if (iLine.window && typeof iLine.window.starts == 'function') {
                             iLine.window.starts();
                             clearInterval(lineInterval);
                         }
                     }, 500);
-                    break;
-                case 4:
+                    break;*/
+/*                case 4:
                     var offInterval = setInterval(function () {
                         if (aOffline.window.AnalysisOffline && typeof aOffline.window.AnalysisOffline.init == 'function') {
                             aOffline.window.AnalysisOffline.init();
                             clearInterval(offInterval);
                         }
                     }, 500);
-                    break;
-                case 7:
+                    break;*/
+                case 6:
                     var visionInterval = setInterval(function () {
                         if (vision.window && typeof vision.window.init == 'function') {
                             vision.window.init();

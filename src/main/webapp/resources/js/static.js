@@ -11,7 +11,7 @@ var Constant = {
         return ['首页', '搜索', '定位', '全球视角', '探测', '统计', '资讯', '实例', '看世界', '工控', '用户']
     }()),
     SECTIONS_BG_COLOR: (function () {
-        return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#fff'];
+        return ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#transparent'];
     }()),
     FIXED_ELEMENTS: (function () {
         return '#header, #footer, #sidebar,#header2, #global_search_wrapper, #tool_wrapper, #advs_wrapper, #search_tips';

@@ -2,13 +2,13 @@
 <%--
 &lt;%&ndash;arcgis api for javascript&ndash;%&gt;
 <link rel="stylesheet" type="text/css"
-      href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/dijit/themes/tundra/tundra.css">
+      href="<%=basePathWithoutContextPath%>:8080/arcgis_js_api/library/3.15/3.15/dijit/themes/tundra/tundra.css">
 <link rel="stylesheet" type="text/css"
-      href="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+      href="<%=basePathWithoutContextPath%>:8080/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
 <script type="text/javascript">
     var djConfig = {parseOnLoad: true}
 </script>
-<script type="text/javascript" src="<%=basePathNoPort%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
+<script type="text/javascript" src="<%=basePathWithoutContextPath%>:8080/arcgis_js_api/library/3.15/3.15/init.js"></script>
 --%>
 <div class="map-wrapper">
     <div class="mapHolder" id="mapHolder"></div>
