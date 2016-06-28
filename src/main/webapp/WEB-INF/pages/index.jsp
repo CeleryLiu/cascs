@@ -6,7 +6,8 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
     pageContext.setAttribute("basePath", basePath);// 将 "项目路径basePath" 放入pageContext中，待以后用EL表达式读出。
-    String basePathWithoutContextPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+    String arcgisPath = request.getScheme() + "://" + request.getServerName() + ":8080";
+//    String arcgisPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 %>
 <base href="<%=basePath%>">
 <!DOCTYPE html>
@@ -31,7 +32,7 @@
     <spring:url value="resources/css/font-awesome-4.2.0/css/font-awesome.min.css" var="awsFont"/>
     <link rel="stylesheet" href="${awsFont}">
     <link rel="stylesheet" type="text/css"
-          href="<%=basePathWithoutContextPath%>/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
+          href="<%=arcgisPath%>/arcgis_js_api/library/3.15/3.15/esri/css/esri.css"/>
 
     <spring:url value="resources/css/base.css" var="baseCss"/>
     <link rel="stylesheet" href="${baseCss}">
@@ -130,7 +131,7 @@
     <%--arcgis lib and map js--%>
     <%--<script type="text/javascript" src="http://10.10.2.174/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
     <script type="text/javascript"
-            src="<%=basePathWithoutContextPath%>/arcgis_js_api/library/3.15/3.15/init.js"></script>
+            src="<%=arcgisPath%>/arcgis_js_api/library/3.15/3.15/init.js"></script>
 </head>
 <body>
 <%@include file="header.jsp" %>

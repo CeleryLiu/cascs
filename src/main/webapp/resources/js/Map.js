@@ -22,6 +22,7 @@ var ArcMap = {
         data: {}
     },
     initFeatureSets: function () {
+        var that = this;
         var getFeatureSet = function (url, which) {
             Pace.ignore(function () {
                 $.ajax({
@@ -33,11 +34,11 @@ var ArcMap = {
                 }).success(function (data) {
                     //console.log(url + "  succeed.", data);
                     if (which == 'country') {
-                        ArcMap.v.countryFS = data.data;
+                        that.v.countryFS = data.data;
                     } else if (which == 'province') {
-                        ArcMap.v.provinceFS = data.data;
+                        that.v.provinceFS = data.data;
                     } else if (which == 'city') {
-                        ArcMap.v.cityFS = data.data;
+                        that.v.cityFS = data.data;
                     }
                 }).error(function () {
                     console.log("Getting country feature set error!");
@@ -52,6 +53,7 @@ var ArcMap = {
         getFeatureSet(Constant.PROVINCE_FEATURESET_URL, 'province');
     },
     init: function () {
+        var that = this;
         require(
             [
                 "esri/map",
@@ -95,7 +97,6 @@ var ArcMap = {
                 });
                 //FOR OUTLINE
                 featureLayer.on('mouse-over', function (evt) {
-                    //console.log('on mouse over', evt.graphic);
                     evt.graphic.setSymbol(flOutline);
                     var attr = evt.graphic.attributes;
                     var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
@@ -103,7 +104,6 @@ var ArcMap = {
                     $('.f-count').text(attr.count);
                 });
                 featureLayer.on('mouse-out', function (evt) {
-                    //console.log('on mouse out');
                     evt.graphic.setSymbol(null);
                     $('.f-country').text('');
                     $('.f-count').text('');
@@ -116,7 +116,7 @@ var ArcMap = {
 
                 Pace.ignore(    //不显示进度条
                     function () {
-                        ArcMap.v.cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
+                        that.v.cityLayer = new FeatureLayer(Constant.CITY_FEATURELAYER_URL, {
                             outFields: ["*"]
                         });
                     }
@@ -127,14 +127,14 @@ var ArcMap = {
                     //（4）添加城市featureLayer
                     Pace.ignore(    //不显示进度条
                         function () {
-                            ArcMap.v.cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
+                            that.v.cityLayer.setMaxAllowableOffset(map.extent.getWidth() / map.width);
                         }
                     );
 
                     //(5)初始化ArcMap的全局变量
-                    ArcMap.v.map = map;
-                    ArcMap.v.featureLayer = featureLayer;
-                    ArcMap.v.labelLayer = labelLayer;
+                    that.v.map = map;
+                    that.v.featureLayer = featureLayer;
+                    that.v.labelLayer = labelLayer;
 
                     //（6）listeners
                     $('#sidebarCtrl').on('click', function (e) {
@@ -180,7 +180,7 @@ var ArcMap = {
                             if ($this.hasClass('open')) {
                                 $('.map-layer a').removeClass('open').find('span').removeClass('fa fa-caret-right');
                                 $this.addClass('open').find('span').addClass('fa fa-caret-right');
-                                MyFeatureLayer.show($this.attr('id'), ArcMap.v);
+                                MyFeatureLayer.show($this.attr('id'), that.v);
                             } else {
                                 MyFeatureLayer.hide();
                                 $this.removeClass('open').find('span').removeClass('fa fa-caret-right');
@@ -190,12 +190,12 @@ var ArcMap = {
                         e.preventDefault();
                         var $this = $(this);
                         if (!$this.hasClass('active')) {
-                            ArcMap.v.labelLayer.show();
+                            that.v.labelLayer.show();
                             $this
                                 .addClass('active')
                                 .html('隐藏数量 ' + '<span class="fa fa-caret-right"></span>');
                         } else {
-                            ArcMap.v.labelLayer.hide();
+                            that.v.labelLayer.hide();
                             $this
                                 .removeClass('active')
                                 .html('显示数量 ' + '<span class="fa fa-caret-left"></span>');
@@ -205,16 +205,14 @@ var ArcMap = {
                 map.on('zoom-end', function (e) {
                     //console.log("zoom level: " + map.getZoom());
                     if ($('#city').hasClass('open')) {
-                        MyFeatureLayer.updateCityLayer(ArcMap.v);
+                        MyFeatureLayer.updateCityLayer(that.v);
                     }
                 });
 
-                map.on('pan-end', function (e) {
-                    //console.log("paning: " + map.getZoom());
-                });
             });
     },
     onLoad: function (data) {
+        var that = this;
         $(Sidebar._WRAPPER_SEL).addClass('map');
         $(SearchTip._WRAPPER_SEL).addClass('map');
         $('#header2').addClass('map');
@@ -222,7 +220,7 @@ var ArcMap = {
             var wd = JSON.parse(data['q'])['wd'];
             GlobalSearch.setValue(wd);
             HomeSearch.setValue(wd);
-            ArcMap.onSearchSucceed(data);
+            that.onSearchSucceed(data);
         }
     },
     onLeave: function () {
@@ -231,7 +229,7 @@ var ArcMap = {
         $('#header2').removeClass('map');
     },
     render: function (data) {
-        //console.log("ArcMap.render() ======",data.q);
+        var that=this;
         var layerToShow = $('.map-layer').find('a.open'),
             whichFeature = layerToShow ? layerToShow.attr('id') : 'country',
             map = this.v.map;
@@ -254,14 +252,14 @@ var ArcMap = {
                     //（2）显示地图右侧边栏
                     //MapSidebar.init(data);
                     //(3)默认显示分布图
-                    MyFeatureLayer.show(whichFeature, ArcMap.v, data);
+                    MyFeatureLayer.show(whichFeature, that.v, data);
                     clearInterval(interval);
                 }
             }, 1000);
         }
     },
     search: function (pageNum) {
-        //console.log("ArcMap.search() ======");
+        var that = this;
         var wd = GlobalSearch.getValue();
         if (!wd && wd == '') return;
         var successCallback = this.onSearchSucceed;
@@ -272,7 +270,6 @@ var ArcMap = {
             'data': {
                 'wd': wd + ' ' + Pivot.getFilterByPivots(),
                 //"geo": getVisibleExtent(),
-                //"zoomlevel": ArcMap.v.map.getZoom(),
                 'pagesize': this.v.MAP_PAGE_SIZE,
                 'page': pageNum ? pageNum : 1
             }
@@ -286,7 +283,7 @@ var ArcMap = {
                 "esri/geometry/ScreenPoint",
                 "esri/geometry/webMercatorUtils"
             ], function (ScreenPoint, webMercatorUtils) {
-                var map = ArcMap.v.map;
+                var map = that.v.map;
                 var windowHeight = $(window).height(), windowWidth = $(window).width();
                 var sLeftTop = new ScreenPoint(0, 0),
                     sRightBottom = new ScreenPoint(windowWidth, windowHeight);
@@ -457,8 +454,9 @@ var ArcMap = {
         });
     },
     onSearchSucceed: function (data) {
+        var that=this;
         var statuscode = data['statuscode'];
-        ArcMap.v.data = data;
+        that.v.data = data;
         //(1)记录sessionStorage
         Session.set('data', data);
         //(2)设置result overview
@@ -468,7 +466,7 @@ var ArcMap = {
             //(3)生成sidebar
             Sidebar.render2(data);
             //(4)生成搜索结果页面
-            ArcMap.render(data);
+            that.render(data);
         } else if (statuscode == 204) {
             noDataHandler(data);
         } else {
