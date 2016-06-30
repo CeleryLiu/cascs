@@ -48,7 +48,7 @@ public class DeviceController {
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/search/list2")
     public String listSearch2(@RequestBody SearchCriteria search) {
-        logger.debug("DeviceController.listSearch2() ======" + JSONObject.fromObject(search));
+//        logger.debug("DeviceController.listSearch2() ======" + JSONObject.fromObject(search));
         return deviceService.getResponse4List2(search);
     }
 
@@ -56,15 +56,6 @@ public class DeviceController {
     @RequestMapping(value = "/search/map")
     public String mapSearch(@RequestBody SearchCriteria search) {
         logger.debug("DeviceController.mapSearch() ======" + JSONObject.fromObject(search));
-//        System.out.println("DeviceController.mapSearch() ======" + JSONObject.fromObject(search));
         return deviceService.getResponse4Map(search);
-    }
-
-    @JsonView(Views.Public.class)
-    @RequestMapping(value = "/search/pjax/list", headers = "X-PJAX")
-    public String listSearchPjax(@RequestBody SearchCriteria search) {
-        logger.debug("DeviceController.listSearchPjax() ======" + JSONObject.fromObject(search));
-//        System.out.println("DeviceController.listSearchPjax() ======" + JSONObject.fromObject(search));
-        return deviceService.getResponse4List(search);
     }
 }

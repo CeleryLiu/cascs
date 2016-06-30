@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @author lyp
  * @date 2016-03-28
  * @class name
- * @description 定时任务，每天陵城2点从搜索平台获取所有有图片的设备数据，为"看世界"准备全部数据
+ * @description 定时任务，每天凌晨2点从搜索平台获取所有有图片的设备数据，为"看世界"准备全部数据
  */
 
 public class VisionTimer {

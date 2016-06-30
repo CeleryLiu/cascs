@@ -79,7 +79,6 @@ public class Device2Service {
     //地图页面搜索查询，和getResponse4List2其实是一样的，只是url不一样，测试通过后，可以合并为一个方法
     public String getResponse4Map(SearchCriteria search) {
         logger.debug("DeviceSearch.getResponse4Map() ======");
-//        System.out.println("DeviceSearch.getResponse4Map() ======");
         JSONObject result;
         if (isValidSearchCriteria(search)) {
             Map<String, Object> criteria = new HashMap<String, Object>();

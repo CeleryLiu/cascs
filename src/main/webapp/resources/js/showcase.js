@@ -325,7 +325,7 @@ $(function () {
         imgContainer.find('img').on('click', function (e) {
             e.preventDefault();
             imgNavAnimate.stop();
-            console.log(globalVar.imgNavAnimInterval);
+            //console.log(globalVar.imgNavAnimInterval);
             var src = $(this).attr('src');
             var location = this.getBoundingClientRect();//返回对象的大小及其相对于视口的位置
             realTimeImage.show(src, location);

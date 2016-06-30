@@ -32,7 +32,6 @@ var ArcMap = {
                     dataType: "json",
                     timeout: 50000
                 }).success(function (data) {
-                    //console.log(url + "  succeed.", data);
                     if (which == 'country') {
                         that.v.countryFS = data.data;
                     } else if (which == 'province') {
@@ -71,7 +70,6 @@ var ArcMap = {
                 var map, featureLayer, labelLayer, cityLayer;
                 //Create map and add layers
                 map = new Map("mapHolder", {
-                    //basemap: 'gray',
                     center: [114.25, 24.1167],
                     minZoom: 3,
                     maxZoom: 8,
@@ -89,12 +87,6 @@ var ArcMap = {
                     SimpleFillSymbol.STYLE_SOLID,
                     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([230, 255, 0]), 2), new Color([121, 37, 135, 0.7]));
                 featureLayer = new GraphicsLayer(featureLayerInfoTemplate);
-                featureLayer.on('click', function (evt) {
-                    /* var attr = evt.graphic.attributes;
-                     var name = attr.Name_CHN ? attr.Name_CHN : attr.NAME;
-                     $('.f-country').text(name);
-                     $('.f-count').text(attr.count);*/
-                });
                 //FOR OUTLINE
                 featureLayer.on('mouse-over', function (evt) {
                     evt.graphic.setSymbol(flOutline);
@@ -229,7 +221,7 @@ var ArcMap = {
         $('#header2').removeClass('map');
     },
     render: function (data) {
-        var that=this;
+        var that = this;
         var layerToShow = $('.map-layer').find('a.open'),
             whichFeature = layerToShow ? layerToShow.attr('id') : 'country',
             map = this.v.map;
@@ -454,7 +446,7 @@ var ArcMap = {
         });
     },
     onSearchSucceed: function (data) {
-        var that=this;
+        var that = this;
         var statuscode = data['statuscode'];
         that.v.data = data;
         //(1)记录sessionStorage
@@ -485,8 +477,6 @@ var ArcMap = {
 var MyFeatureLayer = {
     featuresDisplayed: {},
     show: function (which, mapVar) {
-        //obj: map,featureLayer,labelLayer,countryFS,provinceFS,cityLayer
-        //console.log("MyFeatureLayer.show() ======");
         var map = mapVar.map,
             featureLayer = mapVar.featureLayer,
             labelLayer = mapVar.labelLayer,
@@ -494,6 +484,7 @@ var MyFeatureLayer = {
             provinceFS = mapVar.provinceFS,
             cityLayer = mapVar.cityLayer,
             data = mapVar.data;
+        var that=this;
         Pace.start();
         if (!isEmptyObject(data) && data['statuscode'] == 200) {
             $('#featureInfo').show();
@@ -521,7 +512,6 @@ var MyFeatureLayer = {
             if (countryFS.features && !isEmptyObject(countryFS.features)) {
                 render(agg['country@%city'], countryFS.features);
             } else {
-                //console.log("country layer is not loaded yet. wait...");
                 var wait = setInterval(function () {
                     if (countryFS.features && !isEmptyObject(countryFS.features)) {
                         render(agg['country@%city'], countryFS.features);
@@ -530,7 +520,6 @@ var MyFeatureLayer = {
                 }, 1000);
             }
             function render(countries, features) {
-                //console.log("countryLayer is rendering...");
                 var min = Number.MAX_VALUE, max = 0;
                 require(["esri/graphic"], function (Graphic) {
                     for (var key in countries) {
@@ -541,7 +530,7 @@ var MyFeatureLayer = {
                             g.attributes.Name_CHN = key;
                             var newGraphic = new Graphic(g);
                             featureLayer.add(newGraphic);
-                            MyFeatureLayer.addLabel(labelLayer, newGraphic, country.count);//add text to labelLayer
+                            that.addLabel(labelLayer, newGraphic, country.count);//add text to labelLayer
                             setMinMax(country.count);
                         }
                     }
@@ -559,13 +548,10 @@ var MyFeatureLayer = {
         }
 
         function showProvince(agg) {
-            //console.log("showProvince ...agg = ", agg);
             if (!agg['province'] || isEmptyObject(agg['province']))return;
             if (provinceFS.features && !isEmptyObject(provinceFS.features)) {
-                //console.log("province layer about to rending...");
                 render(agg['province'], provinceFS.features);
             } else {
-                //console.log("province layer is not loaded yet. wait...");
                 var wait = setInterval(function () {
                     if (provinceFS.features && !isEmptyObject(provinceFS.features)) {
                         render(agg['province'], provinceFS.features);
@@ -590,7 +576,7 @@ var MyFeatureLayer = {
                             g.attributes.count = count;
                             var newGraphic = new Graphic(g);
                             featureLayer.add(newGraphic);
-                            MyFeatureLayer.addLabel(labelLayer, newGraphic, count);//add text to labelLayer
+                            that.addLabel(labelLayer, newGraphic, count);//add text to labelLayer
                             setMinMax(count);
                             if (!found) {
                                 var lnglat = g.geometry.rings[g.geometry.rings.length - 1][0];
@@ -623,14 +609,12 @@ var MyFeatureLayer = {
                     break;
                 }
             }
-            console.log(cities, cityLayer.graphics);
             if (isEmptyObject(cities))return;
             if (cityLayer.graphics && cityLayer.graphics.length > 0) {
                 render(cities, cityLayer.graphics);
             } else {
                 var count = 0;
                 var wait = setInterval(function () {
-                    //console.log('waiting city fs init....', count++);
                     if ((cityLayer.graphics && cityLayer.graphics.length > 0) || count > 10) {
                         render(cities, cityLayer.graphics);
                         clearInterval(wait);
@@ -649,11 +633,10 @@ var MyFeatureLayer = {
                             var g = features[i];
                             g.attributes.count = count;
                             featureLayer.add(g);
-                            MyFeatureLayer.addLabel(labelLayer, g, count);//add text to labelLayer
+                            that.addLabel(labelLayer, g, count);//add text to labelLayer
                             setMinMax(count);
-                            MyFeatureLayer.featuresDisplayed[key] = count;
+                            that.featuresDisplayed[key] = count;
                             if (!found) {
-                                console.log(g);
                                 var lnglat = g.geometry.rings[g.geometry.rings.length - 1][0];
                                 ArcMap.centerAt(map, {lon: lnglat[0], lat: lnglat[1]});
                                 found = true;
@@ -705,7 +688,6 @@ var MyFeatureLayer = {
         }
     },
     hide: function () {
-        //console.log("MyFeatureLayer.hide() ======");
         ArcMap.v.featureLayer.clear();
         ArcMap.v.featureLayer.hide();
         ArcMap.v.labelLayer.clear();
@@ -713,13 +695,12 @@ var MyFeatureLayer = {
         $('#featureInfo').hide();
     },
     updateCityLayer: function (mapVariables) {
-        var cities = MyFeatureLayer.featuresDisplayed,
+        var that =this;
+        var cities = that.featuresDisplayed,
             cityLayer = mapVariables.cityLayer, featureLayer = mapVariables.featureLayer;
         if (cityLayer.graphics && cityLayer.graphics.length > 0) {
-            //console.log("city is updating ...");
             render(cities, cityLayer.graphics);
         } else {
-            //console.log("city layer is not loaded yet. wait...");
             var wait = setInterval(function () {
                 if (cityLayer.graphics && cityLayer.graphics.length > 0) {
                     render(cities, cityLayer.graphics);
@@ -729,7 +710,6 @@ var MyFeatureLayer = {
         }
 
         function render(cities, features) {
-            //console.log("cityLayer rendering ...", features);
             var min = Number.MAX_VALUE, max = 0;
             for (var key in cities) {
                 for (var i = 0; i < features.length; i++) {
@@ -738,7 +718,7 @@ var MyFeatureLayer = {
                         var g = features[i];
                         g.attributes.count = count;
                         featureLayer.add(g);
-                        MyFeatureLayer.addLabel(mapVariables.labelLayer, g, count);//add text to labelLayer
+                        that.addLabel(mapVariables.labelLayer, g, count);//add text to labelLayer
                         setMinMax(count);
                     }
                 }
@@ -797,21 +777,17 @@ var MapSidebar = {
     _WrapperSel: '#mapSidebar',
     wrapper: $('#mapSidebar'),
     isHidden: function () {
-        //console.log('Inside MapSidebar.isHidden() ======');
         return $(this._WrapperSel).is(':hidden');
     },
     show: function () {
-        //console.log("FUNCTION CALL: MapSidebar.show");
         //this.wrapper.show().addClass('active');
         $(this._WrapperSel).show(500);
     },
     hide: function () {
-        //console.log("FUNCTION CALL: MapSidebar.hide");
         //this.wrapper.removeClass('active');
         $(this._WrapperSel).hide(500);
     },
     init: function (data) {
-        //console.log("FUNCTION CALL: MapSidebar.init");
         var devices = data['data'];
         //添加设备
         $('.map-device-list').html('');
@@ -892,8 +868,6 @@ var MapSidebar = {
         }
     },
     onSelectionChange: function () {    //用户选择了一个设备的时候，在地图上弹出对应设备的infowindow
-        //console.log("FUNCTION CALL: MapSidebar.onSelectionChange");
         var selected = map.infoWindow.getSelectedFeature();
-        //console.log("on selection  change, selected = ", selected);
     }
 };

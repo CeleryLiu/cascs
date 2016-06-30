@@ -62,7 +62,8 @@ public class StatisticController {
     public String getImageNames() {
         URL resource = this.getClass().getResource("/");
         File f = new File(resource.getPath());
-        JSONObject imageNames = FileUtil.getFile(f.getParentFile().getParent() + File.separator + "resources" + File.separator + "img" + File.separator + "showcase" + File.separator + "monitor");
+        JSONObject imageNames = FileUtil.getFile(f.getParentFile().getParent() + File.separator +
+                "resources" + File.separator + "img" + File.separator + "showcase" + File.separator + "monitor");
         return imageNames.toJSONString();
     }
 /*    public static void main(String[] args) {

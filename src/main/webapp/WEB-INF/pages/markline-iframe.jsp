@@ -38,10 +38,5 @@
 <script src="${helperJs}"></script>
 <spring:url value="/resources/js/device-probe-globe.js" var="probeJs"/>
 <script src="${probeJs}"></script>
-<script>
- $(function(){
-//     console.log("iframe starts>>>>>>>>>>>>>>>>>>>>>>>>>>");
- })
-</script>
 </body>
 </html>

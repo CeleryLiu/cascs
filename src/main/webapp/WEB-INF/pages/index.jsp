@@ -130,8 +130,8 @@
     </script>
     <%--arcgis lib and map js--%>
     <%--<script type="text/javascript" src="http://10.10.2.174/arcgis_js_api/library/3.15/3.15/init.js"></script>--%>
-    <script type="text/javascript"
-            src="<%=arcgisPath%>/arcgis_js_api/library/3.15/3.15/init.js"></script>
+    <%--<script type="text/javascript" src="<%=arcgisPath%>/arcgis_js_api/library/3.15/3.15/dojo/dojo.js"></script>--%>
+    <script type="text/javascript" src="<%=arcgisPath%>/arcgis_js_api/library/3.15/3.15/init.js"></script>
 </head>
 <body>
 <%@include file="header.jsp" %>

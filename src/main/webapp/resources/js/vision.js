@@ -7,16 +7,11 @@
 
 var map, goLiveInterval, firstLoad = true;
 var MyMap = {
-    /*    sr: (function () {
-     require(["esri/SpatialReference"], function (SR) {
-     return new SR({wkid: 102100});
-     });
-     }()),*/
     sr: {},
     init: function () {
-        //console.log('MyMap.init() ======');
+        var that=this;
         require(["esri/map", "esri/geometry/Extent", "esri/SpatialReference", "dojo/domReady!"], function (Map, Extent, SR) {
-            MyMap.sr = new SR({wkid: 102100});
+            that.sr = new SR({wkid: 102100});
             var baseExtent, buffer = 10000000;
             map = new Map("mapHolder", {
                 center: [-189.323, 34.355],
@@ -30,8 +25,8 @@ var MyMap = {
             });
             map.on('load', function () {
                 var ext = map.extent;
-                MyMap.sr = map.spatialReference;
-                baseExtent = new Extent(ext.xmin, ext.ymin - buffer, ext.xmax, ext.ymax + buffer, MyMap.sr);
+                that.sr = map.spatialReference;
+                baseExtent = new Extent(ext.xmin, ext.ymin - buffer, ext.xmax, ext.ymax + buffer, that.sr);
             });
             map.on('pan-end', function (e) {
                 if (map.extent.ymin < baseExtent.ymin || map.extent.ymax > baseExtent.ymax) {
@@ -40,12 +35,10 @@ var MyMap = {
                     map.setExtent(baseExtent);
                 }
             });
-            map.on('click', function (e) {
-                //console.log(map.toScreen(e.mapPoint));
-            });
         });
     },
     centerAt: function (device) {
+        var that=this;
         if (map && map != null) {
             require([
                 "esri/geometry/Point",
@@ -55,7 +48,7 @@ var MyMap = {
                 "esri/geometry/webMercatorUtils"
             ], function (Point, PictureMarkerSymbol, Graphic, InfoTemplate, MercatorUtils) {
                 var x = parseFloat(device.lng), y = parseFloat(device.lat);
-                var lnglat = new Point(x, y, MyMap.sr);
+                var lnglat = new Point(x, y, that.sr);
                 var point = MercatorUtils.geographicToWebMercator(lnglat);
                 var symbol = new PictureMarkerSymbol('resources/img/location.gif', 40, 40);
                 var attr = {
@@ -76,13 +69,12 @@ var MyMap = {
                 //var extent = map.extent;
                 //var adjustedY = parseFloat(point.y - Math.abs(Math.abs(extent.ymax) - Math.abs(extent.ymin)) / 3);
                 var adjustedY = point.y - 4076570;
-                map.centerAndZoom(new Point(point.x, adjustedY, MyMap.sr), 3);
+                map.centerAndZoom(new Point(point.x, adjustedY, that.sr), 3);
             });
         }
     },
     clear: function () {
         if (map && map.graphics != null) {
-            //console.log('MyMap.clear() ======');
             map.graphics.clear();
         }
     }
@@ -317,20 +309,6 @@ var init = function () {
                 clearInterval(goLiveInterval);
                 $(this).attr('src', 'resources/img/vision/thumb_no.jpg')
             });
-
-        /*
-         // Function that refreshes image
-         function refresh(image, imageSrc) {
-         var timestamp = new Date().getTime();
-         image.attr('src', imageSrc + '?' + timestamp);
-         }
-
-         // Refresh image every N seconds
-         goLiveTimeout = setTimeout(function () {
-         refresh($('#img_right'), $('#goLive').attr('href'));
-         }, N * 1000);
-         */
-
         goLiveInterval = setInterval(function () {
             $('#img_right').attr('src', $('#goLive').attr('href') + '?t=' + new Date().getTime()) + '&y=11';
         }, 2000);

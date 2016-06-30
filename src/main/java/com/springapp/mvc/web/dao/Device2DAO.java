@@ -33,7 +33,7 @@ public class Device2DAO {
      */
     //返回用户查询的数据，用于前端以列表的形式显示设备信息（数据访问层）高级搜素
     public JSONObject getDeviceData(String uri, Map<String, Object> criteria) {
-        logger.debug("DeviceDAO.getDeviceData(), uri:" + uri + ", criteria:" + JSONObject.fromObject(criteria));
+//        logger.debug("DeviceDAO.getDeviceData(), uri:" + uri + ", criteria:" + JSONObject.fromObject(criteria));
 //        System.out.println("DeviceDAO.getDeviceData(), uri:" + uri + ", criteria:" + JSONObject.fromObject(criteria));
         JSONObject result = JSONObject.fromObject(rc.get(uri, criteria));
         if ("200".equals(result.getString("statuscode"))) {
